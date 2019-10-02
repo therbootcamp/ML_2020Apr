@@ -1,0 +1,234 @@
+---
+title: "Model competition"
+subtitle: ""
+author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+  <tr style='border:none'>
+    <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
+      <font style='font-style:normal'>Machine Learning with R</font>
+      <br>
+      <a href='https://therbootcamp.github.io/ML_2019May/'>
+        <i class='fas fa-clock' style='font-size:.9em;' ></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <i class='fas fa-home' style='font-size:.9em;'></i>
+      </a>
+      <a href='mailto:therbootcamp@gmail.com'>
+        <i class='fas fa-envelope' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+        <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+      </a>
+            <a href='https://therbootcamp.github.io'>
+        <font style='font-style:normal'>Basel R Bootcamp</font>
+      </a>&nbsp;&nbsp;
+    </td>
+    <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+    </td>
+  </tr></table>"
+output:
+  html_document:
+    css: practical.css
+    self_contained: no
+---
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(comment = NA, 
+                      fig.width = 6, 
+                      fig.height = 6,
+                      fig.align = 'center',
+                      echo = TRUE, 
+                      eval = FALSE, 
+                      warning = FALSE,
+                      message = FALSE)
+
+options(digits = 3)
+```
+
+```{r, echo = FALSE, fig.align = 'center', eval = TRUE, out.width = "100%", fig.cap=""}
+knitr::include_graphics("image/twitter.gif")
+```
+
+# {.tabset}
+
+## Overview
+
+Demonstrate your machine-learning-jedi-knight skills in this model competition. Predict `gender` from a tweeter's meta information and win lots of &#127851;&#127851;&#127851;.
+
+The competition will end in...
+
+<font style="font-size:32px"><p id="demo" align="center"></p></font>
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("May 12, 2019 17:05:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get todays date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is finished, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
+
+<br><br><br>
+
+## Background story
+
+The members of governing council of Basel-Stadt recently met at the comfortable, yet luxurious home of Elisabeth Ackerman's, the council's president, to watch the latest science-fiction blockbuster, <a href="https://de.wikipedia.org/wiki/Minority_Report">Minority report</a>. In this uplifting, utopian movie, Chief John Anderton, marvelously played by Tom Cruise, works together with friendly but slightly introverted super-beings with the rare (but scientifically proven - see rigorous academic [paper](image/2011-01894-001.pdf)) ability to foresee the future in order to arrest perpetrators not after they committed a crime (boring!) but before. Aside from spending a wonderful evening with his colleagues, Baschi Dürr, head of justice and homeland security department and the one who proposed the movie, was hoping to win over his fellow council members for a revolutionary program to tackle an unprecedented swell in non-violent crimes and murders in Basel-Stadt in recent months. Baschi Dürr knew, of course, that *precogs* - this is how the super-beings were called - belonged to the land of fairy tails, but during his visit to the recent useR! conference in Brisbane he had learned of the next best thing: machine learning. His goal was, thus, to hire an elite team of programmers and to equip them with a maximally informative data set of past crimes to predict where future crimes would occur. Knowing that Basel shares many similarities with the United States of America, Baschi Dürr already had spent a significant amount of money to acquire a data set of murders and non-violent crimes across American counties. Now, he only needed to convince his colleagues. And Fortuna was on his side. The movie and the few bottles of Napoleon French Brandy that he had bought at Coop earlier that day impressed so much that Elisabeth Ackerman decided to dissolve the investigative branch of the police and invest all of its budget into the new ML task force. The next morning, with a slight, manageable hangover, Baschi Dürr announced an international ML modeling competition promising that whoever built the best model would head the new task force. After a many hours of thinking about the problem and much fewer hours of thinking about the solution, the task force maneuvered itself into obsolescence, having developed the perfect algorithm to predict the locations of future crime.
+
+(Names, characters, businesses, places, events, locales, and incidents are either the products of the author's imagination or used in a fictitious manner. Any resemblance to actual persons, living or dead, or actual events is purely coincidental.)
+
+## Mission statement
+
+After an overpaid machine learning task force maneuvered itself into obsolescence having developed the perfect algorithm to predict the locations of future crime, Baschi Dürr, head of justice and homeland security department of Basel-Stadt, needed a new application for his machine learning task. He feared that Elisabeth Ackerman, president of the governing council, might otherwise withdraw his newly-earned funding (you'll find the story of how he got to that funding in the "Story" tab). And he knew he had to act quickly. To finance a new set of Wegner Swivel Chairs ([aren't they pretty!](https://twentytwentyone.com/product/pp-502-swivel-chair-pp-mobler)) for city hall's conference rooms, Elisabeth Ackerman and Dr. Eva Herzog, head of the city's financial department, had just announced that any expendable resources would to be invested into cryptocurrencies. In search of inspiration, Baschi Dürr called up his American friends, who had previously given him such a great price on the American crime  data set. He learned that they had recently begun to use machine learning for political education with outstanding results ([truly outstanding!](https://www.theguardian.com/news/2018/may/06/cambridge-analytica-how-turn-clicks-into-votes-christopher-wylie)). They explained to him that, using machine learning, one could uncover a person's gender or personality to then send that person tailored political information. Knowing the information hungry Swiss democracy, Baschi Dürr wasted no time after he ended his call to congregate his machine learning task force: Switzerland was not going to miss out on this amazing opportunity. America first, [Switzerland second](https://www.youtube.com/watch?v=reuJ8yVCgSM).  
+
+(Names, characters, businesses, places, events, locales, and incidents are either the products of the author's imagination or used in a fictitious manner. Any resemblance to actual persons, living or dead, or actual events is purely coincidental.)
+
+
+### A - Preliminaries
+
+1. Open your `BaselRBootcamp` R project. It should already have the folders `1_Data` and `2_Code`. 
+
+2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called `Models_competition.R` in the `2_Code` folder.  
+
+3. Using `library()` load the set of packages for this practical listed in the packages section above.
+
+```{r, eval = FALSE, echo = TRUE}
+## NAME
+## DATE
+## Modeling competition
+
+library(tidyverse)
+library(caret)
+```
+
+```{r, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
+library(tidyverse)
+```
+
+4. With the code below, load the `tweets` data set and change any character variables to factors.
+
+```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+
+# Load tweet data
+tweets <- read_csv(file = "1_Data/tweets_train.csv")
+
+# change character to factor
+tweets <- tweets %>% mutate_if(is.character, as.factor)
+
+```
+
+### B Competition rules
+
+1. The goal of the competition is to predict with maximal `Accuracy` whether a twitter user is `'female'` or `'male'`.
+
+2. Entering the competition grants you a chance to win lots of &#127851;&#127851;&#127851;.
+
+3. To enter the competition, you can submit <b>up to three</b> caret `train`-object (result of the `train()` function) containing your candidate model. 
+
+4. To submit the model, first save your model as an `.RDS`-file named `pseudonym_train.RDS`, with `pseudonym` replaced by a pseudonym of your choice. See the code below.
+
+```{r}
+# save train obect as .RDS
+saveRDS(my_train,'1_Data/mypseudonym_train.RDS')
+```
+
+5. Submit your `.RDS` file (containing your training object) via the following link:
+
+<div align = "center">
+<table>
+<tr>
+<th>Task type</th>
+<th>Criterion</th>
+<th>Performance measure</th>
+<th>Submission link</th>
+</tr>
+<tr>
+  <td>Classification</td> 
+  <td>tweets (`gender`)</td>
+  <td>Accuracy</td>
+  <td>[**Submit candidate**](https://www.dropbox.com/request/bkWDKmzaLHOUd9Pl79FR)</td>
+</tr>
+</table>
+</div>
+
+6. Use any weapon in your arsenal (or `caret`'s arsenal). Feel free to try different models, use different tuning parameter settings or preprocessing methods, make use of all or some variables. Whatever may lead to the highest prediction `Accuracy`. Make sure to look at the [**course materials**](https://therbootcamp.github.io/ML_2019May/) for help. 
+
+7. In order to be able to evaluate the models refrain from any manipulation (or engineering) of features other than those accessible via the `preProcess` argument in the `train()` function.
+
+## Datasets
+
+```{r, eval = TRUE, message = FALSE, echo = FALSE}
+library(tidyverse)
+library(ggthemes)
+```
+
+|File  |Rows | Columns |
+|:----|:-----|:------|
+|[tweets](https://raw.githubusercontent.com/therbootcamp/appliedML_2019Jan/master/1_Data/tweets_train.csv)| 2500 | 23|
+
+```{r, message = FALSE, eval = TRUE, echo = FALSE}
+# Load datasets locally
+library(tidyverse)
+```
+
+Note: The `tweets` data are a (heavily) pre-processed subsets of this original data set from [Kaggle](https://www.kaggle.com/crowdflower/twitter-user-gender-classification). 
+
+##### Variable descriptions
+
+|Name  |Meaning |
+|:--------------------------|:-----------------------------------------|
+|gender| The criterion. Whether the person tweeting was `"male"` or `"female"`.|
+|year_created| The year the person's twitter account was created.|
+|hour_created| The hour of day (1:24h) the person's twitter account was created.|
+|tweet_count| The number of tweets that the person has posted.|
+|retweet_count| The number of retweets that the person has posted. |
+|user_timezone| The person's time zone relative to GMT. |
+|name_nchar| The number of characters in the person's twitter name. |
+|name_male| `1` if the person's twitter name contains one of the 1'000 most frequent male baby names in America, `0` if not.|
+|name_female|`1` if the person's twitter name contains one of the 1'000 most frequent female baby names in America, `0` if not.|
+|descr_nchar| The number of characters in the person's twitter account description.|
+|descr_male| `1` if the person's twitter account description contains one of the 1'000 most frequent male baby names in America, `0` if not.|
+|descr_female| `1` if the person's twitter account description contains one of the 1'000 most frequent female baby names in America, `0` if not.|
+|descr_sent| Average sentiment score (>0 = positive sentiment) of the person's twitter account description.|
+|tweet_nchar| The number of characters in one randomly chosen tweet by the person.|
+|tweet_male| `1` if the randomly chosen tweet contains one of the 1'000 most frequent male baby names in America, `0` if not.|
+|tweet_female| `1` if the randomly chosen tweet contains one of the 1'000 most frequent female baby names in America, `0` if not.|
+|tweet_sent| Average sentiment score (>0 = positive sentiment) of the randomly chosen tweet.|
+|linkcol_red| Red value (1:255) in the link color according to the person's twitter scheme. |
+|linkcol_green| green value (1:255) in the link color according to the person's twitter scheme.|
+|linkcol_blue| blue value (1:255) in the link color according to the person's twitter scheme.|
+|sidecol_red| Red value (1:255) in the side bar color according to the person's twitter scheme.|
+|sidecol_green| Green value (1:255) in the side bar color according to the person's twitter scheme.|
+|sidecol_blue| Blue value (1:255) in the side bar color according to the person's twitter scheme.|
+
+
+## Cheatsheet
+
+<figure>
+<center>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf">
+  <img src="https://www.rstudio.com/wp-content/uploads/2015/01/caret-cheatsheet.png" alt="Trulli" style="width:70%"></a><br>
+ <font style="font-size:10px"> from <a href= "https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</figcaption">github.com/rstudio</a></font>
+</figure>
+

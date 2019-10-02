@@ -1,0 +1,754 @@
+---
+title: "Features"
+author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+  <tr style='border:none'>
+    <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
+      <font style='font-style:normal'>Machine Learning with R</font><br>
+      <a href='https://therbootcamp.github.io/ML_2019May/'>
+        <i class='fas fa-clock' style='font-size:.9em;' ></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <i class='fas fa-home' style='font-size:.9em;'></i>
+      </a>
+      <a href='mailto:therbootcamp@gmail.com'>
+        <i class='fas fa-envelope' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+        <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <font style='font-style:normal'>Basel R Bootcamp</font>
+      </a>
+    </td>
+    <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+    </td>
+  </tr></table>"
+output:
+  html_document:
+    css: practical.css
+    self_contained: no
+---
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(comment = NA, 
+                      fig.width = 6, 
+                      fig.height = 6,
+                      fig.align = 'center',
+                      echo = TRUE, 
+                      eval = TRUE, 
+                      warning = FALSE,
+                      message = FALSE)
+
+options(digits = 3)
+```
+
+```{r, message = FALSE, eval = TRUE, echo = FALSE}
+# Load datasets locally
+library(tidyverse)
+library(ggthemes)
+require(caret)
+pima_diabetes <- read_csv("../../1_Data/pima_diabetes.csv")
+murders_crime <- read_csv("../../1_Data/murders_crime.csv")
+violent_crime <- read_csv("../../1_Data/violent_crime.csv")
+nonviolent_crime <- read_csv("../../1_Data/nonviolent_crime.csv")
+```
+
+<p align="center">
+<img width="100%" src="image/wrongdata.gif" margin=0>
+<br>
+from <font style="font-size:10px">from [dilbert.com](https://dilbert.com/)</font>
+</p>
+
+# {.tabset}
+
+## Overview
+
+By the end of this practical you will:
+
+1. Understand the importance of the curse of dimensionality.
+2. Know how to eliminate unwanted features.
+3. Explore and use feature importance.
+4. Use dimensionality reduction.
+
+## Tasks
+
+### A - Setup
+
+1. Open your `BaselRBootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data file(s) listed in the `Datasets` section are in your `1_Data` folder.
+
+2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called `Features_practical.R` in the `2_Code` folder.  
+
+3. Using `library()` load the set of packages for this practical listed in the packages section above.
+
+```{r, eval = FALSE, echo = TRUE}
+# Load packages necessary for this script
+library(tidyverse)
+library(caret)
+```
+
+```{r, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
+library(tidyverse)
+library(caret)
+```
+
+4. In the code below, we will load each of the data sets listed in the `Datasets` as new objects.
+
+```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+# Pima Indians diabetes
+pima_diabetes <- read_csv(file = "1_Data/pima_diabetes.csv")
+
+# (Non-) violent crime statistics
+violent_crime    <- read_csv(file = "1_Data/violent_crime.csv")
+nonviolent_crime <- read_csv(file = "1_Data/nonviolent_crime.csv")
+
+# murders crime statistics
+murders_crime <- read_csv(file = "1_Data/murders_crime.csv")
+```
+
+
+### B - Pima Indians Diabetes
+
+In this section, you will explore feature selection for the Pima Indians Diabetes data set. The Pima are a group of Native Americans living in Arizona. A genetic predisposition allowed this group to survive normally to a diet poor of carbohydrates for years. In the recent years, because of a sudden shift from traditional agricultural crops to processed foods, together with a decline in physical activity, made them develop the highest prevalence of type 2 diabetes. For this reason they have been subject of many studies. 
+
+1. Take a look at the first few rows of the pima diabetes data frame by printing then to the console.
+
+```{r}
+pima_diabetes
+```
+
+
+2. Print the numbers of rows and columns of each data set using the `dim()` function.
+
+```{r}
+dim(pima_diabetes)
+```
+
+
+3. Look at the names of the data frame with the `names()` function.
+
+```{r}
+names(pima_diabetes)
+```
+
+4. Open the data set in a new window using `View()`. Do they look OK?
+
+```{r eval = FALSE}
+View(pima_diabetes)
+```
+
+
+#### Splitting
+
+5. As always, before you do anything you need to make sure that you separate a hold-out data set for later. Create `pima_train` and `pima_test` using `createDataPartition()` with as little as <b>15% of cases going into the training set</b>. Also store the variable `diabetes` from the test set as a factor, which will be the criterion. 
+
+```{r, echo = TRUE, eval = FALSE}
+# split index
+train_index <- createDataPartition(XX$XX, p = .15, list = FALSE)
+
+# train and test sets
+pima_train <- XX %>% slice(train_index)
+pima_test  <- XX %>% slice(-train_index)
+
+# test criterion
+criterion <- as.factor(pima_test$XX)
+```
+
+```{r}
+# split index
+train_index <- createDataPartition(pima_diabetes$diabetes, p = .15, list = FALSE)
+
+# train and test sets
+pima_train <- pima_diabetes %>% slice(train_index)
+pima_test  <- pima_diabetes %>% slice(-train_index)
+
+# test criterion
+criterion <- as.factor(pima_test$diabetes)
+```
+
+#### Remove unwanted features
+
+OK, with the training set, let's get to work and remove some features.
+
+6. First split the training data into a data frame holding the predictors and the criterion using the code below.
+
+```{r, echo = TRUE, eval = FALSE}
+# Select predictors
+pima_train_pred <- pima_train %>% select(-XX)
+
+# Select criterion
+pima_train_crit <- pima_train %>% select(XX) %>% pull()
+```
+
+```{r}
+# Select predictors
+pima_train_pred <- pima_train %>% select(-diabetes)
+
+# Select criterion
+pima_train_crit <- pima_train %>% select(diabetes) %>% pull()
+```
+
+7. Although, this data set is rather small and rather well curated, test if there are any excessively correlated features using `cor()` and `findCorrelation()` using the code below. Are there any?
+
+```{r, echo = TRUE, eval = FALSE}
+# determine correlation matrix
+corr_matrix <- cor(XX_pred)
+
+# find excessively correlated variables
+findCorrelation(corr_matrix)
+```
+
+```{r}
+# determine correlation matrix
+corr_matrix <- cor(pima_train_pred)
+
+# find excessively correlated variables
+findCorrelation(corr_matrix)
+```
+
+8. Now, test if there are any near-zero variance features Any of those?
+
+```{r, echo = TRUE, eval = FALSE}
+# find near zero variance predictors
+nearZeroVar(XX_pred)
+```
+
+```{r}
+# find near zero variance predictors
+nearZeroVar(pima_train_pred)
+```
+
+#### Feature importance
+
+After having retained all features in the previous section, this section explores feature selection on grounds of feature importance. To do this, we first need to fit our model. How about a simple logistic regression aka `method = "glm"`? 
+
+9. Fit the `glm` to the training data.
+
+```{r, echo = TRUE, eval = FALSE}
+# fit regression
+pima_glm <- train(diabetes ~ .,
+                data = XX,
+                method = XX
+                )
+```
+
+```{r}
+# fit regression
+pima_glm <- train(diabetes ~ .,
+                data = pima_train,
+                method = "glm")
+```
+
+10. Evaluate feature importance using `varImp()`. The function will show importance on a scale from 0 (least important feature) to 100 (most important feature). You can set `scale = TRUE` to see absolute importance measures in t-values.
+
+```{r, echo = TRUE, eval = FALSE}
+# determine variable importance
+varimp_glm <- varImp(XX)
+
+# print variable importance
+varimp_glm
+
+# print variable importance
+plot(varimp_glm)
+```
+
+```{r}
+# determine variable importance
+varimp_glm <- varImp(pima_glm)
+
+# print variable importance
+varimp_glm
+
+# print variable importance
+plot(varimp_glm)
+```
+
+#### Model comparison
+
+11. Fit the glm a second time using only the four best features and store the result in a different fit object.
+
+```{r, echo = TRUE, eval = FALSE}
+# fit glm with best four features
+pima_glm4 = train(diabetes ~ XX + YY + ZZ + AA,
+                data = XX,
+                method = XX)
+```
+
+```{r}
+# fit glm with best four features
+pima_glm4 = train(diabetes ~ glucose + mass + pregnant + pedigree,
+                data = pima_train,
+                method = "glm")
+```
+
+12. Using both fits, all features versus the best four, predict the criterion and evaluate the prediction using `confusionMatrix()`. Which model `glm` is better?
+
+```{r, echo = TRUE, eval = FALSE}
+# determine predictions for test data
+pima_glm_pred <- predict(XX, newdata = XX)
+pima_glm4_pred <- predict(XX, newdata = XX)
+
+# evaluate the results
+confusionMatrix(XX, reference = XX)
+confusionMatrix(XX, reference = XX)
+```
+
+```{r}
+# determine predictions for test data
+pima_glm_pred <- predict(pima_glm, newdata = pima_test)
+pima_glm4_pred <- predict(pima_glm4, newdata = pima_test)
+
+# evaluate the results
+confusionMatrix(pima_glm_pred, criterion)
+confusionMatrix(pima_glm4_pred, criterion)
+```
+
+13. You might have observed that the model with two features less is actually slightly better than the full model (if this is not the case, keep in mind that the partitioning of the dataset was done randomly, i.e., if you do it a second time, your results may slightly change). Why do you think is that the case?
+
+14. Play around: Up the proportion dedicated to training or use a different model, e.g., `random forest`, and see whether things change. 
+
+### C - Murders
+
+In this section, you will explore feature selection but use a data set with very different properties. The data combines socio-economic data from the '90 Census, data from Law Enforcement Management and Admin Stats survey, and crime data from the FBI, allowing to analyse the relationship between various socio-demographic variables and whether murders have been committed (`murders`), the criterion of this exercise.     
+
+1. Take a look at the first few rows of the `murders_crime` data frame by printing them to the console.
+
+```{r}
+murders_crime
+```
+
+
+2. Print the numbers of rows and columns of each data set using the `dim()` function.
+
+```{r}
+dim(murders_crime)
+```
+
+3. Look at the names of the data frame with the `names()` function.
+
+```{r}
+names(murders_crime)
+```
+
+
+4. Open the data set in a new window using `View()`. Do they look OK?
+
+```{r eval = FALSE}
+View(murders_crime)
+```
+
+
+#### Splitting
+
+5. Again, before you do anything you need to make sure that you separate a hold-out data set for later. Create `murders_train` and `murders_test` using `createDataPartition()` with as little as <b>25% of cases going into the training set</b>. Also store the variable `murders` from the test set as a factor, which will be the criterion. 
+
+```{r}
+# split index
+train_index <- createDataPartition(murders_crime$murders, p = .25, list = FALSE)
+
+# train and test sets
+murders_train <- murders_crime %>% slice(train_index)
+murders_test  <- murders_crime %>% slice(-train_index)
+
+# test criterion
+criterion <- as.factor(murders_test$murders)
+```
+
+#### Remove unwanted features
+
+OK, with the training set, let's get to work and remove some features.
+
+6. First split the training data into a data frame holding the predictors and the criterion using the code below.
+
+```{r}
+# Select predictors
+murders_train_pred <- murders_train %>% select(-murders)
+
+# Select criterion
+murders_train_crit <- murders_train %>% select(murders) %>% pull()
+```
+
+7. Test if there are any excessively correlated features using `cor()` and `findCorrelation()` using the code below. Are there any this time?
+
+```{r}
+# determine correlation matrix
+corr_matrix <- cor(murders_train_pred)
+
+# find excessively correlated variables
+findCorrelation(corr_matrix)
+```
+
+8. Remove the excessively correlated features from the training predictor set.
+
+```{r, echo = TRUE, eval = FALSE}
+# remove features
+murders_train_pred <- murders_train_pred %>% select(- XX)
+```
+
+```{r}
+# remove features
+murders_train_pred <- murders_train_pred %>% 
+  select(-findCorrelation(corr_matrix))
+```
+
+9. Test if there are any near-zero variance features Any of those this time?
+
+```{r}
+# find near zero variance predictors
+nearZeroVar(murders_train_pred)
+```
+
+10. There were plenty of excessively correlated features but no near-zero variance predictors. Bind the reduced predictor set together with the criterion into a new, clean version of the training set.
+
+```{r, echo = TRUE, eval = FALSE}
+# clean training set
+murders_train_clean <- murders_train_pred %>% 
+  add_column(murders = XX)
+```
+
+```{r}
+# combine clean predictor set with criterion
+murders_train_clean <- murders_train_pred %>% 
+  add_column(murders = murders_train_crit)
+```
+
+#### Model comparison
+
+11. Fit a `glm` twice, once using the original training set and once using the clean training set, and store the fits in separate objects. 
+
+```{r, echo = TRUE, eval = FALSE}
+# fit glm
+murders_glm <- train(murders ~ .,
+                     data = XX,
+                     method = "glm")
+
+# fit glm
+murders_glm_clean <- train(murders ~ .,
+                           data = XX,
+                           method = "glm")
+```
+
+```{r}
+# fit glm
+murders_glm <- train(murders ~ .,
+                     data = murders_train,
+                     method = "glm")
+
+# fit glm
+murders_glm_clean <- train(murders ~ .,
+                           data = murders_train_clean,
+                           method = "glm")
+```
+
+12. You probably have noticed warning messages. They concern the very fact that the features in both data sets, but especially the non-clean set, are still too highly correlated. Go ahead and evaluate the fits on the hold-out set. Which set of features predicts better?
+
+```{r}
+# determine predictions for test data
+murders_pred <- predict(murders_glm, newdata = murders_test)
+murders_clean_pred <- predict(murders_glm_clean, newdata = murders_test)
+
+# evaluate the results
+confusionMatrix(murders_pred, criterion)
+confusionMatrix(murders_clean_pred, criterion)
+```
+
+#### Data compression with PCA
+
+13. Given the high features correlations, it is sensible to compress the data using `principal component analysis` (PCA). Create a third fit object using the original training set with `preProcess = c('pca')` and `trControl = trainControl(preProcOptions = list(thresh = 0.8))` in the training function. The first argument tells R to use PCA, the second specifies that exactly 80% of the variance should be retained. 
+
+```{r echo = TRUE}
+# fit glm with preprocessed features
+murders_glm_pca = train(murders ~ .,
+                        data = murders_train,
+                        method = "glm",
+                        preProcess = c("pca"),
+                        trControl = trainControl(preProcOptions = list(thresh = 0.8)))
+```
+
+14. Compare the prediction performance to the previous to the previous two models. 
+
+```{r}
+# determine predictions for test data
+murders_pca <- predict(murders_glm_pca, newdata = murders_test)
+
+# evaluate the results
+confusionMatrix(murders_pca, criterion)
+```
+
+15. Play around: Alter the amount of variance explained by the `PCA` (using `thresh`), increase the proportion dedicated to training, use a different model, e.g., `random forest`, and see whether things change. 
+
+#### Feature importance
+
+16. Evaluate the feature importance for each of the three models. 
+
+```{r}
+# determine variable importance
+varimp_glm <- varImp(murders_glm)
+varimp_glm_clean <- varImp(murders_glm_clean)
+varimp_glm_pca <- varImp(murders_glm_pca)
+
+# print variable importance
+varimp_glm
+varimp_glm_clean
+varimp_glm_pca
+
+# print variable importance
+plot(varimp_glm)
+plot(varimp_glm_clean)
+plot(varimp_glm_pca)
+
+
+```
+
+17. Can you select a set of features based on feature performance that reliably beats predictions based on the pca-compressed training set?
+
+
+### Z - Violent & Non-violent Crime Data
+
+1. Run similar analyses for the Violent and non-violent crime data sets predicting either the number of violent crimes per 100k inhabitants (`ViolentCrimesPerPop`) or the number of non-violent crimes per 100k inhabitants (`nonViolPerPop`). This time the criterion is numeric, implying regression rather than classification. The features are identical to the murders analysis of the previous section. 
+
+2. Use the computer to find a good set of features using recursive feature elimination with `rfe()`. 
+
+```{r, echo = TRUE}
+
+# split index
+train_index <- createDataPartition(violent_crime$ViolentCrimesPerPop, 
+                                   p = .8, 
+                                   list = FALSE)
+
+# train and test sets
+violent_train <- violent_crime %>% slice(train_index)
+violent_test  <- violent_crime %>% slice(-train_index)
+
+# remove extreme correlations (OPTIONAL)
+predictors <- violent_train %>% select(-ViolentCrimesPerPop)
+predictors <- predictors %>% select(-findCorrelation(cor(predictors)))
+violent_train_clean <- predictors %>%
+  add_column(ViolentCrimesPerPop = violent_train$ViolentCrimesPerPop)
+
+# Feature elimination settings 
+ctrl_rfe <- rfeControl(functions = lmFuncs,  # linear model
+                          method = "cv",
+                          verbose = FALSE,
+                          rerank = FALSE)
+
+# Run feature elimination
+profile <- rfe(x = violent_train %>% select(-ViolentCrimesPerPop), 
+               y = violent_train$ViolentCrimesPerPop,
+               sizes = 1:(ncol(violent_train_clean)-1), # Features set sizes
+               rfeControl = ctrl_rfe)
+
+# inspect cross-validation as a function of performance
+plot(profile)
+```
+
+## Examples
+
+```{r, eval = FALSE, echo = TRUE}
+
+# Step 0: Load packages-----------
+
+library(tidyverse)    # Load tidyverse for dplyr and tidyr
+library(tibble)       # For advanced tibble functions
+library(caret)        # For ML mastery 
+
+# Step 1: Load, prepare, and explore data ----------------------
+
+# read data
+data <- read_csv("1_Data/mpg_num.csv")
+
+# Convert all characters to factors
+data <- data %>%
+  mutate_if(is.character, factor)
+
+# Explore training data
+data        # Print the dataset
+dim(data)   # Print dimensions
+names(data) # Print the names
+
+# Step 2: Create training and test sets -------------
+
+# Create train index
+train_index <- createDataPartition(criterion, 
+                                   p = .8, 
+                                   list = FALSE)
+
+# Create training and test sets
+data_train <- data %>% slice(train_index)
+data_test <- data %>% slice(-train_index)
+
+# split predictors and criterion
+criterion_train <- data_train %>% select(hwy) %>% pull()
+predictors_train <- data_train %>% select(-hwy)
+criterion_test <- data_test %>% select(hwy) %>% pull()
+predictors_test <- data_test %>% select(-hwy)
+
+# Step 3: Clean data -------------
+
+# Test for excessively correlated features
+corr_matrix <- cor(predictors_train)
+corr_features <- findCorrelation(corr_matrix)
+
+# Remove excessively correlated features
+predictors_train <- predictors_train %>% select(-corr_features)
+
+# Test for near zero variance features
+zerovar_features <- nearZeroVar(predictors_train)
+
+# Remove near zero variance features
+predictors_train <- predictors_train %>% select(-zerovar_features)
+
+# recombine data
+data_train <- predictors_train %>% add_column(hwy = criterion_train)
+
+# Step 4: Define training control parameters -------------
+
+# Train using cross-validation
+ctrl_cv <- trainControl(method = "cv") 
+
+# Step 5: Fit models -------------
+
+# Fit glm vanilla flavor
+hwy_glm <- train(form = hwy ~ .,
+                 data = data_train,
+                 method = "glm",
+                 trControl = ctrl_cv)
+
+# Fit with pca transformation
+hwy_glm_pca <- train(form = hwy ~ .,
+                     data = data_train,
+                     method = "glm",
+                     trControl = ctrl_cv,
+                     preProcess = c('pca'))
+
+# Fit scaling and centering
+hwy_glm_sca <- train(form = hwy ~ .,
+                     data = data_train,
+                     method = "glm",
+                     trControl = ctrl_cv,
+                     preProcess = c('scale', 'center'))
+
+# Get fits
+glm_fit     <- predict(hwy_glm)
+glm_pca_fit <- predict(hwy_glm_pca)
+glm_sca_fit <- predict(hwy_glm_sca)
+
+# Step 6: Evaluate variable importance -------------
+
+# Run varImp()
+imp_glm     <- varImp(hwy_glm)
+imp_glm_pca <- varImp(hwy_glm_pca)
+imp_glm_sca <- varImp(hwy_glm_sca)
+
+# Plot variable importance
+plot(imp_glm)
+plot(imp_glm_pca)
+plot(imp_glm_sca)
+
+# Step 7: Select variables -------------
+
+# Select by hand in formula
+hwy_glm_sel <- train(form = hwy ~ cty,
+                     data = data_train,
+                     method = "glm",
+                     trControl = ctrl_cv)
+
+# Select by reducing pca criterion ---
+
+# Reduce criterion to 50% variance epxlained 
+ctrl_cv_pca <- trainControl(method = "cv",
+                            preProcOptions = list(thresh = 0.50)) 
+
+# Refit model with update
+hwy_glm_sel <- train(form = hwy ~ .,
+                     data = data_train,
+                     method = "glm",
+                     trControl = ctrl_cv_pca,
+                     preProcess = c('pca'))
+
+# Step 8: Recursive feature elimination -------------
+
+# Feature elimination settings 
+ctrl_rfe <- rfeControl(functions = lmFuncs,  # linear model
+                       method = "cv",
+                       verbose = FALSE)
+
+# Run feature elimination
+profile <- rfe(x = predictors_train, 
+               y = criterion_train,
+               sizes = c(1, 2, 3),     # Features set sizes should be considered
+               rfeControl = ctrl_rfe)
+
+# plot result
+trellis.par.set(caretTheme())
+plot(profile, type = c("g", "o"))
+
+# Step 9: Evaluate models -------------
+
+# you know how...
+
+```
+
+
+## Datasets
+
+|File  |Rows | Columns |
+|:----|:-----|:------|
+|[pima_diabetes](https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/pima_diabetes.csv?token=AGKBX5X2RYNE3KP6SJ2OIB243BZWM)| 724 | 7|
+|[murders_crime](https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/murders_crime.csv?token=AGKBX5SQHLKXSIGDYR2W6CC43BZYU)| 1000 | 102|
+|[violent_crime](https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/violent_crime.csv?token=AGKBX5XMOGJASFEAHFWWJSK43BZ3M)| 1000 | 102|
+|[nonviolent_crime](https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/nonviolent_crime.csv?token=AGKBX5WU4JZE2FHH5LRZTYS43BZ5Q)| 1000 | 102|
+
+- The `pima_diabetes` is a subset of the `PimaIndiansDiabetes2` data set in the `mlbench` package. It contains medical and demographic data of Pima Indians.
+
+- The `murders_crime`, `violent_crime`, and `non_violent_crime` data are subsets of the Communities and Crime Unnormalized Data Set data set from the UCI Machine Learning Repository. To see column descriptions, visit this site: [Communities and Crime Unnormalized Data Set](https://archive.ics.uci.edu/ml/datasets/Communities+and+Crime+Unnormalized). Due to the large number of variables (102), we do not include the full tables below.
+
+#### Variable description of `pima_diabetes`
+
+| Name | Description |
+|:-------------|:-------------------------------------|
+| `pregnant` | Number of times pregnant. |
+| `glucose` | Plasma glucose concentration (glucose tolerance test).  |
+| `pressure` | Diastolic blood pressure (mm Hg). |
+| `triceps` | Triceps skin fold thickness (mm). |
+| `insulin` | 2-Hour serum insulin (mu U/ml). |
+| `mass` | Body mass index (weight in kg/(height in m)\^2). |
+| `pedigree` | Diabetes pedigree function. |
+| `age` | Age (years). |
+| `diabetes` | Class variable (test for diabetes). |
+
+
+## Functions
+
+### Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+|`tibble`|`install.packages("tibble")`|
+|`caret`|`install.packages("caret")`|
+
+### Functions
+
+| Function| Package | Description |
+|:---|:------|:---------------------------------------------|
+| `trainControl()`|`caret`|    Define modelling control parameters| 
+| `train()`|`caret`|    Train a model|
+| `predict(object, newdata)`|`stats`|    Predict the criterion values of `newdata` based on `object`|
+| `postResample()`|`caret`|   Calculate aggregate model performance in regression tasks|
+| `confusionMatrix()`|`caret`|   Calculate aggregate model performance in classification tasks| 
+| `varImp()`|`caret`| Determine the model-specific importance of features |
+| `findCorrelation()`, `nearZeroVar()` |`caret`|  Identify highly correlated and low variance features. | 
+| `rfe()`, `rfeControl()` |`caret`|  Run and control recursive feature selection. | 
+
+## Resources
+
+### Cheatsheet
+
+<figure>
+<center>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf">
+  <img src="https://www.rstudio.com/wp-content/uploads/2015/01/caret-cheatsheet.png" alt="Trulli" style="width:70%"></a><br>
+ <font style="font-size:10px"> from <a href= "https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</figcaption">github.com/rstudio</a></font>
+</figure>
+

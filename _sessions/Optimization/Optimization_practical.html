@@ -1,0 +1,1948 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Optimization</title>
+
+<script src="Optimization_practical_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="Optimization_practical_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="Optimization_practical_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="Optimization_practical_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="Optimization_practical_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="Optimization_practical_files/navigation-1.1/tabsets.js"></script>
+<link href="Optimization_practical_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="Optimization_practical_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="practical.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Optimization</h1>
+<h4 class="author"><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
+<col width='10%'>
+<col width='10%'>
+<tr style="border:none">
+<td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
+<font style='font-style:normal'>Machine Learning with R</font><br> <a href='https://therbootcamp.github.io/ML_2019May/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Basel R Bootcamp</font> </a>
+</td>
+<td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
+<img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+</td>
+</tr>
+</table></h4>
+
+</div>
+
+
+<p align="center">
+<img width="100%" src="image/rexthor.png" margin=0><br> <font style="font-size:10px">from <a href="https://xkcd.com/1725/">xkcd.com</a></font>
+</p>
+<div id="section" class="section level1 tabset">
+<h1></h1>
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>By the end of this practical you will know how to:</p>
+<ol style="list-style-type: decimal">
+<li>Use cross-validation to select optimal model tuning parameters for decision trees and random forests</li>
+<li>Compare ‘standard’ regression with lasso and ridge penalised regression</li>
+<li>Use cross-validation to estimate future test accuracy</li>
+</ol>
+</div>
+<div id="tasks" class="section level2">
+<h2>Tasks</h2>
+<div id="baseball-player-salaries" class="section level3">
+<h3>Baseball player salaries</h3>
+<p>In this practical, we will predict the salaries of baseball players from the <code>hitters_train</code> and <code>hitters_test</code> datasets.</p>
+<p>Our goal will be to predict <code>Salary</code>.</p>
+</div>
+<div id="a---setup" class="section level3">
+<h3>A - Setup</h3>
+<ol style="list-style-type: decimal">
+<li><p>Open your <code>BaselRBootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data file(s) listed in the <code>Datasets</code> section are in your <code>1_Data</code> folder</p></li>
+<li>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>Optimization_practical.R</code> in the <code>2_Code</code> folder.<br />
+</li>
+<li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p></li>
+</ol>
+<pre class="r"><code># Load packages necessary for this script
+library(tidyverse)
+library(caret)
+library(party)
+library(partykit)</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Run the code below to load each of the datasets listed in the <code>Datasets</code> as new objects</li>
+</ol>
+<pre class="r"><code># hitters data
+hitters_train &lt;- read_csv(file = &quot;1_Data/hitters_train.csv&quot;)
+hitters_test &lt;- read_csv(file = &quot;1_Data/hitters_test.csv&quot;)</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Take a look at the first few rows of each dataframe by printing them to the console.</li>
+</ol>
+<pre class="r"><code># Print dataframes to the console
+hitters_train
+hitters_test</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Print the numbers of rows and columns of each dataset using the <code>dim()</code> function</li>
+</ol>
+<pre class="r"><code># Print numbers of rows and columns
+dim(XXX)
+dim(XXX)</code></pre>
+<pre class="r"><code>dim(hitters_train)</code></pre>
+<pre><code>[1] 50 20</code></pre>
+<pre class="r"><code>dim(hitters_test)</code></pre>
+<pre><code>[1] 213  20</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Look at the names of the dataframes with the <code>names()</code> function.</li>
+</ol>
+<pre class="r"><code># Print the names of each dataframe
+names(XXX)
+names(XXX)</code></pre>
+<pre class="r"><code>names(hitters_train)</code></pre>
+<pre><code> [1] &quot;Salary&quot;    &quot;AtBat&quot;     &quot;Hits&quot;      &quot;HmRun&quot;     &quot;Runs&quot;     
+ [6] &quot;RBI&quot;       &quot;Walks&quot;     &quot;Years&quot;     &quot;CAtBat&quot;    &quot;CHits&quot;    
+[11] &quot;CHmRun&quot;    &quot;CRuns&quot;     &quot;CRBI&quot;      &quot;CWalks&quot;    &quot;League&quot;   
+[16] &quot;Division&quot;  &quot;PutOuts&quot;   &quot;Assists&quot;   &quot;Errors&quot;    &quot;NewLeague&quot;</code></pre>
+<pre class="r"><code>names(hitters_test)</code></pre>
+<pre><code> [1] &quot;Salary&quot;    &quot;AtBat&quot;     &quot;Hits&quot;      &quot;HmRun&quot;     &quot;Runs&quot;     
+ [6] &quot;RBI&quot;       &quot;Walks&quot;     &quot;Years&quot;     &quot;CAtBat&quot;    &quot;CHits&quot;    
+[11] &quot;CHmRun&quot;    &quot;CRuns&quot;     &quot;CRBI&quot;      &quot;CWalks&quot;    &quot;League&quot;   
+[16] &quot;Division&quot;  &quot;PutOuts&quot;   &quot;Assists&quot;   &quot;Errors&quot;    &quot;NewLeague&quot;</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>Open each dataset in a new window using <code>View()</code>. Do they look ok?</li>
+</ol>
+<pre class="r"><code># Open each dataset in a window.
+View(XXX)
+View(XXX)</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li>We need to do a little bit of data cleaning before starting. Specifically, we need to convert all character columns to factors: Do this by running the following code:</li>
+</ol>
+<pre class="r"><code># Convert all character columns to factor
+hitters_train &lt;- hitters_train %&gt;%
+          mutate_if(is.character, factor)
+
+hitters_test &lt;- hitters_test %&gt;%
+          mutate_if(is.character, factor)</code></pre>
+</div>
+<div id="b---setup-traincontrol" class="section level3">
+<h3>B - Setup <code>trainControl</code></h3>
+<ol style="list-style-type: decimal">
+<li>Set up your training by specifying <code>ctrl_cv</code> as 10-fold cross-validation</li>
+</ol>
+<ul>
+<li>Set method = “cv” to specify cross validation</li>
+<li>Set number = 10 to specify 10 folds</li>
+</ul>
+<pre class="r"><code># Use 10-fold cross validation
+ctrl_cv &lt;- trainControl(method = &quot;XX&quot;, 
+                        number = XX) </code></pre>
+<pre class="r"><code># Use 10-fold cross validation
+ctrl_cv &lt;- trainControl(method = &quot;cv&quot;, 
+                        number = 10) </code></pre>
+</div>
+<div id="c---regression-standard" class="section level3">
+<h3>C - Regression (standard)</h3>
+<ol style="list-style-type: decimal">
+<li>Fit a (standard) regression model predicting <code>Salary</code> as a function of all features</li>
+</ol>
+<ul>
+<li>Set the formula to <code>Salary ~ .</code></li>
+<li>Set the data to <code>hitters_train</code></li>
+<li>Set the method to <code>&quot;glm&quot;</code> for regular regression</li>
+<li>Set the train control argument to <code>ctrl_cv</code></li>
+</ul>
+<pre class="r"><code># Normal Regression --------------------------
+salary_glm &lt;- train(form = XX ~ .,
+                    data = XX,
+                    method = &quot;XX&quot;,
+                    trControl = XX)</code></pre>
+<pre class="r"><code># Normal Regression --------------------------
+salary_glm &lt;- train(form = Salary ~ .,
+                   data = hitters_train,
+                   method = &quot;glm&quot;,
+                   trControl = ctrl_cv)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Print your <code>salary_glm</code> what do you see?</li>
+</ol>
+<pre class="r"><code>salary_glm</code></pre>
+<pre><code>Generalized Linear Model 
+
+50 samples
+19 predictors
+
+No pre-processing
+Resampling: Cross-Validated (10 fold) 
+Summary of sample sizes: 45, 43, 46, 46, 44, 46, ... 
+Resampling results:
+
+  RMSE  Rsquared  MAE
+  523   0.273     441</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Try plotting your <code>salary_glm</code> object. What happens? What does this error mean?</li>
+</ol>
+<pre class="r"><code># I get the following error:
+
+# Error in plot.train(salary_glm) : 
+#   There are no tuning parameters for this model.
+
+
+# The problem is that method = &quot;glm&quot; has no tuning parameters so there is nothing to plot!</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Print your final model object with <code>salary_glm$finalModel</code></li>
+</ol>
+<pre class="r"><code># Print final regression model
+salary_glm$finalModel</code></pre>
+<pre><code>
+Call:  NULL
+
+Coefficients:
+(Intercept)        AtBat         Hits        HmRun         Runs  
+   664.0169      -1.8086      12.7263      14.0206     -10.7594  
+        RBI        Walks        Years       CAtBat        CHits  
+    -5.1859      -8.6702     -62.3666       0.4883      -4.9553  
+     CHmRun        CRuns         CRBI       CWalks      LeagueN  
+    -8.3973       5.7164       4.3061       0.3754     144.0316  
+  DivisionW      PutOuts      Assists       Errors   NewLeagueN  
+   -75.0233      -0.0843       0.5934      -9.7698     223.6980  
+
+Degrees of Freedom: 49 Total (i.e. Null);  30 Residual
+Null Deviance:      12600000 
+Residual Deviance: 5110000  AIC: 761</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Print your final regression model coefficients with <code>coef()</code>.</li>
+</ol>
+<pre class="r"><code># Print glm coefficients
+coef(salary_glm$finalModel)</code></pre>
+<pre><code>(Intercept)       AtBat        Hits       HmRun        Runs         RBI 
+   664.0169     -1.8086     12.7263     14.0206    -10.7594     -5.1859 
+      Walks       Years      CAtBat       CHits      CHmRun       CRuns 
+    -8.6702    -62.3666      0.4883     -4.9553     -8.3973      5.7164 
+       CRBI      CWalks     LeagueN   DivisionW     PutOuts     Assists 
+     4.3061      0.3754    144.0316    -75.0233     -0.0843      0.5934 
+     Errors  NewLeagueN 
+    -9.7698    223.6980 </code></pre>
+</div>
+<div id="d---ridge-regression" class="section level3">
+<h3>D - Ridge Regression</h3>
+<p>It’s time to fit an optimized regression model with a Ridge penalty!</p>
+<ol style="list-style-type: decimal">
+<li>Before we can fit a ridge regression model, we need to specify which values of the lambda penalty parameter we want to try. Using the code below, create a vector called <code>lambda_vec</code> which contains 100 values spanning a wide range, from very close to 0 to 1,000</li>
+</ol>
+<pre class="r"><code># Vector of lambda values to try
+lambda_vec &lt;- 10 ^ (seq(-4, 4, length = 100))</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Fit a ridge regression model predicting <code>Salary</code> as a function of all features</li>
+</ol>
+<ul>
+<li>Set the formula to <code>Salary ~ .</code></li>
+<li>Set the data to <code>hitters_train</code></li>
+<li>Set the method to <code>&quot;glmnet&quot;</code> for regularized regression</li>
+<li>Set the train control argument to <code>ctrl_cv</code></li>
+<li>Set the <code>preProcess</code> argument to <code>c(&quot;center&quot;, &quot;scale&quot;)</code> to make sure the variables are standarised when estimating the beta weights (this is good practice for ridge regression)</li>
+<li>Set the tuneGrid argument such that alpha is 0 (for ridge regression), and with all lambda values you specified in <code>lambda_vec</code> (we’ve done this for you below)</li>
+</ul>
+<pre class="r"><code># Ridge Regression --------------------------
+salary_ridge &lt;- train(form = XX ~ .,
+                      data = XX,
+                      method = &quot;XX&quot;,
+                      trControl = XX,
+                      preProcess = c(&quot;XX&quot;, &quot;XX&quot;),  # Standardise
+                      tuneGrid = expand.grid(alpha = 0,  # Ridge penalty
+                                             lambda = lambda_vec))</code></pre>
+<pre class="r"><code># Ridge Regression --------------------------
+salary_ridge &lt;- train(form = Salary ~ .,
+                      data = hitters_train,
+                      method = &quot;glmnet&quot;,
+                      trControl = ctrl_cv,
+                      preProcess = c(&quot;center&quot;, &quot;scale&quot;),  # Standardise
+                      tuneGrid = expand.grid(alpha = 0,  # Ridge penalty
+                                             lambda = lambda_vec))</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Print your <code>salary_ridge</code> object what do you see?</li>
+</ol>
+<pre class="r"><code>salary_ridge</code></pre>
+<pre><code>glmnet 
+
+50 samples
+19 predictors
+
+Pre-processing: centered (19), scaled (19) 
+Resampling: Cross-Validated (10 fold) 
+Summary of sample sizes: 45, 45, 44, 46, 45, 45, ... 
+Resampling results across tuning parameters:
+
+  lambda    RMSE  Rsquared  MAE
+  1.00e-04  454   0.313     340
+  1.20e-04  454   0.313     340
+  1.45e-04  454   0.313     340
+  1.75e-04  454   0.313     340
+  2.10e-04  454   0.313     340
+  2.54e-04  454   0.313     340
+  3.05e-04  454   0.313     340
+  3.68e-04  454   0.313     340
+  4.43e-04  454   0.313     340
+  5.34e-04  454   0.313     340
+  6.43e-04  454   0.313     340
+  7.74e-04  454   0.313     340
+  9.33e-04  454   0.313     340
+  1.12e-03  454   0.313     340
+  1.35e-03  454   0.313     340
+  1.63e-03  454   0.313     340
+  1.96e-03  454   0.313     340
+  2.36e-03  454   0.313     340
+  2.85e-03  454   0.313     340
+  3.43e-03  454   0.313     340
+  4.13e-03  454   0.313     340
+  4.98e-03  454   0.313     340
+  5.99e-03  454   0.313     340
+  7.22e-03  454   0.313     340
+  8.70e-03  454   0.313     340
+  1.05e-02  454   0.313     340
+  1.26e-02  454   0.313     340
+  1.52e-02  454   0.313     340
+  1.83e-02  454   0.313     340
+  2.21e-02  454   0.313     340
+  2.66e-02  454   0.313     340
+  3.20e-02  454   0.313     340
+  3.85e-02  454   0.313     340
+  4.64e-02  454   0.313     340
+  5.59e-02  454   0.313     340
+  6.73e-02  454   0.313     340
+  8.11e-02  454   0.313     340
+  9.77e-02  454   0.313     340
+  1.18e-01  454   0.313     340
+  1.42e-01  454   0.313     340
+  1.71e-01  454   0.313     340
+  2.06e-01  454   0.313     340
+  2.48e-01  454   0.313     340
+  2.98e-01  454   0.313     340
+  3.59e-01  454   0.313     340
+  4.33e-01  454   0.313     340
+  5.21e-01  454   0.313     340
+  6.28e-01  454   0.313     340
+  7.56e-01  454   0.313     340
+  9.11e-01  454   0.313     340
+  1.10e+00  454   0.313     340
+  1.32e+00  454   0.313     340
+  1.59e+00  454   0.313     340
+  1.92e+00  454   0.313     340
+  2.31e+00  454   0.313     340
+  2.78e+00  454   0.313     340
+  3.35e+00  454   0.313     340
+  4.04e+00  454   0.313     340
+  4.86e+00  454   0.313     340
+  5.86e+00  454   0.313     340
+  7.05e+00  454   0.313     340
+  8.50e+00  454   0.313     340
+  1.02e+01  454   0.313     340
+  1.23e+01  454   0.313     340
+  1.48e+01  454   0.313     340
+  1.79e+01  454   0.313     340
+  2.15e+01  454   0.313     340
+  2.60e+01  454   0.314     340
+  3.13e+01  451   0.317     338
+  3.76e+01  447   0.321     334
+  4.53e+01  442   0.326     331
+  5.46e+01  437   0.331     328
+  6.58e+01  432   0.337     324
+  7.92e+01  427   0.343     322
+  9.55e+01  423   0.350     319
+  1.15e+02  418   0.356     316
+  1.38e+02  414   0.363     314
+  1.67e+02  411   0.370     312
+  2.01e+02  407   0.376     310
+  2.42e+02  404   0.383     308
+  2.92e+02  401   0.389     306
+  3.51e+02  399   0.395     304
+  4.23e+02  397   0.402     302
+  5.09e+02  395   0.408     301
+  6.14e+02  394   0.414     299
+  7.39e+02  393   0.421     299
+  8.90e+02  393   0.428     298
+  1.07e+03  394   0.436     298
+  1.29e+03  395   0.444     299
+  1.56e+03  396   0.452     300
+  1.87e+03  399   0.461     302
+  2.26e+03  401   0.470     304
+  2.72e+03  405   0.479     307
+  3.27e+03  408   0.487     309
+  3.94e+03  412   0.495     313
+  4.75e+03  417   0.501     317
+  5.72e+03  421   0.507     321
+  6.89e+03  426   0.512     325
+  8.30e+03  431   0.516     329
+  1.00e+04  435   0.520     333
+
+Tuning parameter &#39;alpha&#39; was held constant at a value of 0
+RMSE was used to select the optimal model using the smallest value.
+The final values used for the model were alpha = 0 and lambda = 890.</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Plot your <code>salary_ridge</code> object. What do you see? Which value of the regularization parameter seems to be the best?</li>
+</ol>
+<pre class="r"><code># Plot salary_ridge object
+plot(XX)</code></pre>
+<pre class="r"><code>plot(salary_ridge)</code></pre>
+<p><img src="Optimization_practical_files/figure-html/unnamed-chunk-25-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ol start="5" style="list-style-type: decimal">
+<li>Print the best value of lambda by running the following code. Does this match what you saw in the plot above?</li>
+</ol>
+<pre class="r"><code># Print best regularisation parameter
+salary_ridge$bestTune$lambda</code></pre>
+<pre><code>[1] 890</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>What were your final regression model coefficients for the best lambda value? Find them by running the following code:</li>
+</ol>
+<pre class="r"><code># Get coefficients from best lambda value
+coef(salary_ridge$finalModel, 
+     salary_ridge$bestTune$lambda)</code></pre>
+<pre><code>20 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+                 1
+(Intercept) 608.79
+AtBat        -6.30
+Hits          6.78
+HmRun        -7.65
+Runs          8.16
+RBI           6.96
+Walks        11.70
+Years        13.70
+CAtBat       29.45
+CHits        31.17
+CHmRun       24.79
+CRuns        37.78
+CRBI         33.51
+CWalks       39.65
+LeagueN      39.21
+DivisionW   -37.83
+PutOuts      13.73
+Assists      37.15
+Errors      -10.95
+NewLeagueN   26.18</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>How do these coefficients compare to what you found in regular regression? Are they similar? Different?</li>
+</ol>
+<pre class="r"><code># Actually the look quite different! The reason why is that we have changed the scale using preProcess
+
+# If you want the coefficients on the original scale, you&#39;d need to convert them, or run your training again without any processing. However, this can lead to problems finding the optimal Lambda value...</code></pre>
+</div>
+<div id="e---lasso-regression" class="section level3">
+<h3>E - Lasso Regression</h3>
+<p>It’s time to fit an optimized regression model with a Lasso penalty!</p>
+<ol style="list-style-type: decimal">
+<li>Before we can fit a lasso regression model, we need to specify which values of the lambda penalty parameter we want to try. Using the code below, create a vector called <code>lambda_vec</code> which contains 100 values between 0 and 1000</li>
+</ol>
+<pre class="r"><code># Determine possible values of lambda
+lambda_vec &lt;- 10 ^ seq(from = -4, to = 4, length = 100)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Fit a lasso regression model predicting <code>Salary</code> as a function of all features</li>
+</ol>
+<ul>
+<li>Set the formula to <code>Salary ~ .</code></li>
+<li>Set the data to <code>hitters_train</code></li>
+<li>Set the method to <code>&quot;glmnet&quot;</code> for regularized regression</li>
+<li>Set the train control argument to <code>ctrl_cv</code></li>
+<li>Set the <code>preProcess</code> argument to <code>c(&quot;center&quot;, &quot;scale&quot;)</code> to make sure the variables are standarised when estimating the beta weights (this is good practice for lasso regression)</li>
+<li>Set the tuneGrid argument such that alpha is 1 (for lasso regression), and with all lambda values you specified in <code>lambda_vec</code> (we’ve done this for you below)</li>
+</ul>
+<pre class="r"><code># Lasso Regression --------------------------
+salary_lasso &lt;- train(form = XX ~ .,
+                      data = XX,
+                      method = &quot;XX&quot;,
+                      trControl = XX,
+                      preProcess = c(&quot;XX&quot;, &quot;XX&quot;),  # Standardise
+                      tuneGrid = expand.grid(alpha = 1,  # Lasso penalty
+                                            lambda = lambda_vec))</code></pre>
+<pre class="r"><code># Fit a lasso regression
+salary_lasso &lt;- train(form = Salary ~ .,
+                   data = hitters_train,
+                   method = &quot;glmnet&quot;,
+                   trControl = ctrl_cv,
+                   preProcess = c(&quot;center&quot;, &quot;scale&quot;),
+                   tuneGrid = expand.grid(alpha = 1,  # Lasso penalty
+                                          lambda = lambda_vec))</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Print your <code>salary_lasso</code> object what do you see?</li>
+</ol>
+<pre class="r"><code>salary_lasso</code></pre>
+<pre><code>glmnet 
+
+50 samples
+19 predictors
+
+Pre-processing: centered (19), scaled (19) 
+Resampling: Cross-Validated (10 fold) 
+Summary of sample sizes: 45, 44, 44, 45, 46, 44, ... 
+Resampling results across tuning parameters:
+
+  lambda    RMSE  Rsquared  MAE
+  1.00e-04  611   0.205     491
+  1.20e-04  611   0.205     491
+  1.45e-04  611   0.205     491
+  1.75e-04  611   0.205     491
+  2.10e-04  611   0.205     491
+  2.54e-04  611   0.205     491
+  3.05e-04  611   0.205     491
+  3.68e-04  611   0.205     491
+  4.43e-04  611   0.205     491
+  5.34e-04  611   0.205     491
+  6.43e-04  611   0.205     491
+  7.74e-04  611   0.205     491
+  9.33e-04  611   0.205     491
+  1.12e-03  611   0.205     491
+  1.35e-03  611   0.205     491
+  1.63e-03  611   0.205     491
+  1.96e-03  611   0.205     491
+  2.36e-03  611   0.205     491
+  2.85e-03  611   0.205     491
+  3.43e-03  611   0.205     491
+  4.13e-03  611   0.205     491
+  4.98e-03  611   0.205     491
+  5.99e-03  611   0.205     491
+  7.22e-03  611   0.205     491
+  8.70e-03  611   0.205     491
+  1.05e-02  611   0.205     491
+  1.26e-02  611   0.205     491
+  1.52e-02  611   0.205     491
+  1.83e-02  611   0.205     491
+  2.21e-02  611   0.205     491
+  2.66e-02  611   0.205     491
+  3.20e-02  611   0.205     491
+  3.85e-02  611   0.205     491
+  4.64e-02  611   0.205     490
+  5.59e-02  611   0.205     490
+  6.73e-02  610   0.205     490
+  8.11e-02  610   0.205     489
+  9.77e-02  610   0.205     489
+  1.18e-01  609   0.206     488
+  1.42e-01  609   0.206     487
+  1.71e-01  609   0.206     486
+  2.06e-01  608   0.205     484
+  2.48e-01  607   0.206     483
+  2.98e-01  606   0.206     480
+  3.59e-01  605   0.206     478
+  4.33e-01  603   0.205     474
+  5.21e-01  601   0.205     470
+  6.28e-01  599   0.204     465
+  7.56e-01  596   0.204     460
+  9.11e-01  590   0.204     453
+  1.10e+00  580   0.208     445
+  1.32e+00  571   0.216     437
+  1.59e+00  560   0.226     428
+  1.92e+00  550   0.240     420
+  2.31e+00  538   0.258     410
+  2.78e+00  523   0.283     399
+  3.35e+00  508   0.315     387
+  4.04e+00  494   0.337     377
+  4.86e+00  485   0.343     371
+  5.86e+00  477   0.344     367
+  7.05e+00  472   0.343     364
+  8.50e+00  469   0.340     362
+  1.02e+01  466   0.337     361
+  1.23e+01  464   0.335     360
+  1.48e+01  459   0.343     356
+  1.79e+01  452   0.359     351
+  2.15e+01  444   0.377     346
+  2.60e+01  439   0.395     343
+  3.13e+01  434   0.417     339
+  3.76e+01  429   0.444     334
+  4.53e+01  425   0.461     330
+  5.46e+01  424   0.467     328
+  6.58e+01  426   0.466     328
+  7.92e+01  430   0.456     328
+  9.55e+01  433   0.438     328
+  1.15e+02  433   0.420     327
+  1.38e+02  432   0.422     326
+  1.67e+02  434   0.433     329
+  2.01e+02  447   0.429     338
+  2.42e+02  466   0.376     353
+  2.92e+02  481   0.326     373
+  3.51e+02  480     NaN     375
+  4.23e+02  480     NaN     375
+  5.09e+02  480     NaN     375
+  6.14e+02  480     NaN     375
+  7.39e+02  480     NaN     375
+  8.90e+02  480     NaN     375
+  1.07e+03  480     NaN     375
+  1.29e+03  480     NaN     375
+  1.56e+03  480     NaN     375
+  1.87e+03  480     NaN     375
+  2.26e+03  480     NaN     375
+  2.72e+03  480     NaN     375
+  3.27e+03  480     NaN     375
+  3.94e+03  480     NaN     375
+  4.75e+03  480     NaN     375
+  5.72e+03  480     NaN     375
+  6.89e+03  480     NaN     375
+  8.30e+03  480     NaN     375
+  1.00e+04  480     NaN     375
+
+Tuning parameter &#39;alpha&#39; was held constant at a value of 1
+RMSE was used to select the optimal model using the smallest value.
+The final values used for the model were alpha = 1 and lambda = 54.6.</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Plot your <code>salary_lasso</code> object. What do you see? Which value of the regularization parameter seems to be the best?</li>
+</ol>
+<pre class="r"><code># Plot salary_lasso object
+plot(XX)</code></pre>
+<pre class="r"><code>plot(salary_lasso)</code></pre>
+<p><img src="Optimization_practical_files/figure-html/unnamed-chunk-34-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ol start="5" style="list-style-type: decimal">
+<li>Print the best value of lambda by running the following code. Does this match what you saw in the plot above?</li>
+</ol>
+<pre class="r"><code># Print best regularisation parameter
+salary_lasso$bestTune$lambda</code></pre>
+<pre><code>[1] 54.6</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>What were your final regression model coefficients for the best lambda value? Find them by running the following code:</li>
+</ol>
+<pre class="r"><code># Get coefficients from best lambda value
+coef(salary_lasso$finalModel, 
+     salary_lasso$bestTune$lambda)</code></pre>
+<pre><code>20 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+                1
+(Intercept) 608.8
+AtBat         .  
+Hits          .  
+HmRun         .  
+Runs          .  
+RBI           .  
+Walks         .  
+Years         .  
+CAtBat        .  
+CHits         .  
+CHmRun        .  
+CRuns       128.1
+CRBI          .  
+CWalks      105.6
+LeagueN      80.2
+DivisionW   -48.0
+PutOuts       .  
+Assists      29.9
+Errors        .  
+NewLeagueN    .  </code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>How do these coefficients compare to what you found in regular regression? Are they similar? Different? Do you notice that any coefficients are now set to exactly 0?</li>
+</ol>
+<pre class="r"><code># Yep!
+
+# I see that many features are now removed!</code></pre>
+</div>
+<div id="f---decision-tree" class="section level3">
+<h3>F - Decision Tree</h3>
+<p>It’s time to fit an optimized decision tree model!!</p>
+<ol style="list-style-type: decimal">
+<li>Before we can fit a decision tree, we need to specify which values of the complexity parameter <code>cp</code> we want to try. Using the code below, create a vector called <code>cp_vec</code> which contains 100 values between 0 and 1</li>
+</ol>
+<pre class="r"><code># Determine possible values of the complexity parameter cp
+cp_vec &lt;- seq(from = 0, to = 1, length = 100)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Fit a decision tree model predicting <code>Salary</code> as a function of all features</li>
+</ol>
+<ul>
+<li>Set the formula to <code>Salary ~ .</code></li>
+<li>Set the data to <code>hitters_train</code></li>
+<li>Set the method to <code>&quot;rpart&quot;</code> for decision trees</li>
+<li>Set the train control argument to <code>ctrl_cv</code></li>
+<li>Set the tuneGrid argument with all <code>cp</code> values you specified in <code>cp_vec</code></li>
+</ul>
+<pre class="r"><code># Decision Tree --------------------------
+salary_rpart &lt;- train(form = XX ~ .,
+                  data = XX,
+                  method = &quot;XX&quot;,
+                  trControl = XX,
+                  tuneGrid = expand.grid(cp = cp_vec))</code></pre>
+<pre class="r"><code># Decision Tree --------------------------
+salary_rpart &lt;- train(form = Salary ~ .,
+                  data = hitters_train,
+                  method = &quot;rpart&quot;,
+                  trControl = ctrl_cv,
+                  tuneGrid = expand.grid(cp = cp_vec))</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Print your <code>salary_rpart</code> object what do you see?</li>
+</ol>
+<pre class="r"><code>salary_rpart</code></pre>
+<pre><code>CART 
+
+50 samples
+19 predictors
+
+No pre-processing
+Resampling: Cross-Validated (10 fold) 
+Summary of sample sizes: 45, 45, 45, 44, 45, 46, ... 
+Resampling results across tuning parameters:
+
+  cp      RMSE  Rsquared  MAE
+  0.0000  494   0.25380   394
+  0.0101  494   0.25380   394
+  0.0202  494   0.25380   394
+  0.0303  494   0.25380   394
+  0.0404  491   0.25264   395
+  0.0505  491   0.25264   395
+  0.0606  511   0.21445   416
+  0.0707  511   0.19485   419
+  0.0808  500   0.27169   397
+  0.0909  499   0.25986   400
+  0.1010  515   0.26111   409
+  0.1111  512   0.26111   409
+  0.1212  508   0.26001   409
+  0.1313  499   0.28888   401
+  0.1414  499   0.28888   401
+  0.1515  500   0.28888   404
+  0.1616  500   0.28888   404
+  0.1717  500   0.28888   404
+  0.1818  500   0.28888   404
+  0.1919  500   0.28888   404
+  0.2020  500   0.28888   404
+  0.2121  500   0.28888   404
+  0.2222  500   0.28888   404
+  0.2323  500   0.28888   404
+  0.2424  500   0.28888   404
+  0.2525  512   0.22942   423
+  0.2626  530   0.11363   436
+  0.2727  534   0.04042   442
+  0.2828  529   0.04583   434
+  0.2929  529   0.04583   434
+  0.3030  529   0.04583   434
+  0.3131  511   0.05993   413
+  0.3232  491   0.00361   386
+  0.3333  491   0.00361   386
+  0.3434  491   0.00361   386
+  0.3535  491   0.00361   386
+  0.3636  491   0.00361   386
+  0.3737  491   0.00361   386
+  0.3838  491   0.00361   386
+  0.3939  491   0.00361   386
+  0.4040  491   0.00361   386
+  0.4141  491   0.00361   386
+  0.4242  491   0.00361   386
+  0.4343  491   0.00361   386
+  0.4444  491   0.00361   386
+  0.4545  478       NaN   378
+  0.4646  478       NaN   378
+  0.4747  478       NaN   378
+  0.4848  478       NaN   378
+  0.4949  478       NaN   378
+  0.5051  478       NaN   378
+  0.5152  478       NaN   378
+  0.5253  478       NaN   378
+  0.5354  478       NaN   378
+  0.5455  478       NaN   378
+  0.5556  478       NaN   378
+  0.5657  478       NaN   378
+  0.5758  478       NaN   378
+  0.5859  478       NaN   378
+  0.5960  478       NaN   378
+  0.6061  478       NaN   378
+  0.6162  478       NaN   378
+  0.6263  478       NaN   378
+  0.6364  478       NaN   378
+  0.6465  478       NaN   378
+  0.6566  478       NaN   378
+  0.6667  478       NaN   378
+  0.6768  478       NaN   378
+  0.6869  478       NaN   378
+  0.6970  478       NaN   378
+  0.7071  478       NaN   378
+  0.7172  478       NaN   378
+  0.7273  478       NaN   378
+  0.7374  478       NaN   378
+  0.7475  478       NaN   378
+  0.7576  478       NaN   378
+  0.7677  478       NaN   378
+  0.7778  478       NaN   378
+  0.7879  478       NaN   378
+  0.7980  478       NaN   378
+  0.8081  478       NaN   378
+  0.8182  478       NaN   378
+  0.8283  478       NaN   378
+  0.8384  478       NaN   378
+  0.8485  478       NaN   378
+  0.8586  478       NaN   378
+  0.8687  478       NaN   378
+  0.8788  478       NaN   378
+  0.8889  478       NaN   378
+  0.8990  478       NaN   378
+  0.9091  478       NaN   378
+  0.9192  478       NaN   378
+  0.9293  478       NaN   378
+  0.9394  478       NaN   378
+  0.9495  478       NaN   378
+  0.9596  478       NaN   378
+  0.9697  478       NaN   378
+  0.9798  478       NaN   378
+  0.9899  478       NaN   378
+  1.0000  478       NaN   378
+
+RMSE was used to select the optimal model using the smallest value.
+The final value used for the model was cp = 1.</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Plot your <code>salary_rpart</code> object. What do you see? Which value of the regularization parameter seems to be the best?</li>
+</ol>
+<pre class="r"><code># Plot salary_rpart object
+plot(XX)</code></pre>
+<pre class="r"><code>plot(salary_rpart)</code></pre>
+<p><img src="Optimization_practical_files/figure-html/unnamed-chunk-43-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ol start="5" style="list-style-type: decimal">
+<li>Print the best value of cp by running the following code. Does this match what you saw in the plot above?</li>
+</ol>
+<pre class="r"><code># Print best regularisation parameter
+salary_rpart$bestTune$cp</code></pre>
+<pre><code>[1] 1</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Plot your final decision tree using the following code</li>
+</ol>
+<pre class="r"><code># Visualise your trees
+plot(as.party(salary_rpart$finalModel)) </code></pre>
+<p><img src="Optimization_practical_files/figure-html/unnamed-chunk-45-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ol start="7" style="list-style-type: decimal">
+<li>How do the nodes in the tree compare to the coefficients you found in your regression analyses? Do you see similarities or differences?</li>
+</ol>
+<pre class="r"><code># Actually, the tree just has one root and no nodes! This is due to the optimal complexity parameter being so high.</code></pre>
+</div>
+<div id="g---random-forests" class="section level3">
+<h3>G - Random Forests</h3>
+<p>It’s time to fit an optimized random forest model!</p>
+<ol style="list-style-type: decimal">
+<li>Before we can fit a random forest model, we need to specify which values of the diversity parameter <code>mtry</code> we want to try. Using the code below, create a vector called <code>mtry_vec</code> which is a sequence of numbers from 1 to 10</li>
+</ol>
+<pre class="r"><code># Determine possible values of the random forest diversity parameter mtry
+mtry_vec &lt;- 1:10</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Fit a random forest model predicting <code>Salary</code> as a function of all features</li>
+</ol>
+<ul>
+<li>Set the formula to <code>Salary ~ .</code></li>
+<li>Set the data to <code>hitters_train</code></li>
+<li>Set the method to <code>&quot;rf&quot;</code> for random forests</li>
+<li>Set the train control argument to <code>ctrl_cv</code></li>
+<li>Set the tuneGrid argument such that mtry can take on the values you defined in <code>mtry_vec</code></li>
+</ul>
+<pre class="r"><code># Random Forest --------------------------
+salary_rf &lt;- train(form = XX ~ .,
+                   data = XX,
+                   method = &quot;XX&quot;,
+                   trControl = XX,
+                   tuneGrid = expand.grid(mtry = mtry_vec))</code></pre>
+<pre class="r"><code># Random Forest --------------------------
+salary_rf &lt;- train(form = Salary ~ .,
+                   data = hitters_train,
+                   method = &quot;rf&quot;,
+                   trControl = ctrl_cv,
+                   tuneGrid = expand.grid(mtry = mtry_vec))</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Print your <code>salary_rf</code> object what do you see?</li>
+</ol>
+<pre class="r"><code>salary_rf</code></pre>
+<pre><code>Random Forest 
+
+50 samples
+19 predictors
+
+No pre-processing
+Resampling: Cross-Validated (10 fold) 
+Summary of sample sizes: 46, 46, 46, 45, 44, 45, ... 
+Resampling results across tuning parameters:
+
+  mtry  RMSE  Rsquared  MAE
+   1    365   0.608     259
+   2    346   0.628     245
+   3    342   0.630     238
+   4    331   0.635     231
+   5    329   0.642     231
+   6    322   0.647     227
+   7    320   0.650     225
+   8    318   0.668     225
+   9    317   0.656     223
+  10    320   0.662     227
+
+RMSE was used to select the optimal model using the smallest value.
+The final value used for the model was mtry = 9.</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Plot your <code>salary_rf</code> object. What do you see? Which value of the regularization parameter seems to be the best?</li>
+</ol>
+<pre class="r"><code># Plot salary_rf object
+plot(XX)</code></pre>
+<pre class="r"><code>plot(salary_rf)</code></pre>
+<p><img src="Optimization_practical_files/figure-html/unnamed-chunk-52-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ol start="5" style="list-style-type: decimal">
+<li>Print the best value of mtry by running the following code. Does this match what you saw in the plot above?</li>
+</ol>
+<pre class="r"><code># Print best mtry parameter
+salary_rf$bestTune$mtry</code></pre>
+<pre><code>[1] 9</code></pre>
+</div>
+<div id="h---estimate-prediction-accuracy-from-training-folds" class="section level3">
+<h3>H - Estimate prediction accuracy from training folds</h3>
+<ol style="list-style-type: decimal">
+<li>Using <code>resamples()</code>, calculate the estimated prediction accuracy for each of your models. To do this, put your model objects in the named list (e.g.; <code>glm = salary_glm</code>, …)</li>
+</ol>
+<pre class="r"><code># Summarise accuracy statistics across folds
+salary_resamples &lt;- resamples(list(glm = XXX,
+                                   ridge = XXX, 
+                                   lasso = XXX, 
+                                   dt = XXX, 
+                                   rf = XXX))</code></pre>
+<pre class="r"><code># Summarise accuracy statistics across folds
+salary_resamples &lt;- resamples(list(glm = salary_glm,
+                                   ridge = salary_ridge, 
+                                   lasso = salary_lasso, 
+                                   dt = salary_rpart, 
+                                   rf = salary_rf))</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Look at the summary of your <code>salary_resamples</code> object with <code>summary(salary_resamples)</code>. What does this tell you? Which model do you expect to have the best prediction accuracy for the test data?</li>
+</ol>
+<pre class="r"><code># Print summaries of cross-validation accuracy 
+
+# I see below that the random forest model has the lowest mean MAE, so I
+#  would expect it to be the best model in the true test data
+summary(salary_resamples)</code></pre>
+<pre><code>
+Call:
+summary.resamples(object = salary_resamples)
+
+Models: glm, ridge, lasso, dt, rf 
+Number of resamples: 10 
+
+MAE 
+       Min. 1st Qu. Median Mean 3rd Qu. Max. NA&#39;s
+glm   249.1     292    378  441     611  710    0
+ridge 132.8     220    267  298     342  578    0
+lasso 148.2     263    347  328     370  524    0
+dt    191.7     286    373  378     463  544    0
+rf     87.6     169    217  223     264  346    0
+
+RMSE 
+      Min. 1st Qu. Median Mean 3rd Qu. Max. NA&#39;s
+glm    297     342    467  523     654  914    0
+ridge  183     249    325  393     437  907    0
+lasso  175     318    401  424     483  885    0
+dt     251     342    423  478     665  726    0
+rf     112     227    297  317     321  692    0
+
+Rsquared 
+          Min. 1st Qu. Median  Mean 3rd Qu.  Max. NA&#39;s
+glm   0.000151 0.00722 0.0733 0.273   0.522 0.771    0
+ridge 0.002319 0.10065 0.5269 0.428   0.606 0.991    0
+lasso 0.031517 0.27983 0.4492 0.467   0.663 0.906    0
+dt          NA      NA     NA   NaN      NA    NA   10
+rf    0.271936 0.47366 0.6919 0.656   0.843 0.999    0</code></pre>
+</div>
+<div id="i---calculate-prediction-accuracy" class="section level3">
+<h3>I - Calculate prediction accuracy</h3>
+<ol style="list-style-type: decimal">
+<li>Save the criterion value for the test data as a new vector called <code>criterion_test</code></li>
+</ol>
+<pre class="r"><code># Save salaries of players in test dataset as criterion_test
+criterion_test &lt;- XXX$XXX</code></pre>
+<pre class="r"><code>criterion_test &lt;- hitters_test$Salary</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Using <code>predict()</code>, save the prediction of your regular regression model <code>salary_glm</code> for the <code>hitters_test</code> data as a new object called <code>glm_pred</code>:</li>
+</ol>
+<ul>
+<li>Set the first argument to <code>salary_glm</code></li>
+<li>Set the newdata argument to <code>hitters_test</code></li>
+</ul>
+<pre class="r"><code># Save the glm predicted salaries of hitters_test
+glm_pred &lt;- predict(XXX, newdata = XXX)</code></pre>
+<pre class="r"><code># Save predictions for glm
+glm_pred &lt;- predict(salary_glm, newdata = hitters_test)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Now do the same with your ridge, lasso, decision tree, and random forest models to get the objects <code>ridge_pred</code>, <code>lasso_pred</code>, <code>rpart_pred</code> and <code>rf_pred</code></li>
+</ol>
+<pre class="r"><code>ridge_pred &lt;- predict(XXX, newdata = XXX)
+lasso_pred &lt;- predict(XXX, newdata = XXX)
+rpart_pred &lt;- predict(XXX, newdata = XXX)
+rf_pred &lt;- predict(XXX, newdata = XXX)</code></pre>
+<pre class="r"><code># Save predictions from other models
+ridge_pred &lt;- predict(salary_ridge, newdata = hitters_test)
+lasso_pred &lt;- predict(salary_lasso, newdata = hitters_test)
+rpart_pred &lt;- predict(salary_rpart, newdata = hitters_test)
+rf_pred &lt;- predict(salary_rf, newdata = hitters_test)</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Using <code>postResample()</code>, calculate the aggregate prediction accuracy for each model using the template below</li>
+</ol>
+<ul>
+<li>Set the pred argument to your model predictions (e.g.; <code>ridge_pred</code>)</li>
+<li>Set the <code>obs</code> argument to the true criterion values <code>criterion_test</code>)</li>
+</ul>
+<pre class="r"><code># Calculate aggregate accuracy for a model
+postResample(pred = XXX, 
+             obs = XXX)</code></pre>
+<pre class="r"><code># Prediction error for normal regression
+postResample(pred = glm_pred, 
+             obs = hitters_test$Salary)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+552.1782   0.0907 421.8898 </code></pre>
+<pre class="r"><code># Prediction error for ridge regression
+postResample(pred = ridge_pred, 
+             obs = hitters_test$Salary)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+ 364.885    0.338  275.275 </code></pre>
+<pre class="r"><code># Prediction error for lasso regression
+postResample(pred = lasso_pred, 
+             obs = hitters_test$Salary)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+ 386.992    0.257  286.544 </code></pre>
+<pre class="r"><code># Prediction error for decision trees
+postResample(pred = rpart_pred, 
+             obs = hitters_test$Salary)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+     445       NA      358 </code></pre>
+<pre class="r"><code># Prediction error for random forests
+postResample(pred = rf_pred, 
+             obs = hitters_test$Salary)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+ 299.573    0.537  200.313 </code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Which of your models had the best performance in the true test data?</li>
+</ol>
+<pre class="r"><code># Random forests had the lowest test MAE of
+postResample(pred = rf_pred, 
+             obs = hitters_test$Salary)[3]</code></pre>
+<pre><code>MAE 
+200 </code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>How close were your models’ true prediction error to the values you estimated in the previous section when you ran <code>resamples()</code>?</li>
+</ol>
+<pre class="r"><code># Depends on what you mean by &#39;close&#39;, but they are definitely higher (worse) in the test data</code></pre>
+</div>
+<div id="z---challenges" class="section level3">
+<h3>Z - Challenges</h3>
+<ol style="list-style-type: decimal">
+<li>In addition to ‘regular’ 10 fold cross-validation, you can also do repeated 10-fold cross-validation, where the cross validation procedure is repeated many times. Do you think this will improve your models’ performance? To test this, create a new training control object called <code>ctrl_cv_rep</code> as below. Then, train your models again using <code>ctrl_cv_rep</code> (instead of <code>ctrl_cv</code>), and evaluate their prediction performance. Do they improve? Do you get different optimal tuning values compared to your previous models?</li>
+</ol>
+<pre class="r"><code># Repeated cross validation.
+#  Folds = 10
+#  Repeats = 5
+ctrl_cv_rep &lt;- trainControl(method = &quot;repeatedcv&quot;,
+                            number = 10,
+                            repeats = 5)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Using the same procedure as above, compare models predicting the prices of houses in King County Washington using the <code>house_train</code> and <code>house_test</code> datasets.</p></li>
+<li><p>When using lasso regression, do you find that the lasso sets any beta weights to exactly 0? If so, which ones?</p></li>
+<li><p>Which model does the best and how accurate was it? Was it the same model that performed the best predicting baseball player salaries?</p></li>
+<li><p>Using the same procedure as above, compare models predicting the graduate rate of students from different colleges using the <code>college_train</code> and <code>college_test</code> datasets.</p></li>
+<li><p>When using lasso regression, do you find that the lasso sets any beta weights to exactly 0? If so, which ones?</p></li>
+<li><p>Which model does the best and how accurate was it? Was it the same model that performed the best predicting baseball player salaries?</p></li>
+</ol>
+</div>
+</div>
+<div id="examples" class="section level2">
+<h2>Examples</h2>
+<pre class="r"><code># Model optimization with Regression
+
+# Step 0: Load packages-----------
+library(tidyverse)    # Load tidyverse for dplyr and tidyr
+library(caret)        # For ML mastery 
+library(partykit)     # For decision trees
+library(party)        # For decision trees
+
+# Step 1: Load, clean, and explore data ----------------------
+
+# training data
+data_train &lt;- read_csv(&quot;1_Data/diamonds_train.csv&quot;)
+
+# test data
+data_test &lt;- read_csv(&quot;1_Data/diamonds_test.csv&quot;)
+
+# Convert all characters to factor
+#  Some ML models require factors
+data_train &lt;- data_train %&gt;%
+  mutate_if(is.character, factor)
+
+data_test &lt;- data_test %&gt;%
+  mutate_if(is.character, factor)
+
+# Explore training data
+data_train        # Print the dataset
+View(data_train)  # Open in a new spreadsheet-like window 
+dim(data_train)   # Print dimensions
+names(data_train) # Print the names
+
+# Define criterion_train
+#   We&#39;ll use this later to evaluate model accuracy
+criterion_train &lt;- data_train$price
+criterion_test &lt;- data_test$price
+
+# Step 2: Define training control parameters -------------
+
+# Use 10-fold cross validation
+ctrl_cv &lt;- trainControl(method = &quot;cv&quot;, 
+                        number = 10) 
+
+# Step 3: Train models: -----------------------------
+#   Criterion: hwy
+#   Features: year, cyl, displ
+
+# Normal Regression --------------------------
+price_glm &lt;- train(form = price ~ carat + depth + table + x + y,
+                   data = data_train,
+                   method = &quot;glm&quot;,
+                   trControl = ctrl_cv)
+
+
+# Print key results
+price_glm
+
+# RMSE  Rsquared  MAE
+# 1506  0.86      921
+
+# Coefficients
+coef(price_glm$finalModel)
+
+# (Intercept)       carat       depth       table           x           y 
+#     21464.9     11040.4      -215.6       -94.2     -3681.6      2358.9 
+
+# Lasso --------------------------
+
+# Vector of lambda values to try
+lambda_vec &lt;- 10 ^ seq(-3, 3, length = 100)
+
+price_lasso &lt;- train(form = price ~ carat + depth + table + x + y,
+                   data = data_train,
+                   method = &quot;glmnet&quot;,
+                   trControl = ctrl_cv,
+                   preProcess = c(&quot;center&quot;, &quot;scale&quot;),  # Standardise
+                   tuneGrid = expand.grid(alpha = 1,  # Lasso
+                                          lambda = lambda_vec))
+
+
+# Print key results
+price_lasso
+
+# glmnet 
+# 
+# 5000 samples
+#    5 predictor
+# 
+# Pre-processing: centered (5), scaled (5) 
+# Resampling: Cross-Validated (10 fold) 
+# Summary of sample sizes: 4500, 4500, 4500, 4500, 4500, 4500, ... 
+# Resampling results across tuning parameters:
+# 
+#   lambda    RMSE  Rsquared  MAE 
+#   1.00e-03  1509  0.858      918
+#   1.15e-03  1509  0.858      918
+#   1.32e-03  1509  0.858      918
+#   1.52e-03  1509  0.858      918
+
+# Plot regularisation parameter versus error
+plot(price_lasso)
+
+# Print best regularisation parameter
+price_lasso$bestTune$lambda
+
+# Get coefficients from best lambda value
+coef(price_lasso$finalModel, 
+     price_lasso$bestTune$lambda)
+
+# 6 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+#                 1
+# (Intercept)  4001
+# carat        5179
+# depth        -300
+# table        -213
+# x           -3222
+# y            1755
+
+
+# Ridge --------------------------
+
+# Vector of lambda values to try
+lambda_vec &lt;- 10 ^ seq(-3, 3, length = 100)
+
+price_ridge &lt;- train(form = price ~ carat + depth + table + x + y,
+                     data = data_train,
+                     method = &quot;glmnet&quot;,
+                     trControl = ctrl_cv,
+                     preProcess = c(&quot;center&quot;, &quot;scale&quot;),  # Standardise
+                     tuneGrid = expand.grid(alpha = 0,  # Ridge penalty
+                                            lambda = lambda_vec))
+
+# Print key results
+price_ridge
+
+# glmnet 
+# 
+# 5000 samples
+#    5 predictor
+# 
+# Pre-processing: centered (5), scaled (5) 
+# Resampling: Cross-Validated (10 fold) 
+# Summary of sample sizes: 4500, 4500, 4500, 4500, 4500, 4500, ... 
+# Resampling results across tuning parameters:
+# 
+#   lambda    RMSE  Rsquared  MAE 
+#   1.00e-03  1638  0.835     1137
+#   1.15e-03  1638  0.835     1137
+#   1.32e-03  1638  0.835     1137
+#   1.52e-03  1638  0.835     1137
+#   1.75e-03  1638  0.835     1137
+
+# Plot regularisation parameter versus error
+plot(price_ridge)
+
+# Print best regularisation parameter
+price_ridge$bestTune$lambda
+
+# Get coefficients from best lambda value
+coef(price_ridge$finalModel, 
+     price_ridge$bestTune$lambda)
+
+# 6 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+#                1
+# (Intercept) 4001
+# carat       2059
+# depth       -131
+# table       -168
+# x            716
+# y            797
+
+# Decision Trees --------------------------
+
+# Vector of cp values to try
+cp_vec &lt;- seq(0, .1, length = 100)
+
+price_rpart &lt;- train(form = price ~ carat + depth + table + x + y,
+                  data = data_train,
+                  method = &quot;rpart&quot;,
+                  trControl = ctrl_cv,
+                  tuneGrid = expand.grid(cp = cp_vec))
+
+# Print key results
+price_rpart
+
+# Plot complexity parameter vs. error
+plot(price_rpart)
+
+# Print best complexity parameter
+price_rpart$bestTune$cp
+
+# [1] 0.00202
+
+# Step 3: Estimate prediction accuracy from folds ----
+
+# Get accuracy statistics across folds
+resamples_price &lt;- resamples(list(ridge = price_ridge, 
+                                  lasso = price_lasso, 
+                                  glm = price_glm))
+
+# Print summary of accuracies
+summary(resamples_price)
+
+# MAE 
+#       Min. 1st Qu. Median Mean 3rd Qu. Max. NA&#39;s
+# ridge 1094    1100   1117 1137    1170 1217    0
+# lasso  869     887    929  918     944  960    0
+# glm    856     882    921  920     949  986    0
+# 
+# RMSE 
+#       Min. 1st Qu. Median Mean 3rd Qu. Max. NA&#39;s
+# ridge 1545    1580   1609 1638    1703 1772    0
+# lasso 1323    1479   1518 1509    1583 1593    0
+# glm   1350    1429   1526 1509    1582 1702    0
+# 
+# Rsquared 
+#        Min. 1st Qu. Median  Mean 3rd Qu.  Max. NA&#39;s
+# ridge 0.798   0.828  0.836 0.835   0.848 0.854    0
+# lasso 0.827   0.846  0.858 0.858   0.868 0.902    0
+# glm   0.819   0.849  0.863 0.860   0.870 0.888    0
+
+# Step 4: Measure prediction Accuracy -------------------
+
+# GLM ================================
+
+# Predictions
+glm_pred &lt;- predict(price_glm, 
+                    newdata = data_test)
+
+# Calculate aggregate accuracy
+postResample(pred = glm_pred, 
+             obs = criterion_test)
+
+#     RMSE Rsquared      MAE 
+# 1654.017    0.832  944.854 
+
+# Ridge ================================
+
+# Predictions
+ridge_pred &lt;- predict(price_ridge, 
+                      newdata = data_test)
+
+# Calculate aggregate accuracy
+postResample(pred = ridge_pred, 
+             obs = criterion_test)
+
+#     RMSE Rsquared      MAE 
+# 1650.541    0.832 1133.063 
+
+
+# Lasso ================================
+
+# Predictions
+lasso_pred &lt;- predict(price_lasso, 
+                      newdata = data_test)
+
+# Calculate aggregate accuracy
+postResample(pred = lasso_pred, 
+             obs = criterion_test)
+
+#     RMSE Rsquared      MAE 
+# 1653.675    0.832  942.870 
+
+
+# Visualise Accuracy -------------------------
+
+# Tidy competition results
+accuracy &lt;- tibble(criterion_test = criterion_test,
+                   Regression = glm_pred,
+                   Ridge = ridge_pred,
+                   Lasso = lasso_pred) %&gt;%
+               gather(model, prediction, -criterion_test) %&gt;%
+               # Add error measures
+               mutate(se = prediction - criterion_test,
+                      ae = abs(prediction - criterion_test))
+
+# Calculate summaries
+accuracy_agg &lt;- accuracy %&gt;%
+                  group_by(model) %&gt;%
+                  summarise(mae = mean(ae))   # Calculate MAE (mean absolute error)
+
+# Plot A) Scatterplot of truth versus predictions
+ggplot(data = accuracy,
+       aes(x = criterion_test, y = prediction, col = model)) +
+  geom_point(alpha = .5) +
+  geom_abline(slope = 1, intercept = 0) +
+  labs(x = &quot;True Prices&quot;,
+       y = &quot;Predicted Prices&quot;,
+       title = &quot;Predicting Diamond Prices&quot;,
+       subtitle = &quot;Black line indicates perfect performance&quot;)
+
+# Plot B) Violin plot of absolute errors
+ggplot(data = accuracy, 
+       aes(x = model, y = ae, fill = model)) + 
+  geom_violin() + 
+  geom_jitter(width = .05, alpha = .2) +
+  labs(title = &quot;Fitting Absolute Errors&quot;,
+       subtitle = &quot;Numbers indicate means&quot;,
+       x = &quot;Model&quot;,
+       y = &quot;Absolute Error (Log Transformed)&quot;) +
+  guides(fill = FALSE) +
+  annotate(geom = &quot;label&quot;, 
+           x = accuracy_agg$model, 
+           y = accuracy_agg$mae, 
+           label = round(accuracy_agg$mae, 2)) +
+  scale_y_continuous(trans=&#39;log&#39;)</code></pre>
+</div>
+<div id="datasets" class="section level2">
+<h2>Datasets</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">File</th>
+<th align="left">Rows</th>
+<th align="left">Columns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/hitters_train.csv?token=AGKBX5TAYOZYPRL2XBIEMMS43BMBE">hitters_train.csv</a></td>
+<td align="left">50</td>
+<td align="left">20</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/hitters_test.csv?token=AGKBX5UXB6JLDLFX4X4J7WS43BMDI">hitters_test.csv</a></td>
+<td align="left">213</td>
+<td align="left">20</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/college_train.csv?token=AGKBX5SLEV3PLWUVQ4NCUB2427V36">college_train.csv</a></td>
+<td align="left">500</td>
+<td align="left">18</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/college_test.csv?token=AGKBX5UFLURQIE32GVYJR4S427WAY">college_test.csv</a></td>
+<td align="left">277</td>
+<td align="left">18</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/house_train.csv?token=AGKBX5THYI3PSBE5AO4KKBK427WD2">house_train.csv</a></td>
+<td align="left">5000</td>
+<td align="left">21</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/hitters_test.csv?token=AGKBX5UXB6JLDLFX4X4J7WS43BMDI">house_test.csv</a></td>
+<td align="left">1000</td>
+<td align="left">21</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>The <code>hitters_train</code> and <code>hitters_test</code> data are taken from the <code>Hitters</code> dataset in the <code>ISLR</code> package. They are data frames with observations of major league baseball players from the 1986 and 1987 seasons.</p></li>
+<li><p>The <code>college_train</code> and <code>college_test</code> data are taken from the <code>College</code> dataset in the <code>ISLR</code> package. They contain statistics for a large number of US Colleges from the 1995 issue of US News and World Report.</p></li>
+<li><p>The <code>house_train</code> and <code>house_test</code> data come from <a href="https://www.kaggle.com/harlfoxem/housesalesprediction">https://www.kaggle.com/harlfoxem/housesalesprediction</a></p></li>
+</ul>
+<div id="variable-description-of-hitters_train-and-hitters_test" class="section level4">
+<h4>Variable description of <code>hitters_train</code> and <code>hitters_test</code></h4>
+<table>
+<colgroup>
+<col width="26%" />
+<col width="73%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>Salary</code></td>
+<td align="left">1987 annual salary on opening day in thousands of dollars.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>AtBat</code></td>
+<td align="left">Number of times at bat in 1986.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Hits</code></td>
+<td align="left">Number of hits in 1986.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>HmRun</code></td>
+<td align="left">Number of home runs in 1986.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Runs</code></td>
+<td align="left">Number of runs in 1986.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>RBI</code></td>
+<td align="left">Number of runs batted in in 1986.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Walks</code></td>
+<td align="left">Number of walks in 1986.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Years</code></td>
+<td align="left">Number of years in the major leagues.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>CAtBat</code></td>
+<td align="left">Number of times at bat during his career.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>CHits</code></td>
+<td align="left">Number of hits during his career.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>CHmRun</code></td>
+<td align="left">Number of home runs during his career.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>CRuns</code></td>
+<td align="left">Number of runs during his career.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>CRBI</code></td>
+<td align="left">Number of runs batted in during his career.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>CWalks</code></td>
+<td align="left">Number of walks during his career.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>League</code></td>
+<td align="left">A factor with levels A and N indicating player’s league at the end of 1986.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Division</code></td>
+<td align="left">A factor with levels E and W indicating player’s division at the end of 1986.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>PutOuts</code></td>
+<td align="left">Number of put outs in 1986.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Assists</code></td>
+<td align="left">Number of assists in 1986.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Errors</code></td>
+<td align="left">Number of errors in 1986.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>NewLeague</code></td>
+<td align="left">A factor with levels A and N indicating player’s league at the beginning of 1987.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="variable-description-of-college_train-and-college_test" class="section level4">
+<h4>Variable description of <code>college_train</code> and <code>college_test</code></h4>
+<table>
+<colgroup>
+<col width="26%" />
+<col width="73%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>Private</code></td>
+<td align="left">A factor with levels No and Yes indicating private or public university.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Apps</code></td>
+<td align="left">Number of applications received.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Accept</code></td>
+<td align="left">Number of applications accepted.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Enroll</code></td>
+<td align="left">Number of new students enrolled.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Top10perc</code></td>
+<td align="left">Pct. new students from top 10% of H.S. class.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Top25perc</code></td>
+<td align="left">Pct. new students from top 25% of H.S. class.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>F.Undergrad</code></td>
+<td align="left">Number of fulltime undergraduates.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>P.Undergrad</code></td>
+<td align="left">Number of parttime undergraduates.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Outstate</code></td>
+<td align="left">Out-of-state tuition.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Room.Board</code></td>
+<td align="left">Room and board costs.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Books</code></td>
+<td align="left">Estimated book costs.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Personal</code></td>
+<td align="left">Estimated personal spending.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>PhD</code></td>
+<td align="left">Pct. of faculty with Ph.D.’s.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Terminal</code></td>
+<td align="left">Pct. of faculty with terminal degree.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>S.F.Ratio</code></td>
+<td align="left">Student/faculty ratio.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>perc.alumni</code></td>
+<td align="left">Pct. alumni who donate.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Expend</code></td>
+<td align="left">Instructional expenditure per student.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Grad.Rate</code></td>
+<td align="left">Graduation rate.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="variable-description-of-house_train-and-house_test" class="section level4">
+<h4>Variable description of <code>house_train</code> and <code>house_test</code></h4>
+<table>
+<colgroup>
+<col width="26%" />
+<col width="73%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>price</code></td>
+<td align="left">Price of the house in $.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>bedrooms</code></td>
+<td align="left">Number of bedrooms.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>bathrooms</code></td>
+<td align="left">Number of bathrooms.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>sqft_living</code></td>
+<td align="left">Square footage of the home.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>sqft_lot</code></td>
+<td align="left">Square footage of the lot.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>floors</code></td>
+<td align="left">Total floors (levels) in house.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>waterfront</code></td>
+<td align="left">House which has a view to a waterfront.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>view</code></td>
+<td align="left">Has been viewed.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>condition</code></td>
+<td align="left">How good the condition is (Overall).</td>
+</tr>
+<tr class="even">
+<td align="left"><code>grade</code></td>
+<td align="left">Overall grade given to the housing unit, based on King County grading system.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>sqft_above</code></td>
+<td align="left">Square footage of house apart from basement.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>sqft_basement</code></td>
+<td align="left">Square footage of the basement.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>yr_built</code></td>
+<td align="left">Built Year.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>yr_renovated</code></td>
+<td align="left">Year when house was renovated.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>zipcode</code></td>
+<td align="left">Zip code.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>lat</code></td>
+<td align="left">Latitude coordinate.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>long</code></td>
+<td align="left">Longitude coordinate.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>sqft_living15</code></td>
+<td align="left">Living room area in 2015 (implies some renovations). This might or might not have affected the lotsize area.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>sqft_lot15</code></td>
+<td align="left">lot-size area in 2015 (implies some renovations).</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="functions" class="section level2">
+<h2>Functions</h2>
+<div id="packages" class="section level3">
+<h3>Packages</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Package</th>
+<th align="left">Installation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>tidyverse</code></td>
+<td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>caret</code></td>
+<td align="left"><code>install.packages(&quot;caret&quot;)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>partykit</code></td>
+<td align="left"><code>install.packages(&quot;partykit&quot;)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>party</code></td>
+<td align="left"><code>install.packages(&quot;party&quot;)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="functions-1" class="section level3">
+<h3>Functions</h3>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="12%" />
+<col width="80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Function</th>
+<th align="left">Package</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>trainControl()</code></td>
+<td align="left"><code>caret</code></td>
+<td align="left">Define modelling control parameters</td>
+</tr>
+<tr class="even">
+<td align="left"><code>train()</code></td>
+<td align="left"><code>caret</code></td>
+<td align="left">Train a model</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>predict(object, newdata)</code></td>
+<td align="left"><code>stats</code></td>
+<td align="left">Predict the criterion values of <code>newdata</code> based on <code>object</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>postResample()</code></td>
+<td align="left"><code>caret</code></td>
+<td align="left">Calculate aggregate model performance in regression tasks</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>confusionMatrix()</code></td>
+<td align="left"><code>caret</code></td>
+<td align="left">Calculate aggregate model performance in classification tasks</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="resources" class="section level2">
+<h2>Resources</h2>
+<figure>
+<center>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf"> <img src="https://www.rstudio.com/wp-content/uploads/2015/01/caret-cheatsheet.png" alt="Trulli" style="width:70%"></a><br> <font style="font-size:10px"> from <a href= "https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</figcaption">github.com/rstudio</a></font>
+</figure>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

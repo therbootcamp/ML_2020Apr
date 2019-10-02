@@ -1,0 +1,151 @@
+---
+title: "Machine Learning with R"
+author: "
+      <a href='https://therbootcamp.github.io'>
+        <i class='fas fa-home' style='font-size:1em;'></i>
+      </a>
+      <a href='https://therbootcamp.github.io/ML_2019May/'>
+        <i class='fas fa-clock' style='font-size:1em;' ></i>
+      </a>
+      <a href='mailto:therbootcamp@gmail.com'>
+        <i class='fas fa-envelope' style='font-size: 1em;'></i>
+      </a>
+      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+        <i class='fab fa-linkedin' style='font-size: 1em;'></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <font style='font-style:normal;font-size:20px;padding-left:5px'>Basel R Bootcamp</font>
+      </a>
+      <br>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style= 'height:17px;vertical-align:baseline'/><font style='font-style:normal;font-size:20px;padding-left:8px'>May 2019</font>
+      "
+date: ""
+output:
+  html_document:
+    css: index.css
+    self_contained: no
+---
+
+<br>
+
+### Wifi
+
+##### [**Instructions**](https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/wifi_instruct.png)
+
+### Downloads
+
+##### [**Data sets**](https://www.dropbox.com/s/v7s5kesbc10fcvq/baselrbootcamp_MLdata.zip?dl=1)
+
+##### [**PDFs**](https://www.dropbox.com/s/s2jy38nhmg8hsx1/MLwR2019May_pdfs.zip?dl=1)
+
+<br>
+
+### Materials
+
+|  | Day 1<br>Basics| Day 2<br>Advanced| 
+|:--|:-------------|:-------------|
+|0| Welcome!<br>[slides](_sessions/Welcome/Welcome.html) | Recap<br>[slides](_sessions/Recap/Recap.html)|
+|1| What is ML?<br>[slides](_sessions/WhatIsML/WhatIsML.html)| Optimization<br>[slides](_sessions/Optimization/Optimization.html), [practical](_sessions/Optimization/Optimization_practical.html)|
+|2| R for ML <br>[slides](_sessions/RforML/RforML.html), [interactive](_sessions/RforML/RforML_interactive.R) | Features<br>[slides](_sessions/Features/Features.html), [practical](_sessions/Features/Features_practical.html)|
+|3| Fitting<br>[slides](_sessions/Fitting/Fitting.html), [practical](_sessions/Fitting/Fitting_practical.html) | Models<br>[slides](_sessions/Models/Models.html), [practical](_sessions/Models/Models_practical.html)|
+|4|Prediction <br>[slides](_sessions/Prediction/Prediction.html), [practical](_sessions/Prediction/Prediction_practical.html) | Look ahead<br> [slides](_sessions/LookAhead/LookAhead.html)|
+
+<br>
+
+### Schedule
+
+<p align="center"><br>
+    <img border="0" alt="May2019Schedule" src="_sessions/Welcome/image/schedule.png" style="width:340px"></a><br>
+
+<!---
+
+
+<table cellspacing=0 cellpadding=0 margin=0 padding=0 class="my-table">
+
+<col width="10%">
+<col width="40%">
+<col width="40%">
+
+<tr>
+  <th style="text-align:left"> &nbsp; </th>
+  <th style="text-align:left">Day 1 - Basic</th>
+  <th style="text-align:left">Day 2 - Advanced</th>
+</tr>
+  
+<tr>  
+   <th>9:00</th>
+   <td class="td-special-blue">Welcome</td>
+   <td class="td-special-blue">Recap</td>
+</tr>
+
+<tr>
+  <th>9:30</th>
+  <td class="td-red" rowspan = 1><e>What is ML</e></td>
+  <td class="td-grey" rowspan = 5><e>Optimization</e><br>
+    <font class="sub">Practical</font>
+  </td>
+</tr>
+ 
+<tr>
+  <th>10:00</th>
+  <td class="td-red" rowspan=4><e>R for ML</e><br>
+    <font class="sub">Interactive</font><br>
+  </td>
+  <td> &nbsp; </td>
+</tr>
+  
+<tr> <th>&nbsp;</th> </tr>
+<tr> <th>&nbsp;</th> </tr>
+<tr> <th>&nbsp;</th> </tr>
+  
+<tr>
+  <th align="right">12:00</th>
+  <td rowspan = 2 class="td-special-grey">Lunch
+  <td rowspan = 2 class="td-special-grey">Lunch
+</tr>
+
+<tr>
+   <th>&nbsp;</th>
+</tr>
+
+<tr>
+   <th align="right">13:00</th>
+   <td class="td-grey" rowspan = 5 ><e>Fitting</e><br>
+   <font class="sub">Practical</font><br>
+   <td class="td-grey" rowspan = 5 ><e>Models</e><br>
+   <font class="sub">Practical</font><br>
+</tr>
+
+<tr> <th>&nbsp;</th> </tr>
+<tr> <th>&nbsp;</th> </tr>
+<tr> <th>&nbsp;</th> </tr>
+<tr> <th>&nbsp;</th> </tr>
+
+<tr>
+   <th align="right">15:30</th>
+   <td class="td-grey" rowspan = 5 ><e>Prediction</e><br>
+   <font class="sub">Practical</font><br>
+   <td class="td-grey" rowspan = 4 ><e>Features</e><br>
+</tr>
+
+<tr> <th align="right">&nbsp;</th> </tr>
+<tr> <th align="right">&nbsp;</th> </tr>
+<tr> <th align="right">&nbsp;</th> </tr>
+
+<tr>
+   <th align="right">17:30</th>
+   <td class="td-red" valign="top"><e>Looking forward</e>
+</tr>
+
+<tr>
+   <th align="right">18:00</th>
+   <td class="td-special-blue"> Wrap-up
+   <td class="td-special-grey"> Apero</tr>
+</tr>
+</table>
+  
+--->
+
+
+
+

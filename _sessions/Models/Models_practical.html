@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Model competition</title>
+
+<script src="Models_practical_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="Models_practical_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="Models_practical_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="Models_practical_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="Models_practical_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="Models_practical_files/navigation-1.1/tabsets.js"></script>
+<link href="Models_practical_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="Models_practical_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="practical.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Model competition</h1>
+<h4 class="author"><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
+<col width='10%'>
+<col width='10%'>
+<tr style="border:none">
+<td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
+<font style='font-style:normal'>Machine Learning with R</font> <br> <a href='https://therbootcamp.github.io/ML_2019May/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Basel R Bootcamp</font> </a>  
+</td>
+<td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
+<img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+</td>
+</tr>
+</table></h4>
+
+</div>
+
+
+<p><img src="image/twitter.gif" width="100%" style="display: block; margin: auto;" /></p>
+<div id="section" class="section level1 tabset">
+<h1></h1>
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>Demonstrate your machine-learning-jedi-knight skills in this model competition. Predict <code>gender</code> from a tweeter’s meta information and win lots of 🍫🍫🍫.</p>
+<p>The competition will end in…</p>
+<font style="font-size:32px">
+<p id="demo" align="center">
+</p>
+<p></font></p>
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("May 12, 2019 17:05:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get todays date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is finished, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
+<p><br><br><br></p>
+</div>
+<div id="background-story" class="section level2">
+<h2>Background story</h2>
+<p>The members of governing council of Basel-Stadt recently met at the comfortable, yet luxurious home of Elisabeth Ackerman’s, the council’s president, to watch the latest science-fiction blockbuster, <a href="https://de.wikipedia.org/wiki/Minority_Report">Minority report</a>. In this uplifting, utopian movie, Chief John Anderton, marvelously played by Tom Cruise, works together with friendly but slightly introverted super-beings with the rare (but scientifically proven - see rigorous academic <a href="image/2011-01894-001.pdf">paper</a>) ability to foresee the future in order to arrest perpetrators not after they committed a crime (boring!) but before. Aside from spending a wonderful evening with his colleagues, Baschi Dürr, head of justice and homeland security department and the one who proposed the movie, was hoping to win over his fellow council members for a revolutionary program to tackle an unprecedented swell in non-violent crimes and murders in Basel-Stadt in recent months. Baschi Dürr knew, of course, that <em>precogs</em> - this is how the super-beings were called - belonged to the land of fairy tails, but during his visit to the recent useR! conference in Brisbane he had learned of the next best thing: machine learning. His goal was, thus, to hire an elite team of programmers and to equip them with a maximally informative data set of past crimes to predict where future crimes would occur. Knowing that Basel shares many similarities with the United States of America, Baschi Dürr already had spent a significant amount of money to acquire a data set of murders and non-violent crimes across American counties. Now, he only needed to convince his colleagues. And Fortuna was on his side. The movie and the few bottles of Napoleon French Brandy that he had bought at Coop earlier that day impressed so much that Elisabeth Ackerman decided to dissolve the investigative branch of the police and invest all of its budget into the new ML task force. The next morning, with a slight, manageable hangover, Baschi Dürr announced an international ML modeling competition promising that whoever built the best model would head the new task force. After a many hours of thinking about the problem and much fewer hours of thinking about the solution, the task force maneuvered itself into obsolescence, having developed the perfect algorithm to predict the locations of future crime.</p>
+<p>(Names, characters, businesses, places, events, locales, and incidents are either the products of the author’s imagination or used in a fictitious manner. Any resemblance to actual persons, living or dead, or actual events is purely coincidental.)</p>
+</div>
+<div id="mission-statement" class="section level2">
+<h2>Mission statement</h2>
+<p>After an overpaid machine learning task force maneuvered itself into obsolescence having developed the perfect algorithm to predict the locations of future crime, Baschi Dürr, head of justice and homeland security department of Basel-Stadt, needed a new application for his machine learning task. He feared that Elisabeth Ackerman, president of the governing council, might otherwise withdraw his newly-earned funding (you’ll find the story of how he got to that funding in the “Story” tab). And he knew he had to act quickly. To finance a new set of Wegner Swivel Chairs (<a href="https://twentytwentyone.com/product/pp-502-swivel-chair-pp-mobler">aren’t they pretty!</a>) for city hall’s conference rooms, Elisabeth Ackerman and Dr. Eva Herzog, head of the city’s financial department, had just announced that any expendable resources would to be invested into cryptocurrencies. In search of inspiration, Baschi Dürr called up his American friends, who had previously given him such a great price on the American crime data set. He learned that they had recently begun to use machine learning for political education with outstanding results (<a href="https://www.theguardian.com/news/2018/may/06/cambridge-analytica-how-turn-clicks-into-votes-christopher-wylie">truly outstanding!</a>). They explained to him that, using machine learning, one could uncover a person’s gender or personality to then send that person tailored political information. Knowing the information hungry Swiss democracy, Baschi Dürr wasted no time after he ended his call to congregate his machine learning task force: Switzerland was not going to miss out on this amazing opportunity. America first, <a href="https://www.youtube.com/watch?v=reuJ8yVCgSM">Switzerland second</a>.</p>
+<p>(Names, characters, businesses, places, events, locales, and incidents are either the products of the author’s imagination or used in a fictitious manner. Any resemblance to actual persons, living or dead, or actual events is purely coincidental.)</p>
+<div id="a---preliminaries" class="section level3">
+<h3>A - Preliminaries</h3>
+<ol style="list-style-type: decimal">
+<li><p>Open your <code>BaselRBootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>.</p></li>
+<li><p>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>Models_competition.R</code> in the <code>2_Code</code> folder.</p></li>
+<li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p></li>
+</ol>
+<pre class="r"><code>## NAME
+## DATE
+## Modeling competition
+
+library(tidyverse)
+library(caret)</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>With the code below, load the <code>tweets</code> data set and change any character variables to factors.</li>
+</ol>
+<pre class="r"><code># Load tweet data
+tweets &lt;- read_csv(file = &quot;1_Data/tweets_train.csv&quot;)
+
+# change character to factor
+tweets &lt;- tweets %&gt;% mutate_if(is.character, as.factor)</code></pre>
+</div>
+<div id="b-competition-rules" class="section level3">
+<h3>B Competition rules</h3>
+<ol style="list-style-type: decimal">
+<li><p>The goal of the competition is to predict with maximal <code>Accuracy</code> whether a twitter user is <code>'female'</code> or <code>'male'</code>.</p></li>
+<li><p>Entering the competition grants you a chance to win lots of 🍫🍫🍫.</p></li>
+<li><p>To enter the competition, you can submit <b>up to three</b> caret <code>train</code>-object (result of the <code>train()</code> function) containing your candidate model.</p></li>
+<li><p>To submit the model, first save your model as an <code>.RDS</code>-file named <code>pseudonym_train.RDS</code>, with <code>pseudonym</code> replaced by a pseudonym of your choice. See the code below.</p></li>
+</ol>
+<pre class="r"><code># save train obect as .RDS
+saveRDS(my_train,&#39;1_Data/mypseudonym_train.RDS&#39;)</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Submit your <code>.RDS</code> file (containing your training object) via the following link:</li>
+</ol>
+<div align="center">
+<table>
+<tr>
+<th>
+Task type
+</th>
+<th>
+Criterion
+</th>
+<th>
+Performance measure
+</th>
+<th>
+Submission link
+</th>
+</tr>
+<tr>
+<td>
+Classification
+</td>
+<td>
+tweets (<code>gender</code>)
+</td>
+<td>
+Accuracy
+</td>
+<td>
+<a href="https://www.dropbox.com/request/bkWDKmzaLHOUd9Pl79FR"><strong>Submit candidate</strong></a>
+</td>
+</tr>
+</table>
+</div>
+<ol start="6" style="list-style-type: decimal">
+<li><p>Use any weapon in your arsenal (or <code>caret</code>’s arsenal). Feel free to try different models, use different tuning parameter settings or preprocessing methods, make use of all or some variables. Whatever may lead to the highest prediction <code>Accuracy</code>. Make sure to look at the <a href="https://therbootcamp.github.io/ML_2019May/"><strong>course materials</strong></a> for help.</p></li>
+<li><p>In order to be able to evaluate the models refrain from any manipulation (or engineering) of features other than those accessible via the <code>preProcess</code> argument in the <code>train()</code> function.</p></li>
+</ol>
+</div>
+</div>
+<div id="datasets" class="section level2">
+<h2>Datasets</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">File</th>
+<th align="left">Rows</th>
+<th align="left">Columns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/appliedML_2019Jan/master/1_Data/tweets_train.csv">tweets</a></td>
+<td align="left">2500</td>
+<td align="left">23</td>
+</tr>
+</tbody>
+</table>
+<p>Note: The <code>tweets</code> data are a (heavily) pre-processed subsets of this original data set from <a href="https://www.kaggle.com/crowdflower/twitter-user-gender-classification">Kaggle</a>.</p>
+<div id="variable-descriptions" class="section level5">
+<h5>Variable descriptions</h5>
+<table>
+<colgroup>
+<col width="39%" />
+<col width="60%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">gender</td>
+<td align="left">The criterion. Whether the person tweeting was <code>&quot;male&quot;</code> or <code>&quot;female&quot;</code>.</td>
+</tr>
+<tr class="even">
+<td align="left">year_created</td>
+<td align="left">The year the person’s twitter account was created.</td>
+</tr>
+<tr class="odd">
+<td align="left">hour_created</td>
+<td align="left">The hour of day (1:24h) the person’s twitter account was created.</td>
+</tr>
+<tr class="even">
+<td align="left">tweet_count</td>
+<td align="left">The number of tweets that the person has posted.</td>
+</tr>
+<tr class="odd">
+<td align="left">retweet_count</td>
+<td align="left">The number of retweets that the person has posted.</td>
+</tr>
+<tr class="even">
+<td align="left">user_timezone</td>
+<td align="left">The person’s time zone relative to GMT.</td>
+</tr>
+<tr class="odd">
+<td align="left">name_nchar</td>
+<td align="left">The number of characters in the person’s twitter name.</td>
+</tr>
+<tr class="even">
+<td align="left">name_male</td>
+<td align="left"><code>1</code> if the person’s twitter name contains one of the 1’000 most frequent male baby names in America, <code>0</code> if not.</td>
+</tr>
+<tr class="odd">
+<td align="left">name_female</td>
+<td align="left"><code>1</code> if the person’s twitter name contains one of the 1’000 most frequent female baby names in America, <code>0</code> if not.</td>
+</tr>
+<tr class="even">
+<td align="left">descr_nchar</td>
+<td align="left">The number of characters in the person’s twitter account description.</td>
+</tr>
+<tr class="odd">
+<td align="left">descr_male</td>
+<td align="left"><code>1</code> if the person’s twitter account description contains one of the 1’000 most frequent male baby names in America, <code>0</code> if not.</td>
+</tr>
+<tr class="even">
+<td align="left">descr_female</td>
+<td align="left"><code>1</code> if the person’s twitter account description contains one of the 1’000 most frequent female baby names in America, <code>0</code> if not.</td>
+</tr>
+<tr class="odd">
+<td align="left">descr_sent</td>
+<td align="left">Average sentiment score (&gt;0 = positive sentiment) of the person’s twitter account description.</td>
+</tr>
+<tr class="even">
+<td align="left">tweet_nchar</td>
+<td align="left">The number of characters in one randomly chosen tweet by the person.</td>
+</tr>
+<tr class="odd">
+<td align="left">tweet_male</td>
+<td align="left"><code>1</code> if the randomly chosen tweet contains one of the 1’000 most frequent male baby names in America, <code>0</code> if not.</td>
+</tr>
+<tr class="even">
+<td align="left">tweet_female</td>
+<td align="left"><code>1</code> if the randomly chosen tweet contains one of the 1’000 most frequent female baby names in America, <code>0</code> if not.</td>
+</tr>
+<tr class="odd">
+<td align="left">tweet_sent</td>
+<td align="left">Average sentiment score (&gt;0 = positive sentiment) of the randomly chosen tweet.</td>
+</tr>
+<tr class="even">
+<td align="left">linkcol_red</td>
+<td align="left">Red value (1:255) in the link color according to the person’s twitter scheme.</td>
+</tr>
+<tr class="odd">
+<td align="left">linkcol_green</td>
+<td align="left">green value (1:255) in the link color according to the person’s twitter scheme.</td>
+</tr>
+<tr class="even">
+<td align="left">linkcol_blue</td>
+<td align="left">blue value (1:255) in the link color according to the person’s twitter scheme.</td>
+</tr>
+<tr class="odd">
+<td align="left">sidecol_red</td>
+<td align="left">Red value (1:255) in the side bar color according to the person’s twitter scheme.</td>
+</tr>
+<tr class="even">
+<td align="left">sidecol_green</td>
+<td align="left">Green value (1:255) in the side bar color according to the person’s twitter scheme.</td>
+</tr>
+<tr class="odd">
+<td align="left">sidecol_blue</td>
+<td align="left">Blue value (1:255) in the side bar color according to the person’s twitter scheme.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="cheatsheet" class="section level2">
+<h2>Cheatsheet</h2>
+<figure>
+<center>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf"> <img src="https://www.rstudio.com/wp-content/uploads/2015/01/caret-cheatsheet.png" alt="Trulli" style="width:70%"></a><br> <font style="font-size:10px"> from <a href= "https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</figcaption">github.com/rstudio</a></font>
+</figure>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Features</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Machine Learning with R   Basel R Bootcamp" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Features
+### Machine Learning with R<br> <a href='https://therbootcamp.github.io'> Basel R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2019May/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### May 2019
+
+---
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;
+  &lt;span style="text-align:center"&gt;
+    &lt;span&gt; 
+      &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/&gt;
+    &lt;/span&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;span style="padding-left:82px"&gt; 
+        &lt;font color="#7E7E7E"&gt;
+          www.therbootcamp.com
+        &lt;/font&gt;
+      &lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;font color="#7E7E7E"&gt;
+       Machine Learning with R | May 2019
+      &lt;/font&gt;
+    &lt;/a&gt;
+    &lt;/span&gt;
+  &lt;/div&gt; 
+
+---
+
+
+
+
+
+
+
+
+
+
+.pull-left45[
+
+# Feature issues
+&lt;br&gt;
+&lt;b&gt;Too many features&lt;/b&gt;
+
+- Curse of dimensionality
+- Feature importance
+
+&lt;b&gt;Wrong features&lt;/b&gt;
+
+- Feature scaling
+- Feature correlation
+- Feature quality
+
+&lt;b&gt;Create new features&lt;/b&gt;
+
+- Feature engineering
+
+]
+
+.pull-right45[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="image/dumbdata.png" height = 500px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://xkcd.com/1838/"&gt;xkcd.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Curse of dimensionality
+
+.pull-left35[
+
+As the number of features grows...
+
+&lt;high&gt;Performance&lt;/high&gt; - the amount of data that needs to generalize accurately grows exponentially.
+
+&lt;high&gt;Efficiency&lt;/high&gt; - the amount of computations grows (how much depends on the model).
+
+&lt;high&gt;Redundancy&lt;/high&gt; - the amount of redundancy grows (how much depends on the model). 
+
+&amp;#8594; &lt;high&gt;Small set of good predictors&lt;high&gt;
+
+]
+
+.pull-right6[
+
+&lt;br&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="image/cod.png"&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://medium.freecodecamp.org/the-curse-of-dimensionality-how-we-can-save-big-data-from-itself-d9fa0f872335?gi=6e6735e00188"&gt;medium.freecodecamp.org&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+
+]
+
+---
+
+# How to reduce dimensionality?
+
+.pull-left45[
+
+&lt;b&gt;3 ways&lt;/b&gt;
+
+1 - Reduce variables &lt;high&gt;manually&lt;/high&gt; based on statistical or intuitive considerations.
+
+2 - Reduce variables &lt;high&gt;automatically&lt;/high&gt; using the right ML algorithms, e.g., `random forests` or `lasso regression`, or feature selection algorithms, e.g., `recursive feature selection`.
+
+3 - Compress variables using &lt;high&gt;dimensionality reduction algorithms&lt;/high&gt;, such as `principal component analysis` (PCA).
+
+]
+
+.pull-right5[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/highd.jpeg" height=350&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href=""&gt;Interstellar&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Feature importance
+
+.pull-left4[
+
+&lt;high&gt;Feature importance&lt;/high&gt; characterizes how much a feature contributes to the fitting/prediction performance. 
+
+
+
+The metric is &lt;high&gt;model specific &lt;/high&gt;, but typically &lt;high&gt;normalized&lt;/high&gt; to `[0, 100]`.
+
+&lt;u&gt;Strategies&lt;/u&gt;
+- Single variable prediction (e.g., using `LOESS`, `ROC`) 
+- Accuracy loss from scrambling
+- `random forests` importance
+- etc.  
+]
+
+.pull-right5[
+
+```r
+# plot variable importance for lm(income ~ .)
+plot(varImp(income_lm))
+```
+
+&lt;img src="Features_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# `varImp()`
+
+.pull-left45[
+`varImp()` &lt;high&gt;automatically selects appropriate measure&lt;/high&gt; of variable importance for a given algorithm. 
+
+
+```r
+varImp(income_lm)
+```
+
+
+```
+lm variable importance
+
+          Overall
+age       100.000
+food       40.335
+alcohol    24.287
+happiness  12.000
+tattoos     6.862
+children    4.709
+height      2.714
+weight      0.757
+```
+
+]
+
+.pull-right5[
+
+```r
+# plot variable importance for lm(income ~ .)
+plot(varImp(income_lm))
+```
+
+&lt;img src="Features_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+.pull-left35[
+
+# Recursive feature selection `rfe()`
+
+Find the &lt;high&gt;best number of `n` predictors&lt;/high&gt;, with `n` drawn from specified candidate sets `N`, e.g., `N = [2,3,5,10]`. 
+
+&lt;u&gt;Algorithm&lt;/u&gt;
+1. &lt;high&gt;Resample&lt;/high&gt; and split data&lt;br2&gt;
+2. Identify &lt;high&gt;best `n` predictors&lt;/high&gt; and their prediction performance&lt;br2&gt;
+3. &lt;high&gt;Aggregate performance&lt;/high&gt; and select best `n` and the accordingly best predictors
+
+]
+
+.pull-right55[
+
+&lt;br&gt;&lt;br&gt;
+
+
+```r
+# Run feature elimination
+rfe(x = ..., y = ..., 
+    sizes = c(3,4,5,10), # feature set sizes
+    rfeControl = rfeControl(functions = lmFuncs))
+```
+
+
+```
+
+Recursive feature selection
+
+Outer resampling method: Bootstrapped (25 reps) 
+
+Resampling performance over subset size:
+
+ Variables  RMSE Rsquared   MAE RMSESD RsquaredSD   MAESD Selected
+         3 0.370    0.867 0.291 0.0128     0.0118 0.00926         
+         4 0.365    0.870 0.287 0.0129     0.0114 0.00926        *
+         5 0.365    0.870 0.287 0.0133     0.0113 0.00975         
+        10 0.366    0.870 0.288 0.0131     0.0111 0.00921         
+        14 0.366    0.870 0.288 0.0132     0.0112 0.00923         
+
+The top 4 variables (out of 4):
+   age, food, alcohol, happiness
+```
+
+]
+
+---
+
+# Dimensionality reduction using `PCA`
+
+.pull-left45[
+
+The go-to algorithm for dimensionality reduction is &lt;high&gt;principal component analysis&lt;/high&gt; (PCA). 
+
+PCA is an &lt;high&gt;unsupervised&lt;/high&gt;, regression-based algorithm that re-represents the data in a &lt;high&gt;new feature space&lt;/high&gt;.  
+
+The new features aka principal components are greedy. &lt;high&gt;Skimming off the best components&lt;/high&gt; results in a small number of features that &lt;high&gt;preserve the original features&lt;/high&gt; as well as possible.
+
+]
+
+
+.pull-right45[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/pca.png" height=350&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://blog.umetrics.com/what-is-principal-component-analysis-pca-and-how-it-is-used
+"&gt;blog.umetrics.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+]
+
+---
+
+# Using `PCA`
+
+.pull-left45[
+
+
+```r
+# train model WITHOUT PCA preprocessing
+model = train(income ~ ., method = 'lm', 
+           data = bas_train)
+
+plot(varImp(model))
+```
+
+&lt;img src="Features_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+.pull-right45[
+
+
+```r
+# train model WITH PCA preprocessing
+model = train(income ~ ., method = 'lm', 
+              data = bas_train,
+              preProc = c('pca'))
+plot(varImp(model))
+```
+
+&lt;img src="Features_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Other, easy feature problems
+
+.pull-left45[
+
+### Multi-collinearity
+
+Multi-collinearity, &lt;high&gt;high feature correlations&lt;/high&gt;, mean that there is redundancy in the data, which can lead to &lt;high&gt;less stable fits&lt;/high&gt;, &lt;high&gt;uninterpretable variable importances&lt;/high&gt;, and &lt;high&gt;worse predictions&lt;/high&gt;.
+
+
+```r
+# identify redundant variables
+findCorrelation(cor(baselers))
+```
+
+```
+[1] 5
+```
+
+```r
+# remove from data
+remove &lt;- findCorrelation(cor(baselers))
+baselers &lt;- baselers %&gt;%
+  select(-remove)
+```
+
+]
+
+.pull-right45[
+
+### Unequal &amp; low variance 
+
+Unequal variance &lt;high&gt;breaks regularization&lt;/high&gt; (L1, L2) and renders estimates difficult to interpret.
+
+
+```r
+# standardize and center variables
+train(..., preProc("center", "scale"))
+```
+
+Low variance variables add parameters, but &lt;high&gt;can hardly contribute to prediction&lt;/high&gt; and are, thus, also redundant.
+
+
+```r
+# identify low variance variables
+nearZeroVar(baselers)
+```
+
+```
+integer(0)
+```
+
+]
+
+
+---
+
+# Difficult feature problems
+
+&lt;br&gt;
+.pull-left25[
+
+1 - &lt;b&gt;Trivial features&lt;/b&gt; 
+
+Successful prediction not necessarily implies that a meaningful pattern has been detected.
+
+&lt;br&gt;
+2 - &lt;b&gt;Missing features&lt;/b&gt;
+
+Some problems are hard, requiring the engineering of new features. 
+
+]
+
+
+.pull-right65[
+&lt;br&gt;
+
+&lt;p align = "center"&gt;
+&lt;img src="image/here_to_help.png"&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://xkcd.com/1831/"&gt;xkcd.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+]
+
+---
+
+# Trivial features
+
+.pull-left3[
+
+&lt;u&gt;&lt;a href="https://www.gwern.net/Tanks"&gt;An urban myth?!&lt;/a&gt;&lt;/u&gt;
+
+"The Army trained a program to differentiate American tanks from Russian tanks with 100% accuracy. Only later did analysts realize that the American tanks had been photographed on a sunny day and the Russian tanks had been photographed on a cloudy day. The computer had learned to detect brightness."&lt;br&gt;&lt;br&gt;
+New York Times &lt;a href="https://www.nytimes.com/2017/10/09/science/stanford-sexual-orientation-study.html" style="font-size:8px"&gt;[Full text]&lt;/a&gt;
+
+]
+
+.pull-right6[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/tank.jpg"&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://en.wikipedia.org/wiki/British_heavy_tanks_of_World_War_I#/media/File:Mark_I_series_tank.jpg"&gt;wikipedia.org&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+
+
+
+]
+
+
+---
+
+# Trivial features
+
+
+In 2012, Nate Silver was praised to have correctly predicted the outcomes of the presidential election in 50 states after having correctly predicted 49 states in 2008. &lt;high&gt;But how much of a challenge was that?&lt;/high&gt;
+
+.pull-left5[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/elect2008.png" height = 360px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://www.vox.com/policy-and-politics/2016/11/8/13563106/election-map-historical-vote"&gt;vox.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+.pull-right5[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/elect2012.png" height = 360px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://www.vox.com/policy-and-politics/2016/11/8/13563106/election-map-historical-vote"&gt;vox.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+
+]
+
+---
+
+# (Always!) missing features
+
+&lt;i&gt;"…some machine learning projects succeed and some fail. What makes the difference? Easily the most important factor is the features used."&lt;/i&gt;
+
+Pedro Domingos
+
+&lt;i&gt;"The algorithms we used are very standard for Kagglers. […] We spent most of our efforts in feature engineering. [...] We were also very careful to discard features likely to expose us to the risk of over-fitting our model."&lt;/i&gt;
+
+Xavier Conort
+
+&lt;i&gt;"Coming up with features is difficult, time-consuming, requires expert knowledge. "Applied machine learning" is basically feature engineering."&lt;/i&gt;
+
+Andrew Ng
+
+---
+
+# Feature engineering
+
+.pull-left45[
+
+&lt;i&gt;“Feature engineering is the process of &lt;high&gt;transforming raw data&lt;/high&gt; into features that &lt;high&gt;better represent the underlying problem&lt;/high&gt; to the predictive models, resulting in improved model accuracy on unseen data.”&lt;/i&gt;
+
+Jason Brownlee
+
+&lt;i&gt;"...while avoiding the &lt;high&gt;curse of dimensionality&lt;/high&gt;."&lt;/i&gt;
+
+duw
+
+&lt;u&gt;Feature engineering involves&lt;/u&gt;
+
+- &lt;b&gt;Transformations&lt;/b&gt;
+- &lt;b&gt;Interactions&lt;/b&gt;
+- &lt;b&gt;New features&lt;/b&gt;
+
+]
+
+.pull-right45[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/albert.jpeg"&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="http://www.open.edu/openlearncreate/mod/oucontent/view.php?id=80245&amp;section=1"&gt;open.edu&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+]
+
+---
+
+class: middle, center
+
+&lt;h1&gt;&lt;a href="https://therbootcamp.github.io/ML_2019May/_sessions/Features/Features_practical.html"&gt;Practical&lt;/a&gt;&lt;/h1&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
