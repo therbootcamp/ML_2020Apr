@@ -5,7 +5,7 @@ author: "Machine Learning with R<br>
     Basel R Bootcamp
   </a>
   <br>
-  <a href='https://therbootcamp.github.io/ML_2019May/'>
+  <a href='https://therbootcamp.github.io/ML_2019Oct/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "Machine Learning with R<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "May 2019"
+date: "October 2019"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-      Machine Learning with R | May 2019
+      Machine Learning with R | October 2019
       </font>
     </a>
     </span>
@@ -68,7 +68,7 @@ knitr::opts_chunk$set(fig.align = 'center')
 
 ### Machine Learning with R
 
-### May, 2019
+### October, 2019
 
 
 ]
@@ -200,7 +200,7 @@ We have an <high>ambitious schedule</high>!
 <high>All available online</high>. Follow along, and don't worry about memorizing
 
 <br><br>
-<a href="https://therbootcamp.github.io/ML_2019May/">This is a Link to our materials</a>.
+<a href="https://therbootcamp.github.io/ML_2019Oct/">This is a Link to our materials</a>.
 <br><br>
 
 <high>Be interactive! Ask questions!</high>
@@ -251,9 +251,9 @@ We have an <high>ambitious schedule</high>!
 .pull-right5[
 <br>
 
-  <iframe src="https://therbootcamp.github.io/ML_2019May/_sessions/Fitting/Fitting_practical.html" height="480px" width = "500px"></iframe>
+  <iframe src="https://therbootcamp.github.io/ML_2019Oct/_sessions/Fitting/Fitting_practical.html" height="480px" width = "500px"></iframe>
 
-  Example: <a href="https://therbootcamp.github.io/dML_2019May/_sessions/Fitting/Fitting_practical.html">Fitting Practical </a>
+  Example: <a href="https://therbootcamp.github.io/dML_2019Oct/_sessions/Fitting/Fitting_practical.html">Fitting Practical </a>
 
 ]
 
@@ -301,18 +301,18 @@ At any time, you can <high>request a 15 minute 1-1 intensive</high> coaching ses
     
   <td>
   <p align = 'center'>Data Import<br><br>
-  <a href="https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf"><img border="0" alt="W3Schools" src="https://www.rstudio.com/wp-content/uploads/2018/08/data-import-600x464.png" height="180"></a></p>
+  <a href="https://github.com/rstudio/cheatsheets/raw/master/3-data-import.pdf"><img border="0" alt="W3Schools" src="https://d33wubrfki0l68.cloudfront.net/b7142a24f47a959b8a4b67910c67db8b41036f28/ac9a2/wp-content/uploads/2018/08/data-import.png" height="180"></a></p>
   </td>
   
   <td>
   <p align = 'center'>Data Transformation<br><br>
-  <a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf"><img border="0" alt="W3Schools" src="https://www.rstudio.com/wp-content/uploads/2018/08/data-transformation-600x464.png" height="180"></a></p>
+  <a href="https://github.com/rstudio/cheatsheets/raw/master/4-data-transform.pdf"><img border="0" alt="W3Schools" src="https://d33wubrfki0l68.cloudfront.net/db69c3d03699d395475d2ac14d64f611054fa9a4/e98f3/wp-content/uploads/2018/08/data-transformation.png" height="180"></a></p>
   </td>
 
 
   <td>
   <p align = 'center'>Caret<br><br>
-  <a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf"><img border="0" alt="W3Schools" src="https://www.rstudio.com/wp-content/uploads/2015/01/caret-cheatsheet-200x155@2x.png" height="180"></a></p>
+  <a href="https://github.com/rstudio/cheatsheets/raw/master/6-caret.pdf"><img border="0" alt="W3Schools" src="https://d33wubrfki0l68.cloudfront.net/ad16acdb544c1a9ca00c7dd175312a52f45e8979/7e9a2/wp-content/uploads/2015/01/caret-cheatsheet.png" height="180"></a></p>
   </td>
 
 
@@ -378,13 +378,17 @@ At any time, you can <high>request a 15 minute 1-1 intensive</high> coaching ses
 
 .pull-right45[
 <br><br>
-<p align="center"><img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/introductions.jpg" height="400"></p>
-<center><font size = 4>artofmanliness.com</font>
+<p align="center">
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/introductions.jpg" height="500px">
+<br>
+<font style="font-size:10px">from <a href="www.artofmanliness.com">artofmanliness.com</a></font>
+</p>
+
 ]
 
 ---
 class: middle, center
 
-<h1><a href=https://therbootcamp.github.io/ML_2019May/index.html>Schedule</a></h1>
+<h1><a href=https://therbootcamp.github.io/ML_2019Oct/index.html>Schedule</a></h1>
 
 

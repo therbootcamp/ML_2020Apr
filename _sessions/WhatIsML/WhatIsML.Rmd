@@ -5,7 +5,7 @@ author: "Machine Learning with R<br>
     Basel R Bootcamp
   </a>
   <br>
-  <a href='https://therbootcamp.github.io/ML_2019May/'>
+  <a href='https://therbootcamp.github.io/ML_2019Oct/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "Machine Learning with R<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "May 2019"
+date: "October 2019"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-       Machine Learning with R | May 2019
+       Machine Learning with R | October 2019
       </font>
     </a>
     </span>
@@ -756,4 +756,4 @@ RL is closely <high>related to psychological theories of learning</high>.
 ---
 class: middle, center
 
-<h1><a href=https://therbootcamp.github.io/ML_2019May/index.html>Schedule</a></h1>
+<h1><a href=https://therbootcamp.github.io/ML_2019Oct/index.html>Schedule</a></h1>
