@@ -12,8 +12,8 @@
 class: center, middle, inverse, title-slide
 
 # Prediction
-### Machine Learning with R<br> <a href='https://therbootcamp.github.io'> Basel R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2019May/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
-### May 2019
+### Machine Learning with R<br> <a href='https://therbootcamp.github.io'> Basel R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2019Oct/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### October 2019
 
 ---
 
@@ -34,7 +34,7 @@ layout: true
     &lt;/a&gt;
     &lt;a href="https://therbootcamp.github.io/"&gt;
       &lt;font color="#7E7E7E"&gt;
-      Machine Learning with R | May 2019
+      Machine Learning with R | October 2019
       &lt;/font&gt;
     &lt;/a&gt;
     &lt;/span&gt;
@@ -138,11 +138,11 @@ To test a model means to &lt;high&gt;evaluate the prediction error&lt;/high&gt; 
 
 | id|sex | age|fam_history |smoking | criterion|
 |--:|:---|---:|:-----------|:-------|---------:|
-|  1|m   |  45|No          |FALSE   |         0|
-|  2|m   |  43|Yes         |FALSE   |         1|
+|  1|f   |  45|No          |TRUE    |         0|
+|  2|m   |  43|No          |FALSE   |         0|
 |  3|f   |  40|Yes         |FALSE   |         1|
-|  4|m   |  51|Yes         |FALSE   |         1|
-|  5|m   |  44|No          |TRUE    |         0|
+|  4|f   |  51|Yes         |TRUE    |         1|
+|  5|m   |  44|Yes         |FALSE   |         0|
 
 ]
 
@@ -155,11 +155,11 @@ To test a model means to &lt;high&gt;evaluate the prediction error&lt;/high&gt; 
 
 | id|sex | age|fam_history |smoking |criterion |
 |--:|:---|---:|:-----------|:-------|:---------|
-| 91|m   |  51|Yes         |TRUE    |?         |
-| 92|f   |  47|No          |TRUE    |?         |
-| 93|m   |  39|No          |TRUE    |?         |
+| 91|f   |  51|No          |FALSE   |?         |
+| 92|m   |  47|No          |TRUE    |?         |
+| 93|f   |  39|Yes         |TRUE    |?         |
 | 94|f   |  51|Yes         |TRUE    |?         |
-| 95|f   |  50|Yes         |FALSE   |?         |
+| 95|f   |  50|No          |TRUE    |?         |
 
 ]
 
@@ -669,7 +669,7 @@ postResample(pred = mod_pred,
 ---
 class: middle, center
 
-&lt;h1&gt;&lt;a href=https://therbootcamp.github.io/ML_2019May/_sessions/Prediction/Prediction_practical.html&gt;Practical&lt;/a&gt;&lt;/h1&gt;
+&lt;h1&gt;&lt;a href=https://therbootcamp.github.io/ML_2019Oct/_sessions/Prediction/Prediction_practical.html&gt;Practical&lt;/a&gt;&lt;/h1&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

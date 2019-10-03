@@ -5,7 +5,7 @@ author: "Machine Learning with R<br>
     Basel R Bootcamp
   </a>
   <br>
-  <a href='https://therbootcamp.github.io/ML_2019May/'>
+  <a href='https://therbootcamp.github.io/ML_2019Oct/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "Machine Learning with R<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "May 2019"
+date: "October 2019"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-       Machine Learning with R | May 2019
+       Machine Learning with R | October 2019
       </font>
     </a>
     </span>
@@ -158,7 +158,8 @@ NZZ, August 2018
 
 ]
 
----
+
+<!---
 
 #  Repeating the past
 
@@ -184,7 +185,7 @@ NZZ, August 2018
 
 ]
 
-
+--->
 
 ---
 
@@ -345,55 +346,40 @@ The web is a great place to learn about R.
 
 <table class="tg"  style="cellspacing:0; cellpadding:0; border:none">
   <tr>
-    <th class="tg-yw4l">
-    
-  <p align="center"><br>
-    <a href="www.dirkwulff.org"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/assets/img/dirk_square_small2.png" height="230" style="border-radius:50%"></a><br>
-
-<p align="center">
-<font size = 5>Dr. Dirk Wulff</font><br><br>
-<a href="www.dirkwulff.org"><b>dirkwulff.org</b></a><br>
-<a href="https://github.com/dwulff"><b>github.com/dwulff</b></a><br>
-<font size=4><i>packages: </i></font> 
-<a href="https://cran.r-project.org/web/packages/cstab/index.html"><b>cstab</b></a>, <br>
-<a href="https://cran.r-project.org/web/packages/mousetrap/index.html"><b>mousetrap</b></a>, <a href="https://cran.r-project.org/web/packages/memnet/index.html"><b>memnet</b> <a href="https://github.com/dwulff/choicepp"><b>choicepp</b>
-</p>  
+    <th class="tg-yw4l" valign='top'>
+    <p align="center"><br>
+    <a href="www.dirkwulff.org"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/img/team/1.png" height="230" style="border-radius:50%"></a><br>
+    <p align="center">
+    <font size = 5>Dr. Dirk Wulff</font><br><br>
+    <a href="www.dirkwulff.org"><b>dirkwulff.org</b></a><br>
+    <a href="https://github.com/dwulff"><b>github.com/dwulff</b></a><br>
+    <font size=4><i>packages: </i></font> 
+    <a href="https://cran.r-project.org/web/packages/cstab/index.html"><b>cstab</b></a>, <br>
+    <a href="https://cran.r-project.org/web/packages/mousetrap/index.html"><b>mousetrap</b></a>, <a href="https://cran.r-project.org/web/packages/memnet/index.html"><b>memnet</b> <a href="https://github.com/dwulff/choicepp"><b>choicepp</b>
+    </p>  
+  </th>
   
-    </th>
-    <th class="tg-yw4l"><p align="center"><br>
-    <a href="www.nathanieldphillips.com/"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/assets/img/nathaniel_square_small.png" height="230" style="border-radius:50%"></a><br>
-
-<p align="center">
-<font size = 5>Dr. Nathaniel Phillips</font><br><br>
-<a href="www.nathanieldphillips.com/"><b>nathanieldphillips.com</b></a><br>
-<a href="https://github.com/ndphillips"><b>github.com/ndphillips</b></a><br>
-<font size=4><i>packages: </i></font> 
-<a href="https://github.com/ndphillips/yarrr"><b>yarrr</b></a>, <br>
-<a href="https://github.com/ndphillips/FFTrees"><b>FFTrees</b></a></th>
-
-<th class="tg-yw4l">
- <p align="center">
-<p align="center"><br>
-    <a href="https://psychologie.unibas.ch/de/personen/markus-steiner/about-me/"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/assets/img/markus_square2.png" height="230" style="border-radius:50%"></a><br>
-
-<p align="center">
-<font size = 5>Markus Steiner</font><br><br><br>
-<a href="https://github.com/mdsteiner"><b>github.com/mdsteiner</b></a><br>
-<font size=4><i>packages: </i></font> 
-<a href="https://github.com/mdsteiner/ShinyPsych"><b>ShinyPsych</b></a>, <br>
-<a href="https://github.com/mdsteiner/EFAdiff"><b>EFAdiff</b></a> <br><br>
-</p></th>
-
-<th class="tg-yw4l">
- <p align="center">
-<p align="center"><br>
-    <a href="www.schulte-mecklenbeck.com"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/assets/img/michael_square.png" height="230" style="border-radius:50%"></a><br>
-
-<p align="center">
-<font size = 5>Dr. Michael Schulte-M.</font><br><br>
-<a href="www.schulte-mecklenbeck.com"><b>schulte-mecklenbeck.com</b></a><br>
-<a href="https://github.com/schultem"><b>github.com/schultem</b></a><br><br>
-</p></th>
+  <th class="tg-yw4l" valign='top'><p align="center"><br>
+    <a href="https://psychologie.unibas.ch/en/persons/markus-steiner/about-me/"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/img/team/2.png" height="230" style="border-radius:50%"></a><br>
+    <p align="center">
+    <font size = 5>Markus Steiner</font><br><br>
+    <a href="https://github.com/mdsteiner"><b>github.com/mdsteiner</b></a><br>
+    <font size=4><i>packages: </i></font> 
+    <a href="https://github.com/mdsteiner/ShinyPsych"><b>ShinyPsych</b></a>, <br>
+    <a href="https://github.com/mdsteiner/EFAdiff"><b>EFAdiff</b></a> <br><br>
+    </p>
+  </th>
+  
+  <th class="tg-yw4l" valign='top'>
+    <p align="center">
+    <p align="center"><br>
+    <a href="https://www.schulte-mecklenbeck.com/"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/img/team/3.png" height="230" style="border-radius:50%"></a><br>
+    <p align="center">
+    <font size = 5>Dr. Michael Schulte-<br>Mecklenbeck</font><br><br>
+    <a href="www.schulte-mecklenbeck.com"><b>schulte-mecklenbeck.com</b></a><br>
+    <a href="https://github.com/schultem"><b>github.com/schultem</b></a><br><br>
+    </p>
+  </th>
 
 
 </tr>
@@ -409,37 +395,32 @@ The web is a great place to learn about R.
 <table class="tg"  style="cellspacing:0; cellpadding:0; border:none;">
 <tr valign="top">
   <td>
-  
     <p align="center">
-      <a href = "https://advancedstudies.unibas.ch/studienangebot/kurs/introduction-to-r-for-data-science-208287">
-      <font style="font-size:20px;weight:700"><br>R for Data Science</font><br>
+      <a class="project-link" href="mailto:therbootcamp@gmail.com?subject=Preregistration for Statistics with R&body=I would like to preregister for the R Bootcamp on 'Data Mining mit R' on February 14/15 in Basel, Switzerland." align="center">
+      <font style="font-size:20px;weight:700"><br>Data Mining mit R</font><br>
       <br>
       <img src="https://therbootcamp.github.io/assets/img/data_science.png" height="210px" width="340px"></img><br>
-      <high>2 days, June 1/2, 2019</high></a>
+      <high>2 days, February 14/15, 2020</high><br><br><br>
     </p>
   </td>
-
-    <td>
-    <p align="center">
-    <a class="project-link" href="mailto:therbootcamp@gmail.com?subject=Preregistration for Statistics with R&body=I would like to preregister for the R Bootcamp on 'Statistics with R' in February/March 2019 (tbc) in Basel, Switzerland." align="center">
-  
-  <font style="font-size:20px;weight:700"><br>Statistics with R</font><br>
-  <br>
-  <img src="image/statistics.png" height="210px" width="340px"></img><br>
-  
-  <high>2 days, September 7/8, 2019</high><br><br><br>
-  </a>
-  
-  </p>
-  </td>
-  
   <td>
     <p align="center">
-      <a href = "http://www.therbootcamp.com">
-      <font style="font-size:20px;weight:700"><br>CAS Data Science </font><br>
+      <a class="project-link" href="mailto:therbootcamp@gmail.com?subject=Preregistration for Statistics with R&body=I would like to preregister for the R Bootcamp on 'Statistik mit R' on March 13/14 in Basel, Switzerland." align="center">
+      <font style="font-size:20px;weight:700"><br>Statistik mit R</font><br>
       <br>
-      <img src="image/CAS.png" height="210px" width="340px"></img><br>
-      <high>approx. April 2020 onwards</high></a>
+      <img src="image/statistics.png" height="210px" width="340px"></img><br>
+      <high>2 days, March 13/14, 2019</high><br><br><br>
+      </a>
+    </p>
+  </td>
+  <td>
+    <p align="center">
+      <a class="project-link" href="mailto:therbootcamp@gmail.com?subject=Preregistration for Statistics with R&body=I would like to preregister for the R Bootcamp on 'Reporting mit R' on March 13/14 in Basel, Switzerland." align="center">
+      <font style="font-size:20px;weight:700"><br>Statistik mit R</font><br>
+      <br>
+      <img src="image/statistics.png" height="210px" width="340px"></img><br>
+      <high>2 days, May 15/16, 2019</high><br><br><br>
+      </a>
     </p>
   </td>
   </tr>
