@@ -161,9 +161,7 @@ ctrl_none <- trainControl(method = "none")
 
 ### C - Fit a regression model
 
-1. Using the code below, fit a regression model predicting graduation rate (`Grad.Rate`) as a function of one feature `PhD` (percent of faculty with PhDs). Save the result as an object `Grad.Rate_glm`.
-
-Specifically,
+1. Using the code below, fit a regression model predicting graduation rate (`Grad.Rate`) as a function of one feature `PhD` (percent of faculty with PhDs). Save the result as an object `Grad.Rate_glm`. Specifically,...
 
 - set the `form` argument to `Grad.Rate ~ PhD`.
 - set the `data` argument to your training data `college_train`.
@@ -357,9 +355,7 @@ So far we have only used one feature (`PhD`), to predict `Grad.Rate`. Let's try 
 - `Terminal` - percent of faculty with a terminal degree.
 - `S.F.Ratio` - student to faculty ratio.
 
-1. Using the same steps as above, create a regression model `Grad.Rate_glm` which predicts `Grad.Rate` using all 4 features (you can also call it something else if you want to save your original model!).
-
-Specifically,
+1. Using the same steps as above, create a regression model `Grad.Rate_glm` which predicts `Grad.Rate` using all 4 features (you can also call it something else if you want to save your original model!). Specifically,...
 
 - set the `form` argument to `Grad.Rate ~ PhD + Room.Board + Terminal + S.F.Ratio`.
 - set the `data` argument to your training data `college_train`.
@@ -409,9 +405,7 @@ glm_fit <- predict(XXX)
 glm_fit <- predict(Grad.Rate_glm)
 ```
 
-4. By comparing the model fits to the true criterion values using `postResample()` calculate the Mean Absolute Error (MAE) of your new model that uses 4 features. How does this compare to your previous model that only used 1 feature?
-
-Specifically,
+4. By comparing the model fits to the true criterion values using `postResample()` calculate the Mean Absolute Error (MAE) of your new model that uses 4 features. How does this compare to your previous model that only used 1 feature? Specifically,...
 
 - set the `pred` argument to `glm_fit`, your model fits.
 - set the `obs` argument to `criterion`, a vector of the true criterion values.
@@ -484,9 +478,7 @@ ggplot(data = accuracy,
 
 Alright, now it's time to use all features available!
 
-1. Using the same steps as above, create a regression model `glm_fit` which predicts `Grad.Rate` using *all* features in the dataset.
-
-Specifically,
+1. Using the same steps as above, create a regression model `glm_fit` which predicts `Grad.Rate` using *all* features in the dataset. Specifically,...
 
 - set the `form` argument to `Grad.Rate ~ .`.
 - set the `data` argument to the training data `college_train`.
@@ -591,16 +583,16 @@ ggplot(data = accuracy,
 
 ### G - Make sure your criterion is a factor!
 
-Now it's time to do a classification task! Recall that in a classification task, we are predicting a category, not a continuous number. In this task, we'll predict whether or not a college is Private or Public, this is stored as the variable `college_train$Private`
+Now it's time to do a classification task! Recall that in a classification task, we are predicting a category, not a continuous number. In this task, we'll predict whether or not a college is Private or Public, this is stored as the variable `college_train$Private`.
 
-1. In order to do classification training with `caret`, all you need to do is make sure that the criterion is coded as a factor. To test whether is coded as a factor, you can look at its class as follows:
+1. In order to do classification training with `caret`, all you need to do is make sure that the criterion is coded as a factor. To test whether it is coded as a factor, you can look at its `class` as follows.
 
 ```{r, echo = TRUE}
 # Look at the class of the variable Private, should be a factor!
 class(college_train$Private)
 ```
 
-2. Now, we'll save the Private column as a new object called `criterion`
+2. Now, we'll save the Private column as a new object called `criterion`.
 
 ```{r, echo = TRUE}
 # Define criterion as college_train$Private
@@ -609,11 +601,12 @@ criterion <- college_train$Private
 
 ### H - Fit a classification model
 
-1. Using `train()`, create `Private_glm`, a regression model predicting the variable `Private`
-- Set the `form` argument to `Private ~ .`
-- Set the `data` argument to the training data `college_train`
-- Set the `method` argument to `"glm"`
-- Set the `trControl` argument to `ctrl_none`
+1. Using `train()`, create `Private_glm`, a regression model predicting the variable `Private`. Specifically,...
+
+- set the `form` argument to `Private ~ .`.
+- set the `data` argument to the training data `college_train`.
+- set the `method` argument to `"glm"`.
+- set the `trControl` argument to `ctrl_none`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Fit regression model predicting Private
@@ -632,8 +625,7 @@ Private_glm <- train(form = Private ~ .,
                      trControl = ctrl_none)
 ```
 
-2. Explore the `Private_glm` object using the `summary()` function.
-- Set the main argument to `Private_glm`
+2. Explore the `Private_glm` object using the `summary()` function. 
 
 
 ```{r, echo = TRUE, eval = FALSE}
@@ -654,8 +646,7 @@ summary(Private_glm)
 
 ### I - Access classification model accuracy
 
-1. Now it's time to save the model fits! Do this by running the following code to save the fitted values as `glm_fit`
-- Set the `object` argument to your `Private_glm` object
+1. Now it's time to save the model's fitted values! Do this by running the following code to save the fitted values as `glm_fit`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Get fitted values from the Private_glm object
@@ -667,7 +658,6 @@ glm_fit <- predict(XXX)
 glm_fit <- predict(Private_glm)
 ```
 
-
 2. Plot the values of your `glm_fit` object - what are these values? Do they look reasonable?
 
 ```{r}
@@ -675,9 +665,10 @@ glm_fit <- predict(Private_glm)
 plot(glm_fit)
 ```
 
-3. Now it's time to calculate model accuracy. To do this, we will use a new function called `confusionMatrix()`. This function compares model predictions to a 'reference' (in our case, the criterion, and returns several summary statistics). In the code below, we'll use `glm_fit` as the model predictions, and our already defined `criterion` vector as the reference (aka, truth)
-- Set the `data` argument to your `glm_fit` values
-- Set the `reference` argument to the `criterion` values
+3. Now it's time to calculate model accuracy. To do this, we will use a new function called `confusionMatrix()`. This function compares model predictions to a 'reference' (in our case, the criterion, and returns several summary statistics). In the code below, we'll use `glm_fit` as the model predictions, and our already defined `criterion` vector as the reference (aka, truth). Specifically,...
+
+- set the `data` argument to your `glm_fit` values.
+- set the `reference` argument to the `criterion` values.
 
 ```{r, eval = FALSE, echo = TRUE}
 # Show accuracy of glm_fit versus the true criterion values
@@ -722,7 +713,7 @@ confusionMatrix(data = glm_fit,        # This is the prediction!
 # The NPV is 0.955. Of those colleges that are predicted to be public, 95.5% truly are public.
 ```
 
-9. To visualize the accuracy of your classification models, use the following code to create a bar plot:
+9. To visualize the accuracy of your classification models, use the following code to create a bar plot.
 
 ```{r echo = TRUE}
 # Get overall accuracy from regression model
@@ -813,7 +804,7 @@ cor(college_train[,sapply(college_train, is.numeric)])
 ```
 
 
-5. Now fit the model again but only select variables that are not directly related to the number of applications (here several solutions are possible, there is nor clear cut criterion about which variables to include and which to discard).
+5. Now fit the model again but only select variables that are not directly related to the number of applications (here several solutions are possible, there is no clear-cut criterion about which variables to include and which to discard).
 
 ```{r}
 mod_hot <- train(form = hot ~ . - Apps -Enroll -Accept - F.Undergrad,
@@ -829,7 +820,6 @@ confusionMatrix(data = mod_predictions,        # This is the prediction!
                 reference = college_train$hot) # This is the truth!
 
 ```
-
 
 
 ## Examples

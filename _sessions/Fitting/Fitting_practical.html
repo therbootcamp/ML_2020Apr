@@ -274,9 +274,8 @@ ctrl_none &lt;- trainControl(method = &quot;none&quot;) </code></pre>
 <div id="c---fit-a-regression-model" class="section level3">
 <h3>C - Fit a regression model</h3>
 <ol style="list-style-type: decimal">
-<li>Using the code below, fit a regression model predicting graduation rate (<code>Grad.Rate</code>) as a function of one feature <code>PhD</code> (percent of faculty with PhDs). Save the result as an object <code>Grad.Rate_glm</code>.</li>
+<li>Using the code below, fit a regression model predicting graduation rate (<code>Grad.Rate</code>) as a function of one feature <code>PhD</code> (percent of faculty with PhDs). Save the result as an object <code>Grad.Rate_glm</code>. Specifically,…</li>
 </ol>
-<p>Specifically,</p>
 <ul>
 <li>set the <code>form</code> argument to <code>Grad.Rate ~ PhD</code>.</li>
 <li>set the <code>data</code> argument to your training data <code>college_train</code>.</li>
@@ -395,9 +394,8 @@ ggplot(data = accuracy,
 <li><code>S.F.Ratio</code> - student to faculty ratio.</li>
 </ul>
 <ol style="list-style-type: decimal">
-<li>Using the same steps as above, create a regression model <code>Grad.Rate_glm</code> which predicts <code>Grad.Rate</code> using all 4 features (you can also call it something else if you want to save your original model!).</li>
+<li>Using the same steps as above, create a regression model <code>Grad.Rate_glm</code> which predicts <code>Grad.Rate</code> using all 4 features (you can also call it something else if you want to save your original model!). Specifically,…</li>
 </ol>
-<p>Specifically,</p>
 <ul>
 <li>set the <code>form</code> argument to <code>Grad.Rate ~ PhD + Room.Board + Terminal + S.F.Ratio</code>.</li>
 <li>set the <code>data</code> argument to your training data <code>college_train</code>.</li>
@@ -421,9 +419,8 @@ Grad.Rate_glm &lt;- train(form = XXX ~ XXX + XXX + XXX + XXX,
 <pre class="r"><code># Save new model fits
 glm_fit &lt;- predict(XXX)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>By comparing the model fits to the true criterion values using <code>postResample()</code> calculate the Mean Absolute Error (MAE) of your new model that uses 4 features. How does this compare to your previous model that only used 1 feature?</li>
+<li>By comparing the model fits to the true criterion values using <code>postResample()</code> calculate the Mean Absolute Error (MAE) of your new model that uses 4 features. How does this compare to your previous model that only used 1 feature? Specifically,…</li>
 </ol>
-<p>Specifically,</p>
 <ul>
 <li>set the <code>pred</code> argument to <code>glm_fit</code>, your model fits.</li>
 <li>set the <code>obs</code> argument to <code>criterion</code>, a vector of the true criterion values.</li>
@@ -440,9 +437,8 @@ postResample(pred = XXX,   # Fitted values
 <h3>F - Use all features</h3>
 <p>Alright, now it’s time to use all features available!</p>
 <ol style="list-style-type: decimal">
-<li>Using the same steps as above, create a regression model <code>glm_fit</code> which predicts <code>Grad.Rate</code> using <em>all</em> features in the dataset.</li>
+<li>Using the same steps as above, create a regression model <code>glm_fit</code> which predicts <code>Grad.Rate</code> using <em>all</em> features in the dataset. Specifically,…</li>
 </ol>
-<p>Specifically,</p>
 <ul>
 <li>set the <code>form</code> argument to <code>Grad.Rate ~ .</code>.</li>
 <li>set the <code>data</code> argument to the training data <code>college_train</code>.</li>
@@ -473,14 +469,14 @@ glm_fit &lt;- predict(XXX)</code></pre>
 </div>
 <div id="g---make-sure-your-criterion-is-a-factor" class="section level3">
 <h3>G - Make sure your criterion is a factor!</h3>
-<p>Now it’s time to do a classification task! Recall that in a classification task, we are predicting a category, not a continuous number. In this task, we’ll predict whether or not a college is Private or Public, this is stored as the variable <code>college_train$Private</code></p>
+<p>Now it’s time to do a classification task! Recall that in a classification task, we are predicting a category, not a continuous number. In this task, we’ll predict whether or not a college is Private or Public, this is stored as the variable <code>college_train$Private</code>.</p>
 <ol style="list-style-type: decimal">
-<li>In order to do classification training with <code>caret</code>, all you need to do is make sure that the criterion is coded as a factor. To test whether is coded as a factor, you can look at its class as follows:</li>
+<li>In order to do classification training with <code>caret</code>, all you need to do is make sure that the criterion is coded as a factor. To test whether it is coded as a factor, you can look at its <code>class</code> as follows.</li>
 </ol>
 <pre class="r"><code># Look at the class of the variable Private, should be a factor!
 class(college_train$Private)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Now, we’ll save the Private column as a new object called <code>criterion</code></li>
+<li>Now, we’ll save the Private column as a new object called <code>criterion</code>.</li>
 </ol>
 <pre class="r"><code># Define criterion as college_train$Private
 criterion &lt;- college_train$Private</code></pre>
@@ -488,13 +484,13 @@ criterion &lt;- college_train$Private</code></pre>
 <div id="h---fit-a-classification-model" class="section level3">
 <h3>H - Fit a classification model</h3>
 <ol style="list-style-type: decimal">
-<li>Using <code>train()</code>, create <code>Private_glm</code>, a regression model predicting the variable <code>Private</code></li>
+<li>Using <code>train()</code>, create <code>Private_glm</code>, a regression model predicting the variable <code>Private</code>. Specifically,…</li>
 </ol>
 <ul>
-<li>Set the <code>form</code> argument to <code>Private ~ .</code></li>
-<li>Set the <code>data</code> argument to the training data <code>college_train</code></li>
-<li>Set the <code>method</code> argument to <code>&quot;glm&quot;</code></li>
-<li>Set the <code>trControl</code> argument to <code>ctrl_none</code></li>
+<li>set the <code>form</code> argument to <code>Private ~ .</code>.</li>
+<li>set the <code>data</code> argument to the training data <code>college_train</code>.</li>
+<li>set the <code>method</code> argument to <code>&quot;glm&quot;</code>.</li>
+<li>set the <code>trControl</code> argument to <code>ctrl_none</code>.</li>
 </ul>
 <pre class="r"><code># Fit regression model predicting Private
 Private_glm &lt;- train(form = XXX ~ .,
@@ -504,9 +500,6 @@ Private_glm &lt;- train(form = XXX ~ .,
 <ol start="2" style="list-style-type: decimal">
 <li>Explore the <code>Private_glm</code> object using the <code>summary()</code> function.</li>
 </ol>
-<ul>
-<li>Set the main argument to <code>Private_glm</code></li>
-</ul>
 <pre class="r"><code># Explore the Private_glm object
 summary(XXX)</code></pre>
 <ol start="3" style="list-style-type: decimal">
@@ -516,20 +509,17 @@ summary(XXX)</code></pre>
 <div id="i---access-classification-model-accuracy" class="section level3">
 <h3>I - Access classification model accuracy</h3>
 <ol style="list-style-type: decimal">
-<li>Now it’s time to save the model fits! Do this by running the following code to save the fitted values as <code>glm_fit</code></li>
+<li>Now it’s time to save the model’s fitted values! Do this by running the following code to save the fitted values as <code>glm_fit</code>.</li>
 </ol>
-<ul>
-<li>Set the <code>object</code> argument to your <code>Private_glm</code> object</li>
-</ul>
 <pre class="r"><code># Get fitted values from the Private_glm object
 glm_fit &lt;- predict(XXX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Plot the values of your <code>glm_fit</code> object - what are these values? Do they look reasonable?</p></li>
-<li>Now it’s time to calculate model accuracy. To do this, we will use a new function called <code>confusionMatrix()</code>. This function compares model predictions to a ‘reference’ (in our case, the criterion, and returns several summary statistics). In the code below, we’ll use <code>glm_fit</code> as the model predictions, and our already defined <code>criterion</code> vector as the reference (aka, truth)</li>
+<li><p>Now it’s time to calculate model accuracy. To do this, we will use a new function called <code>confusionMatrix()</code>. This function compares model predictions to a ‘reference’ (in our case, the criterion, and returns several summary statistics). In the code below, we’ll use <code>glm_fit</code> as the model predictions, and our already defined <code>criterion</code> vector as the reference (aka, truth). Specifically,…</p></li>
 </ol>
 <ul>
-<li>Set the <code>data</code> argument to your <code>glm_fit</code> values</li>
-<li>Set the <code>reference</code> argument to the <code>criterion</code> values</li>
+<li>set the <code>data</code> argument to your <code>glm_fit</code> values.</li>
+<li>set the <code>reference</code> argument to the <code>criterion</code> values.</li>
 </ul>
 <pre class="r"><code># Show accuracy of glm_fit versus the true criterion values
 confusionMatrix(data = XXX,      # This is the prediction!
@@ -540,7 +530,7 @@ confusionMatrix(data = XXX,      # This is the prediction!
 <li><p>What is the positive predictive value? How do you interpret this number?</p></li>
 <li><p>What is the specificity? How do you interpret this number?</p></li>
 <li><p>What is the negative predictive value? How do you interpret this number?</p></li>
-<li><p>To visualize the accuracy of your classification models, use the following code to create a bar plot:</p></li>
+<li><p>To visualize the accuracy of your classification models, use the following code to create a bar plot.</p></li>
 </ol>
 <pre class="r"><code># Get overall accuracy from regression model
 glm_accuracy &lt;- confusionMatrix(data =  glm_fit,  
@@ -579,7 +569,7 @@ college_train &lt;- college_train %&gt;%
 <pre class="r"><code># get correlation matrix of numeric variables
 cor(college_train[,sapply(college_train, is.numeric)])</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>Now fit the model again but only select variables that are not directly related to the number of applications (here several solutions are possible, there is nor clear cut criterion about which variables to include and which to discard).</li>
+<li>Now fit the model again but only select variables that are not directly related to the number of applications (here several solutions are possible, there is no clear-cut criterion about which variables to include and which to discard).</li>
 </ol>
 </div>
 </div>
