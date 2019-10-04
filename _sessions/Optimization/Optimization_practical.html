@@ -195,7 +195,7 @@ $(document).ready(function () {
 <col width='10%'>
 <tr style="border:none">
 <td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
-<font style='font-style:normal'>Machine Learning with R</font><br> <a href='https://therbootcamp.github.io/ML_2019May/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Basel R Bootcamp</font> </a>
+<font style='font-style:normal'>Machine Learning with R</font><br> <a href='https://therbootcamp.github.io/ML_2019Oct/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Basel R Bootcamp</font> </a>
 </td>
 <td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
 <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
@@ -215,24 +215,22 @@ $(document).ready(function () {
 <h2>Overview</h2>
 <p>By the end of this practical you will know how to:</p>
 <ol style="list-style-type: decimal">
-<li>Use cross-validation to select optimal model tuning parameters for decision trees and random forests</li>
-<li>Compare ‘standard’ regression with lasso and ridge penalised regression</li>
-<li>Use cross-validation to estimate future test accuracy</li>
+<li>Use cross-validation to select optimal model tuning parameters for decision trees and random forests.</li>
+<li>Compare ‘standard’ regression with lasso and ridge penalised regression.</li>
+<li>Use cross-validation to estimate future test accuracy.</li>
 </ol>
 </div>
 <div id="tasks" class="section level2">
 <h2>Tasks</h2>
 <div id="baseball-player-salaries" class="section level3">
 <h3>Baseball player salaries</h3>
-<p>In this practical, we will predict the salaries of baseball players from the <code>hitters_train</code> and <code>hitters_test</code> datasets.</p>
-<p>Our goal will be to predict <code>Salary</code>.</p>
+<p>In this practical, we will predict the <code>Salary</code> of baseball players from the <code>hitters_train</code> and <code>hitters_test</code> datasets.</p>
 </div>
 <div id="a---setup" class="section level3">
 <h3>A - Setup</h3>
 <ol style="list-style-type: decimal">
 <li><p>Open your <code>BaselRBootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data file(s) listed in the <code>Datasets</code> section are in your <code>1_Data</code> folder</p></li>
-<li>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>Optimization_practical.R</code> in the <code>2_Code</code> folder.<br />
-</li>
+<li><p>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>Optimization_practical.R</code> in the <code>2_Code</code> folder.</p></li>
 <li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p></li>
 </ol>
 <pre class="r"><code># Load packages necessary for this script
@@ -241,7 +239,7 @@ library(caret)
 library(party)
 library(partykit)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>Run the code below to load each of the datasets listed in the <code>Datasets</code> as new objects</li>
+<li>Run the code below to load each of the datasets listed in the <code>Datasets</code> as new objects.</li>
 </ol>
 <pre class="r"><code># hitters data
 hitters_train &lt;- read_csv(file = &quot;1_Data/hitters_train.csv&quot;)
@@ -253,7 +251,7 @@ hitters_test &lt;- read_csv(file = &quot;1_Data/hitters_test.csv&quot;)</code></
 hitters_train
 hitters_test</code></pre>
 <ol start="6" style="list-style-type: decimal">
-<li>Print the numbers of rows and columns of each dataset using the <code>dim()</code> function</li>
+<li>Print the numbers of rows and columns of each dataset using the <code>dim()</code> function.</li>
 </ol>
 <pre class="r"><code># Print numbers of rows and columns
 dim(XXX)
@@ -271,17 +269,17 @@ names(XXX)</code></pre>
 View(XXX)
 View(XXX)</code></pre>
 <ol start="9" style="list-style-type: decimal">
-<li>We need to do a little bit of data cleaning before starting. Specifically, we need to convert all character columns to factors: Do this by running the following code:</li>
+<li>As always, we need to convert all character columns to factors before we start. Do this by running the following code.</li>
 </ol>
 </div>
 <div id="b---setup-traincontrol" class="section level3">
 <h3>B - Setup <code>trainControl</code></h3>
 <ol style="list-style-type: decimal">
-<li>Set up your training by specifying <code>ctrl_cv</code> as 10-fold cross-validation</li>
+<li>Set up your training by specifying <code>ctrl_cv</code> as 10-fold cross-validation. Specifically,…</li>
 </ol>
 <ul>
-<li>Set method = “cv” to specify cross validation</li>
-<li>Set number = 10 to specify 10 folds</li>
+<li>set <code>method = &quot;cv&quot;</code> to specify cross validation.</li>
+<li>set <code>number = 10</code> to specify 10 folds.</li>
 </ul>
 <pre class="r"><code># Use 10-fold cross validation
 ctrl_cv &lt;- trainControl(method = &quot;XX&quot;, 
@@ -290,13 +288,13 @@ ctrl_cv &lt;- trainControl(method = &quot;XX&quot;,
 <div id="c---regression-standard" class="section level3">
 <h3>C - Regression (standard)</h3>
 <ol style="list-style-type: decimal">
-<li>Fit a (standard) regression model predicting <code>Salary</code> as a function of all features</li>
+<li>Fit a (standard) regression model predicting <code>Salary</code> as a function of all features. Specifically,…</li>
 </ol>
 <ul>
-<li>Set the formula to <code>Salary ~ .</code></li>
-<li>Set the data to <code>hitters_train</code></li>
-<li>Set the method to <code>&quot;glm&quot;</code> for regular regression</li>
-<li>Set the train control argument to <code>ctrl_cv</code></li>
+<li>set the formula to <code>Salary ~ .</code>.</li>
+<li>set the data to <code>hitters_train</code>.</li>
+<li>set the method to <code>&quot;glm&quot;</code> for regular regression.</li>
+<li>set the train control argument to <code>ctrl_cv</code>.</li>
 </ul>
 <pre class="r"><code># Normal Regression --------------------------
 salary_glm &lt;- train(form = XX ~ .,
@@ -304,9 +302,9 @@ salary_glm &lt;- train(form = XX ~ .,
                     method = &quot;XX&quot;,
                     trControl = XX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Print your <code>salary_glm</code> what do you see?</p></li>
+<li><p>Print your <code>salary_glm</code>. What do you see?</p></li>
 <li><p>Try plotting your <code>salary_glm</code> object. What happens? What does this error mean?</p></li>
-<li><p>Print your final model object with <code>salary_glm$finalModel</code></p></li>
+<li><p>Print your final model object with <code>salary_glm$finalModel</code>.</p></li>
 </ol>
 <pre class="r"><code># Print final regression model
 salary_glm$finalModel</code></pre>
@@ -318,20 +316,20 @@ salary_glm$finalModel</code></pre>
 <h3>D - Ridge Regression</h3>
 <p>It’s time to fit an optimized regression model with a Ridge penalty!</p>
 <ol style="list-style-type: decimal">
-<li>Before we can fit a ridge regression model, we need to specify which values of the lambda penalty parameter we want to try. Using the code below, create a vector called <code>lambda_vec</code> which contains 100 values spanning a wide range, from very close to 0 to 1,000</li>
+<li>Before we can fit a ridge regression model, we need to specify which values of the lambda penalty parameter we want to try. Using the code below, create a vector called <code>lambda_vec</code> which contains 100 values spanning a wide range, from very close to 0 to 1,000.</li>
 </ol>
 <pre class="r"><code># Vector of lambda values to try
 lambda_vec &lt;- 10 ^ (seq(-4, 4, length = 100))</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Fit a ridge regression model predicting <code>Salary</code> as a function of all features</li>
+<li>Fit a ridge regression model predicting <code>Salary</code> as a function of all features. Specifically,…</li>
 </ol>
 <ul>
-<li>Set the formula to <code>Salary ~ .</code></li>
-<li>Set the data to <code>hitters_train</code></li>
-<li>Set the method to <code>&quot;glmnet&quot;</code> for regularized regression</li>
-<li>Set the train control argument to <code>ctrl_cv</code></li>
-<li>Set the <code>preProcess</code> argument to <code>c(&quot;center&quot;, &quot;scale&quot;)</code> to make sure the variables are standarised when estimating the beta weights (this is good practice for ridge regression)</li>
-<li>Set the tuneGrid argument such that alpha is 0 (for ridge regression), and with all lambda values you specified in <code>lambda_vec</code> (we’ve done this for you below)</li>
+<li>set the formula to <code>Salary ~ .</code>.</li>
+<li>set the data to <code>hitters_train</code>.</li>
+<li>set the method to <code>&quot;glmnet&quot;</code> for regularized regression.</li>
+<li>set the train control argument to <code>ctrl_cv</code>.</li>
+<li>set the <code>preProcess</code> argument to <code>c(&quot;center&quot;, &quot;scale&quot;)</code> to make sure the variables are standarised when estimating the beta weights (this is good practice for ridge regression).</li>
+<li>set the tuneGrid argument such that alpha is 0 (for ridge regression), and with all lambda values you specified in <code>lambda_vec</code> (we’ve done this for you below).</li>
 </ul>
 <pre class="r"><code># Ridge Regression --------------------------
 salary_ridge &lt;- train(form = XX ~ .,
@@ -342,7 +340,7 @@ salary_ridge &lt;- train(form = XX ~ .,
                       tuneGrid = expand.grid(alpha = 0,  # Ridge penalty
                                              lambda = lambda_vec))</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Print your <code>salary_ridge</code> object what do you see?</p></li>
+<li><p>Print your <code>salary_ridge</code> object. What do you see?</p></li>
 <li><p>Plot your <code>salary_ridge</code> object. What do you see? Which value of the regularization parameter seems to be the best?</p></li>
 </ol>
 <pre class="r"><code># Plot salary_ridge object
@@ -353,7 +351,7 @@ plot(XX)</code></pre>
 <pre class="r"><code># Print best regularisation parameter
 salary_ridge$bestTune$lambda</code></pre>
 <ol start="6" style="list-style-type: decimal">
-<li>What were your final regression model coefficients for the best lambda value? Find them by running the following code:</li>
+<li>What were your final regression model coefficients for the best lambda value? Find them by running the following code.</li>
 </ol>
 <pre class="r"><code># Get coefficients from best lambda value
 coef(salary_ridge$finalModel, 
@@ -366,20 +364,20 @@ coef(salary_ridge$finalModel,
 <h3>E - Lasso Regression</h3>
 <p>It’s time to fit an optimized regression model with a Lasso penalty!</p>
 <ol style="list-style-type: decimal">
-<li>Before we can fit a lasso regression model, we need to specify which values of the lambda penalty parameter we want to try. Using the code below, create a vector called <code>lambda_vec</code> which contains 100 values between 0 and 1000</li>
+<li>Before we can fit a lasso regression model, we again first specify which values of the lambda penalty parameter we want to try. Using the code below, create a vector called <code>lambda_vec</code> which contains 100 values between 0 and 1,000.</li>
 </ol>
 <pre class="r"><code># Determine possible values of lambda
 lambda_vec &lt;- 10 ^ seq(from = -4, to = 4, length = 100)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Fit a lasso regression model predicting <code>Salary</code> as a function of all features</li>
+<li>Fit a lasso regression model predicting <code>Salary</code> as a function of all features. Specifically,…</li>
 </ol>
 <ul>
-<li>Set the formula to <code>Salary ~ .</code></li>
-<li>Set the data to <code>hitters_train</code></li>
-<li>Set the method to <code>&quot;glmnet&quot;</code> for regularized regression</li>
-<li>Set the train control argument to <code>ctrl_cv</code></li>
-<li>Set the <code>preProcess</code> argument to <code>c(&quot;center&quot;, &quot;scale&quot;)</code> to make sure the variables are standarised when estimating the beta weights (this is good practice for lasso regression)</li>
-<li>Set the tuneGrid argument such that alpha is 1 (for lasso regression), and with all lambda values you specified in <code>lambda_vec</code> (we’ve done this for you below)</li>
+<li>set the formula to <code>Salary ~ .</code>.</li>
+<li>set the data to <code>hitters_train</code>.</li>
+<li>set the method to <code>&quot;glmnet&quot;</code> for regularized regression.</li>
+<li>set the train control argument to <code>ctrl_cv</code>.</li>
+<li>set the <code>preProcess</code> argument to <code>c(&quot;center&quot;, &quot;scale&quot;)</code> to make sure the variables are standarised when estimating the beta weights (this is also good practice for lasso regression).</li>
+<li>set the tuneGrid argument such that alpha is 1 (for lasso regression), and with all lambda values you specified in <code>lambda_vec</code> (we’ve done this for you below).</li>
 </ul>
 <pre class="r"><code># Lasso Regression --------------------------
 salary_lasso &lt;- train(form = XX ~ .,
@@ -390,7 +388,7 @@ salary_lasso &lt;- train(form = XX ~ .,
                       tuneGrid = expand.grid(alpha = 1,  # Lasso penalty
                                             lambda = lambda_vec))</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Print your <code>salary_lasso</code> object what do you see?</p></li>
+<li><p>Print your <code>salary_lasso</code> object. What do you see?</p></li>
 <li><p>Plot your <code>salary_lasso</code> object. What do you see? Which value of the regularization parameter seems to be the best?</p></li>
 </ol>
 <pre class="r"><code># Plot salary_lasso object
@@ -401,7 +399,7 @@ plot(XX)</code></pre>
 <pre class="r"><code># Print best regularisation parameter
 salary_lasso$bestTune$lambda</code></pre>
 <ol start="6" style="list-style-type: decimal">
-<li>What were your final regression model coefficients for the best lambda value? Find them by running the following code:</li>
+<li>What were your final regression model coefficients for the best lambda value? Find them by running the following code.</li>
 </ol>
 <pre class="r"><code># Get coefficients from best lambda value
 coef(salary_lasso$finalModel, 
@@ -412,17 +410,17 @@ coef(salary_lasso$finalModel,
 </div>
 <div id="f---decision-tree" class="section level3">
 <h3>F - Decision Tree</h3>
-<p>It’s time to fit an optimized decision tree model!!</p>
+<p>It’s time to fit an optimized decision tree model!</p>
 <ol style="list-style-type: decimal">
 <li><p>Before we can fit a decision tree, we need to specify which values of the complexity parameter <code>cp</code> we want to try. Using the code below, create a vector called <code>cp_vec</code> which contains 100 values between 0 and 1</p></li>
-<li><p>Fit a decision tree model predicting <code>Salary</code> as a function of all features</p></li>
+<li><p>Fit a decision tree model predicting <code>Salary</code> as a function of all features. Specifically,…</p></li>
 </ol>
 <ul>
-<li>Set the formula to <code>Salary ~ .</code></li>
-<li>Set the data to <code>hitters_train</code></li>
-<li>Set the method to <code>&quot;rpart&quot;</code> for decision trees</li>
-<li>Set the train control argument to <code>ctrl_cv</code></li>
-<li>Set the tuneGrid argument with all <code>cp</code> values you specified in <code>cp_vec</code></li>
+<li>set the formula to <code>Salary ~ .</code>.</li>
+<li>set the data to <code>hitters_train</code>.</li>
+<li>set the method to <code>&quot;rpart&quot;</code> for decision trees.</li>
+<li>set the train control argument to <code>ctrl_cv</code>,</li>
+<li>set the tuneGrid argument with all <code>cp</code> values you specified in <code>cp_vec</code>.</li>
 </ul>
 <pre class="r"><code># Decision Tree --------------------------
 salary_rpart &lt;- train(form = XX ~ .,
@@ -431,13 +429,13 @@ salary_rpart &lt;- train(form = XX ~ .,
                   trControl = XX,
                   tuneGrid = expand.grid(cp = cp_vec))</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Print your <code>salary_rpart</code> object what do you see?</p></li>
-<li><p>Plot your <code>salary_rpart</code> object. What do you see? Which value of the regularization parameter seems to be the best?</p></li>
+<li><p>Print your <code>salary_rpart</code> object. What do you see?</p></li>
+<li><p>Plot your <code>salary_rpart</code> object. What do you see? Which value of the complexity parameter seems to be the best?</p></li>
 </ol>
 <pre class="r"><code># Plot salary_rpart object
 plot(XX)</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>Print the best value of cp by running the following code. Does this match what you saw in the plot above?</li>
+<li>Print the best value of <code>cp</code> by running the following code. Does this match what you saw in the plot above?</li>
 </ol>
 <pre class="r"><code># Print best regularisation parameter
 salary_rpart$bestTune$cp</code></pre>
@@ -455,14 +453,14 @@ plot(as.party(salary_rpart$finalModel)) </code></pre>
 <p>It’s time to fit an optimized random forest model!</p>
 <ol style="list-style-type: decimal">
 <li><p>Before we can fit a random forest model, we need to specify which values of the diversity parameter <code>mtry</code> we want to try. Using the code below, create a vector called <code>mtry_vec</code> which is a sequence of numbers from 1 to 10</p></li>
-<li><p>Fit a random forest model predicting <code>Salary</code> as a function of all features</p></li>
+<li><p>Fit a random forest model predicting <code>Salary</code> as a function of all features. Specifically,…</p></li>
 </ol>
 <ul>
-<li>Set the formula to <code>Salary ~ .</code></li>
-<li>Set the data to <code>hitters_train</code></li>
-<li>Set the method to <code>&quot;rf&quot;</code> for random forests</li>
-<li>Set the train control argument to <code>ctrl_cv</code></li>
-<li>Set the tuneGrid argument such that mtry can take on the values you defined in <code>mtry_vec</code></li>
+<li>set the formula to <code>Salary ~ .</code>.</li>
+<li>set the data to <code>hitters_train</code>.</li>
+<li>set the method to <code>&quot;rf&quot;</code> for random forests.</li>
+<li>set the train control argument to <code>ctrl_cv</code>.</li>
+<li>set the tuneGrid argument such that mtry can take on the values you defined in <code>mtry_vec</code>.</li>
 </ul>
 <pre class="r"><code># Random Forest --------------------------
 salary_rf &lt;- train(form = XX ~ .,
@@ -471,13 +469,13 @@ salary_rf &lt;- train(form = XX ~ .,
                    trControl = XX,
                    tuneGrid = expand.grid(mtry = mtry_vec))</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Print your <code>salary_rf</code> object what do you see?</p></li>
+<li><p>Print your <code>salary_rf</code> object. What do you see?</p></li>
 <li><p>Plot your <code>salary_rf</code> object. What do you see? Which value of the regularization parameter seems to be the best?</p></li>
 </ol>
 <pre class="r"><code># Plot salary_rf object
 plot(XX)</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>Print the best value of mtry by running the following code. Does this match what you saw in the plot above?</li>
+<li>Print the best value of <code>mtry</code> by running the following code. Does this match what you saw in the plot above?</li>
 </ol>
 <pre class="r"><code># Print best mtry parameter
 salary_rf$bestTune$mtry</code></pre>
@@ -485,7 +483,7 @@ salary_rf$bestTune$mtry</code></pre>
 <div id="h---estimate-prediction-accuracy-from-training-folds" class="section level3">
 <h3>H - Estimate prediction accuracy from training folds</h3>
 <ol style="list-style-type: decimal">
-<li>Using <code>resamples()</code>, calculate the estimated prediction accuracy for each of your models. To do this, put your model objects in the named list (e.g.; <code>glm = salary_glm</code>, …)</li>
+<li>Using <code>resamples()</code>, calculate the estimated prediction accuracy for each of your models. To do this, put your model objects in the named list (e.g.; <code>glm = salary_glm</code>, …). See below.</li>
 </ol>
 <pre class="r"><code># Summarise accuracy statistics across folds
 salary_resamples &lt;- resamples(list(glm = XXX,
@@ -500,32 +498,32 @@ salary_resamples &lt;- resamples(list(glm = XXX,
 <div id="i---calculate-prediction-accuracy" class="section level3">
 <h3>I - Calculate prediction accuracy</h3>
 <ol style="list-style-type: decimal">
-<li>Save the criterion value for the test data as a new vector called <code>criterion_test</code></li>
+<li>Save the criterion value for the test data as a new vector called <code>criterion_test</code>.</li>
 </ol>
 <pre class="r"><code># Save salaries of players in test dataset as criterion_test
 criterion_test &lt;- XXX$XXX</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Using <code>predict()</code>, save the prediction of your regular regression model <code>salary_glm</code> for the <code>hitters_test</code> data as a new object called <code>glm_pred</code>:</li>
+<li>Using <code>predict()</code>, save the prediction of your regular regression model <code>salary_glm</code> for the <code>hitters_test</code> data as a new object called <code>glm_pred</code>. Specifically,…</li>
 </ol>
 <ul>
-<li>Set the first argument to <code>salary_glm</code></li>
-<li>Set the newdata argument to <code>hitters_test</code></li>
+<li>set the first argument to <code>salary_glm</code>.</li>
+<li>set the newdata argument to <code>hitters_test</code>.</li>
 </ul>
 <pre class="r"><code># Save the glm predicted salaries of hitters_test
 glm_pred &lt;- predict(XXX, newdata = XXX)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Now do the same with your ridge, lasso, decision tree, and random forest models to get the objects <code>ridge_pred</code>, <code>lasso_pred</code>, <code>rpart_pred</code> and <code>rf_pred</code></li>
+<li>Now do the same with your ridge, lasso, decision tree, and random forest models to get the objects <code>ridge_pred</code>, <code>lasso_pred</code>, <code>rpart_pred</code> and <code>rf_pred</code>.</li>
 </ol>
 <pre class="r"><code>ridge_pred &lt;- predict(XXX, newdata = XXX)
 lasso_pred &lt;- predict(XXX, newdata = XXX)
 rpart_pred &lt;- predict(XXX, newdata = XXX)
 rf_pred &lt;- predict(XXX, newdata = XXX)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>Using <code>postResample()</code>, calculate the aggregate prediction accuracy for each model using the template below</li>
+<li>Using <code>postResample()</code>, calculate the aggregate prediction accuracy for each model using the template below. Specifically,…</li>
 </ol>
 <ul>
-<li>Set the pred argument to your model predictions (e.g.; <code>ridge_pred</code>)</li>
-<li>Set the <code>obs</code> argument to the true criterion values <code>criterion_test</code>)</li>
+<li>set the pred argument to your model predictions (e.g.; <code>ridge_pred</code>).</li>
+<li>set the <code>obs</code> argument to the true criterion values <code>criterion_test</code>).</li>
 </ul>
 <pre class="r"><code># Calculate aggregate accuracy for a model
 postResample(pred = XXX, 
@@ -867,32 +865,32 @@ ggplot(data = accuracy,
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/hitters_train.csv?token=AGKBX5TAYOZYPRL2XBIEMMS43BMBE">hitters_train.csv</a></td>
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/hitters_train.csv">hitters_train.csv</a></td>
 <td align="left">50</td>
 <td align="left">20</td>
 </tr>
 <tr class="even">
-<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/hitters_test.csv?token=AGKBX5UXB6JLDLFX4X4J7WS43BMDI">hitters_test.csv</a></td>
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/hitters_test.csv">hitters_test.csv</a></td>
 <td align="left">213</td>
 <td align="left">20</td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/college_train.csv?token=AGKBX5SLEV3PLWUVQ4NCUB2427V36">college_train.csv</a></td>
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv">college_train.csv</a></td>
 <td align="left">500</td>
 <td align="left">18</td>
 </tr>
 <tr class="even">
-<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/college_test.csv?token=AGKBX5UFLURQIE32GVYJR4S427WAY">college_test.csv</a></td>
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_test.csv">college_test.csv</a></td>
 <td align="left">277</td>
 <td align="left">18</td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/house_train.csv?token=AGKBX5THYI3PSBE5AO4KKBK427WD2">house_train.csv</a></td>
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/house_train.csv">house_train.csv</a></td>
 <td align="left">5000</td>
 <td align="left">21</td>
 </tr>
 <tr class="even">
-<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/hitters_test.csv?token=AGKBX5UXB6JLDLFX4X4J7WS43BMDI">house_test.csv</a></td>
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/hitters_test.csv">house_test.csv</a></td>
 <td align="left">1000</td>
 <td align="left">21</td>
 </tr>

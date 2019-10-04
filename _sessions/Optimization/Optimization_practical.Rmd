@@ -4,7 +4,7 @@ author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
       <font style='font-style:normal'>Machine Learning with R</font><br>
-      <a href='https://therbootcamp.github.io/ML_2019May/'>
+      <a href='https://therbootcamp.github.io/ML_2019Oct/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
       <a href='https://therbootcamp.github.io'>
@@ -68,23 +68,22 @@ hitters_test <- read_csv("../../1_Data/hitters_test.csv") %>%
 
 By the end of this practical you will know how to:
 
-1. Use cross-validation to select optimal model tuning parameters for decision trees and random forests
-2. Compare 'standard' regression with lasso and ridge penalised regression
-3. Use cross-validation to estimate future test accuracy
+1. Use cross-validation to select optimal model tuning parameters for decision trees and random forests.
+2. Compare 'standard' regression with lasso and ridge penalised regression.
+3. Use cross-validation to estimate future test accuracy.
 
 ## Tasks
 
 ### Baseball player salaries
 
-In this practical, we will predict the salaries of baseball players from the `hitters_train` and `hitters_test` datasets. 
-
-Our goal will be to predict `Salary`.
+In this practical, we will predict the `Salary` of baseball players from the `hitters_train` and `hitters_test` datasets. 
 
 ### A - Setup
 
 1. Open your `BaselRBootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data file(s) listed in the `Datasets` section are in your `1_Data` folder
 
 2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called `Optimization_practical.R` in the `2_Code` folder.  
+
 3. Using `library()` load the set of packages for this practical listed in the packages section above.
 
 ```{r, echo = TRUE, eval = TRUE, message = FALSE}
@@ -102,7 +101,7 @@ library(party)
 library(partykit)
 ```
 
-4. Run the code below to load each of the datasets listed in the `Datasets` as new objects
+4. Run the code below to load each of the datasets listed in the `Datasets` as new objects.
 
 ```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
 # hitters data
@@ -118,7 +117,7 @@ hitters_train
 hitters_test
 ```
 
-6. Print the numbers of rows and columns of each dataset using the `dim()` function
+6. Print the numbers of rows and columns of each dataset using the `dim()` function.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Print numbers of rows and columns
@@ -152,7 +151,7 @@ View(XXX)
 View(XXX)
 ```
 
-9. We need to do a little bit of data cleaning before starting. Specifically, we need to convert all character columns to factors: Do this by running the following code:
+9. As always, we need to convert all character columns to factors before we start. Do this by running the following code.
 
 ```{r}
 # Convert all character columns to factor
@@ -165,10 +164,10 @@ hitters_test <- hitters_test %>%
 
 ### B - Setup `trainControl`
 
-1. Set up your training by specifying `ctrl_cv` as 10-fold cross-validation
+1. Set up your training by specifying `ctrl_cv` as 10-fold cross-validation. Specifically,...
 
-- Set method = "cv" to specify cross validation
-- Set number = 10 to specify 10 folds
+- set `method = "cv"` to specify cross validation.
+- set `number = 10` to specify 10 folds.
 
 ```{r, eval = FALSE, echo = TRUE}
 # Use 10-fold cross validation
@@ -184,12 +183,12 @@ ctrl_cv <- trainControl(method = "cv",
 
 ### C - Regression (standard)
 
-1. Fit a (standard) regression model predicting `Salary` as a function of all features
+1. Fit a (standard) regression model predicting `Salary` as a function of all features. Specifically,...
 
-- Set the formula to `Salary ~ .`
-- Set the data to `hitters_train`
-- Set the method to `"glm"` for regular regression
-- Set the train control argument to `ctrl_cv`
+- set the formula to `Salary ~ .`.
+- set the data to `hitters_train`.
+- set the method to `"glm"` for regular regression.
+- set the train control argument to `ctrl_cv`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Normal Regression --------------------------
@@ -207,7 +206,7 @@ salary_glm <- train(form = Salary ~ .,
                    trControl = ctrl_cv)
 ```
 
-2. Print your `salary_glm` what do you see?
+2. Print your `salary_glm`. What do you see?
 
 ```{r}
 salary_glm
@@ -225,7 +224,7 @@ salary_glm
 # The problem is that method = "glm" has no tuning parameters so there is nothing to plot!
 ```
 
-4. Print your final model object with `salary_glm$finalModel`
+4. Print your final model object with `salary_glm$finalModel`.
 
 ```{r, echo = TRUE}
 # Print final regression model
@@ -243,21 +242,21 @@ coef(salary_glm$finalModel)
 
 It's time to fit an optimized regression model with a Ridge penalty!
 
-1. Before we can fit a ridge regression model, we need to specify which values of the lambda penalty parameter we want to try. Using the code below, create a vector called `lambda_vec` which contains 100 values spanning a wide range, from very close to 0 to 1,000
+1. Before we can fit a ridge regression model, we need to specify which values of the lambda penalty parameter we want to try. Using the code below, create a vector called `lambda_vec` which contains 100 values spanning a wide range, from very close to 0 to 1,000.
 
 ```{r, echo = TRUE}
 # Vector of lambda values to try
 lambda_vec <- 10 ^ (seq(-4, 4, length = 100))
 ```
 
-2. Fit a ridge regression model predicting `Salary` as a function of all features
+2. Fit a ridge regression model predicting `Salary` as a function of all features. Specifically,...
 
-- Set the formula to `Salary ~ .`
-- Set the data to `hitters_train`
-- Set the method to `"glmnet"` for regularized regression
-- Set the train control argument to `ctrl_cv`
-- Set the `preProcess` argument to `c("center", "scale")` to make sure the variables are standarised when estimating the beta weights (this is good practice for ridge regression)
-- Set the tuneGrid argument such that alpha is 0 (for ridge regression), and with all lambda values you specified in `lambda_vec` (we've done this for you below)
+- set the formula to `Salary ~ .`.
+- set the data to `hitters_train`.
+- set the method to `"glmnet"` for regularized regression.
+- set the train control argument to `ctrl_cv`.
+- set the `preProcess` argument to `c("center", "scale")` to make sure the variables are standarised when estimating the beta weights (this is good practice for ridge regression).
+- set the tuneGrid argument such that alpha is 0 (for ridge regression), and with all lambda values you specified in `lambda_vec` (we've done this for you below).
 
 ```{r, echo = TRUE, eval = FALSE}
 # Ridge Regression --------------------------
@@ -281,7 +280,7 @@ salary_ridge <- train(form = Salary ~ .,
                                              lambda = lambda_vec))
 ```
 
-3. Print your `salary_ridge` object what do you see?
+3. Print your `salary_ridge` object. What do you see?
 
 ```{r}
 salary_ridge
@@ -305,7 +304,7 @@ plot(salary_ridge)
 salary_ridge$bestTune$lambda
 ```
 
-6. What were your final regression model coefficients for the best lambda value? Find them by running the following code:
+6. What were your final regression model coefficients for the best lambda value? Find them by running the following code.
 
 ```{r, echo = TRUE}
 # Get coefficients from best lambda value
@@ -325,21 +324,21 @@ coef(salary_ridge$finalModel,
 
 It's time to fit an optimized regression model with a Lasso penalty!
 
-1. Before we can fit a lasso regression model, we need to specify which values of the lambda penalty parameter we want to try. Using the code below, create a vector called `lambda_vec` which contains 100 values between 0 and 1000
+1. Before we can fit a lasso regression model, we again first specify which values of the lambda penalty parameter we want to try. Using the code below, create a vector called `lambda_vec` which contains 100 values between 0 and 1,000.
 
 ```{r, echo = TRUE}
 # Determine possible values of lambda
 lambda_vec <- 10 ^ seq(from = -4, to = 4, length = 100)
 ```
 
-2. Fit a lasso regression model predicting `Salary` as a function of all features
+2. Fit a lasso regression model predicting `Salary` as a function of all features. Specifically,...
 
-- Set the formula to `Salary ~ .`
-- Set the data to `hitters_train`
-- Set the method to `"glmnet"` for regularized regression
-- Set the train control argument to `ctrl_cv`
-- Set the `preProcess` argument to `c("center", "scale")` to make sure the variables are standarised when estimating the beta weights (this is good practice for lasso regression)
-- Set the tuneGrid argument such that alpha is 1 (for lasso regression), and with all lambda values you specified in `lambda_vec` (we've done this for you below)
+- set the formula to `Salary ~ .`.
+- set the data to `hitters_train`.
+- set the method to `"glmnet"` for regularized regression.
+- set the train control argument to `ctrl_cv`.
+- set the `preProcess` argument to `c("center", "scale")` to make sure the variables are standarised when estimating the beta weights (this is also good practice for lasso regression).
+- set the tuneGrid argument such that alpha is 1 (for lasso regression), and with all lambda values you specified in `lambda_vec` (we've done this for you below).
 
 ```{r, echo = TRUE, eval = FALSE}
 # Lasso Regression --------------------------
@@ -363,7 +362,7 @@ salary_lasso <- train(form = Salary ~ .,
                                           lambda = lambda_vec))
 ```
 
-3. Print your `salary_lasso` object what do you see?
+3. Print your `salary_lasso` object. What do you see?
 
 ```{r}
 salary_lasso
@@ -389,7 +388,7 @@ plot(salary_lasso)
 salary_lasso$bestTune$lambda
 ```
 
-6. What were your final regression model coefficients for the best lambda value? Find them by running the following code:
+6. What were your final regression model coefficients for the best lambda value? Find them by running the following code.
 
 ```{r, echo = TRUE}
 # Get coefficients from best lambda value
@@ -407,7 +406,7 @@ coef(salary_lasso$finalModel,
 
 ### F - Decision Tree
 
-It's time to fit an optimized decision tree model!!
+It's time to fit an optimized decision tree model!
 
 1. Before we can fit a decision tree, we need to specify which values of the complexity parameter `cp` we want to try. Using the code below, create a vector called `cp_vec` which contains 100 values between 0 and 1
 
@@ -416,13 +415,13 @@ It's time to fit an optimized decision tree model!!
 cp_vec <- seq(from = 0, to = 1, length = 100)
 ```
 
-2. Fit a decision tree model predicting `Salary` as a function of all features
+2. Fit a decision tree model predicting `Salary` as a function of all features. Specifically,...
 
-- Set the formula to `Salary ~ .`
-- Set the data to `hitters_train`
-- Set the method to `"rpart"` for decision trees
-- Set the train control argument to `ctrl_cv`
-- Set the tuneGrid argument with all `cp` values you specified in `cp_vec`
+- set the formula to `Salary ~ .`.
+- set the data to `hitters_train`.
+- set the method to `"rpart"` for decision trees.
+- set the train control argument to `ctrl_cv`,
+- set the tuneGrid argument with all `cp` values you specified in `cp_vec`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Decision Tree --------------------------
@@ -442,13 +441,13 @@ salary_rpart <- train(form = Salary ~ .,
                   tuneGrid = expand.grid(cp = cp_vec))
 ```
 
-3. Print your `salary_rpart` object what do you see?
+3. Print your `salary_rpart` object. What do you see?
 
 ```{r}
 salary_rpart
 ```
 
-4. Plot your `salary_rpart` object. What do you see? Which value of the regularization parameter seems to be the best?
+4. Plot your `salary_rpart` object. What do you see? Which value of the complexity parameter seems to be the best?
 
 ```{r, echo = TRUE, eval = FALSE}
 # Plot salary_rpart object
@@ -459,7 +458,7 @@ plot(XX)
 plot(salary_rpart)
 ```
 
-5. Print the best value of cp by running the following code. Does this match what you saw in the plot above?
+5. Print the best value of `cp` by running the following code. Does this match what you saw in the plot above?
 
 ```{r, echo = TRUE}
 # Print best regularisation parameter
@@ -492,13 +491,13 @@ It's time to fit an optimized random forest model!
 mtry_vec <- 1:10
 ```
 
-2. Fit a random forest model predicting `Salary` as a function of all features
+2. Fit a random forest model predicting `Salary` as a function of all features. Specifically,...
 
-- Set the formula to `Salary ~ .`
-- Set the data to `hitters_train`
-- Set the method to `"rf"` for random forests
-- Set the train control argument to `ctrl_cv`
-- Set the tuneGrid argument such that mtry can take on the values you defined in `mtry_vec`
+- set the formula to `Salary ~ .`.
+- set the data to `hitters_train`.
+- set the method to `"rf"` for random forests.
+- set the train control argument to `ctrl_cv`.
+- set the tuneGrid argument such that mtry can take on the values you defined in `mtry_vec`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Random Forest --------------------------
@@ -518,7 +517,7 @@ salary_rf <- train(form = Salary ~ .,
                    tuneGrid = expand.grid(mtry = mtry_vec))
 ```
 
-3. Print your `salary_rf` object what do you see?
+3. Print your `salary_rf` object. What do you see?
 
 ```{r}
 salary_rf
@@ -537,7 +536,7 @@ plot(salary_rf)
 ```
 
 
-5. Print the best value of mtry by running the following code. Does this match what you saw in the plot above?
+5. Print the best value of `mtry` by running the following code. Does this match what you saw in the plot above?
 
 ```{r, echo = TRUE}
 # Print best mtry parameter
@@ -546,7 +545,7 @@ salary_rf$bestTune$mtry
 
 ### H - Estimate prediction accuracy from training folds
 
-1. Using `resamples()`, calculate the estimated prediction accuracy for each of your models. To do this, put your model objects in the named list (e.g.; `glm = salary_glm`, ...)
+1. Using `resamples()`, calculate the estimated prediction accuracy for each of your models. To do this, put your model objects in the named list (e.g.; `glm = salary_glm`, ...). See below.
 
 ```{r, eval = FALSE, echo = TRUE}
 # Summarise accuracy statistics across folds
@@ -578,7 +577,7 @@ summary(salary_resamples)
 
 ### I - Calculate prediction accuracy
 
-1. Save the criterion value for the test data as a new vector called `criterion_test`
+1. Save the criterion value for the test data as a new vector called `criterion_test`.
 
 ```{r, eval = FALSE, echo = TRUE}
 # Save salaries of players in test dataset as criterion_test
@@ -589,10 +588,10 @@ criterion_test <- XXX$XXX
 criterion_test <- hitters_test$Salary
 ```
 
-2. Using `predict()`, save the prediction of your regular regression model `salary_glm` for the `hitters_test` data as a new object called `glm_pred`:
+2. Using `predict()`, save the prediction of your regular regression model `salary_glm` for the `hitters_test` data as a new object called `glm_pred`. Specifically,...
 
-- Set the first argument to `salary_glm`
-- Set the newdata argument to `hitters_test`
+- set the first argument to `salary_glm`.
+- set the newdata argument to `hitters_test`.
 
 ```{r, eval = FALSE, echo = TRUE}
 # Save the glm predicted salaries of hitters_test
@@ -605,7 +604,7 @@ glm_pred <- predict(XXX, newdata = XXX)
 glm_pred <- predict(salary_glm, newdata = hitters_test)
 ```
 
-3. Now do the same with your ridge, lasso, decision tree, and random forest models to get the objects `ridge_pred`, `lasso_pred`, `rpart_pred` and `rf_pred`
+3. Now do the same with your ridge, lasso, decision tree, and random forest models to get the objects `ridge_pred`, `lasso_pred`, `rpart_pred` and `rf_pred`.
 
 ```{r, eval = FALSE, echo = TRUE}
 ridge_pred <- predict(XXX, newdata = XXX)
@@ -623,10 +622,10 @@ rpart_pred <- predict(salary_rpart, newdata = hitters_test)
 rf_pred <- predict(salary_rf, newdata = hitters_test)
 ```
 
-4. Using `postResample()`, calculate the aggregate prediction accuracy for each model using the template below
+4. Using `postResample()`, calculate the aggregate prediction accuracy for each model using the template below. Specifically,...
 
-- Set the pred argument to your model predictions (e.g.; `ridge_pred`)
-- Set the `obs` argument to the true criterion values `criterion_test`)
+- set the pred argument to your model predictions (e.g.; `ridge_pred`).
+- set the `obs` argument to the true criterion values `criterion_test`).
 
 ```{r, eval = FALSE, echo = TRUE}
 # Calculate aggregate accuracy for a model
@@ -671,7 +670,6 @@ x <- postResample(pred = rf_pred,
 postResample(pred = rf_pred, 
              obs = hitters_test$Salary)[3]
 ```
-
 
 
 6. How close were your models' true prediction error to the values you estimated in the previous section when you ran `resamples()`?
@@ -1026,12 +1024,12 @@ library(ggthemes)
 
 |File  |Rows | Columns |
 |:----|:-----|:------|
-|[hitters_train.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/hitters_train.csv?token=AGKBX5TAYOZYPRL2XBIEMMS43BMBE)| 50 | 20|
-|[hitters_test.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/hitters_test.csv?token=AGKBX5UXB6JLDLFX4X4J7WS43BMDI)| 213 | 20|
-|[college_train.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/college_train.csv?token=AGKBX5SLEV3PLWUVQ4NCUB2427V36)| 500 | 18|
-|[college_test.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/college_test.csv?token=AGKBX5UFLURQIE32GVYJR4S427WAY)| 277 | 18|
-|[house_train.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/house_train.csv?token=AGKBX5THYI3PSBE5AO4KKBK427WD2)| 5000 | 21|
-|[house_test.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/1_Data/hitters_test.csv?token=AGKBX5UXB6JLDLFX4X4J7WS43BMDI)| 1000 | 21|
+|[hitters_train.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/hitters_train.csv)| 50 | 20|
+|[hitters_test.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/hitters_test.csv)| 213 | 20|
+|[college_train.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv)| 500 | 18|
+|[college_test.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_test.csv)| 277 | 18|
+|[house_train.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/house_train.csv)| 5000 | 21|
+|[house_test.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/hitters_test.csv)| 1000 | 21|
 
 
 - The `hitters_train` and `hitters_test` data are taken from the `Hitters` dataset in the `ISLR` package. They are data frames with observations of major league baseball players from the 1986 and 1987 seasons.
