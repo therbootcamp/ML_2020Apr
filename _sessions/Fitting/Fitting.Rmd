@@ -1002,7 +1002,7 @@ income_mod
 </tr>
 <tr>
   <td bgcolor="white">
-    <mono>method()</mono>
+    <mono>method</mono>
   </td>
   <td bgcolor="white">
     The model (algorithm). 
@@ -1010,7 +1010,7 @@ income_mod
 </tr>
 <tr>
   <td>
-    <mono>trControl()</mono>
+    <mono>trControl</mono>
   </td>
   <td bgcolor="white">
     Control parameters for fitting.
@@ -1018,7 +1018,7 @@ income_mod
 </tr>
 <tr>
   <td bgcolor="white">
-    <mono>tuneGrid()</mono>, <mono>preProcess()</mono>
+    <mono>tuneGrid</mono>, <mono>preProcess</mono>
   </td>
   <td bgcolor="white">
     Cool stuff for later.
