@@ -399,7 +399,7 @@ The web is a great place to learn about R.
       <a class="project-link" href="mailto:therbootcamp@gmail.com?subject=Preregistration for Statistics with R&body=I would like to preregister for the R Bootcamp on 'Data Mining mit R' on February 14/15 in Basel, Switzerland." align="center">
       <font style="font-size:20px;weight:700"><br>Data Mining mit R</font><br>
       <br>
-      <img src="https://therbootcamp.github.io/assets/img/data_science.png" height="210px" width="340px"></img><br>
+      <img src="https://therbootcamp.github.io/img/courses/1.png" height="250px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
       <high>2 days, February 14/15, 2020</high><br><br><br>
     </p>
   </td>
@@ -408,7 +408,7 @@ The web is a great place to learn about R.
       <a class="project-link" href="mailto:therbootcamp@gmail.com?subject=Preregistration for Statistics with R&body=I would like to preregister for the R Bootcamp on 'Statistik mit R' on March 13/14 in Basel, Switzerland." align="center">
       <font style="font-size:20px;weight:700"><br>Statistik mit R</font><br>
       <br>
-      <img src="image/statistics.png" height="210px" width="340px"></img><br>
+      <img src="https://therbootcamp.github.io/img/courses/3.png" height="250px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
       <high>2 days, March 13/14, 2019</high><br><br><br>
       </a>
     </p>
@@ -418,7 +418,7 @@ The web is a great place to learn about R.
       <a class="project-link" href="mailto:therbootcamp@gmail.com?subject=Preregistration for Statistics with R&body=I would like to preregister for the R Bootcamp on 'Reporting mit R' on March 13/14 in Basel, Switzerland." align="center">
       <font style="font-size:20px;weight:700"><br>Statistik mit R</font><br>
       <br>
-      <img src="image/statistics.png" height="210px" width="340px"></img><br>
+      <img src="https://therbootcamp.github.io/img/courses/4.png" height="250px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
       <high>2 days, May 15/16, 2019</high><br><br><br>
       </a>
     </p>
