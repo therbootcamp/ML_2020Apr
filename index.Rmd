@@ -4,7 +4,7 @@ author: "
       <a href='https://therbootcamp.github.io'>
         <i class='fas fa-home' style='font-size:1em;'></i>
       </a>
-      <a href='https://therbootcamp.github.io/ML_2019May/'>
+      <a href='https://therbootcamp.github.io/ML_2019Oct/'>
         <i class='fas fa-clock' style='font-size:1em;' ></i>
       </a>
       <a href='mailto:therbootcamp@gmail.com'>
@@ -36,7 +36,7 @@ output:
 
 ##### [**Data sets**](https://www.dropbox.com/s/v7s5kesbc10fcvq/baselrbootcamp_MLdata.zip?dl=1)
 
-##### **PDFs**<!---https://www.dropbox.com/s/s2jy38nhmg8hsx1/MLwR2019May_pdfs.zip?dl=1--->
+##### **PDFs**<!---https://www.dropbox.com/s/s2jy38nhmg8hsx1/MLwR2019Oct_pdfs.zip?dl=1--->
 
 <br>
 
@@ -55,7 +55,7 @@ output:
 ### Schedule
 
 <p align="center"><br>
-    <img border="0" alt="May2019Schedule" src="_sessions/Welcome/image/schedule.png" style="width:340px"></a><br>
+    <img border="0" alt="Oct2019Schedule" src="_sessions/Welcome/image/schedule.png" style="width:340px"></a><br>
 
 <!---
 
