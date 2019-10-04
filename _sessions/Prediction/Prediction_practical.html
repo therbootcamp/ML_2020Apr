@@ -553,10 +553,10 @@ summary(XXX)
 hist(XXX)</code></pre>
 <pre class="r"><code>rf_fit[1:10]    # Only first 10</code></pre>
 <pre><code>   1    2    3    4    5    6    7    8    9   10 
-68.5 63.9 85.4 55.9 76.9 66.5 57.9 42.9 58.1 72.9 </code></pre>
+68.5 62.8 85.5 56.7 76.1 66.9 57.0 43.1 57.4 72.5 </code></pre>
 <pre class="r"><code>summary(rf_fit)</code></pre>
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   32.7    56.5    65.7    65.6    74.7    96.4 </code></pre>
+   31.7    56.6    65.6    65.6    75.3    95.8 </code></pre>
 <pre class="r"><code>hist(rf_fit)</code></pre>
 <p><img src="Prediction_practical_files/figure-html/unnamed-chunk-33-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
@@ -594,7 +594,7 @@ postResample(pred = rpart_predfit, obs = criterion_train)</code></pre>
 <pre class="r"><code># Random Forests
 postResample(pred = rf_fit, obs = criterion_train)</code></pre>
 <pre><code>    RMSE Rsquared      MAE 
-   5.754    0.927    4.350 </code></pre>
+   5.761    0.927    4.363 </code></pre>
 <ol start="15" style="list-style-type: decimal">
 <li>Which one had the best fit? What was the fitting MAE of each model?</li>
 </ol>
@@ -702,7 +702,7 @@ postResample(pred = rpart_pred, obs = criterion_test)</code></pre>
 <pre class="r"><code># Random Forests
 postResample(pred = rf_pred, obs = criterion_test)</code></pre>
 <pre><code>    RMSE Rsquared      MAE 
-  13.231    0.463    9.703 </code></pre>
+  13.329    0.453    9.759 </code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>How does each model’s <em>prediction or test</em> performance (on the <code>XXX_test</code> data) compare to its <em>fitting or training</em> performance (on the <code>XXX_train</code> data)? Is it worse? Better? The same? What does the change tell you about the models?</li>
 </ol>
@@ -718,14 +718,13 @@ postResample(pred = rf_pred, obs = criterion_test)</code></pre>
 </div>
 <div id="house-prices-in-king-county-washington" class="section level3">
 <h3>House Prices in King County, Washington</h3>
-<p>In this section, we will predict the prices of houses in King County Washington (home of Seattle, <a href="https://qz.com/208457/a-cartographic-guide-to-starbucks-global-domination/">which you can thank for this</a>) using the <code>house_train</code> and <code>house_test</code> datasets.</p>
+<p>In this section, we will work with a different data set. Specifically, we will predict the prices of houses in King County Washington (home of Seattle, <a href="https://qz.com/208457/a-cartographic-guide-to-starbucks-global-domination/">which you can thank for this</a>) using the <code>house_train</code> and <code>house_test</code> datasets.</p>
 </div>
 <div id="d---setup" class="section level3">
 <h3>D - Setup</h3>
 <ol style="list-style-type: decimal">
 <li><p>Make sure you are still working in your <code>BaselRBootcamp</code> R project, with the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data file(s) listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder</p></li>
-<li>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>Prediction_HousePrices_practical.R</code> in the <code>2_Code</code> folder.<br />
-</li>
+<li><p>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>Prediction_HousePrices_practical.R</code> in the <code>2_Code</code> folder.</p></li>
 <li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p></li>
 </ol>
 <pre class="r"><code># Load packages necessary for this script
@@ -734,14 +733,14 @@ library(caret)
 library(party)
 library(partykit)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>Run the code below to load each of the datasets listed in the <code>Datasets</code> as new objects</li>
+<li>Run the code below to load each of the datasets listed in the <code>Datasets</code> as new objects.</li>
 </ol>
 <pre class="r"><code># house data
 house_train &lt;- read_csv(file = &quot;1_Data/house_train.csv&quot;)
 house_test &lt;- read_csv(file = &quot;1_Data/house_test.csv&quot;)</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li><p>Take a look at the first few rows of each dataframe by printing them to the console.</p></li>
-<li><p>Print the numbers of rows and columns of each dataset using the <code>dim()</code> function</p></li>
+<li><p>Print the numbers of rows and columns of each dataset using the <code>dim()</code> function.</p></li>
 </ol>
 <pre class="r"><code># Print numbers of rows and columns
 dim(XXX)
@@ -759,7 +758,7 @@ names(XXX)</code></pre>
 View(XXX)
 View(XXX)</code></pre>
 <ol start="9" style="list-style-type: decimal">
-<li>We need to do a little bit of data cleaning before starting. Specifically, we need to convert all character columns to factor: Do this by running the following code:</li>
+<li>Again, we need to do a little bit of data cleaning. Convert all character columns to factor.</li>
 </ol>
 <pre class="r"><code># Convert all character columns to factor
 house_train &lt;- house_train %&gt;%
@@ -782,13 +781,13 @@ ctrl_none &lt;- trainControl(method = &quot;XXX&quot;)</code></pre>
 <div id="regression-1" class="section level4">
 <h4>Regression</h4>
 <ol start="2" style="list-style-type: decimal">
-<li>Using <code>train()</code> fit a regression model called <code>price_glm</code> predicting <code>price</code> using all features in <code>house_train</code>.</li>
+<li>Using <code>train()</code>, fit a regression model called <code>price_glm</code> predicting <code>price</code> using all features in <code>house_train</code>. Specifically,…</li>
 </ol>
 <ul>
-<li>For the <code>form</code> argument, use <code>price ~ .</code></li>
-<li>For the <code>data</code> argument, use <code>house_train</code> in the data argument</li>
-<li>For the <code>method</code> argument, use <code>method = &quot;glm&quot;</code> for regression</li>
-<li>For the <code>trControl</code> argument, use your <code>ctrl_none</code> object you created before</li>
+<li>for the <code>form</code> argument, use <code>price ~ .</code>.</li>
+<li>for the <code>data</code> argument, use <code>house_train</code>.</li>
+<li>for the <code>method</code> argument, use <code>method = &quot;glm&quot;</code> for regression.</li>
+<li>for the <code>trControl</code> argument, use your <code>ctrl_none</code> object you created before.</li>
 </ul>
 <pre class="r"><code>price_glm &lt;- train(form = XX ~ .,
                   data = XX,
@@ -799,7 +798,7 @@ ctrl_none &lt;- trainControl(method = &quot;XXX&quot;)</code></pre>
                   method = &quot;glm&quot;,
                   trControl = ctrl_none)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Explore your <code>price_glm</code> object by looking at <code>price_glm$finalModel</code> and using <code>summary()</code>, what do you find?</li>
+<li>Explore your <code>price_glm</code> object by looking at <code>price_glm$finalModel</code> and using <code>summary()</code>. What do you find?</li>
 </ol>
 <pre class="r"><code>price_glm$XXX
 summary(XXX)</code></pre>
@@ -861,7 +860,7 @@ AIC: 136339
 
 Number of Fisher Scoring iterations: 2</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>Using <code>predict()</code> save the fitted values of <code>price_glm</code> object as <code>glm_fit</code>:</li>
+<li>Using <code>predict()</code>, save the fitted values of <code>price_glm</code> object as <code>glm_fit</code>.</li>
 </ol>
 <pre class="r"><code># Save fitted values of regression model
 glm_fit &lt;- predict(XXX)</code></pre>
@@ -886,14 +885,14 @@ hist(XXX)</code></pre>
 <div id="decision-trees-1" class="section level4">
 <h4>Decision Trees</h4>
 <ol start="6" style="list-style-type: decimal">
-<li>Using <code>train()</code>, fit a decision tree model called <code>price_rpart</code> predicting <code>price</code> using all features in <code>house_train</code>.</li>
+<li>Using <code>train()</code>, fit a decision tree model called <code>price_rpart</code> predicting <code>price</code> using all features in <code>house_train</code>. Specifically,…</li>
 </ol>
 <ul>
-<li>For the <code>form</code> argument, use <code>price ~ .</code></li>
-<li>For the <code>data</code> argument, use <code>house_train</code> in the data argument</li>
-<li>For the <code>method</code> argument, use <code>method = &quot;rpart&quot;</code> to create decision trees</li>
-<li>For the <code>trControl</code> argument, use your <code>ctrl_none</code> object you created before</li>
-<li>For the <code>tuneGrid</code> argument, use <code>cp = 0.01</code> to specify the value of the complexity parameter. This is a pretty low value which means your trees will be, relatively, complex.</li>
+<li>for the <code>form</code> argument, use <code>price ~ .</code>.</li>
+<li>for the <code>data</code> argument, use <code>house_train</code>.</li>
+<li>for the <code>method</code> argument, use <code>method = &quot;rpart&quot;</code> to create decision trees.</li>
+<li>for the <code>trControl</code> argument, use your <code>ctrl_none</code> object you created before.</li>
+<li>for the <code>tuneGrid</code> argument, use <code>cp = 0.01</code> to specify the value of the complexity parameter. This is a pretty low value which means your trees will be, relatively, complex.</li>
 </ul>
 <pre class="r"><code>price_rpart &lt;- train(form = XX ~ .,
                   data = XXX,
@@ -906,7 +905,7 @@ hist(XXX)</code></pre>
                   trControl = ctrl_none,
                   tuneGrid = expand.grid(cp = .01))   # Set complexity parameter</code></pre>
 <ol start="7" style="list-style-type: decimal">
-<li>Explore your <code>price_rpart</code> object by looking at <code>price_rpart$finalModel</code> and plotting it with <code>plot(as.party(price_rpart$finalModel))</code>, what do you find?</li>
+<li>Explore your <code>price_rpart</code> object by looking at <code>price_rpart$finalModel</code> and plotting it with <code>plot(as.party(price_rpart$finalModel))</code>. What do you find?</li>
 </ol>
 <pre class="r"><code>price_rpart$finalModel</code></pre>
 <pre><code>n= 5000 
@@ -944,13 +943,13 @@ node), split, n, deviance, yval
 <pre class="r"><code>plot(as.party(price_rpart$finalModel))</code></pre>
 <p><img src="Prediction_practical_files/figure-html/unnamed-chunk-68-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="8" style="list-style-type: decimal">
-<li>Using <code>predict()</code> save the fitted values of <code>price_rpart</code> object as <code>rpart_predfit</code>:</li>
+<li>Using <code>predict()</code> save the fitted values of <code>price_rpart</code> object as <code>rpart_predfit</code>.</li>
 </ol>
 <pre class="r"><code># Save fitted values of decision tree model
 rpart_predfit &lt;- predict(XXX)</code></pre>
 <pre class="r"><code>rpart_predfit &lt;- predict(price_rpart)</code></pre>
 <ol start="9" style="list-style-type: decimal">
-<li>Print your <code>rpart_predfit</code> object, look at summary statistics with <code>summary(rpart_predfit)</code>, and create a histogram with <code>hist()</code> do they make sense?</li>
+<li>Print your <code>rpart_predfit</code> object, look at summary statistics with <code>summary(rpart_predfit)</code>, and create a histogram with <code>hist()</code>. Do they make sense?</li>
 </ol>
 <pre class="r"><code># Explore decision tree fits
 XXX
@@ -968,14 +967,14 @@ hist(XXX)</code></pre>
 <div id="random-forests-1" class="section level4">
 <h4>Random Forests</h4>
 <ol start="10" style="list-style-type: decimal">
-<li>Using <code>train()</code>, fit a random forest model called <code>price_rf</code> predicting <code>price</code> using all features in <code>house_train</code>.</li>
+<li>Using <code>train()</code>, fit a random forest model called <code>price_rf</code> predicting <code>price</code> using all features in <code>house_train</code>. Specifically,…</li>
 </ol>
 <ul>
-<li>For the <code>form</code> argument, use <code>price ~ .</code></li>
-<li>For the <code>data</code> argument, use <code>house_train</code> in the data argument</li>
-<li>For the <code>method</code> argument, use <code>method = &quot;rf&quot;</code> to fit random forests</li>
-<li>For the <code>trControl</code> argument, use your <code>ctrl_none</code> object you created before</li>
-<li>For the <code>mtry</code> parameter, use <code>mtry</code> = 2. This is a relatively low value, so the forest will not be very diverse</li>
+<li>for the <code>form</code> argument, use <code>price ~ .</code>.</li>
+<li>for the <code>data</code> argument, use <code>house_train</code> in the data argument.</li>
+<li>for the <code>method</code> argument, use <code>method = &quot;rf&quot;</code> to fit random forests.</li>
+<li>for the <code>trControl</code> argument, use your <code>ctrl_none</code> object you created before.</li>
+<li>for the <code>mtry</code> parameter, use <code>mtry</code> = 2. This is a relatively low value, so the forest will be very diverse.</li>
 </ul>
 <pre class="r"><code>price_rf &lt;- train(form = XX ~ .,
                  data = XX,
@@ -988,13 +987,13 @@ hist(XXX)</code></pre>
                  trControl = ctrl_none,
                  tuneGrid = expand.grid(mtry = 2))  # Set number of features randomly selected</code></pre>
 <ol start="11" style="list-style-type: decimal">
-<li>Using <code>predict()</code> save the fitted values of <code>price_rf</code> object as <code>rf_fit</code>:</li>
+<li>Using <code>predict()</code> save the fitted values of <code>price_rf</code> object as <code>rf_fit</code>.</li>
 </ol>
 <pre class="r"><code># Save fitted values of random forest model
 rf_fit &lt;- predict(XXX)</code></pre>
 <pre class="r"><code>rf_fit &lt;- predict(price_rf)</code></pre>
 <ol start="12" style="list-style-type: decimal">
-<li>Print your <code>rf_fit</code> object, look at summary statistics with <code>summary(rf_fit)</code>, and create a histogram with <code>hist()</code> do they make sense?</li>
+<li>Print your <code>rf_fit</code> object, look at summary statistics with <code>summary(rf_fit)</code>, and create a histogram with <code>hist()</code>. Do they make sense?</li>
 </ol>
 <pre class="r"><code># Explore random forest fits
 XXX
@@ -1002,23 +1001,23 @@ summary(XXX)
 hist(XXX)</code></pre>
 <pre class="r"><code>rf_fit[1:10]   # Only first 10 cases</code></pre>
 <pre><code>     1      2      3      4      5      6      7      8      9     10 
-192900 355203 835890 158299 555216 630619 650029 444088 215698 675858 </code></pre>
+193473 357522 847708 156036 558079 641568 660558 437465 215110 680366 </code></pre>
 <pre class="r"><code>summary(rf_fit)</code></pre>
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- 151774  338093  460137  536464  631250 4938723 </code></pre>
+ 147699  337790  459815  536565  632278 5101630 </code></pre>
 <pre class="r"><code>hist(rf_fit)</code></pre>
 <p><img src="Prediction_practical_files/figure-html/unnamed-chunk-78-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="assess-accuracy-1" class="section level4">
 <h4>Assess accuracy</h4>
 <ol start="13" style="list-style-type: decimal">
-<li>Save the true training criterion values (<code>house_train$price</code>) as a vector called <code>criterion_train</code></li>
+<li>Save the true training criterion values (<code>house_train$price</code>) as a vector called <code>criterion_train</code>.</li>
 </ol>
 <pre class="r"><code># Save training criterion values
 criterion_train &lt;- XXX$XXX</code></pre>
 <pre class="r"><code>criterion_train &lt;- house_train$price</code></pre>
 <ol start="14" style="list-style-type: decimal">
-<li>Using <code>postResample()</code>, determine the fitting performance of each of your models separately. Make sure to set your <code>criterion_train</code> values to the <code>obs</code> argument, and your true model fits <code>XX_fit</code> to the <code>pred</code> argument:</li>
+<li>Using <code>postResample()</code>, determine the fitting performance of each of your models separately. Make sure to set your <code>criterion_train</code> values to the <code>obs</code> argument, and your true model fits <code>XX_fit</code> to the <code>pred</code> argument.</li>
 </ol>
 <pre class="r"><code># Calculate fitting accuracies of each model
 # pred = XX_fit
@@ -1047,7 +1046,7 @@ postResample(pred = rpart_predfit, obs = criterion_train)</code></pre>
 <pre class="r"><code># Random Forests
 postResample(pred = rf_fit, obs = criterion_train)</code></pre>
 <pre><code>    RMSE Rsquared      MAE 
-7.88e+04 9.67e-01 4.31e+04 </code></pre>
+7.88e+04 9.67e-01 4.34e+04 </code></pre>
 <ol start="15" style="list-style-type: decimal">
 <li>Which one had the best fits? What was the fitting MAE of each model?</li>
 </ol>
@@ -1095,7 +1094,7 @@ ggplot(data = accuracy,
 <div id="f---prediction" class="section level3">
 <h3>F - Prediction</h3>
 <ol style="list-style-type: decimal">
-<li>Save the criterion values from the test data set <code>house_test$price</code> as a new vector called <code>criterion_test</code>:</li>
+<li>Save the criterion values from the test data set <code>house_test$price</code> as a new vector called <code>criterion_test</code>.</li>
 </ol>
 <pre class="r"><code># Save criterion values
 criterion_test &lt;- XXX$XXX</code></pre>
@@ -1152,9 +1151,9 @@ postResample(pred = rpart_pred, obs = criterion_test)</code></pre>
 <pre class="r"><code># Random Forests
 postResample(pred = rf_pred, obs = criterion_test)</code></pre>
 <pre><code>    RMSE Rsquared      MAE 
-1.44e+05 8.54e-01 8.09e+04 </code></pre>
+1.43e+05 8.54e-01 8.04e+04 </code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li><p>How does each model’s <em>prediction / test</em> performance (on the <code>XXX_test</code> data) compare to its <em>fitting / training</em> performance (on the <code>XXX_train</code> data)? Is it worse? Better? The same? What does the change tell you about the models?</p></li>
+<li><p>How does each model’s <em>prediction or test</em> performance (on the <code>XXX_test</code> data) compare to its <em>fitting or training</em> performance (on the <code>XXX_train</code> data)? Is it worse? Better? The same? What does the change tell you about the models?</p></li>
 <li><p>Which of the three models has the best prediction performance?</p></li>
 <li><p>If you had to use one of these three models in the real-world, which one would it be? Why?</p></li>
 <li><p>If someone came to you and asked “If I use your model in the future to predict the price of a new house, how accurate do you think it would be?”, what would you say?</p></li>
@@ -1163,9 +1162,9 @@ postResample(pred = rf_pred, obs = criterion_test)</code></pre>
 <div id="g---exploring-model-tuning-parameters" class="section level3">
 <h3>G - Exploring model tuning parameters</h3>
 <ol style="list-style-type: decimal">
-<li><p>In all of your decision tree models so far, you have been setting the complexity parameter to 0.01. Try setting it to a larger value of 0.2 and see how your decision trees change (by plotting them). Do they get more or less complicated? How does increasing this value affect fitting and prediction performance? If you are interested in learning more about this parameter, look at the help menu with <code>?rpart.control</code>.</p></li>
+<li><p>In all of your decision tree models so far, you have been setting the complexity parameter to 0.01. Try setting it to a larger value of 0.2 and see how your decision trees change (by plotting them using <code>plot(as.party(XXX_rpart$finalModel))</code>). Do they get more or less complicated? How does increasing this value affect fitting and prediction performance? If you are interested in learning more about this parameter, look at the help menu with <code>?rpart.control</code>.</p></li>
 <li><p>In each of your random forest models, you have been setting the <code>mtry</code> argument to 2. Try setting it to a larger value such as 5 and re-run your models. How does increasing this value affect fitting and prediction performance? If you are interested in learning more about this parameter, look at the help menu with <code>?randomForest</code>.</p></li>
-<li><p>By default, the <code>train()</code> function uses 500 trees in <code>method = &quot;rf&quot;</code>. How do the number of trees affect performance? To answer this, try setting the number of trees to 1,000 (see example below) and re-evaluating your model’s training and test performance. What do you find? What if you set the number of trees to just 10?</p></li>
+<li><p>By default, the <code>train()</code> function uses 500 trees for <code>method = &quot;rf&quot;</code>. How do the number of trees affect performance? To answer this, try setting the number of trees to 1,000 (see example below) and re-evaluating your model’s training and test performance. What do you find? What if you set the number of trees to just 10?</p></li>
 </ol>
 <pre class="r"><code># Create random forest model with 1000 trees
 mod &lt;- train(form = hwy ~ year + cyl + displ,
@@ -1242,7 +1241,7 @@ postResample(pred = rpart_pred, obs = criterion_test)</code></pre>
 <pre class="r"><code># Random Forests
 postResample(pred = rf_pred, obs = criterion_test)</code></pre>
 <pre><code>    RMSE Rsquared      MAE 
-2.52e+05 5.02e-01 1.67e+05 </code></pre>
+2.51e+05 5.03e-01 1.66e+05 </code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Repeat your modelling process, but now do a classification task. Specifically, predict whether or not a house sells for at least $1,000,000. To do this, you’ll first need to create a new column called <code>million</code> in both your <code>house_train</code> and <code>house_test</code> datasets (the code below should help you). Then, use your best modelling techniques to make this prediction. How accurate are your models in predicting whether or not a house will sell for over $1,000,000? Don’t forget to use the <code>confusionMatrix()</code> function instead of <code>postResample()</code> to evaluate your model’s accuracy!</li>
 </ol>
@@ -1347,26 +1346,26 @@ confusionMatrix(data = rf_fit,               # This is the prediction!
 
           Reference
 Prediction FALSE TRUE
-     FALSE  4672    2
-     TRUE      0  326
+     FALSE  4672    0
+     TRUE      0  328
                                     
                Accuracy : 1         
                  95% CI : (0.999, 1)
     No Information Rate : 0.934     
     P-Value [Acc &gt; NIR] : &lt;2e-16    
                                     
-                  Kappa : 0.997     
+                  Kappa : 1         
                                     
- Mcnemar&#39;s Test P-Value : 0.48      
+ Mcnemar&#39;s Test P-Value : NA        
                                     
             Sensitivity : 1.000     
-            Specificity : 0.994     
+            Specificity : 1.000     
          Pos Pred Value : 1.000     
          Neg Pred Value : 1.000     
              Prevalence : 0.934     
          Detection Rate : 0.934     
-   Detection Prevalence : 0.935     
-      Balanced Accuracy : 0.997     
+   Detection Prevalence : 0.934     
+      Balanced Accuracy : 1.000     
                                     
        &#39;Positive&#39; Class : FALSE     
                                     </code></pre>
@@ -1455,29 +1454,29 @@ confusionMatrix(data = rf_pred,             # This is the prediction!
 
           Reference
 Prediction FALSE TRUE
-     FALSE   935   25
-     TRUE      2   38
-                                        
-               Accuracy : 0.973         
-                 95% CI : (0.961, 0.982)
-    No Information Rate : 0.937         
-    P-Value [Acc &gt; NIR] : 1.31e-07      
-                                        
-                  Kappa : 0.724         
-                                        
- Mcnemar&#39;s Test P-Value : 2.30e-05      
-                                        
-            Sensitivity : 0.998         
-            Specificity : 0.603         
-         Pos Pred Value : 0.974         
-         Neg Pred Value : 0.950         
-             Prevalence : 0.937         
-         Detection Rate : 0.935         
-   Detection Prevalence : 0.960         
-      Balanced Accuracy : 0.801         
-                                        
-       &#39;Positive&#39; Class : FALSE         
-                                        </code></pre>
+     FALSE   934   27
+     TRUE      3   36
+                                       
+               Accuracy : 0.97         
+                 95% CI : (0.957, 0.98)
+    No Information Rate : 0.937        
+    P-Value [Acc &gt; NIR] : 1.62e-06     
+                                       
+                  Kappa : 0.691        
+                                       
+ Mcnemar&#39;s Test P-Value : 2.68e-05     
+                                       
+            Sensitivity : 0.997        
+            Specificity : 0.571        
+         Pos Pred Value : 0.972        
+         Neg Pred Value : 0.923        
+             Prevalence : 0.937        
+         Detection Rate : 0.934        
+   Detection Prevalence : 0.961        
+      Balanced Accuracy : 0.784        
+                                       
+       &#39;Positive&#39; Class : FALSE        
+                                       </code></pre>
 </div>
 </div>
 <div id="examples" class="section level2">

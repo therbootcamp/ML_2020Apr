@@ -626,13 +626,12 @@ ctrl_none <- trainControl(method = "XXX")
 ctrl_none <- trainControl(method = "none")
 ```
 
-
 #### Regression
 
 2. Using `train()`, fit a regression model called `price_glm` predicting `price` using all features in `house_train`. Specifically,...
 
 - for the `form` argument, use `price ~ .`.
-- for the `data` argument, use  `house_train` in the data argument.
+- for the `data` argument, use  `house_train`.
 - for the `method` argument, use `method = "glm"` for regression.
 - for the `trControl` argument, use your `ctrl_none` object you created before.
 
@@ -652,7 +651,7 @@ price_glm <- train(form = price ~ .,
 ```
 
 
-3. Explore your `price_glm` object by looking at `price_glm$finalModel` and using `summary()`, what do you find?
+3. Explore your `price_glm` object by looking at `price_glm$finalModel` and using `summary()`. What do you find?
 
 ```{r, echo = TRUE, eval = FALSE}
 price_glm$XXX
@@ -664,7 +663,7 @@ price_glm$finalModel
 summary(price_glm)
 ```
 
-4. Using `predict()` save the fitted values of `price_glm` object as `glm_fit`:
+4. Using `predict()`, save the fitted values of `price_glm` object as `glm_fit`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Save fitted values of regression model
@@ -693,13 +692,13 @@ hist(glm_fit)
 
 #### Decision Trees
 
-6. Using `train()`, fit a decision tree model called `price_rpart` predicting `price` using all features in `house_train`.
+6. Using `train()`, fit a decision tree model called `price_rpart` predicting `price` using all features in `house_train`. Specifically,...
 
-- For the `form` argument, use `price ~ .`
-- For the `data` argument, use  `house_train` in the data argument
-- For the `method` argument, use `method = "rpart"` to create decision trees
-- For the `trControl` argument, use your `ctrl_none` object you created before
-- For the `tuneGrid` argument, use `cp = 0.01` to specify the value of the complexity parameter. This is a pretty low value which means your trees will be, relatively, complex.
+- for the `form` argument, use `price ~ .`.
+- for the `data` argument, use  `house_train`.
+- for the `method` argument, use `method = "rpart"` to create decision trees.
+- for the `trControl` argument, use your `ctrl_none` object you created before.
+- for the `tuneGrid` argument, use `cp = 0.01` to specify the value of the complexity parameter. This is a pretty low value which means your trees will be, relatively, complex.
 
 ```{r, echo = TRUE, eval = FALSE}
 price_rpart <- train(form = XX ~ .,
@@ -717,14 +716,14 @@ price_rpart <- train(form = price ~ .,
                   tuneGrid = expand.grid(cp = .01))   # Set complexity parameter
 ```
 
-7. Explore your `price_rpart` object by looking at `price_rpart$finalModel` and plotting it with `plot(as.party(price_rpart$finalModel))`, what do you find?
+7. Explore your `price_rpart` object by looking at `price_rpart$finalModel` and plotting it with `plot(as.party(price_rpart$finalModel))`. What do you find?
 
 ```{r}
 price_rpart$finalModel
 plot(as.party(price_rpart$finalModel))
 ```
 
-8. Using `predict()` save the fitted values of `price_rpart` object as `rpart_predfit`:
+8. Using `predict()` save the fitted values of `price_rpart` object as `rpart_predfit`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Save fitted values of decision tree model
@@ -735,7 +734,7 @@ rpart_predfit <- predict(XXX)
 rpart_predfit <- predict(price_rpart)
 ```
 
-9. Print your `rpart_predfit` object, look at summary statistics with `summary(rpart_predfit)`, and create a histogram with `hist()` do they make sense?
+9. Print your `rpart_predfit` object, look at summary statistics with `summary(rpart_predfit)`, and create a histogram with `hist()`. Do they make sense?
 
 ```{r, echo = TRUE, eval = FALSE}
 # Explore decision tree fits
@@ -754,13 +753,13 @@ hist(rpart_predfit)
 
 #### Random Forests
 
-10. Using `train()`, fit a random forest model called `price_rf` predicting `price` using all features in `house_train`.
+10. Using `train()`, fit a random forest model called `price_rf` predicting `price` using all features in `house_train`. Specifically,...
 
-- For the `form` argument, use `price ~ .`
-- For the `data` argument, use  `house_train` in the data argument
-- For the `method` argument, use `method = "rf"` to fit random forests
-- For the `trControl` argument, use your `ctrl_none` object you created before
-- For the `mtry` parameter, use `mtry` = 2. This is a relatively low value, so the forest will not be very diverse
+- for the `form` argument, use `price ~ .`.
+- for the `data` argument, use  `house_train` in the data argument.
+- for the `method` argument, use `method = "rf"` to fit random forests.
+- for the `trControl` argument, use your `ctrl_none` object you created before.
+- for the `mtry` parameter, use `mtry` = 2. This is a relatively low value, so the forest will be very diverse.
 
 ```{r, echo = TRUE, eval = FALSE}
 price_rf <- train(form = XX ~ .,
@@ -780,7 +779,7 @@ price_rf <- train(form = price ~ .,
 ```
 
 
-11. Using `predict()` save the fitted values of `price_rf` object as `rf_fit`:
+11. Using `predict()` save the fitted values of `price_rf` object as `rf_fit`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Save fitted values of random forest model
@@ -791,7 +790,7 @@ rf_fit <- predict(XXX)
 rf_fit <- predict(price_rf)
 ```
 
-12. Print your `rf_fit` object, look at summary statistics with `summary(rf_fit)`, and create a histogram with `hist()` do they make sense?
+12. Print your `rf_fit` object, look at summary statistics with `summary(rf_fit)`, and create a histogram with `hist()`. Do they make sense?
 
 ```{r, echo = TRUE, eval = FALSE}
 # Explore random forest fits
@@ -808,7 +807,7 @@ hist(rf_fit)
 
 #### Assess accuracy
 
-13. Save the true training criterion values (`house_train$price`) as a vector called `criterion_train`
+13. Save the true training criterion values (`house_train$price`) as a vector called `criterion_train`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Save training criterion values
@@ -819,7 +818,7 @@ criterion_train <- XXX$XXX
 criterion_train <- house_train$price
 ```
 
-14. Using `postResample()`, determine the fitting performance of each of your models separately. Make sure to set your `criterion_train` values to the `obs` argument, and your true model fits `XX_fit` to the `pred` argument:
+14. Using `postResample()`, determine the fitting performance of each of your models separately. Make sure to set your `criterion_train` values to the `obs` argument, and your true model fits `XX_fit` to the `pred` argument.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Calculate fitting accuracies of each model
@@ -898,7 +897,7 @@ ggplot(data = accuracy,
 
 ### F - Prediction
 
-1. Save the criterion values from the test data set `house_test$price` as a new vector called `criterion_test`:
+1. Save the criterion values from the test data set `house_test$price` as a new vector called `criterion_test`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Save criterion values
@@ -970,7 +969,7 @@ postResample(pred = rpart_pred, obs = criterion_test)
 postResample(pred = rf_pred, obs = criterion_test)
 ```
 
-4. How does each model's *prediction / test* performance (on the `XXX_test` data) compare to its *fitting / training* performance (on the `XXX_train` data)? Is it worse? Better? The same? What does the change tell you about the models?
+4. How does each model's *prediction or test* performance (on the `XXX_test` data) compare to its *fitting or training* performance (on the `XXX_train` data)? Is it worse? Better? The same? What does the change tell you about the models?
 
 5. Which of the three models has the best prediction performance?
 
@@ -980,11 +979,11 @@ postResample(pred = rf_pred, obs = criterion_test)
 
 ### G - Exploring model tuning parameters
 
-1. In all of your decision tree models so far, you have been setting the complexity parameter to 0.01. Try setting it to a larger value of 0.2 and see how your decision trees change (by plotting them). Do they get more or less complicated? How does increasing this value affect fitting and prediction performance? If you are interested in learning more about this parameter, look at the help menu with `?rpart.control`.
+1. In all of your decision tree models so far, you have been setting the complexity parameter to 0.01. Try setting it to a larger value of 0.2 and see how your decision trees change (by plotting them using `plot(as.party(XXX_rpart$finalModel))`). Do they get more or less complicated? How does increasing this value affect fitting and prediction performance? If you are interested in learning more about this parameter, look at the help menu with `?rpart.control`.
 
 2. In each of your random forest models, you have been setting the `mtry` argument to 2. Try setting it to a larger value such as 5 and re-run your models. How does increasing this value affect fitting and prediction performance? If you are interested in learning more about this parameter, look at the help menu with `?randomForest`.
 
-3. By default, the `train()` function uses 500 trees in `method = "rf"`. How do the number of trees affect performance? To answer this, try setting the number of trees to 1,000 (see example below) and re-evaluating your model's training and test performance. What do you find? What if you set the number of trees to just 10?
+3. By default, the `train()` function uses 500 trees for `method = "rf"`. How do the number of trees affect performance? To answer this, try setting the number of trees to 1,000 (see example below) and re-evaluating your model's training and test performance. What do you find? What if you set the number of trees to just 10?
 
 ```{r, eval = FALSE}
 # Create random forest model with 1000 trees
@@ -1060,8 +1059,7 @@ postResample(pred = rpart_pred, obs = criterion_test)
 postResample(pred = rf_pred, obs = criterion_test)
 ```
 
-
-2. Repeat your modelling process, but now do a classification task. Specifically, predict whether or not a house sells for at least \$1,000,000. To do this, you'll first need to create a new column called `million` in both your `house_train` and `house_test` datasets (the code below should help you). Then, use your best modelling techniques to make this prediction. How accurate are your models in predicting whether or not a house will sell for over $1,000,000? Don't forget to use the `confusionMatrix()` function instead of `postResample()` to evaluate your model's accuracy!
+2. Repeat your modelling process, but now do a classification task. Specifically, predict whether or not a house sells for at least \$1,000,000. To do this, you'll first need to create a new column called `million` in both your `house_train` and `house_test` datasets (the code below should help you). Then, use your best modelling techniques to make this prediction. How accurate are your models in predicting whether or not a house will sell for over \$1,000,000? Don't forget to use the `confusionMatrix()` function instead of `postResample()` to evaluate your model's accuracy!
 
 ```{r echo=TRUE}
 # Add million column to house_train and house_test
@@ -1360,7 +1358,6 @@ house_test <- read_csv("../../1_Data/house_test.csv")
 ```
 
 - The `college_train` and `college_test` data are taken from the `College` dataset in the `ISLR` package. They contain statistics for a large number of US Colleges from the 1995 issue of US News and World Report.
-
 
 - The `house_train` and `house_test` data come from [https://www.kaggle.com/harlfoxem/housesalesprediction](https://www.kaggle.com/harlfoxem/housesalesprediction)
 
