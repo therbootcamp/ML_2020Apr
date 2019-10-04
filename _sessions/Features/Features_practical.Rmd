@@ -305,13 +305,13 @@ confusionMatrix(pima_glm_pred, criterion)
 confusionMatrix(pima_glm4_pred, criterion)
 ```
 
-13. You might have observed that the model with two fewer features is actually slightly better than the full model (if this is not the case, keep in mind that the partitioning of the dataset was done randomly, i.e., if you do it a second time, your results may slightly change). Why do you think is that the case?
+13. You might have observed that the model with two fewer features is actually slightly better than the full model (if this is not the case, keep in mind that the partitioning of the dataset was done randomly, i.e., if you do it a second time, your results may slightly change). Why do you think this is that the case?
 
 14. Play around: Up the proportion dedicated to training or use a different model, e.g., `random forest`, and see whether things change. 
 
 ### C - Murders
 
-In this section, you will explore feature selection but use a data set with very different properties. The data combines socio-economic data from the '90 Census, data from Law Enforcement Management and Admin Stats survey, and crime data from the FBI, allowing to analyse the relationship between various socio-demographic variables and whether murders have been committed (`murders`), the criterion of this exercise.     
+In this section, you will explore feature selection using a different data set. The data combines socio-economic data from the US '90 Census, data from Law Enforcement Management and Admin Stats survey, and crime data from the FB. The gaol of this section is to use various socio-demographic variables to predict whether murders have been committed (`murders`), the criterion of this exercise.     
 
 1. Take a look at the first few rows of the `murders_crime` data frame by printing them to the console.
 
@@ -342,7 +342,7 @@ View(murders_crime)
 
 #### Splitting
 
-5. Again, before you do anything you need to make sure that you separate a hold-out data set for later. Create `murders_train` and `murders_test` using `createDataPartition()` with as little as <b>25% of cases going into the training set</b>. Also store the variable `murders` from the test set as a factor, which will be the criterion. 
+5. Again, let us first create a hold-out data set for later. Create `murders_train` and `murders_test` using `createDataPartition()` with (only) <b>25% of cases going into the training set</b>. Also store the variable `murders` from the test, i.e., the criterion, and turn into a factor using `as.factor()`. 
 
 ```{r}
 # split index
@@ -358,9 +358,9 @@ criterion <- as.factor(murders_test$murders)
 
 #### Remove unwanted features
 
-OK, with the training set, let's get to work and remove some features.
+Before we start modeling, let us get to work and remove some features from the training set, that is, in case we have to.
 
-6. First split the training data into a data frame holding the predictors and the criterion using the code below.
+6. To this end, first split the training data into a data frame holding the predictors and the criterion in the same way you have done this above.
 
 ```{r}
 # Select predictors
@@ -370,7 +370,7 @@ murders_train_pred <- murders_train %>% select(-murders)
 murders_train_crit <- murders_train %>% select(murders) %>% pull()
 ```
 
-7. Test if there are any excessively correlated features using `cor()` and `findCorrelation()` using the code below. Are there any this time?
+7. Test if there are any excessively correlated features using `cor()` and `findCorrelation()`. Are there any this time?
 
 ```{r}
 # determine correlation matrix
@@ -380,7 +380,7 @@ corr_matrix <- cor(murders_train_pred)
 findCorrelation(corr_matrix)
 ```
 
-8. Remove the excessively correlated features from the training predictor set.
+8. Using the code below, remove the excessively correlated features from the training predictor set.
 
 ```{r, echo = TRUE, eval = FALSE}
 # remove features
@@ -393,14 +393,14 @@ murders_train_pred <- murders_train_pred %>%
   select(-findCorrelation(corr_matrix))
 ```
 
-9. Test if there are any near-zero variance features Any of those this time?
+9. Test if there are any near-zero variance features. Any of those this time?
 
 ```{r}
 # find near zero variance predictors
 nearZeroVar(murders_train_pred)
 ```
 
-10. There were plenty of excessively correlated features but no near-zero variance predictors. Bind the reduced predictor set together with the criterion into a new, clean version of the training set.
+10. You should have found that there were plenty of excessively correlated features but no near-zero variance features. Provide that you excluded some of the former, bind the reduced predictor set back together with the criterion into a new, clean version of the training set. See template below.
 
 ```{r, echo = TRUE, eval = FALSE}
 # clean training set
@@ -416,7 +416,7 @@ murders_train_clean <- murders_train_pred %>%
 
 #### Model comparison
 
-11. Fit a `glm` twice, once using the original training set and once using the clean training set, and store the fits in separate objects. 
+11. Let us find out whether excluding some of the highly correlated features matters. Fit a `glm` twice, once using the original training set and once using the clean training set, and store the fits in separate objects. See template below.
 
 ```{r, echo = TRUE, eval = FALSE}
 # fit glm
@@ -442,7 +442,7 @@ murders_glm_clean <- train(murders ~ .,
                            method = "glm")
 ```
 
-12. You probably have noticed warning messages. They concern the very fact that the features in both data sets, but especially the non-clean set, are still too highly correlated. Go ahead and evaluate the fits on the hold-out set. Which set of features predicts better?
+12. You probably have noticed warning messages. They concern the very fact that the features in both data sets, but especially the non-clean set, are still too highly correlated. Go ahead and evaluate the performance on the hold-out set. Which set of features predicts better?
 
 ```{r}
 # determine predictions for test data
@@ -456,7 +456,7 @@ confusionMatrix(murders_clean_pred, criterion)
 
 #### Data compression with PCA
 
-13. Given the high features correlations, it is sensible to compress the data using `principal component analysis` (PCA). Create a third fit object using the original training set with `preProcess = c('pca')` and `trControl = trainControl(preProcOptions = list(thresh = 0.8))` in the training function. The first argument tells R to use PCA, the second specifies that exactly 80% of the variance should be retained. 
+13. Given the high features correlations, it is sensible to compress the data using `principal component analysis` (PCA). Create a third fit object using the original, full training set using again `method = glm` and in addition `preProcess = c('pca')` and `trControl = trainControl(preProcOptions = list(thresh = 0.8))` in the training function. These additional settings instruct R to extract new features using from the data PCA and to retain only as many features as are needed to capture 80% of the original variance. 
 
 ```{r echo = TRUE}
 # fit glm with preprocessed features
@@ -481,7 +481,7 @@ confusionMatrix(murders_pca, criterion)
 
 #### Feature importance
 
-16. Evaluate the feature importance for each of the three models. 
+16. Now let's find out, which features are most important for predicting murders. Using `varImp()`, evaluate the feature importance for each of the three models used in the previous section. 
 
 ```{r}
 # determine variable importance
@@ -502,14 +502,14 @@ plot(varimp_glm_pca)
 
 ```
 
-17. Can you select a set of features based on feature performance that reliably beats predictions based on the pca-compressed training set?
+17. Now that you know which features were most important, do you think you can come up with a set of features that reliably outperforms thew predictions based on the pca-generated feature set? Try it out!
 
 
 ### Z - Violent & Non-violent Crime Data
 
-1. Run similar analyses for the Violent and non-violent crime data sets predicting either the number of violent crimes per 100k inhabitants (`ViolentCrimesPerPop`) or the number of non-violent crimes per 100k inhabitants (`nonViolPerPop`). This time the criterion is numeric, implying regression rather than classification. The features are identical to the murders analysis of the previous section. 
+1. Analyze the violent and non-violent crime data sets predicting either the number of violent crimes per 100k inhabitants (`ViolentCrimesPerPop`) or the number of non-violent crimes per 100k inhabitants (`nonViolPerPop`). Both criteria are numeric, implying that this is not classification problem, but one of regression. Other than that, the features in the data set are identical to the previous analyses. How well can you predict violent or non-violent crimes?
 
-2. Use the computer to find a good set of features using recursive feature elimination with `rfe()`. 
+2. Another approach to feature selection, beyond selection by hand or PCA, is to have the computer try to automically select subsets of features that lead to the best possible cross-validation performance. One such process is called recursive feature elimination. Try it out using `caret`'s  `rfe()` function. See code below. 
 
 ```{r, echo = TRUE}
 
