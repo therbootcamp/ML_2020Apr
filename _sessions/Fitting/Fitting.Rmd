@@ -328,56 +328,6 @@ bad_err + labs(title=element_blank(),subtitle = element_blank())
 
 ]
 
----
-
-# Regression
-
-.pull-left45[
-
-In [regression](https://en.wikipedia.org/wiki/Regression_analysis), the criterion $Y$ is modeled as the <high>sum</high> of <high>features</high> $X_1, X_2, ...$ <high>times weights</high> $\beta_1, \beta_2, ...$ plus $\beta_0$ the so-called the intercept.
-
-<p style="padding-top:10px"></p>
-
-
-$$\large \hat{Y} =  \beta_{0} + \beta_{1} \times X_1 + \beta_{2} \times X2 + ...$$
-
-<p style="padding-top:10px"></p>
-
-The weight $\beta_{i}$ indiciates the <high>amount of change</high> in $\hat{Y}$ for a change of 1 in $X_{i}$.
-
-Ceteris paribus, the <high>more extreme</high> $\beta_{i}$, the <high>more important</high> $X_{i}$ for the prediction of $Y$ <font style="font-size:12px">(Note: the scale of $X_{i}$ matters too!).</font>
-
-If $\beta_{i} = 0$, then $X_{i}$ <high>does not help</high> predicting $Y$
-
-
-
-]
-
-.pull-right45[
-
-<p align = "center">
-<img src="image/carseats.png"><br>
-</p>
-
-<p style="padding-top:10px"></p>
-
-$$
-\large
-\begin{split}
-\hat{Y} = & 3.88 + \\
-&.015 * CompPrice + \\
-& .014 * Income + \\
-& .111 * Advertising \\
-\end{split}
-$$
-
-<div style="padding-left:50px">
-$$$$
-</p>
-
-
-]
-
 
 ---
 
@@ -922,7 +872,7 @@ knitr::include_graphics("image/traincontrol_help.jpg")
 </tr>
 <tr>
   <td bgcolor="white">
-    <mono>method()</mono>
+    <mono>method</mono>
   </td>
   <td bgcolor="white">
     The model (algorithm). 
@@ -930,7 +880,7 @@ knitr::include_graphics("image/traincontrol_help.jpg")
 </tr>
 <tr>
   <td>
-    <mono>trControl()</mono>
+    <mono>trControl</mono>
   </td>
   <td bgcolor="white">
     Control parameters for fitting.
@@ -938,7 +888,7 @@ knitr::include_graphics("image/traincontrol_help.jpg")
 </tr>
 <tr>
   <td bgcolor="white">
-    <mono>tuneGrid()</mono>, <mono>preProcess()</mono>
+    <mono>tuneGrid</mono>, <mono>preProcess</mono>
   </td>
   <td bgcolor="white">
     Cool stuff for later.
@@ -1002,7 +952,7 @@ income_mod
 </tr>
 <tr>
   <td bgcolor="white">
-    <mono>method()</mono>
+    <mono>method</mono>
   </td>
   <td bgcolor="white">
     The model (algorithm). 
@@ -1010,7 +960,7 @@ income_mod
 </tr>
 <tr>
   <td>
-    <mono>trControl()</mono>
+    <mono>trControl</mono>
   </td>
   <td bgcolor="white">
     Control parameters for fitting.
@@ -1018,7 +968,7 @@ income_mod
 </tr>
 <tr>
   <td bgcolor="white">
-    <mono>tuneGrid()</mono>, <mono>preProcess()</mono>
+    <mono>tuneGrid</mono>, <mono>preProcess</mono>
   </td>
   <td bgcolor="white">
     Cool stuff for later.

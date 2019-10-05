@@ -186,56 +186,6 @@ If `\(\beta_{i} = 0\)`, then `\(X_{i}\)` &lt;high&gt;does not help&lt;/high&gt; 
 
 ]
 
----
-
-# Regression
-
-.pull-left45[
-
-In [regression](https://en.wikipedia.org/wiki/Regression_analysis), the criterion `\(Y\)` is modeled as the &lt;high&gt;sum&lt;/high&gt; of &lt;high&gt;features&lt;/high&gt; `\(X_1, X_2, ...\)` &lt;high&gt;times weights&lt;/high&gt; `\(\beta_1, \beta_2, ...\)` plus `\(\beta_0\)` the so-called the intercept.
-
-&lt;p style="padding-top:10px"&gt;&lt;/p&gt;
-
-
-`$$\large \hat{Y} =  \beta_{0} + \beta_{1} \times X_1 + \beta_{2} \times X2 + ...$$`
-
-&lt;p style="padding-top:10px"&gt;&lt;/p&gt;
-
-The weight `\(\beta_{i}\)` indiciates the &lt;high&gt;amount of change&lt;/high&gt; in `\(\hat{Y}\)` for a change of 1 in `\(X_{i}\)`.
-
-Ceteris paribus, the &lt;high&gt;more extreme&lt;/high&gt; `\(\beta_{i}\)`, the &lt;high&gt;more important&lt;/high&gt; `\(X_{i}\)` for the prediction of `\(Y\)` &lt;font style="font-size:12px"&gt;(Note: the scale of `\(X_{i}\)` matters too!).&lt;/font&gt;
-
-If `\(\beta_{i} = 0\)`, then `\(X_{i}\)` &lt;high&gt;does not help&lt;/high&gt; predicting `\(Y\)`
-
-
-
-]
-
-.pull-right45[
-
-&lt;p align = "center"&gt;
-&lt;img src="image/carseats.png"&gt;&lt;br&gt;
-&lt;/p&gt;
-
-&lt;p style="padding-top:10px"&gt;&lt;/p&gt;
-
-$$
-\large
-`\begin{split}
-\hat{Y} = &amp; 3.88 + \\
-&amp;.015 * CompPrice + \\
-&amp; .014 * Income + \\
-&amp; .111 * Advertising \\
-\end{split}`
-$$
-
-&lt;div style="padding-left:50px"&gt;
-$$$$
-&lt;/p&gt;
-
-
-]
-
 
 ---
 
@@ -766,7 +716,7 @@ ctrl &lt;- trainControl(method = "none")
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;method()&lt;/mono&gt;
+    &lt;mono&gt;method&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
     The model (algorithm). 
@@ -774,7 +724,7 @@ ctrl &lt;- trainControl(method = "none")
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td&gt;
-    &lt;mono&gt;trControl()&lt;/mono&gt;
+    &lt;mono&gt;trControl&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
     Control parameters for fitting.
@@ -782,7 +732,7 @@ ctrl &lt;- trainControl(method = "none")
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;tuneGrid()&lt;/mono&gt;, &lt;mono&gt;preProcess()&lt;/mono&gt;
+    &lt;mono&gt;tuneGrid&lt;/mono&gt;, &lt;mono&gt;preProcess&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
     Cool stuff for later.
@@ -857,7 +807,7 @@ Resampling: None
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;method()&lt;/mono&gt;
+    &lt;mono&gt;method&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
     The model (algorithm). 
@@ -865,7 +815,7 @@ Resampling: None
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td&gt;
-    &lt;mono&gt;trControl()&lt;/mono&gt;
+    &lt;mono&gt;trControl&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
     Control parameters for fitting.
@@ -873,7 +823,7 @@ Resampling: None
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;tuneGrid()&lt;/mono&gt;, &lt;mono&gt;preProcess()&lt;/mono&gt;
+    &lt;mono&gt;tuneGrid&lt;/mono&gt;, &lt;mono&gt;preProcess&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
     Cool stuff for later.
@@ -1240,7 +1190,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {
