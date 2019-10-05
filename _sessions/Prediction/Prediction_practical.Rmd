@@ -985,7 +985,7 @@ postResample(pred = rf_pred, obs = criterion_test)
 
 3. By default, the `train()` function uses 500 trees for `method = "rf"`. How do the number of trees affect performance? To answer this, try setting the number of trees to 1,000 (see example below) and re-evaluating your model's training and test performance. What do you find? What if you set the number of trees to just 10?
 
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo = TRUE}
 # Create random forest model with 1000 trees
 mod <- train(form = hwy ~ year + cyl + displ,
              data = data_train,
