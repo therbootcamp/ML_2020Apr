@@ -361,7 +361,7 @@ criterion_train <- college_train$Grad.Rate
 
 ```{r, echo = TRUE, eval = FALSE}
 # Calculate fitting accuracies of each model
-# pred = XX_pred
+# pred = XX_fit
 # obs = criterion_train
 
 # Regression
