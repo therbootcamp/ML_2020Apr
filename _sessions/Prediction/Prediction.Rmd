@@ -134,7 +134,7 @@ Model performance must be evaluated as true prediction on an <high>unseen data s
 
 The unseen data set can be <high>naturally</high> occurring, e.g., using 2019 stock prizes to evaluate a model fit using 2018 stock prizes. 
 
-More commonly unseen data is created by splitting the available data into a training set and a test set. 
+More commonly unseen data is created by <high>splitting the available data</high> into a training set and a test set. 
 
 ]
 

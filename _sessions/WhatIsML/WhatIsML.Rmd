@@ -546,7 +546,7 @@ E.g., predicting the cholesterol level as a function of age.
 
 Classification problems involve the <high>prediction of a categorical feature</high>.   
 
-E.g., predicting the type of chest pain as a function of age. 
+E.g., predicting the origin of chest pain as a function of age and heart attack risk. 
 
 
 

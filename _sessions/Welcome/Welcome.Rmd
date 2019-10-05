@@ -88,7 +88,7 @@ knitr::opts_chunk$set(fig.align = 'center')
 <br><br><br><br><br>
 #  Schedule and Materials
 
-Click the "Bootcamp running" link on our homepage!
+Click the "....running..." link on our homepage!
 
 <font size="6" color="#F62D73"><a href="www.therbootcamp.com"><b>www.therbootcamp.com</b></a></font><br><br>
 
@@ -130,19 +130,20 @@ Click the "Bootcamp running" link on our homepage!
 
 .pull-left45[
 
-1 - Intro to the <high>fundamentals</high> of ML.
+1. Intro to the <high>fundamentals</high> of ML.
 
-2 - Intro to a few influential ML <high>models</high>.
+2. Intro to a few influential ML <high>models</high>.
 
-3 - Intro to <high>using R</high> for ML.
+3. Intro to <high>using R</high> for ML.
 
-4 - Opportunity to <high>learn by doing</high>.
+4. Opportunity to <high>learn by doing</high>.
 
-5 - Opportunity for <high>discussion</high>.
+5. Opportunity for <high>discussion</high>.
 
+<br>
 #### What we will <i>NOT</i> cover
 
-In depth, advanced treatment of ML.
+&emsp;In-depth, advanced treatment of ML.
 
 ]
 
@@ -161,22 +162,22 @@ In depth, advanced treatment of ML.
 
 ---
 
-.pull-left6[
+.pull-left4[
 
 # Schedule 
 
 We have an <high>ambitious schedule</high>!
 
-- 2 days, 3-4 sessions per day, 1.5 - 2 hours per session, on a variety of topics.
+2 days, 3-4 sessions per day, 1.5 - 2 hours per session, on a variety of topics.
 
-- Each session contains a slide-based <high>introduction</high> and a hands-on <high>programming interactive or practical</high>
+Each session contains a slide-based <high>introduction</high> and a hands-on <high>programming interactive or practical</high>
 
 <br>
 
 
 ]
 
-.pull-right4[
+.pull-right45[
 <br><br>
 <img src="image/schedule.png" height="525" align="center">
 
@@ -191,19 +192,18 @@ We have an <high>ambitious schedule</high>!
 
 <high>30 - 45 minutes</high> slide based introduction to help you understand the basic concepts, including:
 <br><br>
-&emsp;&emsp;1 - Theory<br>
-&emsp;&emsp;2 - Code examples<br>
-&emsp;&emsp;3 - Live demonstrations<br> 
-<br><br>
+&emsp;&emsp;1. Theory<br>
+&emsp;&emsp;2. Code examples<br>
+&emsp;&emsp;3. Live demonstrations<br> 
+<br>
 
-
-<high>All available online</high>. Follow along, and don't worry about memorizing
+<high>All available online</high>. Follow along, and don't worry about memorizing.
 
 <br><br>
 <a href="https://therbootcamp.github.io/ML_2019Oct/">This is a Link to our materials</a>.
 <br><br>
 
-<high>Be interactive! Ask questions!</high>
+Be interactive! <high>Ask questions!</high>
 
 ]
 
@@ -232,19 +232,15 @@ We have an <high>ambitious schedule</high>!
 
 # Practicals
 
-<high>Write your own R scripts!</high>
-
-- Anywhere from 10 ~ 30 programming tasks.
-
-- Starts easy, gets progressively more challenging.
-
-- Go at your own pace and finish as much as you can.
-
-    - We have a diverse group with different backgrounds and interests, we love that!
-
-- Be active! Ask questions!
-
-- We'll give you all the answers later.
+<high>Write your own</high> R scripts!
+<br><br>
+Anywhere from 10 ~ 30 programming tasks. Starts easy, gets <high>progressively more challenging</high>.
+<br><br>
+Go at your <high>own pace</high> and finish as much as you can. We have a <high>diverse group</high> with different backgrounds and interests, we love that!
+<br><br>
+We'll give you all the <high>answers later</high>.
+<br><br>
+Be interactive! <high>Ask questions!</high>
 
 ]
 
@@ -328,13 +324,13 @@ At any time, you can <high>request a 15 minute 1-1 intensive</high> coaching ses
 <br><br>
 # Breaks
 
-- Programming is exhausting! <high>Take breaks</high> when you need them!
+Programming is exhausting! <high>Take breaks</high> when you need them!
 
-- Help yourself to refreshments and as much coffee as you can drink.
+Help yourself to <high>refreshments</high> and as much coffee as you can drink.
 
-- Lunch on your own or <high>walk with the group</high> to <high>Tibits</high> or the <high>Union Diner</high>
+Lunch on your own or <high>walk with the group</high> to <high>Tibits</high> or the <high>Union Diner</high>
 
-- Be back in the room at <high>13:00 sharp</high> so we can continue learning!
+Be back in the room at <high>13:00 sharp</high> so we can continue learning!
 
 ]
 
@@ -368,18 +364,16 @@ At any time, you can <high>request a 15 minute 1-1 intensive</high> coaching ses
 
 7. Coffee or tea?
 
-8. Pizza or pasta?
+8. Beer or wine?
 
-9. Beer or wine?
-
-10. Berlin or Paris?
+9. Berlin or Paris?
 
 ]
 
 .pull-right45[
 <br><br>
 <p align="center">
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/introductions.jpg" height="500px">
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/introductions.jpg" height="450px">
 <br>
 <font style="font-size:10px">from <a href="www.artofmanliness.com">artofmanliness.com</a></font>
 </p>
