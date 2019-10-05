@@ -913,7 +913,7 @@ criterion_test <- house_test$price
 ```{r, echo = TRUE, eval = FALSE}
 # Save model predictions for test data
 # object: price_XXX
-# newdata: college_test
+# newdata: house_test
 
 # Regression
 glm_pred <- predict(XXX, newdata = XXX)
