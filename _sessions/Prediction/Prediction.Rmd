@@ -333,7 +333,7 @@ class: center, middle
 
 .pull-left45[
 
-CART is short for <high>Classification and Regression Trees</high>,.which are often just called <high>Decision trees</high>.
+CART is short for <high>Classification and Regression Trees</high>, which are often just called <high>Decision trees</high>.
 
 In [decision trees](https://en.wikipedia.org/wiki/Decision_tree), the criterion is modeled as a <high>sequence of logical TRUE or FALSE questions</high>.
 <br><br>

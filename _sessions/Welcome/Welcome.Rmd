@@ -168,7 +168,7 @@ Click the "....running..." link on our homepage!
 
 We have an <high>ambitious schedule</high>!
 
-2 days, 3-4 sessions per day, 1.5 - 2 hours per session, on a variety of topics.
+2 days, 3-4 sessions per day, ~2.5 hours per session, on a variety of topics.
 
 Each session contains a slide-based <high>introduction</high> and a hands-on <high>programming interactive or practical</high>
 
