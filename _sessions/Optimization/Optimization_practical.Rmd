@@ -465,7 +465,7 @@ plot(salary_rpart)
 salary_rpart$bestTune$cp
 ```
 
-6. Plot your final decision tree using the following code
+6. Plot your final decision tree using the following code:
 
 ```{r, echo = TRUE}
 # Visualise your trees
