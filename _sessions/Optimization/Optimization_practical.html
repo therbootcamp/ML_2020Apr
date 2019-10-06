@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -84,7 +85,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -158,18 +158,6 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
@@ -239,7 +227,7 @@ library(caret)
 library(party)
 library(partykit)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>Run the code below to load each of the datasets listed in the <code>Datasets</code> as new objects.</li>
+<li>Run the code below to load each of the datasets listed in the <code>Datasets</code> section as new objects.</li>
 </ol>
 <pre class="r"><code># hitters data
 hitters_train &lt;- read_csv(file = &quot;1_Data/hitters_train.csv&quot;)
@@ -328,7 +316,7 @@ lambda_vec &lt;- 10 ^ (seq(-4, 4, length = 100))</code></pre>
 <li>set the data to <code>hitters_train</code>.</li>
 <li>set the method to <code>&quot;glmnet&quot;</code> for regularized regression.</li>
 <li>set the train control argument to <code>ctrl_cv</code>.</li>
-<li>set the <code>preProcess</code> argument to <code>c(&quot;center&quot;, &quot;scale&quot;)</code> to make sure the variables are standarised when estimating the beta weights (this is good practice for ridge regression).</li>
+<li>set the <code>preProcess</code> argument to <code>c(&quot;center&quot;, &quot;scale&quot;)</code> to make sure the variables are standarised when estimating the beta weights (this is good practice for ridge regression as otherwise the different scales of the variables impact the betas and thus the punishment would also depend on the scale).</li>
 <li>set the tuneGrid argument such that alpha is 0 (for ridge regression), and with all lambda values you specified in <code>lambda_vec</code> (we’ve done this for you below).</li>
 </ul>
 <pre class="r"><code># Ridge Regression --------------------------
@@ -412,7 +400,7 @@ coef(salary_lasso$finalModel,
 <h3>F - Decision Tree</h3>
 <p>It’s time to fit an optimized decision tree model!</p>
 <ol style="list-style-type: decimal">
-<li><p>Before we can fit a decision tree, we need to specify which values of the complexity parameter <code>cp</code> we want to try. Using the code below, create a vector called <code>cp_vec</code> which contains 100 values between 0 and 1</p></li>
+<li><p>Before we can fit a decision tree, we need to specify which values of the complexity parameter <code>cp</code> we want to try. Using the code below, create a vector called <code>cp_vec</code> which contains 100 values between 0 and 1.</p></li>
 <li><p>Fit a decision tree model predicting <code>Salary</code> as a function of all features. Specifically,…</p></li>
 </ol>
 <ul>
@@ -452,7 +440,7 @@ plot(as.party(salary_rpart$finalModel)) </code></pre>
 <h3>G - Random Forests</h3>
 <p>It’s time to fit an optimized random forest model!</p>
 <ol style="list-style-type: decimal">
-<li><p>Before we can fit a random forest model, we need to specify which values of the diversity parameter <code>mtry</code> we want to try. Using the code below, create a vector called <code>mtry_vec</code> which is a sequence of numbers from 1 to 10</p></li>
+<li><p>Before we can fit a random forest model, we need to specify which values of the diversity parameter <code>mtry</code> we want to try. Using the code below, create a vector called <code>mtry_vec</code> which is a sequence of numbers from 1 to 10.</p></li>
 <li><p>Fit a random forest model predicting <code>Salary</code> as a function of all features. Specifically,…</p></li>
 </ol>
 <ul>
@@ -1283,6 +1271,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

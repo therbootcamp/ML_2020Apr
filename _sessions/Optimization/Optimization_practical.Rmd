@@ -101,7 +101,7 @@ library(party)
 library(partykit)
 ```
 
-4. Run the code below to load each of the datasets listed in the `Datasets` as new objects.
+4. Run the code below to load each of the datasets listed in the `Datasets` section as new objects.
 
 ```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
 # hitters data
@@ -255,7 +255,7 @@ lambda_vec <- 10 ^ (seq(-4, 4, length = 100))
 - set the data to `hitters_train`.
 - set the method to `"glmnet"` for regularized regression.
 - set the train control argument to `ctrl_cv`.
-- set the `preProcess` argument to `c("center", "scale")` to make sure the variables are standarised when estimating the beta weights (this is good practice for ridge regression).
+- set the `preProcess` argument to `c("center", "scale")` to make sure the variables are standarised when estimating the beta weights (this is good practice for ridge regression as otherwise the different scales of the variables impact the betas and thus the punishment would also depend on the scale).
 - set the tuneGrid argument such that alpha is 0 (for ridge regression), and with all lambda values you specified in `lambda_vec` (we've done this for you below).
 
 ```{r, echo = TRUE, eval = FALSE}
@@ -408,7 +408,7 @@ coef(salary_lasso$finalModel,
 
 It's time to fit an optimized decision tree model!
 
-1. Before we can fit a decision tree, we need to specify which values of the complexity parameter `cp` we want to try. Using the code below, create a vector called `cp_vec` which contains 100 values between 0 and 1
+1. Before we can fit a decision tree, we need to specify which values of the complexity parameter `cp` we want to try. Using the code below, create a vector called `cp_vec` which contains 100 values between 0 and 1.
 
 ```{r}
 # Determine possible values of the complexity parameter cp
@@ -484,7 +484,7 @@ plot(as.party(salary_rpart$finalModel))
 
 It's time to fit an optimized random forest model!
 
-1. Before we can fit a random forest model, we need to specify which values of the diversity parameter `mtry` we want to try. Using the code below, create a vector called `mtry_vec` which is a sequence of numbers from 1 to 10
+1. Before we can fit a random forest model, we need to specify which values of the diversity parameter `mtry` we want to try. Using the code below, create a vector called `mtry_vec` which is a sequence of numbers from 1 to 10.
 
 ```{r}
 # Determine possible values of the random forest diversity parameter mtry
