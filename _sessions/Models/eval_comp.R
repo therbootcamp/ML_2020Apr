@@ -55,8 +55,11 @@ mtext(seq(0,1,.1),at=seq(0,1,.1),side=2,las=1)
 mtext("ACC",side=2,las=1,line=2)
 text(1:length(ACCs),rep(.2,length(ACCs)),labels=round(ACCs,3),col='white',cex=1)
 
-i = 1
-mtext(names(ACCs)[i],side=1,las=2,at=(1:length(ACCs))[i])
+# i = 1
+# mtext(names(ACCs)[i],side=1,las=2,at=(1:length(ACCs))[i])
+
+#mtext(names(ACCs),side=1,las=2,at=(1:length(ACCs)))
+
 
 Sys.sleep(5)
 
