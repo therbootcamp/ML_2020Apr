@@ -140,7 +140,7 @@ View(pima_diabetes)
 
 #### Splitting
 
-5. Before we begin, we need to make sure that we have separate a hold-out data set for later. Create `pima_train` and `pima_test` using `createDataPartition()` function. Set `p = .15` to select (only) <b>15% of cases for the training set</b>. See code below. Also, store the variable `diabetes` from the test set as a factor, which will be the criterion. 
+5. Before we begin, we need to make sure that we have a separate hold-out data set for later. Create `pima_train` and `pima_test` using the `createDataPartition()` function. Set `p = .15` to select (only) <b>15% of cases for the training set</b>. See code below. Also, store the variable `diabetes` from the test set as a factor, which will be the criterion. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # split index
@@ -188,7 +188,7 @@ pima_train_pred <- pima_train %>% select(-diabetes)
 pima_train_crit <- pima_train %>% pull(diabetes)
 ```
 
-7. Although, this data set is rather small and well curated, test using the template below whether there are any excessively correlated features using `cor()` and `findCorrelation()`.Are there any?
+7. Although, this data set is rather small and well curated, test using the template below whether there are any excessively correlated features using `cor()` and `findCorrelation()`. Are there any?
 
 ```{r, echo = TRUE, eval = FALSE}
 # determine correlation matrix
@@ -271,14 +271,14 @@ Now, let's create a second model using the best features and compare performance
 
 ```{r, echo = TRUE, eval = FALSE}
 # fit glm with best four features
-pima_glm4 = train(diabetes ~ XX + YY + ZZ + AA,
+pima_glm4 <- train(diabetes ~ XX + YY + ZZ + AA,
                 data = XX,
                 method = XX)
 ```
 
 ```{r}
 # fit glm with best four features
-pima_glm4 = train(diabetes ~ glucose + mass + pregnant + pedigree,
+pima_glm4 <- train(diabetes ~ glucose + mass + pregnant + pedigree,
                 data = pima_train,
                 method = "glm")
 ```
@@ -305,7 +305,7 @@ confusionMatrix(pima_glm_pred, criterion)
 confusionMatrix(pima_glm4_pred, criterion)
 ```
 
-13. You might have observed that the model with two fewer features is actually slightly better than the full model (if this is not the case, keep in mind that the partitioning of the dataset was done randomly, i.e., if you do it a second time, your results may slightly change). Why do you think this is that the case?
+13. You might have observed that the model with two fewer features is actually slightly better than the full model (if this is not the case, keep in mind that the partitioning of the dataset was done randomly, i.e., if you do it a second time, your results may slightly change). Why do you think this is the case?
 
 14. Play around: Up the proportion dedicated to training or use a different model, e.g., `random forest`, and see whether things change. 
 
@@ -358,7 +358,7 @@ criterion <- as.factor(murders_test$murders)
 
 #### Remove unwanted features
 
-Before we start modeling, let us get to work and remove some features from the training set, that is, in case we have to.
+Before we start modeling, let us get to work and remove some features from the training set.
 
 6. To this end, first split the training data into a data frame holding the predictors and the criterion in the same way you have done this above.
 
@@ -400,7 +400,7 @@ murders_train_pred <- murders_train_pred %>%
 nearZeroVar(murders_train_pred)
 ```
 
-10. You should have found that there were plenty of excessively correlated features but no near-zero variance features. Provide that you excluded some of the former, bind the reduced predictor set back together with the criterion into a new, clean version of the training set. See template below.
+10. You should have found that there were plenty of excessively correlated features but no near-zero variance features. Provided that you excluded some of the former, bind the reduced predictor set back together with the criterion into a new, clean version of the training set. See template below.
 
 ```{r, echo = TRUE, eval = FALSE}
 # clean training set
@@ -424,7 +424,7 @@ murders_glm <- train(murders ~ .,
                      data = XX,
                      method = "glm")
 
-# fit glm
+# fit glm with clean data
 murders_glm_clean <- train(murders ~ .,
                            data = XX,
                            method = "glm")
@@ -436,7 +436,7 @@ murders_glm <- train(murders ~ .,
                      data = murders_train,
                      method = "glm")
 
-# fit glm
+# fit glm with clean data
 murders_glm_clean <- train(murders ~ .,
                            data = murders_train_clean,
                            method = "glm")
@@ -456,7 +456,7 @@ confusionMatrix(murders_clean_pred, criterion)
 
 #### Data compression with PCA
 
-13. Given the high features correlations, it is sensible to compress the data using `principal component analysis` (PCA). Create a third fit object using the original, full training set using again `method = glm` and in addition `preProcess = c('pca')` and `trControl = trainControl(preProcOptions = list(thresh = 0.8))` in the training function. These additional settings instruct R to extract new features using from the data PCA and to retain only as many features as are needed to capture 80% of the original variance. 
+13. Given the high features correlations, it is sensible to compress the data using `principal component analysis` (PCA). Create a third fit object using the original, full training set using again `method = glm` and in addition `preProcess = c('pca')` and `trControl = trainControl(preProcOptions = list(thresh = 0.8))` in the training function. These additional settings instruct R to extract new features from the data using PCA and to retain only as many features as are needed to capture 80% of the original variance. 
 
 ```{r echo = TRUE}
 # fit glm with preprocessed features
@@ -467,7 +467,7 @@ murders_glm_pca = train(murders ~ .,
                         trControl = trainControl(preProcOptions = list(thresh = 0.8)))
 ```
 
-14. Compare the prediction performance to the previous to the previous two models. 
+14. Compare the prediction performance to the previous two models. 
 
 ```{r}
 # determine predictions for test data
