@@ -262,7 +262,7 @@ Here is a very incomplete series of good books. They are ordered by complexity, 
   </td>
   
         <td>
-  <a href="https://www.manning.com/books/deep-learning-with-r"><img border="0" alt="W3Schools" src="http://t1.gstatic.com/images?q=tbn:ANd9GcTRRlqFPDLuz1b1FRqtL_bcVrILqPEJgh17piFhG-zwXYN_nCWm" height="180" ></a>
+  <a href="https://www.manning.com/books/deep-learning-with-r"><img border="0" alt="W3Schools" src="https://images-na.ssl-images-amazon.com/images/I/51h5d4dYaoL._SX396_BO1,204,203,200_.jpg" height="180" ></a>
   </td>
 
   
