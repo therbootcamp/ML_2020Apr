@@ -552,7 +552,7 @@ salary_rf$bestTune$mtry
 salary_resamples <- resamples(list(glm = XXX,
                                    ridge = XXX, 
                                    lasso = XXX, 
-                                   dt = XXX, 
+                                   rpart = XXX, 
                                    rf = XXX))
 ```
 
