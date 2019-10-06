@@ -13,7 +13,7 @@ repeat {
 # get files
 files = list.files('_sessions/Models/submissions',full.names = T)
 
-# eclude markus
+# exclude markus
 files = files[!str_detect(files, "Markus Steiner")]
 
 # remove non.rds
