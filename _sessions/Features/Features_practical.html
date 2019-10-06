@@ -246,7 +246,7 @@ murders_crime &lt;- read_csv(file = &quot;1_Data/murders_crime.csv&quot;)</code>
 <div id="splitting" class="section level4">
 <h4>Splitting</h4>
 <ol start="5" style="list-style-type: decimal">
-<li>Before we begin, we need to make sure that we have separate a hold-out data set for later. Create <code>pima_train</code> and <code>pima_test</code> using <code>createDataPartition()</code> function. Set <code>p = .15</code> to select (only) <b>15% of cases for the training set</b>. See code below. Also, store the variable <code>diabetes</code> from the test set as a factor, which will be the criterion.</li>
+<li>Before we begin, we need to make sure that we have a separate hold-out data set for later. Create <code>pima_train</code> and <code>pima_test</code> using the <code>createDataPartition()</code> function. Set <code>p = .15</code> to select (only) <b>15% of cases for the training set</b>. See code below. Also, store the variable <code>diabetes</code> from the test set as a factor, which will be the criterion.</li>
 </ol>
 <pre class="r"><code># split index
 train_index &lt;- createDataPartition(XX$XX, p = .15, list = FALSE)
@@ -270,7 +270,7 @@ pima_train_pred &lt;- pima_train %&gt;% select(-XX)
 # Select criterion
 pima_train_crit &lt;- pima_train %&gt;% pull(XX)</code></pre>
 <ol start="7" style="list-style-type: decimal">
-<li>Although, this data set is rather small and well curated, test using the template below whether there are any excessively correlated features using <code>cor()</code> and <code>findCorrelation()</code>.Are there any?</li>
+<li>Although, this data set is rather small and well curated, test using the template below whether there are any excessively correlated features using <code>cor()</code> and <code>findCorrelation()</code>. Are there any?</li>
 </ol>
 <pre class="r"><code># determine correlation matrix
 corr_matrix &lt;- cor(XX_pred)
@@ -313,7 +313,7 @@ plot(varimp_glm)</code></pre>
 <li>Fit the glm a second time, this time using only the four best features and store the result in a different fit object.</li>
 </ol>
 <pre class="r"><code># fit glm with best four features
-pima_glm4 = train(diabetes ~ XX + YY + ZZ + AA,
+pima_glm4 &lt;- train(diabetes ~ XX + YY + ZZ + AA,
                 data = XX,
                 method = XX)</code></pre>
 <ol start="12" style="list-style-type: decimal">
@@ -327,7 +327,7 @@ pima_glm4_pred &lt;- predict(XX, newdata = XX)
 confusionMatrix(XX, reference = XX)
 confusionMatrix(XX, reference = XX)</code></pre>
 <ol start="13" style="list-style-type: decimal">
-<li><p>You might have observed that the model with two fewer features is actually slightly better than the full model (if this is not the case, keep in mind that the partitioning of the dataset was done randomly, i.e., if you do it a second time, your results may slightly change). Why do you think this is that the case?</p></li>
+<li><p>You might have observed that the model with two fewer features is actually slightly better than the full model (if this is not the case, keep in mind that the partitioning of the dataset was done randomly, i.e., if you do it a second time, your results may slightly change). Why do you think this is the case?</p></li>
 <li><p>Play around: Up the proportion dedicated to training or use a different model, e.g., <code>random forest</code>, and see whether things change.</p></li>
 </ol>
 </div>
@@ -349,7 +349,7 @@ confusionMatrix(XX, reference = XX)</code></pre>
 </div>
 <div id="remove-unwanted-features-1" class="section level4">
 <h4>Remove unwanted features</h4>
-<p>Before we start modeling, let us get to work and remove some features from the training set, that is, in case we have to.</p>
+<p>Before we start modeling, let us get to work and remove some features from the training set.</p>
 <ol start="6" style="list-style-type: decimal">
 <li><p>To this end, first split the training data into a data frame holding the predictors and the criterion in the same way you have done this above.</p></li>
 <li><p>Test if there are any excessively correlated features using <code>cor()</code> and <code>findCorrelation()</code>. Are there any this time?</p></li>
@@ -359,7 +359,7 @@ confusionMatrix(XX, reference = XX)</code></pre>
 murders_train_pred &lt;- murders_train_pred %&gt;% select(- XX)</code></pre>
 <ol start="9" style="list-style-type: decimal">
 <li><p>Test if there are any near-zero variance features. Any of those this time?</p></li>
-<li><p>You should have found that there were plenty of excessively correlated features but no near-zero variance features. Provide that you excluded some of the former, bind the reduced predictor set back together with the criterion into a new, clean version of the training set. See template below.</p></li>
+<li><p>You should have found that there were plenty of excessively correlated features but no near-zero variance features. Provided that you excluded some of the former, bind the reduced predictor set back together with the criterion into a new, clean version of the training set. See template below.</p></li>
 </ol>
 <pre class="r"><code># clean training set
 murders_train_clean &lt;- murders_train_pred %&gt;% 
@@ -375,7 +375,7 @@ murders_glm &lt;- train(murders ~ .,
                      data = XX,
                      method = &quot;glm&quot;)
 
-# fit glm
+# fit glm with clean data
 murders_glm_clean &lt;- train(murders ~ .,
                            data = XX,
                            method = &quot;glm&quot;)</code></pre>
@@ -386,7 +386,7 @@ murders_glm_clean &lt;- train(murders ~ .,
 <div id="data-compression-with-pca" class="section level4">
 <h4>Data compression with PCA</h4>
 <ol start="13" style="list-style-type: decimal">
-<li>Given the high features correlations, it is sensible to compress the data using <code>principal component analysis</code> (PCA). Create a third fit object using the original, full training set using again <code>method = glm</code> and in addition <code>preProcess = c('pca')</code> and <code>trControl = trainControl(preProcOptions = list(thresh = 0.8))</code> in the training function. These additional settings instruct R to extract new features using from the data PCA and to retain only as many features as are needed to capture 80% of the original variance.</li>
+<li>Given the high features correlations, it is sensible to compress the data using <code>principal component analysis</code> (PCA). Create a third fit object using the original, full training set using again <code>method = glm</code> and in addition <code>preProcess = c('pca')</code> and <code>trControl = trainControl(preProcOptions = list(thresh = 0.8))</code> in the training function. These additional settings instruct R to extract new features from the data using PCA and to retain only as many features as are needed to capture 80% of the original variance.</li>
 </ol>
 <pre class="r"><code># fit glm with preprocessed features
 murders_glm_pca = train(murders ~ .,
@@ -395,7 +395,7 @@ murders_glm_pca = train(murders ~ .,
                         preProcess = c(&quot;pca&quot;),
                         trControl = trainControl(preProcOptions = list(thresh = 0.8)))</code></pre>
 <ol start="14" style="list-style-type: decimal">
-<li><p>Compare the prediction performance to the previous to the previous two models.</p></li>
+<li><p>Compare the prediction performance to the previous two models.</p></li>
 <li><p>Play around: Alter the amount of variance explained by the <code>PCA</code> (using <code>thresh</code>), increase the proportion dedicated to training, use a different model, e.g., <code>random forest</code>, and see whether things change.</p></li>
 </ol>
 </div>
