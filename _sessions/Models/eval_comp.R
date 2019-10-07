@@ -22,10 +22,23 @@ files = files[str_detect(files, ".RDS")]
 # read mdoels
 mods = lapply(files, readRDS)
 
+# read mdoels
+classes = sapply(mods, function(x) class(x)[1])
+sel = classes == 'train'
+mods = mods[sel]
+
 # extract names
-nams = sapply(str_split(files,'/'),'[[',4)
+nams = sapply(str_split(files[sel],'/'),'[[',4)
 nams = str_sub(nams, 1, nchar(nams)-4)
 
+# mods[[1]]$finalModel$model$.outcome
+
+# # read mdoels
+# sel = sapply(mods, function(x) any(c("female","male") %in% levels(x$finalModel$model$.outcome)))
+# mods = mods[sel]
+# 
+# # extract names
+# nams = nams[sel]
 
 # EVALUATE --------------
 
@@ -58,7 +71,7 @@ text(1:length(ACCs),rep(.2,length(ACCs)),labels=round(ACCs,3),col='white',cex=1)
 # i = 1
 # mtext(names(ACCs)[i],side=1,las=2,at=(1:length(ACCs))[i])
 
-#mtext(names(ACCs),side=1,las=2,at=(1:length(ACCs)))
+mtext(names(ACCs),side=1,las=2,at=(1:length(ACCs)))
 
 
 Sys.sleep(5)
