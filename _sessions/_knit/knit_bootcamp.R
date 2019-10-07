@@ -35,7 +35,7 @@ for(i in 1:length(htmls)){
 }
 
 # zip files
-zip(paste0(to_path, 'MLwR2019May_pdfs.zip'),
+zip(paste0(to_path, 'MLwR2019Oct_pdfs.zip'),
     c(paste0(to_path, pdfs), paste0(to_path, 'README.rtf'))
     )
 

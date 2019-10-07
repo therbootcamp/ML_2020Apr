@@ -36,7 +36,7 @@ output:
 
 ##### [**Data sets**](https://www.dropbox.com/s/v7s5kesbc10fcvq/baselrbootcamp_MLdata.zip?dl=1)
 
-##### **PDFs**<!---https://www.dropbox.com/s/s2jy38nhmg8hsx1/MLwR2019Oct_pdfs.zip?dl=1--->
+##### [**PDFs**](https://www.dropbox.com/s/s2jy38nhmg8hsx1/MLwR2019Oct_pdfs.zip?dl=1)
 
 <br>
 
