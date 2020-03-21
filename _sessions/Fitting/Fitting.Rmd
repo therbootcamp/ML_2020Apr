@@ -1,11 +1,11 @@
 ---
 title: "Fitting"
-author: "Machine Learning with R<br>
+author: "Maschinelles Lernen mit R<br>
   <a href='https://therbootcamp.github.io'>
     Basel R Bootcamp
   </a>
   <br>
-  <a href='https://therbootcamp.github.io/ML_2019Oct/'>
+  <a href='https://therbootcamp.github.io/ML_2020Apr/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "Machine Learning with R<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "October 2019"
+date: "April 2020"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-       Machine Learning with R | October 2019
+       Maschinelles Lernen mit R | April 2020
       </font>
     </a>
     </span>
@@ -80,7 +80,7 @@ library(ggpubr)
 library(caret)
 library(ISLR)
 
-baselers <- read_csv("1_Data/baselers.csv")
+basel <- read_csv("1_Data/basel.csv") %>%  drop_na()
 
 set.seed(102)
 x <- rnorm(10)
@@ -118,39 +118,39 @@ raw <- ggplot(dat_great, aes(x = x0, y = y0)) + geom_point(col = baselrbootcamp_
   theme_minimal() +
   xlim(c(-2, 3)) +
   ylim(c(0, 5)) +
-  labs(title = "Raw Data", 
-       x = "Feature", y = "Criterion")
+  labs(title = "Rohdaten", 
+       x = "Feature", y = "Abhängige Variable")
 
 great_raw <- ggplot(dat_great, aes(x = x0, y = y0)) + geom_point(col = baselrbootcamp_cols("grey"), size = 2) +
   geom_abline(slope = great_slope, intercept = great_intercept, size = .5, linetype = 3) +
   theme_minimal() +
   xlim(c(-2, 3)) +
   ylim(c(0, 5)) +
-  labs(title = "Model B", 
+  labs(title = "Modell B", 
               subtitle = paste0("B0 = ", round(great_intercept, 2), ", B1 = ", round(great_slope, 2)),
 
-       x = "Feature", y = "Criterion")
+       x = "Feature", y = "Abhängige Variable")
 
 bad_raw <- ggplot(dat_bad, aes(x = x0, y = y0)) + geom_point(col = baselrbootcamp_cols("grey")) +
   geom_abline(slope = bad_slope, intercept = bad_intercept, size = .5, linetype = 3) +
   theme_minimal() +
   xlim(c(-2, 3)) +
   ylim(c(0, 5)) +
-   labs(title = "Model A", 
+   labs(title = "Modell A", 
         subtitle = paste0("B0 = ", round(bad_intercept, 2), ", B1 = ", round(bad_slope, 2)),
-       x = "Feature", y = "Criterion")
+       x = "Feature", y = "Abhängige Variable")
 
 great_err <- great_raw + 
   geom_linerange(data = dat_great, aes(x = x0, ymin = y0, ymax = y1), col = baselrbootcamp_cols("magenta")) +
   geom_point(data = dat_great, aes(x = x0, y = y1, size = 2), col = baselrbootcamp_cols("green"), pch = "X", size = 4) +
-    labs(title = "Model B",
-       x = "Feature", y = "Criterion")
+    labs(title = "Modell B",
+       x = "Feature", y = "Abhängige Variable")
 
 bad_err <- bad_raw +
     geom_linerange(data = dat_bad, aes(x = x0, ymin = y0, ymax = y1), col = baselrbootcamp_cols("magenta")) +
     geom_point(data = dat_bad, aes(x = x0, y = y1, size = 2), col = baselrbootcamp_cols("green"), pch = "X", size = 4) +
-   labs(title = "Model A",
-       x = "Feature", y = "Criterion")
+   labs(title = "Modell A",
+       x = "Feature", y = "Abhängige Variable")
 
 
 set.seed(103)
@@ -173,7 +173,7 @@ dat_great <- data.frame(x0, x1, y0, y1)
 
 logreg1 = ggplot(dat_great, aes(x = x0, y = y0)) + geom_point(col = baselrbootcamp_cols("grey"), size = 2) +
   theme_minimal() +
-  labs(x = "Feature", y = "Criterion")
+  labs(x = "Feature", y = "Abhängige Variable")
 
 logreg2 = logreg1 + 
   geom_line(aes(x0,y1), size = .5, linetype = 3) +
@@ -190,9 +190,9 @@ logreg2 = logreg1 +
 
 <p style="padding-top:1px"></p>
 
-Models are actually <high>families of models</high>, with every parameter combination specifying a different model. 
+Modelle können wir uns als <high>Familie von Modellen</high> vorstellen, wobei jede Parameterkombination ein unterschiedliches Modell definiert
 
-To fit a model means to <high>identify</high> from the family of models <high>the specific model that fits the data best</high>. 
+Wenn wir ein Modell fitten, <high>identifizieren wir</high> von der Familie von Modellen <high>dasjenige Modell, welches unsere Daten am besten abbildet</high>. 
 
 ]
 
@@ -202,14 +202,14 @@ To fit a model means to <high>identify</high> from the family of models <high>th
 
 <p align = "center">
 <img src="image/curvefits.png" height=480px><br>
-<font style="font-size:10px">adapted from <a href="https://www.explainxkcd.com/wiki/index.php/2048:_Curve-Fitting">explainxkcd.com</a></font>
+<font style="font-size:10px">angepasst von <a href="https://www.explainxkcd.com/wiki/index.php/2048:_Curve-Fitting">explainxkcd.com</a></font>
 </p>
 
 ]
 
 ---
 
-# Which of these models is better? Why?
+# Welches dieser Modelle ist besser? Weshalb?
 
 ```{r, echo = FALSE, fig.width = 6, fig.height = 3, dpi = 300, out.width = "90%"}
 ggarrange(bad_raw, great_raw, ncol = 2, nrow = 1)
@@ -218,7 +218,7 @@ ggarrange(bad_raw, great_raw, ncol = 2, nrow = 1)
 
 ---
 
-# Which of these models is better? Why?
+# Welches dieser Modelle ist besser? Weshalb?
 
 ```{r, echo = FALSE, fig.width = 6, fig.height = 3, dpi = 300, out.width = "90%"}
 ggarrange(bad_err, great_err, ncol = 2, nrow = 1)
@@ -227,29 +227,29 @@ ggarrange(bad_err, great_err, ncol = 2, nrow = 1)
 
 ---
 
-# Loss function
+# Verlustfunktion (*Loss function*)
 
 .pull-left45[
 
-Possible <high>the most important concept</high> in statistics and machine learning.
+Eines der <high> wichtigsten Konzepte</high> in der Statistik und im maschinellen Lernen.
 
-The loss function defines some <high>summary of the errors committed by the model</high>.
-
-<p style="padding-top:7px">
-
-$$\Large Loss = f(Error)$$
+Die Verlustfunktion definiert eine <high>Zusammenfassung der durch ein Modell begangenen Fehler</high>.
 
 <p style="padding-top:7px">
 
-<u>Two purposes</u>
+$$\Large Verlust = f(Fehler)$$
+
+<p style="padding-top:7px">
+
+<u>Zwei Zwecke</u>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
 <tr>
   <td>
-    <b>Purpose</b>
+    <b>Zweck</b>
   </td>
   <td>
-    <b>Description</b>
+    <b>Beschreibung</b>
   </td>
 </tr>
 <tr>
@@ -257,7 +257,7 @@ $$\Large Loss = f(Error)$$
     Fitting
   </td>
   <td bgcolor="white">
-    Find parameters that minimize loss function.
+    Finde Parameter, die die Verlustfunktion minimieren.
   </td>
 </tr>
 <tr>
@@ -265,7 +265,7 @@ $$\Large Loss = f(Error)$$
     Evaluation
   </td>
   <td>
-    Calculate loss function for fitted model.
+    Berechne den Schaden für ein gefittetes Modell.
   </td>
 </tr>
 </table>
@@ -300,22 +300,20 @@ class: center, middle
 
 .pull-left45[
 
-In [regression](https://en.wikipedia.org/wiki/Regression_analysis), the criterion $Y$ is modeled as the <high>sum</high> of <high>features</high> $X_1, X_2, ...$ <high>times weights</high> $\beta_1, \beta_2, ...$ plus $\beta_0$ the so-called the intercept.
+In der [Regression](https://de.wikipedia.org/wiki/Regressionsanalyse), wird eine abhängige Variable (<high>criterion</high>) $y$ modelliert, als <high>Summe</high> der <high>Features</high> $x_1, x_2, ...$ <high>mal Gewichte</high> $b_1, b_2, ...$ plus $b_0$, der sogenannte Intercept oder Ordinatenabschnitt.
 
 <p style="padding-top:10px"></p>
 
 
-$$\large \hat{Y} =  \beta_{0} + \beta_{1} \times X_1 + \beta_{2} \times X2 + ...$$
+$$\large \hat{y} =  b_{0} + b_{1} \times x_1 + b_{2} \times x2 + ...$$
 
 <p style="padding-top:10px"></p>
 
-The weight $\beta_{i}$ indiciates the <high>amount of change</high> in $\hat{Y}$ for a change of 1 in $X_{i}$.
+Ein Regressionskoeffizient $b_{i}$ gibt an, wie stark sich $\hat{y}$ <high>verändert</high>, wenn sich $x_{i}$ um 1 verändert.
 
-Ceteris paribus, the <high>more extreme</high> $\beta_{i}$, the <high>more important</high> $X_{i}$ for the prediction of $Y$ <font style="font-size:12px">(Note: the scale of $X_{i}$ matters too!).</font>
+Ceteris paribus, je <high>extremer</high> $b_{i}$, desto <high>wichtiger</high> ist $x_{i}$ für die Vorhersage von $y$ <font style="font-size:12px">(Cave: die Skala von $x_{i}$ beeinflusst $b_i$!).</font>
 
-If $\beta_{i} = 0$, then $X_{i}$ <high>does not help</high> predicting $Y$
-
-
+Wenn $b_{i} = 0$, heisst das, $x_{i}$ <high>bringt keinen Zusatznutzen</high> bei der Vorhersage von $y$.
 
 ]
 
@@ -331,19 +329,19 @@ bad_err + labs(title=element_blank(),subtitle = element_blank())
 
 ---
 
-# Regression loss
+# Verlustfunktion in der Regression
 
 .pull-left45[
 
 <p>
 
-<font style="font-size:24"><b> Mean Squared Error (MSE)</b></font><br><br><high>Average squared distance</high> between predictions and true values?<br>
+<font style="font-size:24"><b> Mean Squared Error (MSE)</b></font><br><br><high>Mittlere Quadratsumme der Abweichungen</high> zwischen vorhergesagten und wahren Werten.<br>
 
-$$ MSE = \frac{1}{n}\sum_{i \in 1,...,n}(Y_{i} - \hat{Y}_{i})^{2}$$
+$$ MSE = \frac{1}{n}\sum_{i \in 1,...,n}(y_{i} - \hat{y}_{i})^{2}$$
 
-<br><font style="font-size:24"><b> Mean Absolute Error (MAE)</b></font><br><br><high>Average absolute distance</high> between predictions and true values?<br>
+<br><font style="font-size:24"><b> Mean Absolute Error (MAE)</b></font><br><br><high>Mittlere absolute Abweichungen</high> zwischen vorhergesagten und wahren Werten.<br>
 
-$$ MAE = \frac{1}{n}\sum_{i \in 1,...,n} \lvert Y_{i} - \hat{Y}_{i} \rvert$$
+$$ MAE = \frac{1}{n}\sum_{i \in 1,...,n} \lvert y_{i} - \hat{y}_{i} \rvert$$
 
 
 </p>
@@ -366,20 +364,19 @@ bad_err + labs(title=element_blank(),subtitle = element_blank())
 # Fitting
 
 .pull-left45[
+Es gibt zwei Möglichkeiten um die Parameterwerte zu finden, welche den Schaden minimieren.
 
-There are two fundamentally different ways to find the set of parameters that minimizes loss.
+<font style="font-size:24"><b> Analytisch </b>
 
-<font style="font-size:24"><b> Analytically </b>
+In gewissen Fällen, können die Parameterwerte <high>direkt berechnet</high> werden, z.B., mit der <i>Normalgleichung</i>:
 
-In rare cases, the parameters can be <high>directly calculated</high>, e.g., using the <i>normal equation</i>: 
-
-$$\boldsymbol \beta = (\boldsymbol X^T\boldsymbol X)^{-1}\boldsymbol X^T\boldsymbol y$$
+$$\boldsymbol b = (\boldsymbol X^T\boldsymbol X)^{-1}\boldsymbol X^T\boldsymbol y$$
 
 <font style="font-size:24"><b> Numerically </b>
 
-In most cases, parameters need to be found using a <high>directed trial and error</high>, e.g., <i>gradient descent</i>: 
+In den meisten Fällen, müssen die Parameter jedoch mittels <high>gerichtetem trial and error</high> Verfahren gefunden werden, z.B., mittels <i>gradient descent</i>: 
 
-$$\boldsymbol \beta_{n+1} = \boldsymbol \beta_{n}+\gamma \nabla F(\boldsymbol \beta_{n})$$
+$$\boldsymbol b_{n+1} = \boldsymbol b_{n}+\gamma \nabla F(\boldsymbol b_{n})$$
 
 ]
 
@@ -387,7 +384,7 @@ $$\boldsymbol \beta_{n+1} = \boldsymbol \beta_{n}+\gamma \nabla F(\boldsymbol \b
 
 <p align = "center">
 <img src="image/gradient.png" height=420px><br>
-<font style="font-size:10px">adapted from <a href="https://me.me/i/machine-learning-gradient-descent-machine-learning-machine-learning-behind-the-ea8fe9fc64054eda89232d7ffc9ba60e">me.me</a></font>
+<font style="font-size:10px">angepasst von <a href="https://me.me/i/machine-learning-gradient-descent-machine-learning-machine-learning-behind-the-ea8fe9fc64054eda89232d7ffc9ba60e">me.me</a></font>
 </p>
 
 ]
@@ -401,19 +398,19 @@ $$\boldsymbol \beta_{n+1} = \boldsymbol \beta_{n}+\gamma \nabla F(\boldsymbol \b
 
 <p style="padding-top:1px"></p>
 
-There are two fundamentally different ways to find the set of parameters that minimizes loss.
+Es gibt zwei Möglichkeiten um die Parameterwerte zu finden, welche den Schaden minimieren.
 
-<font style="font-size:24"><b> Analytically </b>
+<font style="font-size:24"><b> Analytisch </b>
 
-In rare cases, the parameters can be <high>directly calculated</high>, e.g., using the <i>normal equation</i>: 
+In gewissen Fällen, können die Parameterwerte <high>direkt berechnet</high> werden, z.B., mit der <i>Normalgleichung</i>:
 
-$$\boldsymbol \beta = (\boldsymbol X^T\boldsymbol X)^{-1}\boldsymbol X^T\boldsymbol y$$
+$$\boldsymbol b = (\boldsymbol X^T\boldsymbol X)^{-1}\boldsymbol X^T\boldsymbol y$$
 
 <font style="font-size:24"><b> Numerically </b>
 
-In most cases, parameters need to be found using a <high>directed trial and error</high>, e.g., <i>gradient descent</i>: 
+In den meisten Fällen, müssen die Parameter jedoch mittels <high>gerichtetem trial and error</high> Verfahren gefunden werden, z.B., mittels <i>gradient descent</i>: 
 
-$$\boldsymbol \beta_{n+1} = \boldsymbol \beta_{n}+\gamma \nabla F(\boldsymbol \beta_{n})$$
+$$\boldsymbol b_{n+1} = \boldsymbol b_{n}+\gamma \nabla F(\boldsymbol b_{n})$$
 
 
 ]
@@ -424,10 +421,10 @@ $$\boldsymbol \beta_{n+1} = \boldsymbol \beta_{n}+\gamma \nabla F(\boldsymbol \b
 
 <p align = "center">
 <img src="image/gradient1.gif" height=250px><br>
-<font style="font-size:10px">adapted from <a href="https://dunglai.github.io/2017/12/21/gradient-descent/
+<font style="font-size:10px">angepasst von <a href="https://dunglai.github.io/2017/12/21/gradient-descent/
 ">dunglai.github.io</a></font><br>
 <img src="image/gradient2.gif" height=250px><br>
-<font style="font-size:10px">adapted from <a href="https://dunglai.github.io/2017/12/21/gradient-descent/
+<font style="font-size:10px">angepasst von <a href="https://dunglai.github.io/2017/12/21/gradient-descent/
 ">dunglai.github.io</a></font>
 </p>
 
@@ -435,23 +432,23 @@ $$\boldsymbol \beta_{n+1} = \boldsymbol \beta_{n}+\gamma \nabla F(\boldsymbol \b
 
 ---
 
-# 2 types of supervised problems
+# 2 Typen von überwachtem (supervised) Lernen
 
 .pull-left5[
 
-There are two types of supervised learning problems that can often be approached using the same model.
+Es gibt zwei Typen von überwachtem Lernen, die häufig unter Verwendung des gleichen Modells angegangen werden können.
 
 <font style="font-size:24px"><b>Regression</b></font>
 
-Regression problems involve the <high>prediction of a quantitative feature</high>. 
+Regressionsprobleme beinhalten die <high>Vorhersage eines quantitativen Features</high>. 
 
-E.g., predicting the cholesterol level as a function of age. 
+Z.B., die Vorhersage des Cholesterinlevels als Funktion von Alter.
 
-<font style="font-size:24px"><b>Classification</b></font>
+<font style="font-size:24px"><b>Klassifikation</b></font>
 
-Classification problems involve the <high>prediction of a categorical feature</high>.   
+Klassifikationsprobleme beinhalten die <high>Vorhersage eines kategorialen Features</high>.   
 
-E.g., predicting the type of chest pain as a function of age. 
+Z.B., die Vorhersage der Ursache von Brustschmerzen als Funktion von Alter.
 
 
 ]
@@ -466,23 +463,24 @@ E.g., predicting the type of chest pain as a function of age.
 
 ---
 
-# Logistic regression
+# Logistische Regression
 
 .pull-left45[
 
-In [logistic regression](https://en.wikipedia.org/wiki/Logistic_regression), the class criterion $Y \in (0,1)$ is modeled also as the <high>sum of feature times weights</high>, but with the prediction being transformed using a <high>logistic link function</high>:
+In der [logistischen Regression](https://de.wikipedia.org/wiki/Logistische_Regression), modellieren wir eine kategoriale Variable $y \in (0,1)$ als <high>gewichtete Summe der Features</high>, wobei wir die Vorhersage mit einer <high>logistischen Linkfunktion</high> transformieren:
 
 <p style="padding-top:10px"></p>
 
-$$\large \hat{Y} =  Logistic(\beta_{0} + \beta_{1} \times X_1 + ...)$$
+$$\large \hat{y} =  logistisch(b_{0} + b_{1} \times x_1 + ...)$$
 
 <p style="padding-top:10px"></p>
 
-The logistic function <high>maps predictions to the range of 0 and 1</high>, the two class values.
+Die logistische Funktion <high>bildet Vorhersagen auf den Bereich von 0 und 1</high> – die beiden Kategorien – ab.
+
 
 <p style="padding-top:10px"></p>
 
-$$ Logistic(x) = \frac{1}{1+exp(-x)}$$
+$$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 
 ]
 
@@ -496,23 +494,24 @@ logreg1
 
 ---
 
-# Logistic regression
+# Logistische Regression
 
 .pull-left45[
 
-In [logistic regression](https://en.wikipedia.org/wiki/Logistic_regression), the class criterion $Y \in (0,1)$ is modeled also as the <high>sum of feature times weights</high>, but with the prediction being transformed using a <high>logistic link function</high>:
+In der [logistischen Regression](https://de.wikipedia.org/wiki/Logistische_Regression), modellieren wir eine kategoriale Variable $y \in (0,1)$ als <high>gewichtete Summe der Features</high>, wobei wir die Vorhersage mit einer <high>logistischen Linkfunktion</high> transformieren:
 
 <p style="padding-top:10px"></p>
 
-$$\large \hat{Y} =  Logistic(\beta_{0} + \beta_{1} \times X_1 + ...)$$
+$$\large \hat{y} =  logistisch(b_{0} + b_{1} \times x_1 + ...)$$
 
 <p style="padding-top:10px"></p>
 
-The logistic function <high>maps predictions to the range of 0 and 1</high>, the two class values.
+Die logistische Funktion <high>bildet Vorhersagen auf den Bereich von 0 und 1</high> – die beiden Kategorien – ab.
+
 
 <p style="padding-top:10px"></p>
 
-$$ Logistic(x) = \frac{1}{1+exp(-x)}$$
+$$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 
 ]
 
@@ -526,22 +525,22 @@ logreg2
 
 ---
 
-# Classification loss - two ways
+# Verlustfunktion in Klassifikationsproblemen – Zwei Wege
 
 .pull-left45[
 
-<font style="font-size:24px"><b>Distance</b></font>
+<font style="font-size:24px"><b>Distanz</b></font>
 
-Logloss is <high>used to fit the parameters</high>, alternative distance measures are MSE and MAE.
+LogLoss wird – wie MSE und MAE –  als Distanzmass <high>zum Fitten von Parametern</high>, verwendet. Es ist somit eine Alternative zu MSE und MAE.
 
 $$\small LogLoss = -\frac{1}{n}\sum_{i}^{n}(log(\hat{y})y+log(1-\hat{y})(1-y))$$
-$$\small MSE = \frac{1}{n}\sum_{i}^{n}(y-\hat{y})^2, \: MAE = \frac{1}{n}\sum_{i}^{n} \lvert y-\hat{y} \rvert$$
+$$\small MSE = \frac{1}{n}\sum_{i}^{n}(y-\hat{y})^2; \: MAE = \frac{1}{n}\sum_{i}^{n} \lvert y-\hat{y} \rvert$$
 
-<font style="font-size:24px"><b>Overlap</b></font>
+<font style="font-size:24px"><b>Überlappung</b></font>
 
-Does the <high>predicted class match the actual class</high>. Often preferred for <high>ease of interpretation</high>. 
+Die 0-1 Verlustfunktion tested, ob die <high>vorhergesagte Kategorie, der tatsächlichen Kategorie entspricht</high>. Wird häufig wegen der <high>einfachen Interpretation</high> verwendet. 
 
-$$\small Loss_{01}=\frac{1}{n}\sum_i^n I(y \neq \lfloor \hat{y} \rceil)$$
+$$\small Verlust_{01}=\frac{1}{n}\sum_i^n I(y \neq \lfloor \hat{y} \rceil)$$
 
 ]
 
@@ -555,17 +554,19 @@ logreg2
 
 ---
 
-# Confusion matrix
+# Wahrheitsmatrix
 
 .pull-left45[
 
-The confusion matrix <high>tabulates prediction matches and mismatches</high> as a function of the true class.
+Die Wahrheitsmatrix (*confusion matrix*) 
 
-The confusion matrix permits specification of a number of <high>helpful performance metrics</high>.  
+Die Wahrheitsmatrix <high>enthält die Anzahl einer bestimmten Klasse zugeordneten Werte</high> als Funktion der tasächlichen Klasse.
+
+Anhand der Wahrheitsmatrix können unterschiedliche <high>statistische Gütekriterien</high> berechnet werden.  
 
 <br>
 
-<u> Confusion matrix </u>
+<u> Wahrheitsmatrix </u>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
 <tr>
@@ -583,10 +584,10 @@ The confusion matrix permits specification of a number of <high>helpful performa
     <eq><b>y = 1</b></eq>
   </td>
   <td bgcolor="white">
-    <font color="#6ABA9A"> True positive (TP)</font>
+    <font color="#6ABA9A"> Richtig positiv (RP)</font>
   </td>
   <td bgcolor="white">
-    <font color="#EA4B68"> False negative (FN)</font>
+    <font color="#EA4B68"> Falsch negativ (FN)</font>
   </td>
 </tr>
 <tr>
@@ -594,10 +595,10 @@ The confusion matrix permits specification of a number of <high>helpful performa
     <eq><b>y = 0</b></eq>
   </td>
   <td>
-    <font color="#EA4B68"> False positive (FP)</font>
+    <font color="#EA4B68"> Falsch positiv (FP)</font>
   </td>
   <td>
-    <font color="#6ABA9A"> True negative (TN)</font>
+    <font color="#6ABA9A"> Richtig negativ (RN)</font>
   </td>
 </tr>
 </table>
@@ -608,56 +609,57 @@ The confusion matrix permits specification of a number of <high>helpful performa
 .pull-right45[
 
 
-<b>Accuracy</b>: Of all cases</i>, what percent of predictions are correct?
+<b>Richtigkeit</b>: Prozentsatz richtiger Vorhersagen <i>über alle Fälle hinweg</i>.
 
-$$\small Acc. = \frac{TP + TN}{ TP + TN + FN + FP} = 1-Loss_{01}$$
-
-<p style="padding-top:10px"></p>
-
-<b>Sensitivity</b>: Of the truly Positive cases</i>, what percent of predictions are correct?
-
-$$\small Sensitivity = \frac{TP}{ TP +FN }$$
-
-<b>Specificity</b>: Of the truly Negative cases</i>, what percent of predictions are correct?
+$$\small Richt. = \frac{RP + RN}{ RP + RN + FN + FP} = 1-Verlust_{01}$$
 
 <p style="padding-top:10px"></p>
 
-$$\small Specificity = \frac{TN}{ TN + FP }$$
+<b>Sensitivity</b>: Prozentsatz richtiger Vorhersagen <i>über tatsächlich positive Fälle hinweg</i>.
+
+$$\small Sensitivität = \frac{RP}{ RP +FN }$$
+
+<b>Specificity</b>: Prozentsatz richtiger Vorhersagen <i>über tatsächlich negative Fälle hinweg</i>.
+
+<p style="padding-top:10px"></p>
+
+$$\small Spezifität = \frac{RN}{ RN + FP }$$
 
 ]
 
 
 ---
 
-# Confusion matrix
+# Wahrheitsmatrix
 
 .pull-left45[
 
-The confusion matrix <high>tabulates prediction matches and mismatches</high> as a function of the true class.
+Die Wahrheitsmatrix (*confusion matrix*) 
 
-The confusion matrix permits specification of a number of <high>helpful performance metrics</high>.  
+Die Wahrheitsmatrix <high>enthält die Anzahl einer bestimmten Klasse zugeordneten Werte</high> als Funktion der tasächlichen Klasse.
 
+Anhand der Wahrheitsmatrix können unterschiedliche <high>statistische Gütekriterien</high> berechnet werden.  
 <br>
 
-<u> Confusion matrix </u>
+<u> Wahrheitsmatrix </u>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
 <tr>
   <td>
   </td>
   <td>
-    <eq><b>"Default"</b></eq>
+    <eq><b>"Krank"</b></eq>
   </td>
   <td>
-    <eq><b>"Repay"</b></eq>
+    <eq><b>"Gesund"</b></eq>
   </td>
 </tr>
 <tr>
   <td bgcolor="white">
-    <eq><b>Default</b></eq>
+    <eq><b>Krank</b></eq>
   </td>
   <td bgcolor="white">
-    <font color="#6ABA9A"> TP = 3</font>
+    <font color="#6ABA9A"> RP = 3</font>
   </td>
   <td bgcolor="white">
     <font color="#EA4B68"> FN = 1</font>
@@ -665,13 +667,13 @@ The confusion matrix permits specification of a number of <high>helpful performa
 </tr>
 <tr>
   <td>
-    <eq><b>Repay</b></eq>
+    <eq><b>Gesund</b></eq>
   </td>
   <td>
     <font color="#EA4B68"> FP = 1</font>
   </td>
   <td>
-    <font color="#6ABA9A"> TN = 2</font>
+    <font color="#6ABA9A"> RN = 2</font>
   </td>
 </tr>
 </table>
@@ -682,21 +684,21 @@ The confusion matrix permits specification of a number of <high>helpful performa
 .pull-right45[
 
 
-<b>Accuracy</b>: Of all cases</i>, what percent of predictions are correct?
+<b>Richtigkeit</b>: Prozentsatz richtiger Vorhersagen <i>über alle Fälle hinweg</i>.
 
-$$\small Acc. = \frac{TP + TN}{ TP + TN + FN + FP} = 1-Loss_{01}$$
-
-<p style="padding-top:10px"></p>
-
-<b>Sensitivity</b>: Of the truly Positive cases</i>, what percent of predictions are correct?
-
-$$\small Sensitivity = \frac{TP}{ TP +FN }$$
-
-<b>Specificity</b>: Of the truly Negative cases</i>, what percent of predictions are correct?
+$$\small Richt. = \frac{RP + RN}{ RP + RN + FN + FP} = 1-Verlust_{01}$$
 
 <p style="padding-top:10px"></p>
 
-$$\small Specificity = \frac{TN}{ TN + FP }$$
+<b>Sensitivity</b>: Prozentsatz richtiger Vorhersagen <i>über tatsächlich positive Fälle hinweg</i>.
+
+$$\small Sensitivität = \frac{RP}{ RP +FN }$$
+
+<b>Specificity</b>: Prozentsatz richtiger Vorhersagen <i>über tatsächlich negative Fälle hinweg</i>.
+
+<p style="padding-top:10px"></p>
+
+$$\small Spezifität = \frac{RN}{ RN + FP }$$
 
 ]
 
@@ -706,7 +708,7 @@ class: center,  middle
 
 <br><br>
 
-# Let's fit regression models with `caret`!
+# Fitten von Regressionsmodellen mit `caret`!
 
 ```{r, echo = FALSE, out.width = "70%"}
 knitr::include_graphics("https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png")
@@ -725,15 +727,15 @@ data(cars)
 
 .pull-left45[
 
-<u><mono>caret</mono>'s key fitting functions</u>
+<u><mono>caret</mono>'s Hauptfunktionen</u>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
 <tr>
   <td>
-  <b>Function</b>
+  <b>Funktion</b>
   </td>
   <td>
-    <b>Description</b>
+    <b>Beschreibung</b>
   </td>
 </tr>
 <tr>
@@ -741,7 +743,7 @@ data(cars)
     <mono>trainControl()</mono>
   </td>
   <td bgcolor="white">
-    Choose settings for how fitting should be carried out.
+    Wähle Spezifikationen dafür, wie das Modell gefittet werden soll.
   </td>
 </tr>
 <tr>
@@ -749,7 +751,7 @@ data(cars)
     <mono>train()</mono>
   </td>
   <td>
-    Specify the model and find *best* parameters.
+    Spezifiziere das Modell und finde die *besten* Paramterschätzwerte.
   </td>
 </tr>
 <tr>
@@ -757,7 +759,7 @@ data(cars)
     <mono>postResample()</mono>
   </td>
   <td bgcolor="white">
-    Evaluate model performance (fitting or prediction) for regression.
+    Evaluiere die Modellperformanz (Fitting oder Vorhersage) für Regressionsprobleme.
   </td>
 </tr>
 <tr>
@@ -765,7 +767,7 @@ data(cars)
     <mono>confusionMatrix()</mono>
   </td>
   <td bgcolor="white">
-    Evaluate model performance (fitting or prediction) for classification.
+    Evaluiere die Modellperformanz (Fitting oder Vorhersage) für Klassifikationsprobleme.
   </td>
 </tr>
 </table>
@@ -775,19 +777,19 @@ data(cars)
 .pull-right45[
 
 ```{r, eval = FALSE}
-# Step 1: Define control parameters
+# Schritt 1: Definiere Kontrollparameter
 #   trainControl()
 
 ctrl <- trainControl(...) 
 
-# Step 2: Train and explore model
+# Schritt 2: Fitte und exploriere das Modell
 #   train()
 
 mod <- train(...)
 summary(mod)
-mod$finalModel   # see final model
+mod$finalModel   # bestes Modell
 
-# Step 3: Assess fit
+# Schritt 3: Beurteile Fit
 #   predict(), postResample(), fon
 
 fit <- predict(mod)
@@ -810,13 +812,13 @@ confusionMatrix(fit, truth)
 
 .pull-left45[
 
-`trainControl()` controls how `caret` fits an ML model.
+`trainControl()` steuert, wie `caret` ein Modell fittet.
 
-For now, set `method = "none"` to keep things simple. More in the session on <b>optimization</b>.
+Für den Moment, verwende der Einfachheit halber `method = "none"`. Mehr hierzu in der <b>Optimisierung</b> Session.
 
 ```{r}
-# Fit the model without any 
-#  advanced parameter tuning methods
+# Fitte das Modell ohne fortgeschrittene 
+#  Tuningmethoden der Paramter
 
 ctrl <- trainControl(method = "none")
 ```
@@ -841,9 +843,9 @@ knitr::include_graphics("image/traincontrol_help.jpg")
 
 .pull-left4[
 
-`train()` is the fitting <high>workhorse</high> of `caret`, offering you <high>200+ models</high> just by changing the <high>method</high> argument!
+`train()` ist `caret`'s <high>Arbeitstier</high>, wenn es um Fitting geht. Damit können <high>über 200 Modelle</high> gefittet werden, wofür man jeweils nur das <high>method</high> Argument anpassen muss.
 
-<u><mono>train()</mono>'s key arguments</u>
+<u>Wichtige Argumente von <mono>train()</mono></u>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
 <tr>
@@ -851,7 +853,7 @@ knitr::include_graphics("image/traincontrol_help.jpg")
   <b>Argument</b>
   </td>
   <td>
-    <b>Description</b>
+    <b>Beschreibung</b>
   </td>
 </tr>
 <tr>
@@ -859,7 +861,7 @@ knitr::include_graphics("image/traincontrol_help.jpg")
     <mono>form</mono>
   </td>
   <td bgcolor="white">
-    Formula specifying features and criterion.
+    Modellformel, zur Spezifikation der AV und Features.
   </td>
 </tr>
 <tr>
@@ -867,7 +869,7 @@ knitr::include_graphics("image/traincontrol_help.jpg")
     <mono>data</mono>
   </td>
   <td>
-    Training data.
+    Datensatz für die Parameterschätzung.
   </td>
 </tr>
 <tr>
@@ -875,7 +877,7 @@ knitr::include_graphics("image/traincontrol_help.jpg")
     <mono>method</mono>
   </td>
   <td bgcolor="white">
-    The model (algorithm). 
+    Der Modellalgorithmus. 
   </td>
 </tr>
 <tr>
@@ -883,7 +885,7 @@ knitr::include_graphics("image/traincontrol_help.jpg")
     <mono>trControl</mono>
   </td>
   <td bgcolor="white">
-    Control parameters for fitting.
+    Kontrollparameter für den Fittingprozess.
   </td>
 </tr>
 <tr>
@@ -891,7 +893,7 @@ knitr::include_graphics("image/traincontrol_help.jpg")
     <mono>tuneGrid</mono>, <mono>preProcess</mono>
   </td>
   <td bgcolor="white">
-    Cool stuff for later.
+    Coole Dinge für später.
   </td>
 </tr>
 </table>
@@ -901,14 +903,14 @@ knitr::include_graphics("image/traincontrol_help.jpg")
 
 .pull-right5[
 ```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
-# Fit a regression model predicting Price
+# Fitte eine Regression zur Vorhersage des Einkommens
 
-income_mod <- 
-  train(form = income ~ ., # Formula
-        data = baselers,   # Training data
-        method = "glm",    # Regression
-        trControl = ctrl)  # Control Param's
-income_mod
+eink_mod <- 
+  train(form = einkommen ~ ., # Formel
+        data = basel,         # Daten
+        method = "glm",       # Regression
+        trControl = ctrl)     # Kontrollparameter
+eink_mod
 ```
 
 
@@ -920,10 +922,9 @@ income_mod
 # `train()`
 
 .pull-left4[
+`train()` ist `caret`'s <high>Arbeitstier</high>, wenn es um Fitting geht. Damit können <high>über 200 Modelle</high> gefittet werden, wofür man jeweils nur das <high>method</high> Argument anpassen muss.
 
-`train()` is the fitting <high>workhorse</high> of `caret`, offering you <high>200+ models</high> just by changing the <high>method</high> argument!
-
-<u><mono>train()</mono>'s key arguments</u>
+<u>Wichtige Argumente von <mono>train()</mono></u>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
 <tr>
@@ -931,7 +932,7 @@ income_mod
   <b>Argument</b>
   </td>
   <td>
-    <b>Description</b>
+    <b>Beschreibung</b>
   </td>
 </tr>
 <tr>
@@ -939,7 +940,7 @@ income_mod
     <mono>form</mono>
   </td>
   <td bgcolor="white">
-    Formula specifying features and criterion.
+    Modellformel, zur Spezifikation der AV und Features.
   </td>
 </tr>
 <tr>
@@ -947,7 +948,7 @@ income_mod
     <mono>data</mono>
   </td>
   <td>
-    Training data.
+    Datensatz für die Parameterschätzung.
   </td>
 </tr>
 <tr>
@@ -955,7 +956,7 @@ income_mod
     <mono>method</mono>
   </td>
   <td bgcolor="white">
-    The model (algorithm). 
+    Der Modellalgorithmus. 
   </td>
 </tr>
 <tr>
@@ -963,7 +964,7 @@ income_mod
     <mono>trControl</mono>
   </td>
   <td bgcolor="white">
-    Control parameters for fitting.
+    Kontrollparameter für den Fittingprozess.
   </td>
 </tr>
 <tr>
@@ -971,10 +972,11 @@ income_mod
     <mono>tuneGrid</mono>, <mono>preProcess</mono>
   </td>
   <td bgcolor="white">
-    Cool stuff for later.
+    Coole Dinge für später.
   </td>
 </tr>
 </table>
+
 
 ]
 
@@ -982,14 +984,14 @@ income_mod
 .pull-right5[
 
 ```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
-# Fit a random forest predicting Price
+# Fitte random forest zur Vorhersage von einkommen
 
-income_mod <- 
-  train(form = income ~ .,# Formula
-        data = baselers,  # Training data
-        method = "rf",    # Random Forest
-        trControl = ctrl) # Control Param's
-income_mod
+eink_mod <- 
+  train(form = einkommen ~ ., # Formel
+        data = basel,         # Daten
+        method = "rf",        # Random Forest
+        trControl = ctrl)     # Kontrollparameter
+eink_mod
 ```
 
 ]
@@ -1003,9 +1005,9 @@ income_mod
 
 <p style="padding-top:1px"></p>
 
-`train()` is the fitting <high>workhorse</high> of `caret`, offering you <high>200+ models</high> just by changing the <high>method</high> argument!
+`train()` ist `caret`'s <high>Arbeitstier</high>, wenn es um Fitting geht. Damit können <high>über 200 Modelle</high> gefittet werden, wofür man jeweils nur das <high>method</high> Argument anpassen muss.
 
-Find all 200+ models [here](http://topepo.github.io/caret/available-models.html).
+Alle 200+ Modelle findest du [hier](http://topepo.github.io/caret/available-models.html).
 
 ]
 
@@ -1025,17 +1027,17 @@ Find all 200+ models [here](http://topepo.github.io/caret/available-models.html)
 
 .pull-left4[
 
-The criterion must be the right type: 
+Die abhängige Variable muss die richtige Klasse haben: 
 
-<b><mono>numeric</mono> criterion = Regression</b><br>
-<b><mono>factor</mono> criterion = Classification</b>!
+<b><mono>numeric</mono> AV = Regression</b><br>
+<b><mono>factor</mono> AV = Klassifikation</b>!
 
 ```{r, echo = FALSE}
-Loans <- tibble::tibble(Default = c(0, 1, 0, 1, 1),
-              Age = c(45, 36, 76, 25, 36),
-             Gender = c("M", "F", "F", "M", "F"),
-             Cards = c(3, 2, 5, 2, 3),
-             Education = c(11, 14, 12, 17, 12)
+Loans <- tibble::tibble(Kreditausfall = c(0, 1, 0, 1, 1),
+              Alter = c(45, 36, 76, 25, 36),
+             Geschlecht = c("M", "F", "F", "M", "F"),
+             Karten = c(3, 2, 5, 2, 3),
+             Bildung = c(11, 14, 12, 17, 12)
              )
 
 Loans
@@ -1046,16 +1048,16 @@ Loans
 .pull-right5[
 
 ```{r, eval = FALSE}
-# Will be a regression task 
+# Regressionsproblem
 
-loan_mod <- train(form = Default ~ .,
+loan_mod <- train(form = Kreditausfall ~ .,
                   data = Loans,
                   method = "glm",
                   trControl = ctrl)
 
-# Will be a classification task
+# Klassifikationsproblem
 
-load_mod <- train(form = factor(Default) ~ .,
+load_mod <- train(form = factor(Kreditausfall) ~ .,
                   data = Loans,
                   method = "glm",
                   trControl = ctrl)
@@ -1070,17 +1072,17 @@ load_mod <- train(form = factor(Default) ~ .,
 
 .pull-left4[
 
-The `train()` function returns a `list` with a key object called `finalModel` - this is your <high>final machine learning model</high>!
+Die `train()` Funktion gibt eine `list`e zurück. Diese enthält ein `finalModel` Element - das ist unser <high>bestes gefittetes Model</high>.
 
-Access the model with `mod$finalModel` and <high>explore</high> the object with generic functions:
+Greiffe auf das Modell mit `mod$finalModel` zu und <high>exploriere</high> das Objekt mit generischen Funktionen:
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
 <tr>
   <td>
-  <b>Function</b>
+  <b>Funktion</b>
   </td>
   <td>
-    <b>Description</b>
+    <b>Beschreibung</b>
   </td>
 </tr>
 <tr>
@@ -1088,7 +1090,7 @@ Access the model with `mod$finalModel` and <high>explore</high> the object with 
     <mono>summary()</mono>
   </td>
   <td bgcolor="white">
-    Overview of the most important results.
+    Überblick über die wichtigsten Resultate.
   </td>
 </tr>
 <tr>
@@ -1096,7 +1098,7 @@ Access the model with `mod$finalModel` and <high>explore</high> the object with 
     <mono>names()</mono>
   </td>
   <td bgcolor="white">
-    See all named elements you can access with $.
+    Zeige Namen alle benannten Elemente (häufig mit `$` ansteuerbar).
   </td>
 </tr>
 </table>
@@ -1106,18 +1108,20 @@ Access the model with `mod$finalModel` and <high>explore</high> the object with 
 .pull-right5[
 
 ```{r, eval = FALSE, echo = TRUE}
-# Create a regression object
-income_mod <- 
-  train(form = income ~ age + height,
-        data = baselers)  # Training data
+# Fitte Regressionsmodell
+eink_mod <- 
+  train(form = einkommen ~ alter + groesse,
+        data = basel    # Daten
+        method = "glm",    # Regression
+        trControl = ctrl)  # Kontrollparameter
 
-# Look at all named outputs
-names(income_mod$finalModel)
+# Zeige benannte Elemente
+names(eink_mod$finalModel)
 ```
 
 ```{r, eval = TRUE, echo = FALSE}
-income_mod <- train(form = income ~ age + height, # Formula
-             data = baselers,   # Training data
+eink_mod <- train(form = einkommen ~ alter + groesse, # Formula
+             data = basel,   # Training data
              method = "glm",    # Regression
              trControl = ctrl)  # Control Parameters
 ```
@@ -1126,17 +1130,17 @@ income_mod <- train(form = income ~ age + height, # Formula
 options(width=60, max.print=6)
 
 # Look at all named outputs
-names(income_mod$finalModel)
+names(eink_mod$finalModel)
 ```
 
 ```{r, eval = F}
-# Access specific outputs
-income_mod$finalModel$coefficients
+# Zugriff auf speizifische Elemente
+eink_mod$finalModel$coefficients
 ```
 
 ```{r, echo =F}
 # Access specific outputs
-income_mod$finalModel$coefficients
+eink_mod$finalModel$coefficients
 options(width=104, max.print=1000)
 ```
 
@@ -1150,12 +1154,12 @@ options(width=104, max.print=1000)
 
 .pull-left5[
 
-The `predict()` function <high>produces predictions</high> from a model. Simply put model object as the first argument. 
+Die `predict()` Funktion <high>macht Vorhersagen</high> von einem Modell. Dazu muss man lediglich den Modelloutput als erstes Argument spezifizieren. 
 
 
 ```{r}
-# Get fitted values
-glm_fits <- predict(object = income_mod)
+# Extrahiere gefittete Werte
+glm_fits <- predict(object = eink_mod)
 glm_fits[1:8]
 ```
 
@@ -1176,12 +1180,12 @@ great_err + labs(title=element_blank(),subtitle = element_blank())
 
 .pull-left45[
 
-The `postResample()` function <high>gives a simple summary</high> of a models' performance in a <high>regression task</high>. Simply put the predicted values and the true values inside the function. 
+Die `postResample()` Funktion <high>erstellt eine einfache Zusammenfassung</high> der Modellperformanz bei <high>Regressionsproblemen</high>. Zu spezifizierende Argumente sind die vorhergesagten Werte und die wahren Werte.
 
 ```{r}
-# evaluate
+# Evaluiere Modellperformanz
 postResample(glm_fits,
-             baselers$income)
+             basel$einkommen)
 ```
 
 ]
@@ -1204,38 +1208,39 @@ great_err + labs(title=element_blank(),subtitle = element_blank())
 
 <p style="padding-top:10px"></p>
 
-The `confusionMatrix()` does the same for a models' performance in a <high>classification task</high>. Simply put the predicted values and the true values inside the function.
+Die `confusionMatrix()` Funktion erstellt eine Zusammenfassung der Modellperformanz bei <high>Klassifikationsproblemen</high>. Zu spezifizierende Argumente sind wiederum die vorhergesagten Werte und die wahren Werte.
 
 ```{r, eval = F}
-# eyecor to factor
-baselers$eyecor <- factor(baselers$eyecor)
+# sehhilfe zu factor
+basel$sehhilfe <- factor(basel$sehhilfe)
 
-# run glm model for classification
-eyecor_mod <- 
-  train(form = eyecor ~ age + height,
-        data = baselers,   
+# Regressionsmodell zur Klassifikation
+sehhilfe_mod <- 
+  train(form = sehhilfe ~ alter + geschlecht,
+        data = basel,   
         method = "glm",   
         trControl = ctrl) 
 
-# evaluate
-confusionMatrix(predict(eyecor_mod), 
-                baselers$eyecor)
+# Evaluiere Modellperformanz
+confusionMatrix(predict(sehhilfe_mod), 
+                basel$sehhilfe)
 ```
 
 ```{r, echo = F}
-# eyecor to factor
-baselers$eyecor <- factor(baselers$eyecor)
+# sehhilfe zu factor
+basel$sehhilfe <- factor(basel$sehhilfe)
+basel$geschlecht <- factor(basel$geschlecht)
 
-# run glm model for classification
-eyecor_mod <- 
-  train(form = eyecor ~ age + height,
-        data = baselers,   # Training data
-        method = "glm",    # Regression
-        trControl = ctrl)  # Control Parameters
+# Regressionsmodell zur Klassifikation
+sehhilfe_mod <- 
+  train(form = sehhilfe ~ alter + geschlecht,
+        data = basel,   
+        method = "glm",   
+        trControl = ctrl) 
 
-# evaluate
-res = confusionMatrix(predict(eyecor_mod), 
-                baselers$eyecor)
+# Evaluiere Modellperformanz
+res <- confusionMatrix(predict(sehhilfe_mod), 
+                basel$sehhilfe)
 ```
 
 ]
@@ -1255,6 +1260,6 @@ res
 
 class: middle, center
 
-<h1><a href=https://therbootcamp.github.io/ML_2019Oct/_sessions/Fitting/Fitting_practical.html>Practical</a></h1>
+<h1><a href=https://therbootcamp.github.io/ML_2020Apr/_sessions/Fitting/Fitting_practical.html>Practical</a></h1>
 
 
