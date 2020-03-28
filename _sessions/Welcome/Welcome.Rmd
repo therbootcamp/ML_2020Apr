@@ -1,11 +1,11 @@
 ---
-title: "Welcome!"
-author: "Machine Learning with R<br>
+title: "Willkommen"
+author: "Maschinelles Lernen mit R<br>
   <a href='https://therbootcamp.github.io'>
     Basel R Bootcamp
   </a>
   <br>
-  <a href='https://therbootcamp.github.io/ML_2019Oct/'>
+  <a href='https://therbootcamp.github.io/ML_2020Apr/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "Machine Learning with R<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "October 2019"
+date: "April 2020"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-      Machine Learning with R | October 2019
+      Machine Learning with R | April 2020
       </font>
     </a>
     </span>
@@ -62,56 +62,37 @@ options(digits = 4)
 knitr::opts_chunk$set(fig.align = 'center')
 ```
 
-.pull-left4[
-<br><br><br><br><br><br>
-# Welcome to the<br><high>Basel R Bootcamp!</high>
-
-### Machine Learning with R
-
-### October, 2019
-
-
-]
-
-.pull-right6[
-<br><br><br>
-
-<p align = "center">
-<img src="image/basel_mittlere.jpg" width="500"  height="400"><br>
-<font style="font-size:10px">from <a href="https://swisskyline.ch/schweizer-staedte/Basel/Basel-alle-Bilder/Basel-Mittlere-Bruecke-6.html">swisskyline.ch</a></font>
-</p>
-
-]
----
 
 .pull-left45[
 <br><br><br><br><br>
-#  Schedule and Materials
+#  Agenda und Materialien
 
-Click the "....running..." link on our homepage!
+Klicke auf <high>"....running..."</high> auf unserer Website!
 
-<font size="6" color="#F62D73"><a href="www.therbootcamp.com"><b>www.therbootcamp.com</b></a></font><br><br>
+<font style="font-size:28px"><a href="www.therbootcamp.com"><b>www.therbootcamp.com</b></a></font>
 
 ]
 
 .pull-right5[
 
 <br><br>
-<iframe src="https://therbootcamp.github.io" width="500" height="500"></iframe>
+<iframe src="https://therbootcamp.github.io/ML_2020Apr/" width="500" height="500"></iframe>
 
 ]
 
+
 ---
+
+
+
 
 .pull-left6[
 
-<br><br><br>
+<br><br><br><br><br>
 
+# Ziel
 
-# Aim
-
-
->###The aim of this workshop is enable you to thoughtfully implement machine learning methods, using R, to make data-driven decisions.
+>###Das Ziel dieses Kurses ist Euch den kompetenten Umgang mit Methoden des maschinellen Lernens und deren Implementierung zu vermitteln. 
 
 ]
 
@@ -125,55 +106,27 @@ Click the "....running..." link on our homepage!
 
 ---
 
-# What we will cover
-
-
-.pull-left45[
-
-1. Intro to the <high>fundamentals</high> of ML.
-
-2. Intro to a few influential ML <high>models</high>.
-
-3. Intro to <high>using R</high> for ML.
-
-4. Opportunity to <high>learn by doing</high>.
-
-5. Opportunity for <high>discussion</high>.
-
-<br>
-#### What we will <i>NOT</i> cover
-
-&emsp;In-depth, advanced treatment of ML.
-
-]
-
-
-.pull-right45[
-
-
-<p align = "center">
-<img src="image/veggies.jpg" ><br>
-<font style="font-size:10px">from <a href="https://www.machinelearningplus.com/machine-learning/caret-package/">machinelearningplus.com</a></font>
-</p>
-
-]
-
-
-
----
 
 .pull-left4[
 
-# Schedule 
-
-We have an <high>ambitious schedule</high>!
-
-2 days, 3-4 sessions per day, ~2.5 hours per session, on a variety of topics.
-
-Each session contains a slide-based <high>introduction</high> and a hands-on <high>programming interactive or practical</high>
-
 <br>
+# Agenda 
 
+<ul>
+  <li class="m1"><span><high>Workshop</high></span></li>
+  <ul class="level">
+    <li><span>3 Blöcke zu Fundamentals: Fitting, Predicting, Optimizing</span></li>
+    <li><span>1 Block zu Unsupervised Learning</span></li>
+    <li><span>2 Blöcke zu praktischen Überlegungen</span></li>
+  </ul><br>
+  <li class="m2"><span><high>Block</high>
+  <ul class="level">
+    <li><span>Folien-basierten Einführung</span></li>
+    <li><span>Viele Übungen</span></li>
+    <li><span>Interaktiven Zusammenfassung</span></li>
+  </ul>
+  </span></li>
+</ul>
 
 ]
 
@@ -186,39 +139,34 @@ Each session contains a slide-based <high>introduction</high> and a hands-on <hi
 
 ---
 
+
+# Einführung
+
 .pull-left45[
+<br2>
 
-# Introduction
-
-<high>30 - 45 minutes</high> slide based introduction to help you understand the basic concepts, including:
-<br><br>
-&emsp;&emsp;1. Theory<br>
-&emsp;&emsp;2. Code examples<br>
-&emsp;&emsp;3. Live demonstrations<br> 
-<br>
-
-<high>All available online</high>. Follow along, and don't worry about memorizing.
-
-<br><br>
-<a href="https://therbootcamp.github.io/ML_2019Oct/">This is a Link to our materials</a>.
-<br><br>
-
-Be interactive! <high>Ask questions!</high>
+<ul>
+  <li class="m1"><span><high>Einführung</high>
+  <br><br>
+  <ul class="level">
+    <li><span>30-45 min</span></li>
+    <li><span>Konzepte & Code Beispiele</span></li>
+  </ul>
+  </span></li>
+  <li class="m2"><span><high>Materialien</high>
+  <br><br>
+  <ul class="level">
+    <li><span>Immer <a href="https://therbootcamp.github.io/EDA_2020Feb/">online verfügbar</a></span></li>
+  </ul>
+  </span></li>
+</ul>
 
 ]
 
 .pull-right55[
 
-<br>
-
 <p align="center">
-<img src="https://img.freepik.com/free-vector/business-presentation_23-2147511785.jpg?size=338&ext=jpg" style="width:250px">
-<br>
-<font style="font-size:10px">from <a href="www.Freepik.com">Freepik.com</a></font>
-</p>
-
-<p align="center">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5DZ7eRkgxeFuEMEtuVC9YHz2v0STxeQ9YJyW2T3PbXGIci_2Lig" style="width:250px">
+<img src="image/present.jpg" style="width:350px">
 <br>
 <font style="font-size:10px">from <a href="www.Freepik.com">Freepik.com</a></font>
 </p>
@@ -230,150 +178,93 @@ Be interactive! <high>Ask questions!</high>
 
 .pull-left45[
 
-# Practicals
+# Übungen
 
-<high>Write your own</high> R scripts!
-<br><br>
-Anywhere from 10 ~ 30 programming tasks. Starts easy, gets <high>progressively more challenging</high>.
-<br><br>
-Go at your <high>own pace</high> and finish as much as you can. We have a <high>diverse group</high> with different backgrounds and interests, we love that!
-<br><br>
-We'll give you all the <high>answers later</high>.
-<br><br>
-Be interactive! <high>Ask questions!</high>
+
+<ul>
+  <li class="m1"><span><high>Selber Programmieren</high>
+  <br><br>
+  <ul class="level">
+    <li><span>20 - 50 Aufgaben</span></li>
+    <li><span>Zu Beginn einfach dann zunehmend schwieriger.</span></li>
+    <li><span>Folgt Eurem eigenen Tempo.</span></li>
+    <li><span>Antworten kommen später.</span></li>
+  </ul>
+  </span></li>
+</ul>
 
 ]
+
+
+
 
 .pull-right5[
 <br>
 
-  <iframe src="https://therbootcamp.github.io/ML_2019Oct/_sessions/Fitting/Fitting_practical.html" height="480px" width = "500px"></iframe>
+  <iframe src="https://therbootcamp.github.io/ML_2020Apr/_sessions/Fitting/Fitting_practical.html" height="480px" width = "500px"></iframe>
 
-  Example: <a href="https://therbootcamp.github.io/dML_2019Oct/_sessions/Fitting/Fitting_practical.html">Fitting Practical </a>
+  Beispiel:<a href="https://therbootcamp.github.io/ML_2020Apr/_sessions/Fitting/Fitting_practical.html"> Daten </a>
 
 ]
 
 ---
 
-.pull-left45[
-<br>
-# 1-1 Coaching
-
-Learning a computer language is <high>hard</high>.
-
-<high>Take breaks when you need them</high>, and don't get discouraged!
-
-Sometimes, you may find yourself in need of some <high>intensive help</high>. That's ok! We're here to help!
-
-At any time, you can <high>request a 15 minute 1-1 intensive</high> coaching session. We'll grab a coffee and work through it together.
-
-
-]
- 
-
-.pull-right5[
-
-
-<br><br>
-
-<p align="center">
-<img src="image/yesterdayitworked.jpg" height="500px">
-<br>
-<font style="font-size:10px">from <a href="www.geek-and-poke.com">geek-and-poke.com</a></font>
-</p>
-]
-
----
 # Cheatsheets
 
 <table width="100%" style="cellspacing:0; cellpadding:0; border:none">
   <tr>    
-
+  <td>
+  <p align = 'center'>RStudio<br><br>
+  <a href="image/rstudio-ide.pdf"><img border="0" alt="W3Schools" src="image/rstudio.png" height="180"></a></p>
+  </td>
+ 
   <td>
    <p align = 'center'>Base R<br><br>
-  <a href="http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf"><img border="0" alt="W3Schools" src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/baser_cheat_ss.png?raw=true" height="180"></a></p>
+  <a href="image/base-r.pdf"><img border="0" alt="W3Schools" src="image/baser.png" height="180"></a></p>
   </td>  
   
-    
-  <td>
-  <p align = 'center'>Data Import<br><br>
-  <a href="https://github.com/rstudio/cheatsheets/raw/master/3-data-import.pdf"><img border="0" alt="W3Schools" src="https://d33wubrfki0l68.cloudfront.net/b7142a24f47a959b8a4b67910c67db8b41036f28/ac9a2/wp-content/uploads/2018/08/data-import.png" height="180"></a></p>
+  <td> 
+   <p align = 'center'>Data Import<br><br>
+  <a href="image/data-import.pdf" download><img border="0" alt="W3Schools" src="image/import.png" height="180"></a></p>
   </td>
   
   <td>
-  <p align = 'center'>Data Transformation<br><br>
-  <a href="https://github.com/rstudio/cheatsheets/raw/master/4-data-transform.pdf"><img border="0" alt="W3Schools" src="https://d33wubrfki0l68.cloudfront.net/db69c3d03699d395475d2ac14d64f611054fa9a4/e98f3/wp-content/uploads/2018/08/data-transformation.png" height="180"></a></p>
+  <p align = 'center'>Data Wrangling<br><br>
+  <a href="image/data-transformation.pdf"><img border="0" alt="W3Schools" src="image/wrangling.png" height="180"></a></p>
   </td>
-
 
   <td>
-  <p align = 'center'>Caret<br><br>
-  <a href="https://github.com/rstudio/cheatsheets/raw/master/6-caret.pdf"><img border="0" alt="W3Schools" src="https://d33wubrfki0l68.cloudfront.net/ad16acdb544c1a9ca00c7dd175312a52f45e8979/7e9a2/wp-content/uploads/2015/01/caret-cheatsheet.png" height="180"></a></p>
+  <p align = 'center'>Data Visualization<br><br>
+  <a href="image/data-visualization-2.1.pdf"><img border="0" alt="W3Schools" src="image/plotting.png" height="180" ></a></p>
   </td>
-
+  
 
   </tr>
 </table>
 <br>
 
-
 ---
+
+# Vorstellung
 
 .pull-left5[
 
-<br><br>
-# Breaks
-
-Programming is exhausting! <high>Take breaks</high> when you need them!
-
-Help yourself to <high>refreshments</high> and as much coffee as you can drink.
-
-Lunch on your own or <high>walk with the group</high> to <high>Tibits</high> or the <high>Union Diner</high>
-
-Be back in the room at <high>13:00 sharp</high> so we can continue learning!
-
-]
-
-
-.pull-right4[
-
-<p align='center'><br><br><br><br>
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/tibits.jpg" height="400" vspace="10"><br>
-<font style="font-size:10px">from <a href="https://www.tibits.ch/de/restaurants.html#tibits-basel">Tibits.ch</a></font>
-</p>
-
-]
-
-
----
-
-.pull-left5[
-# Introductions
-
-1. What is your name?
-
-2. Where are you from?
-
-3. What is your current profession?
-
-4. What is your programming experience with R and in general?
-
-5. What is your experience with ML?
-
-6. What would you most like to do with ML?
-
-7. Coffee or tea?
-
-8. Beer or wine?
-
-9. Berlin or Paris?
+<ul>
+  <li class="m1"><span>Wie heisst Du?</span></li>
+  <li class="m2"><span>Was ist dein Beruf?</span></li>
+  <li class="m3"><span>Hast du Programmiererfahrung mit R oder anderen Programmiersprachen?</span></li>
+  <li class="m4"><span>Wieso möchtest Du R lernen?</span></li>
+  <li class="m5"><span>Kaffee oder Tee?</span></li>
+  <li class="m6"><span>Bier oder Wein?</span></li>
+  <li class="m7"><span>Berlin oder Paris?</span></li>
+</ul>
 
 ]
 
 .pull-right45[
-<br><br>
+
 <p align="center">
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/introductions.jpg" height="450px">
+<img src="image/vorstellung.jpg" height="360px">
 <br>
 <font style="font-size:10px">from <a href="www.artofmanliness.com">artofmanliness.com</a></font>
 </p>
@@ -383,6 +274,4 @@ Be back in the room at <high>13:00 sharp</high> so we can continue learning!
 ---
 class: middle, center
 
-<h1><a href=https://therbootcamp.github.io/ML_2019Oct/index.html>Schedule</a></h1>
-
-
+<h1><a href=https://therbootcamp.github.io/ML_2020Apr/index.html>Agenda</a></h1>
