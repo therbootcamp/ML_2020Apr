@@ -227,7 +227,7 @@ glm_fit <- predict(Grad.Rate_glm)
 criterion <- college_train$Grad.Rate
 ```
 
-2. Nun können wir mit der `postResample()` Funktion die Modellperformanz quantifizieren. Dazu müssen wir die Vorhergesagten, sowie die tatsächlichen Werte als Argumente in die Funktion geben.
+2. Nun können wir mit der `postResample()` Funktion die Modellperformanz quantifizieren. Dazu müssen wir die gefitteten, sowie die tatsächlichen Werte als Argumente in die Funktion geben.
 
 Genauer:
 
@@ -287,7 +287,7 @@ head(accuracy) # Nur die ersten paar Zeilen
 accuracy_agg
 ```
 
-6. Kreiere nun ein Streudiagramm mithilfe des untenstehenden Codes. Das Streudiagramm zeigt den Zusammenhang zwischen den vorhergesagten und den tatsächlichen Werten. Die Linie gibt dabei an, wo Vorhersage und tatsächliche Werte perfekt übereinstimmen.
+6. Kreiere nun ein Streudiagramm mithilfe des untenstehenden Codes. Das Streudiagramm zeigt den Zusammenhang zwischen den gefitteten und den tatsächlichen Werten. Die Linie gibt dabei an, wo Vorhersage und tatsächliche Werte perfekt übereinstimmen.
 
 ```{r, out.width = "60%", echo = TRUE, eval = FALSE}
 # Grundstruktur des Plots
@@ -391,7 +391,7 @@ summary(XXX)
 summary(Grad.Rate_glm_three)
 ```
 
-3. Extrahiere die vorhergesagten Werte und speichere sie als `glm_fit_three`.
+3. Extrahiere die gefitteten Werte und speichere sie als `glm_fit_three`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Speichere die Vorhersagen
@@ -505,7 +505,7 @@ summary(XXX)
 summary(Grad.Rate_glm_all)
 ```
 
-3. Extrahiere die vorhergesagten Werte und speichere sie als `glm_fit_all`.
+3. Extrahiere die gefitteten Werte und speichere sie als `glm_fit_all`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Speichere die Vorhersagen
@@ -627,7 +627,7 @@ summary(Private_glm)
 
 ### I - Modellperformanz
 
-1. Nun wollen wir die Modellperformanz evaluieren. Extrahiere die vorhergesagten Werte und speichere sie als `glm_fit_private`.
+1. Nun wollen wir die Modellperformanz evaluieren. Extrahiere die gefitteten Werte und speichere sie als `glm_fit_private`.
 
 ```{r, echo = TRUE, eval = FALSE}
 glm_fit_private <- predict(XXX)

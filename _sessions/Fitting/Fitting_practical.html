@@ -295,7 +295,7 @@ glm_fit &lt;- predict(XXX)</code></pre>
 <pre class="r"><code># Definiere einen Vektor mit den tatsächlichen Werten
 criterion &lt;- college_train$Grad.Rate</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Nun können wir mit der <code>postResample()</code> Funktion die Modellperformanz quantifizieren. Dazu müssen wir die Vorhergesagten, sowie die tatsächlichen Werte als Argumente in die Funktion geben.</li>
+<li>Nun können wir mit der <code>postResample()</code> Funktion die Modellperformanz quantifizieren. Dazu müssen wir die gefitteten, sowie die tatsächlichen Werte als Argumente in die Funktion geben.</li>
 </ol>
 <p>Genauer:</p>
 <ul>
@@ -331,7 +331,7 @@ accuracy_agg &lt;- accuracy %&gt;%
 <pre class="r"><code>accuracy
 accuracy_agg</code></pre>
 <ol start="6" style="list-style-type: decimal">
-<li>Kreiere nun ein Streudiagramm mithilfe des untenstehenden Codes. Das Streudiagramm zeigt den Zusammenhang zwischen den vorhergesagten und den tatsächlichen Werten. Die Linie gibt dabei an, wo Vorhersage und tatsächliche Werte perfekt übereinstimmen.</li>
+<li>Kreiere nun ein Streudiagramm mithilfe des untenstehenden Codes. Das Streudiagramm zeigt den Zusammenhang zwischen den gefitteten und den tatsächlichen Werten. Die Linie gibt dabei an, wo Vorhersage und tatsächliche Werte perfekt übereinstimmen.</li>
 </ol>
 <pre class="r"><code># Grundstruktur des Plots
 ggplot(data = accuracy,
@@ -407,7 +407,7 @@ Grad.Rate_glm_three &lt;- train(form = XXX ~ XXX + XXX + XXX,
 </ol>
 <pre class="r"><code>summary(XXX)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Extrahiere die vorhergesagten Werte und speichere sie als <code>glm_fit_three</code>.</li>
+<li>Extrahiere die gefitteten Werte und speichere sie als <code>glm_fit_three</code>.</li>
 </ol>
 <pre class="r"><code># Speichere die Vorhersagen
 glm_fit_three &lt;- predict(XXX)</code></pre>
@@ -453,7 +453,7 @@ postResample(pred = XXX, # Vorhergesagte Werte
 </ol>
 <pre class="r"><code>summary(XXX)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Extrahiere die vorhergesagten Werte und speichere sie als <code>glm_fit_all</code>.</li>
+<li>Extrahiere die gefitteten Werte und speichere sie als <code>glm_fit_all</code>.</li>
 </ol>
 <pre class="r"><code># Speichere die Vorhersagen
 glm_fit_all &lt;- predict(XXX)</code></pre>
@@ -505,7 +505,7 @@ class(college_train$Private)</code></pre>
 <div id="i---modellperformanz" class="section level3">
 <h3>I - Modellperformanz</h3>
 <ol style="list-style-type: decimal">
-<li>Nun wollen wir die Modellperformanz evaluieren. Extrahiere die vorhergesagten Werte und speichere sie als <code>glm_fit_private</code>.</li>
+<li>Nun wollen wir die Modellperformanz evaluieren. Extrahiere die gefitteten Werte und speichere sie als <code>glm_fit_private</code>.</li>
 </ol>
 <pre class="r"><code>glm_fit_private &lt;- predict(XXX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
