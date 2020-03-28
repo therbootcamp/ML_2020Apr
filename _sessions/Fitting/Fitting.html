@@ -22,11 +22,11 @@ layout: true
 
 &lt;div class="my-footer"&gt;
   &lt;span style="text-align:center"&gt;
-    &lt;span&gt; 
+    &lt;span&gt;
       &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/&gt;
     &lt;/span&gt;
     &lt;a href="https://therbootcamp.github.io/"&gt;
-      &lt;span style="padding-left:82px"&gt; 
+      &lt;span style="padding-left:82px"&gt;
         &lt;font color="#7E7E7E"&gt;
           www.therbootcamp.com
         &lt;/font&gt;
@@ -38,7 +38,7 @@ layout: true
       &lt;/font&gt;
     &lt;/a&gt;
     &lt;/span&gt;
-  &lt;/div&gt; 
+  &lt;/div&gt;
 
 ---
 
@@ -56,9 +56,10 @@ layout: true
 
 &lt;p style="padding-top:1px"&gt;&lt;/p&gt;
 
-Modelle können wir uns als &lt;high&gt;Familie von Modellen&lt;/high&gt; vorstellen, wobei jede Parameterkombination ein unterschiedliches Modell definiert
-
-Wenn wir ein Modell fitten, &lt;high&gt;identifizieren wir&lt;/high&gt; von der Familie von Modellen &lt;high&gt;dasjenige Modell, welches unsere Daten am besten abbildet&lt;/high&gt;. 
+&lt;ul&gt;
+&lt;li class="m1"&gt;&lt;span&gt;Modelle können wir uns als &lt;high&gt;Familie von Modellen&lt;/high&gt; vorstellen, wobei jede Parameterkombination ein unterschiedliches Modell definiert&lt;/span&gt;&lt;/li&gt;
+&lt;li class="m2"&gt;&lt;span&gt;Wenn wir ein Modell fitten, &lt;high&gt;identifizieren wir&lt;/high&gt; von der Familie von Modellen &lt;high&gt;dasjenige Modell, welches unsere Daten am besten abbildet&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -93,10 +94,10 @@ Wenn wir ein Modell fitten, &lt;high&gt;identifizieren wir&lt;/high&gt; von der 
 
 .pull-left45[
 
-Eines der &lt;high&gt; wichtigsten Konzepte&lt;/high&gt; in der Statistik und im maschinellen Lernen.
-
-Die Verlustfunktion definiert eine &lt;high&gt;Zusammenfassung der durch ein Modell begangenen Fehler&lt;/high&gt;.
-
+&lt;ul&gt;
+&lt;li class="m1"&gt;&lt;span&gt;Eines der &lt;high&gt; wichtigsten Konzepte&lt;/high&gt; in der Statistik und im maschinellen Lernen.&lt;/span&gt;&lt;/li&gt;
+&lt;li class="m2"&gt;&lt;span&gt;Die Verlustfunktion definiert eine &lt;high&gt;Zusammenfassung der durch ein Modell begangenen Fehler&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p style="padding-top:7px"&gt;
 
 `$$\Large Verlust = f(Fehler)$$`
@@ -193,11 +194,25 @@ Wenn `\(b_{i} = 0\)`, heisst das, `\(x_{i}\)` &lt;high&gt;bringt keinen Zusatznu
 
 &lt;p&gt;
 
-&lt;font style="font-size:24"&gt;&lt;b&gt; Mean Squared Error (MSE)&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;high&gt;Mittlere Quadratsumme der Abweichungen&lt;/high&gt; zwischen vorhergesagten und wahren Werten.&lt;br&gt;
+&lt;ul style="margin-bottom:-20px"&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Mean Squared Error (MSE)&lt;/b&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;Mittlere Quadratsumme der Abweichungen&lt;/high&gt; zwischen vorhergesagten und wahren Werten.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 $$ MSE = \frac{1}{n}\sum_{i \in 1,...,n}(y_{i} - \hat{y}_{i})^{2}$$
 
-&lt;br&gt;&lt;font style="font-size:24"&gt;&lt;b&gt; Mean Absolute Error (MAE)&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;high&gt;Mittlere absolute Abweichungen&lt;/high&gt; zwischen vorhergesagten und wahren Werten.&lt;br&gt;
+&lt;ul&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Mean Absolute Error (MAE)&lt;/b&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;Mittlere absolute Abweichungen&lt;/high&gt; zwischen vorhergesagten und wahren Werten.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 $$ MAE = \frac{1}{n}\sum_{i \in 1,...,n} \lvert y_{i} - \hat{y}_{i} \rvert$$
 
@@ -216,27 +231,37 @@ $$ MAE = \frac{1}{n}\sum_{i \in 1,...,n} \lvert y_{i} - \hat{y}_{i} \rvert$$
 
 ---
 
+.pull-left45[
 # Fitting
 
-.pull-left45[
-Es gibt zwei Möglichkeiten um die Parameterwerte zu finden, welche den Schaden minimieren.
+&lt;p style="margin-top:20px"&gt;
+&lt;ul style="margin-bottom:-20px"&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Analytisch&lt;/b&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;In gewissen Fällen, können die Parameterwerte &lt;high&gt;direkt berechnet&lt;/high&gt; werden, z.B., mit der &lt;i&gt;Normalgleichung&lt;/i&gt;:&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+$$ \large \boldsymbol b = (\boldsymbol X^T\boldsymbol X)^{-1}\boldsymbol X^T\boldsymbol y$$
 
-&lt;font style="font-size:24"&gt;&lt;b&gt; Analytisch &lt;/b&gt;
+&lt;ul&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Numerisch&lt;/b&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;In den meisten Fällen, müssen die Parameter jedoch mittels &lt;high&gt;gerichtetem trial and error&lt;/high&gt; Verfahren gefunden werden, z.B., mittels &lt;i&gt;gradient descent&lt;/i&gt;:&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+$$ \large \boldsymbol b_{n+1} = \boldsymbol b_{n}+\gamma \nabla F(\boldsymbol b_{n})$$
 
-In gewissen Fällen, können die Parameterwerte &lt;high&gt;direkt berechnet&lt;/high&gt; werden, z.B., mit der &lt;i&gt;Normalgleichung&lt;/i&gt;:
-
-`$$\boldsymbol b = (\boldsymbol X^T\boldsymbol X)^{-1}\boldsymbol X^T\boldsymbol y$$`
-
-&lt;font style="font-size:24"&gt;&lt;b&gt; Numerically &lt;/b&gt;
-
-In den meisten Fällen, müssen die Parameter jedoch mittels &lt;high&gt;gerichtetem trial and error&lt;/high&gt; Verfahren gefunden werden, z.B., mittels &lt;i&gt;gradient descent&lt;/i&gt;: 
-
-`$$\boldsymbol b_{n+1} = \boldsymbol b_{n}+\gamma \nabla F(\boldsymbol b_{n})$$`
-
+&lt;/p&gt;
 ]
 
 .pull-right45[
-
+&lt;br&gt;&lt;br&gt;
 &lt;p align = "center"&gt;
 &lt;img src="image/gradient.png" height=420px&gt;&lt;br&gt;
 &lt;font style="font-size:10px"&gt;angepasst von &lt;a href="https://me.me/i/machine-learning-gradient-descent-machine-learning-machine-learning-behind-the-ea8fe9fc64054eda89232d7ffc9ba60e"&gt;me.me&lt;/a&gt;&lt;/font&gt;
@@ -248,26 +273,32 @@ In den meisten Fällen, müssen die Parameter jedoch mittels &lt;high&gt;gericht
 ---
 
 .pull-left45[
-
 # Fitting
 
-&lt;p style="padding-top:1px"&gt;&lt;/p&gt;
+&lt;p style="margin-top:20px"&gt;
+&lt;ul style="margin-bottom:-20px"&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Analytisch&lt;/b&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;In gewissen Fällen, können die Parameterwerte &lt;high&gt;direkt berechnet&lt;/high&gt; werden, z.B., mit der &lt;i&gt;Normalgleichung&lt;/i&gt;:&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+$$ \large \boldsymbol b = (\boldsymbol X^T\boldsymbol X)^{-1}\boldsymbol X^T\boldsymbol y$$
 
-Es gibt zwei Möglichkeiten um die Parameterwerte zu finden, welche den Schaden minimieren.
+&lt;ul&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Numerisch&lt;/b&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;In den meisten Fällen, müssen die Parameter jedoch mittels &lt;high&gt;gerichtetem trial and error&lt;/high&gt; Verfahren gefunden werden, z.B., mittels &lt;i&gt;gradient descent&lt;/i&gt;:&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+$$ \large \boldsymbol b_{n+1} = \boldsymbol b_{n}+\gamma \nabla F(\boldsymbol b_{n})$$
 
-&lt;font style="font-size:24"&gt;&lt;b&gt; Analytisch &lt;/b&gt;
-
-In gewissen Fällen, können die Parameterwerte &lt;high&gt;direkt berechnet&lt;/high&gt; werden, z.B., mit der &lt;i&gt;Normalgleichung&lt;/i&gt;:
-
-`$$\boldsymbol b = (\boldsymbol X^T\boldsymbol X)^{-1}\boldsymbol X^T\boldsymbol y$$`
-
-&lt;font style="font-size:24"&gt;&lt;b&gt; Numerically &lt;/b&gt;
-
-In den meisten Fällen, müssen die Parameter jedoch mittels &lt;high&gt;gerichtetem trial and error&lt;/high&gt; Verfahren gefunden werden, z.B., mittels &lt;i&gt;gradient descent&lt;/i&gt;: 
-
-`$$\boldsymbol b_{n+1} = \boldsymbol b_{n}+\gamma \nabla F(\boldsymbol b_{n})$$`
-
-
+&lt;/p&gt;
 ]
 
 .pull-right45[
@@ -291,19 +322,22 @@ In den meisten Fällen, müssen die Parameter jedoch mittels &lt;high&gt;gericht
 
 .pull-left5[
 
-Es gibt zwei Typen von überwachtem Lernen, die häufig unter Verwendung des gleichen Modells angegangen werden können.
-
-&lt;font style="font-size:24px"&gt;&lt;b&gt;Regression&lt;/b&gt;&lt;/font&gt;
-
-Regressionsprobleme beinhalten die &lt;high&gt;Vorhersage eines quantitativen Features&lt;/high&gt;. 
-
-Z.B., die Vorhersage des Cholesterinlevels als Funktion von Alter.
-
-&lt;font style="font-size:24px"&gt;&lt;b&gt;Klassifikation&lt;/b&gt;&lt;/font&gt;
-
-Klassifikationsprobleme beinhalten die &lt;high&gt;Vorhersage eines kategorialen Features&lt;/high&gt;.   
-
-Z.B., die Vorhersage der Ursache von Brustschmerzen als Funktion von Alter.
+&lt;ul style="margin-bottom:-20px"&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Regression&lt;/b&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Regressionsprobleme beinhalten die &lt;high&gt;Vorhersage eines quantitativen Features&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Z.B., die Vorhersage des Cholesterinlevels als Funktion von Alter.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Klassifikation&lt;/b&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Klassifikationsprobleme beinhalten die &lt;high&gt;Vorhersage eines kategorialen Features&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Z.B., die Vorhersage der Ursache von Brustschmerzen als Funktion von Alter.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 
 ]
@@ -322,7 +356,9 @@ Z.B., die Vorhersage der Ursache von Brustschmerzen als Funktion von Alter.
 
 .pull-left45[
 
-In der [logistischen Regression](https://de.wikipedia.org/wiki/Logistische_Regression), modellieren wir eine kategoriale Variable `\(y \in (0,1)\)` als &lt;high&gt;gewichtete Summe der Features&lt;/high&gt;, wobei wir die Vorhersage mit einer &lt;high&gt;logistischen Linkfunktion&lt;/high&gt; transformieren:
+&lt;ul style="margin-bottom:-20px"&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;In der &lt;a href="https://de.wikipedia.org/wiki/Logistische_Regression"&gt;logistischen Regression&lt;/a&gt;, modellieren wir eine kategoriale Variable &lt;font style="font-size:22px"&gt;&lt;mono&gt;y &amp;isin; (0,1)&lt;/mono&gt;&lt;/font&gt; als &lt;high&gt;gewichtete Summe der Features&lt;/high&gt;, wobei wir die Vorhersage mit einer &lt;high&gt;logistischen Linkfunktion&lt;/high&gt; transformieren:&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p style="padding-top:10px"&gt;&lt;/p&gt;
 
@@ -330,8 +366,9 @@ In der [logistischen Regression](https://de.wikipedia.org/wiki/Logistische_Regre
 
 &lt;p style="padding-top:10px"&gt;&lt;/p&gt;
 
-Die logistische Funktion &lt;high&gt;bildet Vorhersagen auf den Bereich von 0 und 1&lt;/high&gt; – die beiden Kategorien – ab.
-
+&lt;ul style="margin-bottom:-20px"&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Die logistische Funktion &lt;high&gt;bildet Vorhersagen auf den Bereich von 0 und 1&lt;/high&gt; – die beiden Kategorien – ab.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p style="padding-top:10px"&gt;&lt;/p&gt;
 
@@ -351,7 +388,9 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 
 .pull-left45[
 
-In der [logistischen Regression](https://de.wikipedia.org/wiki/Logistische_Regression), modellieren wir eine kategoriale Variable `\(y \in (0,1)\)` als &lt;high&gt;gewichtete Summe der Features&lt;/high&gt;, wobei wir die Vorhersage mit einer &lt;high&gt;logistischen Linkfunktion&lt;/high&gt; transformieren:
+&lt;ul style="margin-bottom:-20px"&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;In der &lt;a href="https://de.wikipedia.org/wiki/Logistische_Regression"&gt;logistischen Regression&lt;/a&gt;, modellieren wir eine kategoriale Variable &lt;font style="font-size:22px"&gt;&lt;mono&gt;y &amp;isin; (0,1)&lt;/mono&gt;&lt;/font&gt; als &lt;high&gt;gewichtete Summe der Features&lt;/high&gt;, wobei wir die Vorhersage mit einer &lt;high&gt;logistischen Linkfunktion&lt;/high&gt; transformieren:&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p style="padding-top:10px"&gt;&lt;/p&gt;
 
@@ -359,8 +398,9 @@ In der [logistischen Regression](https://de.wikipedia.org/wiki/Logistische_Regre
 
 &lt;p style="padding-top:10px"&gt;&lt;/p&gt;
 
-Die logistische Funktion &lt;high&gt;bildet Vorhersagen auf den Bereich von 0 und 1&lt;/high&gt; – die beiden Kategorien – ab.
-
+&lt;ul style="margin-bottom:-20px"&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Die logistische Funktion &lt;high&gt;bildet Vorhersagen auf den Bereich von 0 und 1&lt;/high&gt; – die beiden Kategorien – ab.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p style="padding-top:10px"&gt;&lt;/p&gt;
 
@@ -380,16 +420,27 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 
 .pull-left45[
 
-&lt;font style="font-size:24px"&gt;&lt;b&gt;Distanz&lt;/b&gt;&lt;/font&gt;
-
-LogLoss wird – wie MSE und MAE –  als Distanzmass &lt;high&gt;zum Fitten von Parametern&lt;/high&gt;, verwendet. Es ist somit eine Alternative zu MSE und MAE.
+&lt;ul style="margin-bottom:-20px"&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Distanz&lt;/b&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;LogLoss wird – wie MSE und MAE –  als Distanzmass &lt;high&gt;zum Fitten von Parametern&lt;/high&gt;, verwendet. Es ist somit eine Alternative zu MSE und MAE.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 `$$\small LogLoss = -\frac{1}{n}\sum_{i}^{n}(log(\hat{y})y+log(1-\hat{y})(1-y))$$`
 `$$\small MSE = \frac{1}{n}\sum_{i}^{n}(y-\hat{y})^2; \: MAE = \frac{1}{n}\sum_{i}^{n} \lvert y-\hat{y} \rvert$$`
 
-&lt;font style="font-size:24px"&gt;&lt;b&gt;Überlappung&lt;/b&gt;&lt;/font&gt;
 
-Die 0-1 Verlustfunktion tested, ob die &lt;high&gt;vorhergesagte Kategorie, der tatsächlichen Kategorie entspricht&lt;/high&gt;. Wird häufig wegen der &lt;high&gt;einfachen Interpretation&lt;/high&gt; verwendet. 
+&lt;ul&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Überlappung&lt;/b&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Die 0-1 Verlustfunktion tested, ob die &lt;high&gt;vorhergesagte Kategorie, der tatsächlichen Kategorie entspricht&lt;/high&gt;. Wird häufig wegen der &lt;high&gt;einfachen Interpretation&lt;/high&gt; verwendet.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 `$$\small Verlust_{01}=\frac{1}{n}\sum_i^n I(y \neq \lfloor \hat{y} \rceil)$$`
 
@@ -407,44 +458,48 @@ Die 0-1 Verlustfunktion tested, ob die &lt;high&gt;vorhergesagte Kategorie, der 
 
 .pull-left45[
 
-Die Wahrheitsmatrix (*confusion matrix*) 
-
-Die Wahrheitsmatrix &lt;high&gt;enthält die Anzahl einer bestimmten Klasse zugeordneten Werte&lt;/high&gt; als Funktion der tasächlichen Klasse.
-
-Anhand der Wahrheitsmatrix können unterschiedliche &lt;high&gt;statistische Gütekriterien&lt;/high&gt; berechnet werden.  
+&lt;ul style="margin-bottom:-20px"&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die Wahrheitsmatrix (&lt;i&gt;confusion matrix&lt;/i&gt;) &lt;high&gt;enthält die Anzahl einer bestimmten Klasse zugeordneten Werte&lt;/high&gt; als Funktion der tasächlichen Klasse.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Anhand der Wahrheitsmatrix können unterschiedliche &lt;high&gt;statistische Gütekriterien&lt;/high&gt; berechnet werden.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;br&gt;
 
-&lt;u&gt; Wahrheitsmatrix &lt;/u&gt;
+&lt;b&gt; Wahrheitsmatrix &lt;/b&gt;
 
+&lt;font style="font-size:22px"&gt;
+&lt;br&gt;
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+&lt;col width=20%&gt;
+&lt;col width=40%&gt;
+&lt;col width=40%&gt;
 &lt;tr&gt;
   &lt;td&gt;
   &lt;/td&gt;
   &lt;td&gt;
-    &lt;eq&gt;&lt;b&gt;y&amp;#770; = 1&lt;/b&gt;&lt;/eq&gt;
+    &lt;eq&gt;&lt;b&gt;y = 1&lt;/b&gt;&lt;/eq&gt;
   &lt;/td&gt;
   &lt;td&gt;
-    &lt;eq&gt;&lt;b&gt;y&amp;#770; = 0&lt;/b&gt;&lt;/eq&gt;
+    &lt;eq&gt;&lt;b&gt;y = 0&lt;/b&gt;&lt;/eq&gt;
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;eq&gt;&lt;b&gt;y = 1&lt;/b&gt;&lt;/eq&gt;
+    &lt;eq&gt;&lt;b&gt;y&amp;#770; = 1&lt;/b&gt;&lt;/eq&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
     &lt;font color="#6ABA9A"&gt; Richtig positiv (RP)&lt;/font&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;font color="#EA4B68"&gt; Falsch negativ (FN)&lt;/font&gt;
+    &lt;font color="#EA4B68"&gt; Falsch positiv (FP)&lt;/font&gt;
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td&gt;
-    &lt;eq&gt;&lt;b&gt;y = 0&lt;/b&gt;&lt;/eq&gt;
+    &lt;eq&gt;&lt;b&gt;y&amp;#770; = 0&lt;/b&gt;&lt;/eq&gt;
   &lt;/td&gt;
   &lt;td&gt;
-    &lt;font color="#EA4B68"&gt; Falsch positiv (FP)&lt;/font&gt;
+    &lt;font color="#EA4B68"&gt; Falsch negativ (FN)&lt;/font&gt;
   &lt;/td&gt;
   &lt;td&gt;
     &lt;font color="#6ABA9A"&gt; Richtig negativ (RN)&lt;/font&gt;
@@ -452,7 +507,7 @@ Anhand der Wahrheitsmatrix können unterschiedliche &lt;high&gt;statistische Gü
 &lt;/tr&gt;
 &lt;/table&gt;
 
-
+&lt;/font&gt;
 ]
 
 .pull-right45[
@@ -464,11 +519,11 @@ Anhand der Wahrheitsmatrix können unterschiedliche &lt;high&gt;statistische Gü
 
 &lt;p style="padding-top:10px"&gt;&lt;/p&gt;
 
-&lt;b&gt;Sensitivity&lt;/b&gt;: Prozentsatz richtiger Vorhersagen &lt;i&gt;über tatsächlich positive Fälle hinweg&lt;/i&gt;.
+&lt;b&gt;Sensitivität&lt;/b&gt;: Prozentsatz richtiger Vorhersagen &lt;i&gt;über tatsächlich positive Fälle hinweg&lt;/i&gt;.
 
 `$$\small Sensitivität = \frac{RP}{ RP +FN }$$`
 
-&lt;b&gt;Specificity&lt;/b&gt;: Prozentsatz richtiger Vorhersagen &lt;i&gt;über tatsächlich negative Fälle hinweg&lt;/i&gt;.
+&lt;b&gt;Spezifität&lt;/b&gt;: Prozentsatz richtiger Vorhersagen &lt;i&gt;über tatsächlich negative Fälle hinweg&lt;/i&gt;.
 
 &lt;p style="padding-top:10px"&gt;&lt;/p&gt;
 
@@ -483,43 +538,49 @@ Anhand der Wahrheitsmatrix können unterschiedliche &lt;high&gt;statistische Gü
 
 .pull-left45[
 
-Die Wahrheitsmatrix (*confusion matrix*) 
+&lt;ul style="margin-bottom:-20px"&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die Wahrheitsmatrix (&lt;i&gt;confusion matrix&lt;/i&gt;) &lt;high&gt;enthält die Anzahl einer bestimmten Klasse zugeordneten Werte&lt;/high&gt; als Funktion der tasächlichen Klasse.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Anhand der Wahrheitsmatrix können unterschiedliche &lt;high&gt;statistische Gütekriterien&lt;/high&gt; berechnet werden.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-Die Wahrheitsmatrix &lt;high&gt;enthält die Anzahl einer bestimmten Klasse zugeordneten Werte&lt;/high&gt; als Funktion der tasächlichen Klasse.
-
-Anhand der Wahrheitsmatrix können unterschiedliche &lt;high&gt;statistische Gütekriterien&lt;/high&gt; berechnet werden.  
 &lt;br&gt;
 
-&lt;u&gt; Wahrheitsmatrix &lt;/u&gt;
+&lt;b&gt; Wahrheitsmatrix &lt;/b&gt;
+
+&lt;font style="font-size:22px"&gt;
+&lt;br&gt;
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+&lt;col width=20%&gt;
+&lt;col width=40%&gt;
+&lt;col width=40%&gt;
 &lt;tr&gt;
   &lt;td&gt;
   &lt;/td&gt;
   &lt;td&gt;
-    &lt;eq&gt;&lt;b&gt;"Krank"&lt;/b&gt;&lt;/eq&gt;
+    &lt;eq&gt;&lt;b&gt;Krank&lt;/b&gt;&lt;/eq&gt;
   &lt;/td&gt;
   &lt;td&gt;
-    &lt;eq&gt;&lt;b&gt;"Gesund"&lt;/b&gt;&lt;/eq&gt;
+    &lt;eq&gt;&lt;b&gt;Gesund&lt;/b&gt;&lt;/eq&gt;
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;eq&gt;&lt;b&gt;Krank&lt;/b&gt;&lt;/eq&gt;
+    &lt;eq&gt;&lt;b&gt;"Krank"&lt;/b&gt;&lt;/eq&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
     &lt;font color="#6ABA9A"&gt; RP = 3&lt;/font&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;font color="#EA4B68"&gt; FN = 1&lt;/font&gt;
+    &lt;font color="#EA4B68"&gt; FP = 1&lt;/font&gt;
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td&gt;
-    &lt;eq&gt;&lt;b&gt;Gesund&lt;/b&gt;&lt;/eq&gt;
+    &lt;eq&gt;&lt;b&gt;"Gesund"&lt;/b&gt;&lt;/eq&gt;
   &lt;/td&gt;
   &lt;td&gt;
-    &lt;font color="#EA4B68"&gt; FP = 1&lt;/font&gt;
+    &lt;font color="#EA4B68"&gt; FN = 1&lt;/font&gt;
   &lt;/td&gt;
   &lt;td&gt;
     &lt;font color="#6ABA9A"&gt; RN = 2&lt;/font&gt;
@@ -527,6 +588,7 @@ Anhand der Wahrheitsmatrix können unterschiedliche &lt;high&gt;statistische Gü
 &lt;/tr&gt;
 &lt;/table&gt;
 
+&lt;/font&gt;
 
 ]
 
@@ -539,11 +601,11 @@ Anhand der Wahrheitsmatrix können unterschiedliche &lt;high&gt;statistische Gü
 
 &lt;p style="padding-top:10px"&gt;&lt;/p&gt;
 
-&lt;b&gt;Sensitivity&lt;/b&gt;: Prozentsatz richtiger Vorhersagen &lt;i&gt;über tatsächlich positive Fälle hinweg&lt;/i&gt;.
+&lt;b&gt;Sensitivität&lt;/b&gt;: Prozentsatz richtiger Vorhersagen &lt;i&gt;über tatsächlich positive Fälle hinweg&lt;/i&gt;.
 
 `$$\small Sensitivität = \frac{RP}{ RP +FN }$$`
 
-&lt;b&gt;Specificity&lt;/b&gt;: Prozentsatz richtiger Vorhersagen &lt;i&gt;über tatsächlich negative Fälle hinweg&lt;/i&gt;.
+&lt;b&gt;Spezifität&lt;/b&gt;: Prozentsatz richtiger Vorhersagen &lt;i&gt;über tatsächlich negative Fälle hinweg&lt;/i&gt;.
 
 &lt;p style="padding-top:10px"&gt;&lt;/p&gt;
 
@@ -567,11 +629,9 @@ class: center,  middle
 
 ---
 
-# `caret`
+# `caret`s Haupfunktionen
 
 .pull-left45[
-
-&lt;u&gt;&lt;mono&gt;caret&lt;/mono&gt;'s Hauptfunktionen&lt;/u&gt;
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
 &lt;tr&gt;
@@ -625,7 +685,7 @@ class: center,  middle
 # Schritt 1: Definiere Kontrollparameter
 #   trainControl()
 
-ctrl &lt;- trainControl(...) 
+ctrl &lt;- trainControl(...)
 
 # Schritt 2: Fitte und exploriere das Modell
 #   train()
@@ -656,26 +716,28 @@ confusionMatrix(fit, truth)
 
 .pull-left45[
 
-`trainControl()` steuert, wie `caret` ein Modell fittet.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;trainControl()&lt;/mono&gt; steuert, &lt;high&gt;wie &lt;mono&gt;caret&lt;/mono&gt; ein Modell fittet.&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Für den Moment, verwende der Einfachheit halber &lt;mono&gt;method = "none"&lt;/mono&gt;. Mehr hierzu in der &lt;b&gt;Optimisierung&lt;/b&gt; Session.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-Für den Moment, verwende der Einfachheit halber `method = "none"`. Mehr hierzu in der &lt;b&gt;Optimisierung&lt;/b&gt; Session.
+&lt;br&gt;
 
 
 ```r
-# Fitte das Modell ohne fortgeschrittene 
+# Fitte das Modell ohne fortgeschrittene
 #  Tuningmethoden der Paramter
 
 ctrl &lt;- trainControl(method = "none")
+
+# zeige Dokumentation
+?trainControl
 ```
 
 ]
 
 .pull-right45[
 
-
-```r
-?trainControl
-```
 
 &lt;img src="image/traincontrol_help.jpg" width="100%" style="display: block; margin: auto;" /&gt;
 
@@ -687,9 +749,9 @@ ctrl &lt;- trainControl(method = "none")
 
 .pull-left4[
 
-`train()` ist `caret`'s &lt;high&gt;Arbeitstier&lt;/high&gt;, wenn es um Fitting geht. Damit können &lt;high&gt;über 200 Modelle&lt;/high&gt; gefittet werden, wofür man jeweils nur das &lt;high&gt;method&lt;/high&gt; Argument anpassen muss.
-
-&lt;u&gt;Wichtige Argumente von &lt;mono&gt;train()&lt;/mono&gt;&lt;/u&gt;
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; ist &lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Arbeitstier&lt;/high&gt;, wenn es um Fitting geht. Damit können &lt;high&gt;über 200 Modelle&lt;/high&gt; gefittet werden, wofür man jeweils nur das &lt;high&gt;method&lt;/high&gt; Argument anpassen muss.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
 &lt;tr&gt;
@@ -721,7 +783,7 @@ ctrl &lt;- trainControl(method = "none")
     &lt;mono&gt;method&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    Der Modellalgorithmus. 
+    Der Modellalgorithmus.
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -750,7 +812,7 @@ ctrl &lt;- trainControl(method = "none")
 ```r
 # Fitte eine Regression zur Vorhersage des Einkommens
 
-eink_mod &lt;- 
+eink_mod &lt;-
   train(form = einkommen ~ ., # Formel
         data = basel,         # Daten
         method = "glm",       # Regression
@@ -777,9 +839,9 @@ Resampling: None
 # `train()`
 
 .pull-left4[
-`train()` ist `caret`'s &lt;high&gt;Arbeitstier&lt;/high&gt;, wenn es um Fitting geht. Damit können &lt;high&gt;über 200 Modelle&lt;/high&gt; gefittet werden, wofür man jeweils nur das &lt;high&gt;method&lt;/high&gt; Argument anpassen muss.
-
-&lt;u&gt;Wichtige Argumente von &lt;mono&gt;train()&lt;/mono&gt;&lt;/u&gt;
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; ist &lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Arbeitstier&lt;/high&gt;, wenn es um Fitting geht. Damit können &lt;high&gt;über 200 Modelle&lt;/high&gt; gefittet werden, wofür man jeweils nur das &lt;high&gt;method&lt;/high&gt; Argument anpassen muss.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
 &lt;tr&gt;
@@ -811,7 +873,7 @@ Resampling: None
     &lt;mono&gt;method&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    Der Modellalgorithmus. 
+    Der Modellalgorithmus.
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -842,7 +904,7 @@ Resampling: None
 ```r
 # Fitte random forest zur Vorhersage von einkommen
 
-eink_mod &lt;- 
+eink_mod &lt;-
   train(form = einkommen ~ ., # Formel
         data = basel,         # Daten
         method = "rf",        # Random Forest
@@ -869,11 +931,10 @@ Resampling: None
 
 # `train()`
 
-&lt;p style="padding-top:1px"&gt;&lt;/p&gt;
-
-`train()` ist `caret`'s &lt;high&gt;Arbeitstier&lt;/high&gt;, wenn es um Fitting geht. Damit können &lt;high&gt;über 200 Modelle&lt;/high&gt; gefittet werden, wofür man jeweils nur das &lt;high&gt;method&lt;/high&gt; Argument anpassen muss.
-
-Alle 200+ Modelle findest du [hier](http://topepo.github.io/caret/available-models.html).
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; ist &lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Arbeitstier&lt;/high&gt;, wenn es um Fitting geht. Damit können &lt;high&gt;über 200 Modelle&lt;/high&gt; gefittet werden, wofür man jeweils nur das &lt;high&gt;method&lt;/high&gt; Argument anpassen muss.&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="m2"&gt;&lt;span&gt;Alle 200+ Modelle findest du &lt;a href="http://topepo.github.io/caret/available-models.html"&gt;hier&lt;/a&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -893,10 +954,17 @@ Alle 200+ Modelle findest du [hier](http://topepo.github.io/caret/available-mode
 
 .pull-left4[
 
-Die abhängige Variable muss die richtige Klasse haben: 
+&lt;ul style="margin-bottom:-20px"&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die abhängige Variable muss die richtige Klasse haben:
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;&lt;mono&gt;numeric&lt;/mono&gt;&lt;/high&gt; AV &amp;rarr; &lt;high&gt;Regression&lt;/high&gt;&lt;br&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;&lt;mono&gt;factor&lt;/mono&gt;&lt;/high&gt; AV &amp;rarr; &lt;high&gt;Klassifkation&lt;/high&gt;&lt;br&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;b&gt;&lt;mono&gt;numeric&lt;/mono&gt; AV = Regression&lt;/b&gt;&lt;br&gt;
-&lt;b&gt;&lt;mono&gt;factor&lt;/mono&gt; AV = Klassifikation&lt;/b&gt;!
+&lt;br&gt;
 
 
 ```
@@ -940,9 +1008,12 @@ load_mod &lt;- train(form = factor(Kreditausfall) ~ .,
 
 .pull-left4[
 
-Die `train()` Funktion gibt eine `list`e zurück. Diese enthält ein `finalModel` Element - das ist unser &lt;high&gt;bestes gefittetes Model&lt;/high&gt;.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;train()&lt;/mono&gt; Funktion gibt eine &lt;mono&gt;list&lt;/mono&gt;e zurück. Diese enthält ein &lt;mono&gt;finalModel&lt;/mono&gt; Element - das ist unser &lt;high&gt;bestes gefittetes Model&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Greiffe auf das Modell mit &lt;mono&gt;mod$finalModel&lt;mono&gt; zu und &lt;high&gt;exploriere&lt;/high&gt; das Objekt mit generischen Funktionen:&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-Greiffe auf das Modell mit `mod$finalModel` zu und &lt;high&gt;exploriere&lt;/high&gt; das Objekt mit generischen Funktionen:
+&lt;br&gt;
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
 &lt;tr&gt;
@@ -978,7 +1049,7 @@ Greiffe auf das Modell mit `mod$finalModel` zu und &lt;high&gt;exploriere&lt;/hi
 
 ```r
 # Fitte Regressionsmodell
-eink_mod &lt;- 
+eink_mod &lt;-
   train(form = einkommen ~ alter + groesse,
         data = basel    # Daten
         method = "glm",    # Regression
@@ -1011,6 +1082,61 @@ eink_mod$finalModel$coefficients
 
 ]
 
+---
+
+# &lt;mono&gt;.$finalModel&lt;/mono&gt;
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;train()&lt;/mono&gt; Funktion gibt eine &lt;mono&gt;list&lt;/mono&gt;e zurück. Diese enthält ein &lt;mono&gt;finalModel&lt;/mono&gt; Element - das ist unser &lt;high&gt;bestes gefittetes Model&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Greiffe auf das Modell mit &lt;mono&gt;mod$finalModel&lt;mono&gt; zu und &lt;high&gt;exploriere&lt;/high&gt; das Objekt mit generischen Funktionen:&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+&lt;tr&gt;
+  &lt;td&gt;
+  &lt;b&gt;Funktion&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td&gt;
+    &lt;b&gt;Beschreibung&lt;/b&gt;
+  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;summary()&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Überblick über die wichtigsten Resultate.
+  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;names()&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Zeige Namen alle benannten Elemente (häufig mit `$` ansteuerbar).
+  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+# Zeige Modelloutput
+summary(eink_mod)
+```
+
+ &lt;p align = "center"&gt;
+&lt;img src="image/summary.png" height=225px&gt;
+&lt;/p&gt;
+
+]
 
 
 ---
@@ -1019,8 +1145,11 @@ eink_mod$finalModel$coefficients
 
 .pull-left5[
 
-Die `predict()` Funktion &lt;high&gt;macht Vorhersagen&lt;/high&gt; von einem Modell. Dazu muss man lediglich den Modelloutput als erstes Argument spezifizieren. 
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;predict()&lt;/mono&gt; Funktion &lt;high&gt;macht Vorhersagen&lt;/high&gt; von einem Modell. Dazu muss man lediglich den Modelloutput als erstes Argument spezifizieren.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
+&lt;br&gt;
 
 
 ```r
@@ -1049,7 +1178,11 @@ glm_fits[1:8]
 
 .pull-left45[
 
-Die `postResample()` Funktion &lt;high&gt;erstellt eine einfache Zusammenfassung&lt;/high&gt; der Modellperformanz bei &lt;high&gt;Regressionsproblemen&lt;/high&gt;. Zu spezifizierende Argumente sind die vorhergesagten Werte und die wahren Werte.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;postResample()&lt;/mono&gt; Funktion &lt;high&gt;erstellt eine einfache Zusammenfassung&lt;/high&gt; der Modellperformanz bei &lt;high&gt;Regressionsproblemen&lt;/high&gt;. Zu spezifizierende Argumente sind die vorhergesagten Werte und die wahren Werte.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
 
 
 ```r
@@ -1081,7 +1214,11 @@ postResample(glm_fits,
 
 &lt;p style="padding-top:10px"&gt;&lt;/p&gt;
 
-Die `confusionMatrix()` Funktion erstellt eine Zusammenfassung der Modellperformanz bei &lt;high&gt;Klassifikationsproblemen&lt;/high&gt;. Zu spezifizierende Argumente sind wiederum die vorhergesagten Werte und die wahren Werte.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;confusionMatrix()&lt;/mono&gt; Funktion erstellt eine Zusammenfassung der Modellperformanz bei &lt;high&gt;Klassifikationsproblemen&lt;/high&gt;. Zu spezifizierende Argumente sind wiederum die vorhergesagten Werte und die wahren Werte.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
 
 
 ```r
@@ -1089,14 +1226,14 @@ Die `confusionMatrix()` Funktion erstellt eine Zusammenfassung der Modellperform
 basel$sehhilfe &lt;- factor(basel$sehhilfe)
 
 # Regressionsmodell zur Klassifikation
-sehhilfe_mod &lt;- 
+sehhilfe_mod &lt;-
   train(form = sehhilfe ~ alter + geschlecht,
         data = basel,   
         method = "glm",   
-        trControl = ctrl) 
+        trControl = ctrl)
 
 # Evaluiere Modellperformanz
-confusionMatrix(predict(sehhilfe_mod), 
+confusionMatrix(predict(sehhilfe_mod),
                 basel$sehhilfe)
 ```
 
