@@ -1,11 +1,11 @@
 ---
-title: "Optimization"
-author: "Machine Learning with R<br>
+title: "Optimizing"
+author: "Maschinelles Lernen mit R<br>
   <a href='https://therbootcamp.github.io'>
     Basel R Bootcamp
   </a>
   <br>
-  <a href='https://therbootcamp.github.io/ML_2019Oct/'>
+  <a href='https://therbootcamp.github.io/ML_2020Apr/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "Machine Learning with R<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "October 2019"
+date: "April 2020"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-       Machine Learning with R | October 2019
+      Machine Learning mit R | April 2020
       </font>
     </a>
     </span>
@@ -167,13 +167,12 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
 
 .pull-left4[
 <br><br><br>
-# Fighting overfitting
+# Overfitting vermeiden
 
-When a model <high>fits the training data too well</high> on the expense of its performance in prediction, this is called overfitting.  
-
-Just because model A is better than model B in training, does not mean it will be better in testing! Extremely flexible models are <high>'wolves in sheep's clothing'</high>.
-
-But is there nothing we can do?
+<ul>
+  <li class="m1"><span>Overfitting tritt ein, wenn ein model die <high>Daten zu genau fitted</high> und deswegen <high>keine guten Vorhersagen</high> liefert</span></li><br>
+  <li class="m2"><span>Gute Performanz in Training bedeutet also nicht unbedingt <high>gute Performanz in Test</high>.</span></li>
+</ul>
 
 ]
 
@@ -191,7 +190,7 @@ But is there nothing we can do?
 
 ---
 
-# Tuning parameters
+# Tuning Parameter
 
 .pull-left45[
 

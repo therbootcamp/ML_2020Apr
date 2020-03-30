@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
-    <title>Prediction</title>
+    <title>Predicting</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Machine Learning with R   Basel R Bootcamp" />
+    <meta name="author" content="Maschinelles Lernen mit R   Basel R Bootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
   </head>
@@ -11,9 +11,9 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Prediction
-### Machine Learning with R<br> <a href='https://therbootcamp.github.io'> Basel R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2019Oct/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
-### October 2019
+# Predicting
+### Maschinelles Lernen mit R<br> <a href='https://therbootcamp.github.io'> Basel R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### April 2020
 
 ---
 
@@ -34,7 +34,7 @@ layout: true
     &lt;/a&gt;
     &lt;a href="https://therbootcamp.github.io/"&gt;
       &lt;font color="#7E7E7E"&gt;
-      Machine Learning with R | October 2019
+      Machine Learning mit R | April 2020
       &lt;/font&gt;
     &lt;/a&gt;
     &lt;/span&gt;
@@ -48,19 +48,19 @@ layout: true
 
 
 
-# Prediction is...
+# Predicting...
 
 .pull-left45[
 
 &lt;p&gt;
 &lt;font style="font-size:32px"&gt;&lt;i&gt;Prediction is very difficult, especially if it's about the future.&lt;/i&gt;&lt;/font&gt;
 &lt;br&gt;&lt;br&gt;
-Nils Bohr, Nobel Laureate in Physics
+Nils Bohr, Nobelpreisträger in Physik
 &lt;br&gt;&lt;br&gt;
 &lt;font style="font-size:32px"&gt;&lt;i&gt;An economist is an expert who will know tomorrow why the things he predicted yesterday didn't happen today.&lt;/i&gt;&lt;/font&gt;
 &lt;br&gt;&lt;br&gt;
 
-Evan Esar, Humorist
+Evan Esar, Satiriker
 
 &lt;/p&gt;
 
@@ -77,15 +77,18 @@ Evan Esar, Humorist
 
 ---
 
-# Hold-out data
+# "Hold-out"-Daten
 
 .pull-left45[
 
-Model performance must be evaluated as true prediction on an &lt;high&gt;unseen data set&lt;/high&gt;.
-
-The unseen data set can be &lt;high&gt;naturally&lt;/high&gt; occurring, e.g., using 2019 stock prizes to evaluate a model fit using 2018 stock prizes. 
-
-More commonly unseen data is created by &lt;high&gt;splitting the available data&lt;/high&gt; into a training set and a test set. 
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die Performanz eines Models wird i.a.R. über die Vorhersage &lt;high&gt;&lt;i&gt;ungesehener&lt;/i&gt; Daten&lt;/high&gt; evaluiert.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Die &lt;i&gt;ungesehenen&lt;/i&gt; Daten können &lt;high&gt;natürlich vorkommen&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;zB. Aktiendaten aus 2019 für ein Modell auf Basis von Aktiendaten aus 2018&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Meist werden die &lt;i&gt;ungesehenen&lt;/i&gt; Daten manuell kreiert in dem die verfügbaren Daten in &lt;high&gt;Training und Test&lt;/high&gt; aufgeteilt werden.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -100,13 +103,10 @@ More commonly unseen data is created by &lt;high&gt;splitting the available data
 
 ---
 
-# Training
+# Training &lt;font style="font-size:20px"&gt;(= Fitting)&lt;/font&gt;
 
-Training a model means to &lt;high&gt;fit the model&lt;/high&gt; to data by finding the parameter combination that &lt;high&gt;minizes some error function&lt;/high&gt;, e.g., mean squared error (MSE).
-
-
-&lt;p align = "center" style="padding-top:30px"&gt;
-&lt;img src="image/training_flow.png" height=350px&gt;
+&lt;p align = "center" style="margin-top:40px"&gt;
+&lt;img src="image/training_flow.png" height=430px&gt;
 &lt;/p&gt;
 
 
@@ -114,25 +114,21 @@ Training a model means to &lt;high&gt;fit the model&lt;/high&gt; to data by find
 
 # Test
 
-To test a model means to &lt;high&gt;evaluate the prediction error&lt;/high&gt; for a fitted model, i.e., for a &lt;high&gt;fixed parameter combination&lt;/high&gt;.
-
-
-&lt;p align = "center" style="padding-top:30px"&gt;
-&lt;img src="image/testing_flow.png" height=350px&gt;
+&lt;p align = "center" style="margin-top:40px"&gt;
+&lt;img src="image/testing_flow.png" height=390px&gt;
 &lt;/p&gt;
-
 
 ---
 
-# Why do we separate training from testing?
+# Warum wird training und test getrennt?
 
 &lt;br&gt;
-&lt;p align = "center"&gt;&lt;font size = 6&gt;&lt;i&gt;"Can you come up with a model that will perfectly fit the training criterion but is worthless in predicting test data?"&lt;/i&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+&lt;p align = "center"&gt;&lt;font size = 6&gt;&lt;i&gt;"Könnt ihr euch ein Modell vorstellen, dass perfekten Fit im Training liefert und in der Vorhersage nutzlos ist?"&lt;/i&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;
 
 .pull-left45[
 
 
-&lt;high&gt;Training data&lt;/high&gt;
+&lt;high&gt;Trainingsdaten&lt;/high&gt;
 &lt;br&gt;
 
 
@@ -149,7 +145,7 @@ To test a model means to &lt;high&gt;evaluate the prediction error&lt;/high&gt; 
 .pull-right45[
 
 
-&lt;high&gt; Test data&lt;/high&gt;
+&lt;high&gt; Testdaten&lt;/high&gt;
 &lt;br&gt;
 
 
@@ -172,11 +168,11 @@ To test a model means to &lt;high&gt;evaluate the prediction error&lt;/high&gt; 
 &lt;br&gt;&lt;br&gt;
 # Overfitting
 
-Occurs when a model &lt;high&gt;fits data too closely&lt;/high&gt; and therefore &lt;high&gt;fails to reliably predict&lt;/high&gt; future observations. 
-
-In other words, overfitting occurs when a model &lt;high&gt;'mistakes' random noise for a predictable signal&lt;/high&gt;.
-
-More &lt;high&gt;complex models&lt;/high&gt; are more &lt;high&gt;prone to overfitting&lt;/high&gt;. 
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Tritt ein, wenn ein model die &lt;high&gt;Daten zu genau fitted&lt;/high&gt; und deswegen &lt;high&gt;keine guten Vorhersagen&lt;/high&gt; liefert.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Ein zu genauer fit bedeutet, dass z.T. züfällige Tendenzen, sog. &lt;high&gt;Rauschen gefittet&lt;/high&gt; wird.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;high&gt;"Komplexere" Modelle&lt;/high&gt; neigen mehr zu overfitting.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -200,7 +196,7 @@ More &lt;high&gt;complex models&lt;/high&gt; are more &lt;high&gt;prone to overf
 ---
 class: center, middle
 
-# Two new models enter the ring...
+&lt;h1&gt;&lt;a&gt;Zwei neue Modelle&lt;/a&gt;&lt;/h1&gt;
 
 ---
 class: center, middle
@@ -217,10 +213,10 @@ class: center, middle
 
 .pull-left45[
 
-CART is short for &lt;high&gt;Classification and Regression Trees&lt;/high&gt;, which are often just called &lt;high&gt;Decision trees&lt;/high&gt;.
-
-In [decision trees](https://en.wikipedia.org/wiki/Decision_tree), the criterion is modeled as a &lt;high&gt;sequence of logical TRUE or FALSE questions&lt;/high&gt;.
-&lt;br&gt;&lt;br&gt;
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;CART = Classification And Regression trees&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Modelliert das Kriterium als &lt;high&gt;Sequenz logischer Entscheidungen&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -237,15 +233,15 @@ In [decision trees](https://en.wikipedia.org/wiki/Decision_tree), the criterion 
 
 .pull-left45[
 
-Classification trees (and regression trees) are created using a relatively simple &lt;high&gt;three-step algorithm&lt;/high&gt;. 
 
-&lt;u&gt;Algorithm&lt;/u&gt;
-
-1 - &lt;high&gt;Split&lt;/high&gt; nodes to maximize &lt;b&gt;purity gain&lt;/b&gt; (e.g., Gini gain).
-
-2 - &lt;high&gt;Repeat&lt;/high&gt; until pre-defined threshold (e.g., `minsplit`) splits are no longer possible.
-
-3 - &lt;high&gt;Prune&lt;/high&gt; tree to reasonable size.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Classification und regression trees werden mit dem folgen &lt;high&gt;Algorithmus&lt;/high&gt; gefitted:&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;ul&gt;
+  &lt;li&gt;&lt;span&gt;1 - &lt;high&gt;Trenne&lt;/high&gt; Knoten so, dass &lt;mono&gt;purity gain&lt;/mono&gt; (zB., Gini gain) maximiert wird.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li&gt;&lt;span&gt;2 - &lt;high&gt;Wiederhole&lt;/high&gt; bis zu einer vordefinierten Schwelle (zB. &lt;mono&gt;minsplit&lt;/mono&gt;).&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li&gt;&lt;span&gt;3 - &lt;high&gt;Stutze&lt;/high&gt; den Baum gemäss &lt;mono&gt;complexity parameter&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -258,21 +254,24 @@ Classification trees (and regression trees) are created using a relatively simpl
 
 ---
 
-# Node splitting
+# Auftrennen der Knoten
 
 .pull-left45[
 
-Classification trees attempt to &lt;high&gt;minize node impurity&lt;/high&gt; using, e.g., the &lt;high&gt;Gini coefficient&lt;/high&gt;.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Classification trees versuchen ingesamt &lt;highm&gt;impurity&lt;/highm&gt; zu minimieren.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 
 `$$\large Gini(S) = 1 - \sum_j^kp_j^2$$`
 
-Nodes are &lt;high&gt;split&lt;/high&gt; using the variable and split value that &lt;high&gt;maximizes Gini gain&lt;/high&gt;. 
-
+&lt;ul&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Durch das Auftrennen eines Knotens  werden Cases so aufgeteilt, dass der resultierende &lt;highm&gt;purity gain&lt;/highm&gt; maxmial ist.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 `$$Gini \; gain = Gini(S) - Gini(A,S)$$`
 
-with
+mit
 
 `$$Gini(A, S) = \sum \frac{n_i}{n}Gini(S_i)$$`
 
@@ -290,13 +289,13 @@ with
 
 ---
 
-# Pruning trees
+# Stutzen der Bäume
 
 .pull-left45[
 
-Classification trees are &lt;high&gt;pruned&lt;/high&gt; back such that every split has a purity gain of at least &lt;high&gt;&lt;mono&gt;cp&lt;/mono&gt;&lt;/high&gt;, with `cp` typically set to `.01`.  
-
-Minimize:
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Classification trees werden schluessendlich &lt;high&gt;gestutzt (pruned)&lt;/high&gt; so dass jedes Auftrennen eines Knoteeens einen gain von mindestens &lt;highm&gt;cp&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;br&gt;
 
@@ -324,16 +323,20 @@ $$
 
 .pull-left45[
 
-Trees can also be used to perform regression tasks. Instead of impurity, regression trees attempt to &lt;high&gt;minimize within-node variance&lt;/high&gt; (or maximize node homogeneity): 
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Regression trees &lt;high&gt;minimieren die Binnenvarianz der Knoten&lt;/high&gt;, bzw. maximieren Homogenität innerhalb der Knoten.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 
 `$$\large SSE = \sum_{i \in S_1}(y_i - \bar{y}_1)^2+\sum_{i \in S_2}(y_i - \bar{y}_2)^2$$`
-&lt;u&gt;Algorithm&lt;/u&gt;
-
-1 - &lt;high&gt;Split&lt;/high&gt; nodes to maximize &lt;b&gt;homogeneity gain&lt;/b&gt;.
-
-2 - &lt;high&gt;Repeat&lt;/high&gt; until pre-defined threshold (e.g., `minsplit`) splits are no longe possible.
-
-3 - &lt;high&gt;Prune&lt;/high&gt; tree to reasonable size.
+&lt;ul&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Algorithmus:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul&gt;
+  &lt;li&gt;&lt;span&gt;1 - &lt;high&gt;Trenne&lt;/high&gt; Knoten, so dass der grösste &lt;high&gt;Zugewinn an Homogenität entsteht&lt;/high&gt;.&lt;/li&gt;&lt;/span&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;2 - &lt;high&gt;Wiederhole&lt;/high&gt; bis zu einer vordefinierten Schwelle (zB. &lt;mono&gt;minsplit&lt;/mono&gt;).&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li&gt;&lt;span&gt;3 - &lt;high&gt;Stutze&lt;/high&gt; den Baum gemäss &lt;mono&gt;complexity parameter&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -355,9 +358,10 @@ Trees can also be used to perform regression tasks. Instead of impurity, regress
 
 .pull-left4[
 
-Fit &lt;high&gt;decision trees&lt;/high&gt; in `caret` using `method = "rpart"`.
-
-`caret` will &lt;high&gt;choose automatically&lt;/high&gt; whether to use classification or regression trees depending on whether the criterion is a `factor` or not.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Fitte eine decision tree in &lt;mono&gt;caret&lt;/mono&gt; mit &lt;highm&gt;method = "rpart"&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Wenn das &lt;high&gt;Kriterium ein &lt;mono&gt;factor&lt;/mono&gt;&lt;/high&gt; ist, verwendet &lt;mono&gt;caret&lt;/mono&gt; einen Classificaton tree, anonsten einen Regression tree&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -365,18 +369,18 @@ Fit &lt;high&gt;decision trees&lt;/high&gt; in `caret` using `method = "rpart"`.
 
 
 ```r
-# Fit a decision tree predicting default
+# Fitte einen decision tree
 
-train(form = default ~ .,
+train(form = default ~ ., # factor
       data = Loans,
-      method = "rpart", # Decision Tree
+      method = "rpart",
       trControl = ctrl)
 
-# Fit a decision tree predicting income
+# Fitte einen regression tree
 
-train(form = income ~ .,
+train(form = income ~ ., # kein factor
       data = baselers,
-      method = "rpart", # Decision Tree
+      method = "rpart",
       trControl = ctrl)
 ```
 
@@ -400,22 +404,19 @@ class: center, middle
 
 # Random Forest
 
-&lt;p style="padding-top:1px"&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;In Random Forests wird das Kriterium als &lt;high&gt;Aggregat vieler Entscheidungsbäume&lt;/high&gt; modelliert.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Algorithmus:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul&gt;
+  &lt;li&gt;&lt;span&gt;1 - &lt;high&gt;Wiederhole&lt;/high&gt; &lt;mono&gt;n&lt;/mono&gt; mal.&lt;/li&gt;&lt;/span&gt;&lt;br&gt;
+  &lt;ul&gt;
+  &lt;li&gt;&lt;span&gt;1 - &lt;high&gt;Resample&lt;/high&gt; die Daten.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li&gt;&lt;span&gt;2 - &lt;high&gt;Fitte&lt;/high&gt; nicht-gestutzte Entscheidungsbäume.&lt;br&gt;&lt;br&gt;Berücksichte bei jeder Auftrennung nur &lt;high&gt;&lt;mono&gt;m&lt;/mono&gt; Feature&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;/ul&gt;
+  &lt;li&gt;&lt;span&gt;2 - &lt;high&gt;Mittele&lt;/high&gt; die gefitteten Werte.&lt;/li&gt;&lt;/span&gt;&lt;br&gt;  
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
-In [Random Forest](https://en.wikipedia.org/wiki/Random_forest), the criterion is modeled as the &lt;high&gt;aggregate prediction of a large number of decision trees&lt;/high&gt; each based on different features.
-&lt;br&gt;
-
-&lt;u&gt;Algorithm&lt;/u&gt;
-
-1 - &lt;high&gt;Repeat&lt;/high&gt; *n* times
-
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1 - &lt;high&gt;Resample&lt;/high&gt; data 
-
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;2 - &lt;high&gt;Grow&lt;/high&gt; non-pruned decision tree
-
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Each split &lt;high&gt;consider only &lt;i&gt;m&lt;/i&gt; features&lt;/high&gt;
-
-2 - &lt;high&gt;Average&lt;/high&gt; fitted values
 
 ]
 
@@ -435,10 +436,11 @@ In [Random Forest](https://en.wikipedia.org/wiki/Random_forest), the criterion i
 
 .pull-left45[
 
-&lt;p style="padding-top:1px"&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Random Forests bedienen sich des &lt;high&gt;Baggings&lt;/high&gt; (&lt;high&gt;Resampling&lt;/high&gt; und &lt;high&gt;Averaging&lt;/high&gt;) um höre Vorhersageleistungen zu erzielen.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-Random forests make use of important machine learning elements, &lt;high&gt;resampling&lt;/high&gt; and &lt;high&gt;averaging&lt;/high&gt; that together are also referred to as &lt;high&gt;bagging&lt;/high&gt;. 
-
+&lt;br&gt;
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
   &lt;col width="30%"&gt;
@@ -489,9 +491,10 @@ Random forests make use of important machine learning elements, &lt;high&gt;resa
 
 .pull-left4[
 
-Fit &lt;high&gt;decision trees&lt;/high&gt; in `caret` using `method = "rf"`.
-
-Just like CART, random forests can be used for &lt;high&gt;classification or regression&lt;/high&gt;.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Fitte eine Random Forest in &lt;mono&gt;caret&lt;/mono&gt; mit &lt;highm&gt;method = "rf"&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Wenn das &lt;high&gt;Kriterium ein &lt;mono&gt;factor&lt;/mono&gt;&lt;/high&gt; ist, verwendet &lt;mono&gt;caret&lt;/mono&gt; Classificaton trees, anonsten einen Regression trees als Grundlage des Random Forest&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 `caret` will &lt;high&gt;choose automatically&lt;/high&gt; whether to use classification or regression trees depending on whether the crition is a `factor` or not.
 
@@ -501,18 +504,18 @@ Just like CART, random forests can be used for &lt;high&gt;classification or reg
 
 
 ```r
-# Fit a decision tree predicting default
+# Fitte ein random forest
 
-train(form = default ~ .,
+train(form = default ~ ., # factor
       data = Loans,
-      method = "rf", # Decision Tree
+      method = "rf", 
       trControl = ctrl)
 
-# Fit a decision tree predicting income
+# Fitte ein random forest
 
-train(form = income ~ .,
-      data = baselers,
-      method = "rf", # Decision Tree
+train(form = income ~ ., # kein factor
+      data = baselers, 
+      method = "rf", 
       trControl = ctrl)
 ```
 
@@ -526,9 +529,7 @@ class: center,  middle
 
 &lt;br&gt;&lt;br&gt;
 
-# Evaluating model predictions with caret
-
-&lt;img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;h1&gt;&lt;a&gt;Vorhersageevaluation in &lt;mono&gt;caret&lt;/mono&gt;&lt;/h1&gt;
 
 
 
@@ -540,7 +541,11 @@ class: center,  middle
 
 .pull-left4[
 
-Use `createDataPartition()` to &lt;high&gt;split a dataset&lt;/high&gt; into separate training and test datasets.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Verwende &lt;mono&gt;createDataPartition()&lt;/mono&gt; um den &lt;high&gt;Datensatz aufzuteilen&lt;/high&gt; in Trainings- und Testdaten.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
   &lt;col width="30%"&gt;
@@ -550,7 +555,7 @@ Use `createDataPartition()` to &lt;high&gt;split a dataset&lt;/high&gt; into sep
     &lt;b&gt;Argument&lt;/b&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Description&lt;/b&gt;
+    &lt;b&gt;Beschreibung&lt;/b&gt;
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -558,7 +563,7 @@ Use `createDataPartition()` to &lt;high&gt;split a dataset&lt;/high&gt; into sep
     &lt;mono&gt;y&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    The criterion. Used to create a &lt;high&gt;balanced split&lt;/high&gt;.  
+    Das Kriterion. Wichtig für eine &lt;high&gt;ausgewogene Aufteilung&lt;/high&gt; der Daten.  
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -566,7 +571,7 @@ Use `createDataPartition()` to &lt;high&gt;split a dataset&lt;/high&gt; into sep
     &lt;mono&gt;p&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    The &lt;high&gt;proportion of data&lt;/high&gt; going into the training set. Often &lt;mono&gt;.8&lt;/mono&gt; or &lt;mono&gt;.5&lt;/mono&gt;.    
+    Der &lt;high&gt;Antei der Daten&lt;/high&gt; der den Trainingsdaten zugewisen wird. Oft &lt;mono&gt;.8&lt;/mono&gt; oder &lt;mono&gt;.5&lt;/mono&gt;.    
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -578,21 +583,20 @@ Use `createDataPartition()` to &lt;high&gt;split a dataset&lt;/high&gt; into sep
 
 
 ```r
-# Set the randomisation seed to get the 
-#  same results each time
+# Wichtig für konstante Ergebnisse
 set.seed(100)
 
-# Get indices for training
+# Indizes für Training
 index &lt;- 
   createDataPartition(y = baselers$income,
                              p = .8,
                              list = FALSE)
 
-# Create training data
+# Kreiere Trainingsdaten
 baselers_train &lt;- baselers %&gt;% 
   slice(index)
 
-# Create test data
+# Kreiere Testdaten
 baselers_test &lt;- baselers %&gt;% 
   slice(-index)
 ```
@@ -609,7 +613,11 @@ baselers_test &lt;- baselers %&gt;%
 
 .pull-left4[
 
-To &lt;high&gt;test model predictions&lt;/high&gt; with `caret`, all you need to do is get a vector of predictions from a new dataframe `newdata` using the `predict()` function:
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Verwende &lt;mono&gt;predict()&lt;/mono&gt; um auf Basis des Testdatensatzes neue Vorhersagen zu berechnen.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
   &lt;col width="30%"&gt;
@@ -619,7 +627,7 @@ To &lt;high&gt;test model predictions&lt;/high&gt; with `caret`, all you need to
     &lt;b&gt;Argument&lt;/b&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Description&lt;/b&gt;
+    &lt;b&gt;Beschreibung&lt;/b&gt;
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -627,7 +635,7 @@ To &lt;high&gt;test model predictions&lt;/high&gt; with `caret`, all you need to
     &lt;mono&gt;object&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;caret&lt;/mono&gt; fit object.  
+    &lt;mono&gt;caret&lt;/mono&gt; Objekt nach dem Fitten.  
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -635,7 +643,7 @@ To &lt;high&gt;test model predictions&lt;/high&gt; with `caret`, all you need to
     &lt;mono&gt;newdata&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    Test data sest. Must contain same features as provided in &lt;mono&gt;object&lt;/mono&gt;.    
+    Testdaten (Muss alle Featuree in &lt;mono&gt;object&lt;/mono&gt; beinhalten).    
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -646,19 +654,19 @@ To &lt;high&gt;test model predictions&lt;/high&gt; with `caret`, all you need to
 
 
 ```r
-# Fit model to training data
+# Fitte das Modell zu dne Trainingsdaten
 mod &lt;- train(form = income ~ .,
              method = "glm",
              data = baselers_train)
 
-# Get fitted values (for training data)
+# Extrahiere die gefitteten Werte
 mod_fit &lt;- predict(mod)
 
-# Predictions for NEW data_test data!
+# Berechne echte Vorhersagen für Testdaten
 mod_pred &lt;- predict(mod, 
                     newdata = baselers_test)
 
-# Evaluate prediction results
+# Evaluiere das Ergebnis
 postResample(pred = mod_pred, 
              obs = baselers_test$income)
 ```
@@ -669,7 +677,7 @@ postResample(pred = mod_pred,
 ---
 class: middle, center
 
-&lt;h1&gt;&lt;a href=https://therbootcamp.github.io/ML_2019Oct/_sessions/Prediction/Prediction_practical.html&gt;Practical&lt;/a&gt;&lt;/h1&gt;
+&lt;h1&gt;&lt;a href=https://therbootcamp.github.io/ML_2020Apr/_sessions/Prediction/Prediction_practical.html&gt;Practical&lt;/a&gt;&lt;/h1&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -717,7 +725,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {
