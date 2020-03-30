@@ -55,34 +55,33 @@ Diese Schritt für Schritt Anleitung hilft dir dabei, alles für den Kurs *Masch
 
 ### R
 
-Zuerst müssen wir *R* installieren. Gehe dazu auf https://cran.r-project.org/ und wähle die für dein Betriebssystem passende R Version aus. Lade R herunter, führe die Datei aus und folge der Installationsanleitung.
+Zuerst musst Du *R* installieren. Gehe dazu auf https://cran.r-project.org/ und wähle die für dein Betriebssystem passende R Version aus. Lade R herunter, führe die Datei aus und folge der Installationsanleitung.
 
 #### Zusätzliche Software
 
 ##### Windows
 
-Wenn du mit Windows arbeitest, benötigst du auch die *Rtools* software. Gehe dazu auf https://cran.r-project.org/bin/windows/Rtools/ und lade *Rtools35.exe* herunter. Führe die Datei aus und folge den Instruktionen.
+Wenn Du mit Windows arbeitest, benötigst du auch die *Rtools* software. Gehe dazu auf https://cran.r-project.org/bin/windows/Rtools/ und lade *Rtools35.exe* herunter. Führe die Datei aus und folge den Instruktionen.
 
 ##### Mac
 
-Wenn du mit einem Mac arbeitest, benötigst du zusätzlich *gfortran 6.1* und *clang-7*. Gehe dazu auf https://cran.r-project.org/bin/macosx/tools/ und lade diese beiden Softwarepakete herunter. Führe sie aus und folge den Instruktionen.
+Wenn Du mit einem Mac arbeitest, benötigst du zusätzlich *gfortran 6.1* und *clang-7*. Gehe dazu auf https://cran.r-project.org/bin/macosx/tools/ und lade diese beiden Softwarepakete herunter. Führe sie aus und folge den Instruktionen.
 
 
 ### RStudio
 
-Nun können wir *RStudio*. installieren. Gehe dazu auf https://rstudio.com/products/rstudio/download/ und wähle den deinem Betriebssystem entsprechende *RStudio Desktop* installer aus. Lade die Datei herunter, führe sie aus und folge den Instruktionen.
+Nun kannst Du *RStudio*. installieren. Gehe dazu auf https://rstudio.com/products/rstudio/download/ und wähle den deinem Betriebssystem entsprechende *RStudio Desktop* installer aus. Lade die Datei herunter, führe sie aus und folge den Instruktionen.
 
 ### Pakete
 
-Nun müssen wir noch ein paar Pakete installieren. Öffne dazu RStudio, kopiere den untenstehenden Code in das mit *Console* beschriftete Fenster, und drücke *Enter* um den Code auszuführen.
+Nun musst Du noch ein paar Pakete installieren. Öffne dazu RStudio, kopiere den untenstehenden Code in das mit *Console* beschriftete Fenster, und drücke *Enter* um den Code auszuführen.
 
 ```{r eval = FALSE, echo = TRUE}
 source('https://tinyurl.com/ujmtdmn')
 ```
 
-Wenn du gefragt wirst, ob du Pakete *from source* installieren möchtest, gebe *n* ein und drücke *Enter*. So hast du evtl. nicht die neueste Version, aber für den Kurs reicht das aus und es gibt weniger Installationsprobleme.
+Wenn Du gefragt wirst, ob du Pakete *from source* installieren möchtest, gebe *n* ein und drücke *Enter*. So hast Du in seltene Fällen nicht die allerneueste Version, aber für den Kurs spielt das keine Rolle und es gibt deutlich weniger Installationsprobleme.
 
 Das Skript wird am Ende einen Bericht in die *Console* drucken, der dir sagt, ob alles geklappt hat.
-
 
 Das war's schon; bis bald im Kurs!
