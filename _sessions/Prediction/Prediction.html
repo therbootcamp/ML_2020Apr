@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
-    <title>Predicting</title>
+    <title>Prediction</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Maschinelles Lernen mit R   Basel R Bootcamp" />
+    <meta name="author" content="Maschinelles Lernen mit R   The R Bootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
   </head>
@@ -11,8 +11,8 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Predicting
-### Maschinelles Lernen mit R<br> <a href='https://therbootcamp.github.io'> Basel R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+# Prediction
+### Maschinelles Lernen mit R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
 ### April 2020
 
 ---
@@ -34,7 +34,7 @@ layout: true
     &lt;/a&gt;
     &lt;a href="https://therbootcamp.github.io/"&gt;
       &lt;font color="#7E7E7E"&gt;
-      Machine Learning mit R | April 2020
+      Maschinelles Lernen mit R | April 2020
       &lt;/font&gt;
     &lt;/a&gt;
     &lt;/span&gt;
@@ -48,7 +48,7 @@ layout: true
 
 
 
-# Predicting...
+# Prediction...
 
 .pull-left45[
 
@@ -120,7 +120,7 @@ Evan Esar, Satiriker
 
 ---
 
-# Warum wird training und test getrennt?
+# Warum wird Training und Test getrennt?
 
 &lt;br&gt;
 &lt;p align = "center"&gt;&lt;font size = 6&gt;&lt;i&gt;"Könnt ihr euch ein Modell vorstellen, dass perfekten Fit im Training liefert und in der Vorhersage nutzlos ist?"&lt;/i&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;
@@ -169,7 +169,7 @@ Evan Esar, Satiriker
 # Overfitting
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Tritt ein, wenn ein model die &lt;high&gt;Daten zu genau fitted&lt;/high&gt; und deswegen &lt;high&gt;keine guten Vorhersagen&lt;/high&gt; liefert.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Tritt ein, wenn ein Modell die &lt;high&gt;Daten zu genau fitted&lt;/high&gt; und deswegen &lt;high&gt;keine guten Vorhersagen&lt;/high&gt; liefert.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
   &lt;li class="m2"&gt;&lt;span&gt;Ein zu genauer fit bedeutet, dass z.T. züfällige Tendenzen, sog. &lt;high&gt;Rauschen gefittet&lt;/high&gt; wird.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
   &lt;li class="m3"&gt;&lt;span&gt;&lt;high&gt;"Komplexere" Modelle&lt;/high&gt; neigen mehr zu overfitting.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -235,7 +235,7 @@ class: center, middle
 
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Classification und regression trees werden mit dem folgen &lt;high&gt;Algorithmus&lt;/high&gt; gefitted:&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Classification und regression trees werden mit dem folgengen &lt;high&gt;Algorithmus&lt;/high&gt; gefitted:&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
   &lt;ul&gt;
   &lt;li&gt;&lt;span&gt;1 - &lt;high&gt;Trenne&lt;/high&gt; Knoten so, dass &lt;mono&gt;purity gain&lt;/mono&gt; (zB., Gini gain) maximiert wird.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
   &lt;li&gt;&lt;span&gt;2 - &lt;high&gt;Wiederhole&lt;/high&gt; bis zu einer vordefinierten Schwelle (zB. &lt;mono&gt;minsplit&lt;/mono&gt;).&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
@@ -259,14 +259,14 @@ class: center, middle
 .pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Classification trees versuchen ingesamt &lt;highm&gt;impurity&lt;/highm&gt; zu minimieren.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Classification trees versuchen ingesammt &lt;highm&gt;impurity&lt;/highm&gt; zu minimieren.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
 `$$\large Gini(S) = 1 - \sum_j^kp_j^2$$`
 
 &lt;ul&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Durch das Auftrennen eines Knotens  werden Cases so aufgeteilt, dass der resultierende &lt;highm&gt;purity gain&lt;/highm&gt; maxmial ist.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Durch das Auftrennen eines Knotens werden Cases so aufgeteilt, dass der resultierende &lt;highm&gt;purity gain&lt;/highm&gt; maxmial ist.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 `$$Gini \; gain = Gini(S) - Gini(A,S)$$`
@@ -294,7 +294,7 @@ mit
 .pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Classification trees werden schluessendlich &lt;high&gt;gestutzt (pruned)&lt;/high&gt; so dass jedes Auftrennen eines Knoteeens einen gain von mindestens &lt;highm&gt;cp&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Classification trees werden schlussendlich &lt;high&gt;gestutzt (pruned)&lt;/high&gt; so dass jedes Auftrennen eines Knotens einen gain von mindestens &lt;highm&gt;cp&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -359,7 +359,7 @@ $$
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Fitte eine decision tree in &lt;mono&gt;caret&lt;/mono&gt; mit &lt;highm&gt;method = "rpart"&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Fitte einen decision tree in &lt;mono&gt;caret&lt;/mono&gt; mit &lt;highm&gt;method = "rpart"&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
   &lt;li class="m2"&gt;&lt;span&gt;Wenn das &lt;high&gt;Kriterium ein &lt;mono&gt;factor&lt;/mono&gt;&lt;/high&gt; ist, verwendet &lt;mono&gt;caret&lt;/mono&gt; einen Classificaton tree, anonsten einen Regression tree&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -411,9 +411,9 @@ class: center, middle
   &lt;li&gt;&lt;span&gt;1 - &lt;high&gt;Wiederhole&lt;/high&gt; &lt;mono&gt;n&lt;/mono&gt; mal.&lt;/li&gt;&lt;/span&gt;&lt;br&gt;
   &lt;ul&gt;
   &lt;li&gt;&lt;span&gt;1 - &lt;high&gt;Resample&lt;/high&gt; die Daten.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
-  &lt;li&gt;&lt;span&gt;2 - &lt;high&gt;Fitte&lt;/high&gt; nicht-gestutzte Entscheidungsbäume.&lt;br&gt;&lt;br&gt;Berücksichte bei jeder Auftrennung nur &lt;high&gt;&lt;mono&gt;m&lt;/mono&gt; Feature&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li&gt;&lt;span&gt;2 - &lt;high&gt;Fitte&lt;/high&gt; nicht-gestutzte Entscheidungsbäume.&lt;br&gt;&lt;br&gt;Berücksichtige bei jeder Auftrennung nur &lt;high&gt;&lt;mono&gt;m&lt;/mono&gt; Features&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
   &lt;/ul&gt;
-  &lt;li&gt;&lt;span&gt;2 - &lt;high&gt;Mittele&lt;/high&gt; die gefitteten Werte.&lt;/li&gt;&lt;/span&gt;&lt;br&gt;  
+  &lt;li&gt;&lt;span&gt;2 - &lt;high&gt;Mittle&lt;/high&gt; die gefitteten Werte.&lt;/li&gt;&lt;/span&gt;&lt;br&gt;  
   &lt;/ul&gt;
 &lt;/ul&gt;
 
@@ -437,7 +437,7 @@ class: center, middle
 .pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Random Forests bedienen sich des &lt;high&gt;Baggings&lt;/high&gt; (&lt;high&gt;Resampling&lt;/high&gt; und &lt;high&gt;Averaging&lt;/high&gt;) um höre Vorhersageleistungen zu erzielen.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Random Forests bedienen sich des &lt;high&gt;Baggings&lt;/high&gt; (&lt;high&gt;Resampling&lt;/high&gt; und &lt;high&gt;Averaging&lt;/high&gt;) um höhere Vorhersageleistungen zu erzielen.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -450,7 +450,7 @@ class: center, middle
     &lt;b&gt;Element&lt;/b&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Description&lt;/b&gt;
+    &lt;b&gt;Beschreibung&lt;/b&gt;
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -458,7 +458,7 @@ class: center, middle
     &lt;i&gt;Resampling&lt;/i&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    Creates new data sets that vary in their composition thereby &lt;high&gt;deemphasizing idiosyncracies&lt;/high&gt; of the available data. 
+    Kreiert neue Datensätze die in ihrer Komposition variieren. Dabei werden &lt;high&gt;Eigenheiten&lt;/high&gt; der vorhandenen Daten &lt;high&gt;weniger Gewicht gegeben&lt;/high&gt;. 
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -466,7 +466,7 @@ class: center, middle
     &lt;i&gt;Averaging&lt;/i&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    Combining predictions typically &lt;high&gt;evens out idiosyncracies&lt;/high&gt; of the models created from single data sets.   
+    Das Kombinieren von Vorhersagen gleicht typischerweise &lt;hoch&gt;Eigenheiten&lt;/hoch&gt; der aus einzelnen Datensätzen erstellten Modelle aus. 
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -492,11 +492,11 @@ class: center, middle
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Fitte eine Random Forest in &lt;mono&gt;caret&lt;/mono&gt; mit &lt;highm&gt;method = "rf"&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Fitte einen Random Forest in &lt;mono&gt;caret&lt;/mono&gt; mit &lt;highm&gt;method = "rf"&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
   &lt;li class="m2"&gt;&lt;span&gt;Wenn das &lt;high&gt;Kriterium ein &lt;mono&gt;factor&lt;/mono&gt;&lt;/high&gt; ist, verwendet &lt;mono&gt;caret&lt;/mono&gt; Classificaton trees, anonsten einen Regression trees als Grundlage des Random Forest&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-`caret` will &lt;high&gt;choose automatically&lt;/high&gt; whether to use classification or regression trees depending on whether the crition is a `factor` or not.
+`caret` wird &lt;high&gt; automatisch &lt;/high&gt; wählen, ob Klassifikations- oder Regressionsbäume verwendet werden sollen, je nachdem, ob das Kriterium ein `factor` ist oder nicht.
 
 ]
 
@@ -643,7 +643,7 @@ baselers_test &lt;- baselers %&gt;%
     &lt;mono&gt;newdata&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    Testdaten (Muss alle Featuree in &lt;mono&gt;object&lt;/mono&gt; beinhalten).    
+    Testdaten (Muss alle Features in &lt;mono&gt;object&lt;/mono&gt; beinhalten).    
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;/table&gt;

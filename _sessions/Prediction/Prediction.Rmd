@@ -1,8 +1,8 @@
 ---
-title: "Predicting"
+title: "Prediction"
 author: "Maschinelles Lernen mit R<br>
   <a href='https://therbootcamp.github.io'>
-    Basel R Bootcamp
+    The R Bootcamp
   </a>
   <br>
   <a href='https://therbootcamp.github.io/ML_2020Apr/'>
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-      Machine Learning mit R | April 2020
+      Maschinelles Lernen mit R | April 2020
       </font>
     </a>
     </span>
@@ -97,7 +97,7 @@ present <- tibble(id = 91:95,
 ```
 
 
-# Predicting...
+# Prediction...
 
 .pull-left45[
 
@@ -208,7 +208,7 @@ knitr::kable(present, format = "markdown")
 # Overfitting
 
 <ul>
-  <li class="m1"><span>Tritt ein, wenn ein model die <high>Daten zu genau fitted</high> und deswegen <high>keine guten Vorhersagen</high> liefert.</span></li><br>
+  <li class="m1"><span>Tritt ein, wenn ein Modell die <high>Daten zu genau fitted</high> und deswegen <high>keine guten Vorhersagen</high> liefert.</span></li><br>
   <li class="m2"><span>Ein zu genauer fit bedeutet, dass z.T. züfällige Tendenzen, sog. <high>Rauschen gefittet</high> wird.</span></li><br>
   <li class="m3"><span><high>"Komplexere" Modelle</high> neigen mehr zu overfitting.</span></li>
 </ul>
@@ -351,7 +351,7 @@ class: center, middle
 
 
 <ul>
-  <li class="m1"><span>Classification und regression trees werden mit dem folgen <high>Algorithmus</high> gefitted:</span></li><br>
+  <li class="m1"><span>Classification und regression trees werden mit dem folgengen <high>Algorithmus</high> gefitted:</span></li><br>
   <ul>
   <li><span>1 - <high>Trenne</high> Knoten so, dass <mono>purity gain</mono> (zB., Gini gain) maximiert wird.</span></li><br>
   <li><span>2 - <high>Wiederhole</high> bis zu einer vordefinierten Schwelle (zB. <mono>minsplit</mono>).</span></li><br>
@@ -375,14 +375,14 @@ class: center, middle
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Classification trees versuchen ingesamt <highm>impurity</highm> zu minimieren.</span></li>
+  <li class="m1"><span>Classification trees versuchen ingesammt <highm>impurity</highm> zu minimieren.</span></li>
 </ul>
 
 
 $$\large Gini(S) = 1 - \sum_j^kp_j^2$$
 
 <ul>
-  <li class="m2"><span>Durch das Auftrennen eines Knotens  werden Cases so aufgeteilt, dass der resultierende <highm>purity gain</highm> maxmial ist.</span></li>
+  <li class="m2"><span>Durch das Auftrennen eines Knotens werden Cases so aufgeteilt, dass der resultierende <highm>purity gain</highm> maxmial ist.</span></li>
 </ul>
 
 $$Gini \; gain = Gini(S) - Gini(A,S)$$
@@ -410,7 +410,7 @@ $$Gini(A, S) = \sum \frac{n_i}{n}Gini(S_i)$$
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Classification trees werden schluessendlich <high>gestutzt (pruned)</high> so dass jedes Auftrennen eines Knoteeens einen gain von mindestens <highm>cp</highm>.</span></li>
+  <li class="m1"><span>Classification trees werden schlussendlich <high>gestutzt (pruned)</high> so dass jedes Auftrennen eines Knotens einen gain von mindestens <highm>cp</highm>.</span></li>
 </ul>
 
 <br>
@@ -475,7 +475,7 @@ $$\large SSE = \sum_{i \in S_1}(y_i - \bar{y}_1)^2+\sum_{i \in S_2}(y_i - \bar{y
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Fitte eine decision tree in <mono>caret</mono> mit <highm>method = "rpart"</highm>.</span></li>
+  <li class="m1"><span>Fitte einen decision tree in <mono>caret</mono> mit <highm>method = "rpart"</highm>.</span></li>
   <li class="m2"><span>Wenn das <high>Kriterium ein <mono>factor</mono></high> ist, verwendet <mono>caret</mono> einen Classificaton tree, anonsten einen Regression tree</highm>.</span></li>
 </ul>
 
@@ -527,9 +527,9 @@ class: center, middle
   <li><span>1 - <high>Wiederhole</high> <mono>n</mono> mal.</li></span><br>
   <ul>
   <li><span>1 - <high>Resample</high> die Daten.</span></li><br>
-  <li><span>2 - <high>Fitte</high> nicht-gestutzte Entscheidungsbäume.<br><br>Berücksichte bei jeder Auftrennung nur <high><mono>m</mono> Feature</high>.</span></li><br>
+  <li><span>2 - <high>Fitte</high> nicht-gestutzte Entscheidungsbäume.<br><br>Berücksichtige bei jeder Auftrennung nur <high><mono>m</mono> Features</high>.</span></li><br>
   </ul>
-  <li><span>2 - <high>Mittele</high> die gefitteten Werte.</li></span><br>  
+  <li><span>2 - <high>Mittle</high> die gefitteten Werte.</li></span><br>  
   </ul>
 </ul>
 
@@ -553,7 +553,7 @@ class: center, middle
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Random Forests bedienen sich des <high>Baggings</high> (<high>Resampling</high> und <high>Averaging</high>) um höre Vorhersageleistungen zu erzielen.</span></li>
+  <li class="m1"><span>Random Forests bedienen sich des <high>Baggings</high> (<high>Resampling</high> und <high>Averaging</high>) um höhere Vorhersageleistungen zu erzielen.</span></li>
 </ul>
 
 <br>
@@ -566,7 +566,7 @@ class: center, middle
     <b>Element</b>
   </td>
   <td bgcolor="white">
-    <b>Description</b>
+    <b>Beschreibung</b>
   </td>  
 </tr>
 <tr>
@@ -574,7 +574,7 @@ class: center, middle
     <i>Resampling</i>
   </td>
   <td bgcolor="white">
-    Creates new data sets that vary in their composition thereby <high>deemphasizing idiosyncracies</high> of the available data. 
+    Kreiert neue Datensätze die in ihrer Komposition variieren. Dabei werden <high>Eigenheiten</high> der vorhandenen Daten <high>weniger Gewicht gegeben</high>. 
   </td>  
 </tr>
 <tr>
@@ -582,7 +582,7 @@ class: center, middle
     <i>Averaging</i>
   </td>
   <td bgcolor="white">
-    Combining predictions typically <high>evens out idiosyncracies</high> of the models created from single data sets.   
+    Das Kombinieren von Vorhersagen gleicht typischerweise <hoch>Eigenheiten</hoch> der aus einzelnen Datensätzen erstellten Modelle aus. 
   </td>  
 </tr>
 </table>
@@ -608,11 +608,11 @@ class: center, middle
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Fitte eine Random Forest in <mono>caret</mono> mit <highm>method = "rf"</highm>.</span></li>
+  <li class="m1"><span>Fitte einen Random Forest in <mono>caret</mono> mit <highm>method = "rf"</highm>.</span></li>
   <li class="m2"><span>Wenn das <high>Kriterium ein <mono>factor</mono></high> ist, verwendet <mono>caret</mono> Classificaton trees, anonsten einen Regression trees als Grundlage des Random Forest</highm>.</span></li>
 </ul>
 
-`caret` will <high>choose automatically</high> whether to use classification or regression trees depending on whether the crition is a `factor` or not.
+`caret` wird <high> automatisch </high> wählen, ob Klassifikations- oder Regressionsbäume verwendet werden sollen, je nachdem, ob das Kriterium ein `factor` ist oder nicht.
 
 ]
 
@@ -761,7 +761,7 @@ baselers_test <- baselers %>%
     <mono>newdata</mono>
   </td>
   <td bgcolor="white">
-    Testdaten (Muss alle Featuree in <mono>object</mono> beinhalten).    
+    Testdaten (Muss alle Features in <mono>object</mono> beinhalten).    
   </td>  
 </tr>
 </table>
