@@ -466,7 +466,7 @@ class: middle, center
 
 <ul>
   <li class="m1"><span>Traditionell der <high>dominante Bereich</high> des machine learnings.</span></li>
-  <li class="m2"><span>Supervised learning benötigt <high>gelabelte Daten</high> um ein <high>Modell</high> zu lernen, dass das Criterion in Beziehung zu den Features setzt.</span></li>
+  <li class="m2"><span>Supervised learning benötigt <high>gelabelte Daten</high> um ein <high>Modell</high> zu lernen, dass das Kriterium in Beziehung zu den Features setzt.</span></li>
 </ul>
 
 <br>
