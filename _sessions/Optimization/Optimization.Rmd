@@ -194,6 +194,11 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
 
 .pull-left45[
 
+<ul>
+  <li class="m1"><span>Overfitting tritt ein, wenn ein model die <high>Daten zu genau fitted</high> und deswegen <high>keine guten Vorhersagen</high> liefert</span></li><br>
+  <li class="m2"><span>Gute Performanz in Training bedeutet also nicht unbedingt <high>gute Performanz in Test</high>.</span></li>
+</ul>
+
 All machine learning models are equipped with tuning parameters that <high> control model complexity<high>. 
 
 These tuning parameters can be identified using a <high>validation set</high> created from the traning data.
