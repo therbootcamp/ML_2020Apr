@@ -172,7 +172,7 @@ Evan Esar, Satiriker
 # Warum wird Training und Test getrennt?
 
 <br>
-<p align = "center"><font size = 6><i>"Könnt ihr euch ein Modell vorstellen, dass perfekten Fit im Training liefert und in der Vorhersage nutzlos ist?"</i></font><br><br>
+<p align = "center"><font size = 6><i>"Könnt ihr euch ein Modell vorstellen, das perfekten Fit im Training liefert und in der Vorhersage nutzlos ist?"</i></font><br><br>
 
 .pull-left45[
 
@@ -410,7 +410,7 @@ $$Gini(A, S) = \sum \frac{n_i}{n}Gini(S_i)$$
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Classification trees werden schlussendlich <high>gestutzt (pruned)</high> so dass jedes Auftrennen eines Knotens einen gain von mindestens <highm>cp</highm>.</span></li>
+  <li class="m1"><span>Classification trees werden schlussendlich <high>gestutzt (pruned)</high> sodass jedes Auftrennen eines Knotens einen gain von mindestens <highm>cp</highm>.</span></li>
 </ul>
 
 <br>
@@ -448,7 +448,7 @@ $$\large SSE = \sum_{i \in S_1}(y_i - \bar{y}_1)^2+\sum_{i \in S_2}(y_i - \bar{y
 <ul>
   <li class="m2"><span>Algorithmus:</span></li>
   <ul>
-  <li><span>1 - <high>Trenne</high> Knoten, so dass der grösste <high>Zugewinn an Homogenität entsteht</high>.</li></span><br>
+  <li><span>1 - <high>Trenne</high> Knoten, sodass der grösste <high>Zugewinn an Homogenität entsteht</high>.</li></span><br>
     <li><span>2 - <high>Wiederhole</high> bis zu einer vordefinierten Schwelle (zB. <mono>minsplit</mono>).</span></li><br>
   <li><span>3 - <high>Stutze</high> den Baum gemäss <mono>complexity parameter</mono></span></li>
   <ul>

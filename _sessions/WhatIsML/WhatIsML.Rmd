@@ -125,7 +125,7 @@ Nicht Googlen :)
   </ul>
   <li class="m2"><span><b>Statistik</b></span></li>
   <ul class="level">
-    <li><span><high>Feld der Mathematik</high>, dass sich mit der Erhebung, Verarbeitung, Analyse, und Interpretation von Daten beschäftigt.</span></li>
+    <li><span><high>Feld der Mathematik</high>, das sich mit der Erhebung, Verarbeitung, Analyse, und Interpretation von Daten beschäftigt.</span></li>
   </ul>
   <li class="m3"><span><b>Big Data</b></span></li>
   <ul class="level">
@@ -133,7 +133,7 @@ Nicht Googlen :)
   </ul>
   <li class="m4"><span><b>Data Science</b></span></li>
   <ul class="level">
-    <li><span>Multi-disziplinares Feld, dass sich mit Methoden und Systemen zur Extraktion von <high>Erkenntnissen aus Daten</high> beschäftigt</span></li>
+    <li><span>Multi-disziplinares Feld, das sich mit Methoden und Systemen zur Extraktion von <high>Erkenntnissen aus Daten</high> beschäftigt</span></li>
   </ul>
 </ul>
 
@@ -426,7 +426,7 @@ class: middle, center
     <i>Criterion<br><font style="font-size:12px">(Variable, Kriterium)</font></i>
   </td>
   <td bgcolor="white">
-   Das <high>Feature</high>, dass man <high>vorhersagen</high> will.
+   Das <high>Feature</high>, das man <high>vorhersagen</high> will.
   </td>  
   <td bgcolor="white">
    Herzinfarkt, Verkäufe, etc.
@@ -466,7 +466,7 @@ class: middle, center
 
 <ul>
   <li class="m1"><span>Traditionell der <high>dominante Bereich</high> des machine learnings.</span></li>
-  <li class="m2"><span>Supervised learning benötigt <high>gelabelte Daten</high> um ein <high>Modell</high> zu lernen, dass das Kriterium in Beziehung zu den Features setzt.</span></li>
+  <li class="m2"><span>Supervised learning benötigt <high>gelabelte Daten</high> um ein <high>Modell</high> zu lernen, das das Kriterium in Beziehung zu den Features setzt.</span></li>
 </ul>
 
 <br>
