@@ -3,7 +3,7 @@
   <head>
     <title>Fitting</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Maschinelles Lernen mit R   Basel R Bootcamp" />
+    <meta name="author" content="Maschinelles Lernen mit R   The R Bootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
   </head>
@@ -12,7 +12,7 @@
 class: center, middle, inverse, title-slide
 
 # Fitting
-### Maschinelles Lernen mit R<br> <a href='https://therbootcamp.github.io'> Basel R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### Maschinelles Lernen mit R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
 ### April 2020
 
 ---
@@ -128,7 +128,7 @@ layout: true
     Evaluation
   &lt;/td&gt;
   &lt;td&gt;
-    Berechne den Schaden für ein gefittetes Modell.
+    Berechne den Verlust für ein gefittetes Modell.
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -161,7 +161,7 @@ class: center, middle
 
 .pull-left45[
 
-In der [Regression](https://de.wikipedia.org/wiki/Regressionsanalyse), wird eine abhängige Variable (&lt;high&gt;criterion&lt;/high&gt;) `\(y\)` modelliert, als &lt;high&gt;Summe&lt;/high&gt; der &lt;high&gt;Features&lt;/high&gt; `\(x_1, x_2, ...\)` &lt;high&gt;mal Gewichte&lt;/high&gt; `\(b_1, b_2, ...\)` plus `\(b_0\)`, der sogenannte Intercept oder Ordinatenabschnitt.
+In der [Regression](https://de.wikipedia.org/wiki/Regressionsanalyse), wird ein &lt;high&gt;Kriterium&lt;/high&gt; `\(y\)` modelliert, als &lt;high&gt;Summe&lt;/high&gt; der &lt;high&gt;Features&lt;/high&gt; `\(x_1, x_2, ...\)` &lt;high&gt;mal Gewichte&lt;/high&gt; `\(b_1, b_2, ...\)` plus `\(b_0\)`, der sogenannte Intercept oder Ordinatenabschnitt.
 
 &lt;p style="padding-top:10px"&gt;&lt;/p&gt;
 
@@ -198,7 +198,7 @@ Wenn `\(b_{i} = 0\)`, heisst das, `\(x_{i}\)` &lt;high&gt;bringt keinen Zusatznu
   &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Mean Squared Error (MSE)&lt;/b&gt;
   &lt;br&gt;&lt;br&gt;
   &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;&lt;high&gt;Mittlere Quadratsumme der Abweichungen&lt;/high&gt; zwischen vorhergesagten und wahren Werten.&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;Mittlere Quadratsumme der Abweichungen&lt;/high&gt; zwischen vorhergesagten und tatsächlichen Werten.&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;
   &lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -209,7 +209,7 @@ $$ MSE = \frac{1}{n}\sum_{i \in 1,...,n}(y_{i} - \hat{y}_{i})^{2}$$
   &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Mean Absolute Error (MAE)&lt;/b&gt;
   &lt;br&gt;&lt;br&gt;
   &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;&lt;high&gt;Mittlere absolute Abweichungen&lt;/high&gt; zwischen vorhergesagten und wahren Werten.&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;Mittlere absolute Abweichungen&lt;/high&gt; zwischen vorhergesagten und tatsächlichen Werten.&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;
   &lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -318,29 +318,28 @@ $$ \large \boldsymbol b_{n+1} = \boldsymbol b_{n}+\gamma \nabla F(\boldsymbol b_
 
 ---
 
-# 2 Typen von überwachtem (supervised) Lernen
+
+# Zwei Problemtypen des Supervised Learnings
 
 .pull-left5[
 
-&lt;ul style="margin-bottom:-20px"&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Regression&lt;/b&gt;
-  &lt;br&gt;&lt;br&gt;
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Regression&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;br&gt;
   &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;Regressionsprobleme beinhalten die &lt;high&gt;Vorhersage eines quantitativen Features&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;span&gt;Z.B., die Vorhersage des Cholesterinlevels als Funktion von Alter.&lt;/span&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;/span&gt;&lt;/li&gt;&lt;br&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Klassifikation&lt;/b&gt;
-  &lt;br&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;Vorhersage eines &lt;high&gt;numerischen, kontinuierlichen Kriteriums&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;&lt;i&gt;Vorhersage des Cholesterinspiegels mit Alter&lt;/i&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Klassifikation&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;br&gt;
   &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;Klassifikationsprobleme beinhalten die &lt;high&gt;Vorhersage eines kategorialen Features&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;span&gt;Z.B., die Vorhersage der Ursache von Brustschmerzen als Funktion von Alter.&lt;/span&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Vorhersage eines &lt;high&gt;kategorialen, diskreten Kriteriums&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;&lt;i&gt;Vorhersage, ob Herzinfarkt ja oder nein&lt;/i&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
 &lt;/ul&gt;
 
-
 ]
+
 
 .pull-right4[
 
@@ -459,7 +458,7 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 .pull-left45[
 
 &lt;ul style="margin-bottom:-20px"&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Die Wahrheitsmatrix (&lt;i&gt;confusion matrix&lt;/i&gt;) &lt;high&gt;enthält die Anzahl einer bestimmten Klasse zugeordneten Werte&lt;/high&gt; als Funktion der tasächlichen Klasse.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die Wahrheitsmatrix (&lt;i&gt;confusion matrix&lt;/i&gt;) &lt;high&gt;enthält die Anzahl einer bestimmten Klasse zugeordneter Werte&lt;/high&gt; als Funktion der tatsächlichen Klasse.&lt;/span&gt;&lt;/li&gt;
   &lt;li class="m2"&gt;&lt;span&gt;Anhand der Wahrheitsmatrix können unterschiedliche &lt;high&gt;statistische Gütekriterien&lt;/high&gt; berechnet werden.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -655,7 +654,7 @@ class: center,  middle
     &lt;mono&gt;train()&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td&gt;
-    Spezifiziere das Modell und finde die *besten* Paramterschätzwerte.
+    Spezifiziere das Modell und finde die *besten* Parameterschätzwerte.
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -717,7 +716,7 @@ confusionMatrix(fit, truth)
 .pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;trainControl()&lt;/mono&gt; steuert, &lt;high&gt;wie &lt;mono&gt;caret&lt;/mono&gt; ein Modell fittet.&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;trainControl()&lt;/mono&gt; steuert, &lt;high&gt;wie &lt;mono&gt;caret&lt;/mono&gt; ein Modell fittet&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
   &lt;li class="m2"&gt;&lt;span&gt;Für den Moment, verwende der Einfachheit halber &lt;mono&gt;method = "none"&lt;/mono&gt;. Mehr hierzu in der &lt;b&gt;Optimisierung&lt;/b&gt; Session.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -726,7 +725,7 @@ confusionMatrix(fit, truth)
 
 ```r
 # Fitte das Modell ohne fortgeschrittene
-#  Tuningmethoden der Paramter
+#  Tuningmethoden der Parameter
 
 ctrl &lt;- trainControl(method = "none")
 
@@ -750,7 +749,7 @@ ctrl &lt;- trainControl(method = "none")
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; ist &lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Arbeitstier&lt;/high&gt;, wenn es um Fitting geht. Damit können &lt;high&gt;über 200 Modelle&lt;/high&gt; gefittet werden, wofür man jeweils nur das &lt;high&gt;method&lt;/high&gt; Argument anpassen muss.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; ist &lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Zugpferd&lt;/high&gt;, wenn es um Fitting geht. Damit können &lt;high&gt;über 200 Modelle&lt;/high&gt; gefittet werden, wofür man jeweils nur das &lt;high&gt;method&lt;/high&gt; Argument anpassen muss.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
@@ -810,13 +809,15 @@ ctrl &lt;- trainControl(method = "none")
 .pull-right5[
 
 ```r
-# Fitte eine Regression zur Vorhersage des Einkommens
+# Fitte eine Regression zur Vorhersage des 
+# Einkommens
 
 eink_mod &lt;-
   train(form = einkommen ~ ., # Formel
         data = basel,         # Daten
         method = "glm",       # Regression
-        trControl = ctrl)     # Kontrollparameter
+        trControl = ctrl)     # Kontroll-
+                              # parameter
 eink_mod
 ```
 
@@ -840,7 +841,7 @@ Resampling: None
 
 .pull-left4[
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; ist &lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Arbeitstier&lt;/high&gt;, wenn es um Fitting geht. Damit können &lt;high&gt;über 200 Modelle&lt;/high&gt; gefittet werden, wofür man jeweils nur das &lt;high&gt;method&lt;/high&gt; Argument anpassen muss.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; ist &lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Zugpferd&lt;/high&gt;, wenn es um Fitting geht. Damit können &lt;high&gt;über 200 Modelle&lt;/high&gt; gefittet werden, wofür man jeweils nur das &lt;high&gt;method&lt;/high&gt; Argument anpassen muss.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
@@ -902,13 +903,15 @@ Resampling: None
 
 
 ```r
-# Fitte random forest zur Vorhersage von einkommen
+# Fitte random forest zur Vorhersage von 
+# Einkommen
 
 eink_mod &lt;-
   train(form = einkommen ~ ., # Formel
         data = basel,         # Daten
         method = "rf",        # Random Forest
-        trControl = ctrl)     # Kontrollparameter
+        trControl = ctrl)     # Kontroll-
+                              # parameter
 eink_mod
 ```
 
@@ -932,7 +935,7 @@ Resampling: None
 # `train()`
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; ist &lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Arbeitstier&lt;/high&gt;, wenn es um Fitting geht. Damit können &lt;high&gt;über 200 Modelle&lt;/high&gt; gefittet werden, wofür man jeweils nur das &lt;high&gt;method&lt;/high&gt; Argument anpassen muss.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; ist &lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Zugpferd&lt;/high&gt;, wenn es um Fitting geht. Damit können &lt;high&gt;über 200 Modelle&lt;/high&gt; gefittet werden, wofür man jeweils nur das &lt;high&gt;method&lt;/high&gt; Argument anpassen muss.&lt;/span&gt;&lt;/li&gt;
     &lt;li class="m2"&gt;&lt;span&gt;Alle 200+ Modelle findest du &lt;a href="http://topepo.github.io/caret/available-models.html"&gt;hier&lt;/a&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -955,7 +958,7 @@ Resampling: None
 .pull-left4[
 
 &lt;ul style="margin-bottom:-20px"&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Die abhängige Variable muss die richtige Klasse haben:
+  &lt;li class="m1"&gt;&lt;span&gt;Das Kriterium muss die richtige Klasse haben:
   &lt;br&gt;&lt;br&gt;
   &lt;ul class="level"&gt;
     &lt;li&gt;&lt;span&gt;&lt;high&gt;&lt;mono&gt;numeric&lt;/mono&gt;&lt;/high&gt; AV &amp;rarr; &lt;high&gt;Regression&lt;/high&gt;&lt;br&gt;&lt;/span&gt;&lt;/li&gt;
@@ -1010,7 +1013,7 @@ load_mod &lt;- train(form = factor(Kreditausfall) ~ .,
 
 &lt;ul&gt;
   &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;train()&lt;/mono&gt; Funktion gibt eine &lt;mono&gt;list&lt;/mono&gt;e zurück. Diese enthält ein &lt;mono&gt;finalModel&lt;/mono&gt; Element - das ist unser &lt;high&gt;bestes gefittetes Model&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Greiffe auf das Modell mit &lt;mono&gt;mod$finalModel&lt;mono&gt; zu und &lt;high&gt;exploriere&lt;/high&gt; das Objekt mit generischen Funktionen:&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Greife auf das Modell mit &lt;mono&gt;.$finalModel&lt;/mono&gt; zu und &lt;high&gt;exploriere&lt;/high&gt; das Objekt mit generischen Funktionen:&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -1037,7 +1040,7 @@ load_mod &lt;- train(form = factor(Kreditausfall) ~ .,
     &lt;mono&gt;names()&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    Zeige Namen alle benannten Elemente (häufig mit `$` ansteuerbar).
+    Zeige Namen aller benannten Elemente (häufig mit `$` ansteuerbar).
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -1051,7 +1054,7 @@ load_mod &lt;- train(form = factor(Kreditausfall) ~ .,
 # Fitte Regressionsmodell
 eink_mod &lt;-
   train(form = einkommen ~ alter + groesse,
-        data = basel    # Daten
+        data = basel       # Daten
         method = "glm",    # Regression
         trControl = ctrl)  # Kontrollparameter
 
@@ -1070,7 +1073,7 @@ names(eink_mod$finalModel)
 
 
 ```r
-# Zugriff auf speizifische Elemente
+# Zugriff auf spezifische Elemente
 eink_mod$finalModel$coefficients
 ```
 
@@ -1090,7 +1093,7 @@ eink_mod$finalModel$coefficients
 
 &lt;ul&gt;
   &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;train()&lt;/mono&gt; Funktion gibt eine &lt;mono&gt;list&lt;/mono&gt;e zurück. Diese enthält ein &lt;mono&gt;finalModel&lt;/mono&gt; Element - das ist unser &lt;high&gt;bestes gefittetes Model&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Greiffe auf das Modell mit &lt;mono&gt;mod$finalModel&lt;mono&gt; zu und &lt;high&gt;exploriere&lt;/high&gt; das Objekt mit generischen Funktionen:&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Greife auf das Modell mit &lt;mono&gt;.$finalModel&lt;/mono&gt; zu und &lt;high&gt;exploriere&lt;/high&gt; das Objekt mit generischen Funktionen:&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -1117,7 +1120,7 @@ eink_mod$finalModel$coefficients
     &lt;mono&gt;names()&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    Zeige Namen alle benannten Elemente (häufig mit `$` ansteuerbar).
+    Zeige Namen aller benannten Elemente (häufig mit `$` ansteuerbar).
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -1146,7 +1149,7 @@ summary(eink_mod)
 .pull-left5[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;predict()&lt;/mono&gt; Funktion &lt;high&gt;macht Vorhersagen&lt;/high&gt; von einem Modell. Dazu muss man lediglich den Modelloutput als erstes Argument spezifizieren.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;predict()&lt;/mono&gt; Funktion &lt;high&gt;macht Modellvorhersagen&lt;/high&gt;. Dazu muss man lediglich den Modelloutput als erstes Argument spezifizieren.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -1179,7 +1182,7 @@ glm_fits[1:8]
 .pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;postResample()&lt;/mono&gt; Funktion &lt;high&gt;erstellt eine einfache Zusammenfassung&lt;/high&gt; der Modellperformanz bei &lt;high&gt;Regressionsproblemen&lt;/high&gt;. Zu spezifizierende Argumente sind die vorhergesagten Werte und die wahren Werte.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;postResample()&lt;/mono&gt; Funktion &lt;high&gt;erstellt eine einfache Zusammenfassung&lt;/high&gt; der Modellperformanz bei &lt;high&gt;Regressionsproblemen&lt;/high&gt;. Zu spezifizierende Argumente sind die vorhergesagten Werte und die tatsächlichen Werte.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -1215,7 +1218,7 @@ postResample(glm_fits,
 &lt;p style="padding-top:10px"&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;confusionMatrix()&lt;/mono&gt; Funktion erstellt eine Zusammenfassung der Modellperformanz bei &lt;high&gt;Klassifikationsproblemen&lt;/high&gt;. Zu spezifizierende Argumente sind wiederum die vorhergesagten Werte und die wahren Werte.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;confusionMatrix()&lt;/mono&gt; Funktion erstellt eine Zusammenfassung der Modellperformanz bei &lt;high&gt;Klassifikationsproblemen&lt;/high&gt;. Zu spezifizierende Argumente sind wiederum die vorhergesagten Werte und die tatsächlichen Werte.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 

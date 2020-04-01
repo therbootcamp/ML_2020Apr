@@ -58,7 +58,7 @@ Am Ende dieses Practicals wirst du wissen wie du:
 
 1. Ein Regressionsmodell in R fitten kannst.
 2. Die Modelloutputs in R explorieren kannst.
-3. Modellperformanz einschätzen kannst.
+3. Die Modellperformanz einschätzen kannst.
 4. Den Effekt zusätzlicher Features erfassen kannst.
 
 
@@ -66,7 +66,7 @@ Am Ende dieses Practicals wirst du wissen wie du:
 
 ### A - Setup
 
-1. Öffne dein `TheRBootcamp` R Projekt. Es sollte bereits die Ordner `1_Data` und `2_Code` enhalten. Stelle sicher, dass die Datensätze, welche im Datensätze Register gelistet sind, in  `1_Data` Ordner vorhanden sind.
+1. Öffne dein `TheRBootcamp` R Projekt. Es sollte bereits die Ordner `1_Data` und `2_Code` enhalten. Stelle sicher, dass die Datensätze, welche im Datensätze Register gelistet sind, im  `1_Data` Ordner vorhanden sind.
 
 ```{r}
 # Gemacht!
@@ -92,7 +92,7 @@ library(tidyverse)
 library(caret)
 ```
 
-4. In diesem Practical verwenden wir ein Datensatz, der Daten von 388 U.S. Colleges enthält. Die Daten sind als `college_train.csv` gespeichert. Unter Verwendung des untenstehenden Codes, lese den Datensatz ein und speichere ihn unter dem Namen `college_train`.
+4. In diesem Practical verwenden wir einen Datensatz, der Daten von 388 U.S. Colleges enthält. Die Daten sind als `college_train.csv` gespeichert. Unter Verwendung des untenstehenden Codes, lese den Datensatz ein und speichere ihn unter dem Namen `college_train`.
 
 ```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
 # Lese den college_train.csv Datensatz ein
@@ -138,7 +138,7 @@ names(college_train)
 View(XXX)
 ```
 
-9. Nun haben wir einen ersten Überblick über die Daten gewonnen. Doch bevor wir mit dem maschinellen Lernen beginnen können, müssen wir die Daten etwas umformattieren. Und zwar müssen wir alle `character` Variablen in `factor` umwandeln. Lasse dazu den untenstehenden Code laufen:
+9. Nun haben wir einen ersten Überblick über die Daten gewonnen. Doch bevor wir mit dem maschinellen Lernen beginnen können, müssen wir die Daten etwas umformatieren. Und zwar müssen wir alle `character` Variablen in `factor` umwandeln. Lasse dazu den untenstehenden Code laufen:
 
 ```{r, echo = TRUE}
 # Konvertiere alle character variablen zu factor
@@ -148,7 +148,7 @@ college_train <- college_train %>%
 
 ### B - Definiere die Kontrollparameter
 
-In `caret` verwenden wir die `trainControl()` Funktion, um zu definieren wie genau die Modelle gefitted werden sollen. Da wir uns im Moment auf die Grundlagen des Fittings konzentrieren, setzen wir für dieses Practical das Argument `method = "none"` (Normalerweise würde man das für einen tatsächlichen Einsatz von Machine Learning Modellen nicht machen; weshalb lernst du in einer späteren Session).
+In `caret` verwenden wir die `trainControl()` Funktion, um zu definieren wie genau die Modelle gefittet werden sollen. Da wir uns im Moment auf die Grundlagen des Fittings konzentrieren, setzen wir für dieses Practical das Argument `method = "none"` (Normalerweise würde man das für einen tatsächlichen Einsatz von Machine Learning Modellen nicht machen; weshalb lernst du in einer späteren Session).
 
 ```{r echo = TRUE}
 # Setze Resamplingmethode auf "none" um für den Moment alles einfach zu halten.
@@ -159,7 +159,7 @@ ctrl_none <- trainControl(method = "none")
 
 ### C - Fitte ein Regressionsmodell
 
-1. Fitte eine Regression zur Vorhersage der Abschlussrate (`Grad.Rate`) als Funktion eines Features, nähmlich dem Prozentsatz an Fakultätsangestellten mit PhDs (`PhD`). Speichere das Resultat unter dem Namen `Grad.Rate_glm`. Genauer:
+1. Fitte eine Regression zur Vorhersage der Abschlussrate (`Grad.Rate`) als Funktion eines Features, nämlich dem Prozentsatz des Lehrkörpers mit PhDs (`PhD`). Speichere das Resultat unter dem Namen `Grad.Rate_glm`. Genauer:
 
 - setze das `form` Argument auf `Grad.Rate ~ PhD`.
 - setze das `data` Argument auf `college_train`.
@@ -168,7 +168,7 @@ ctrl_none <- trainControl(method = "none")
 
 ```{r, echo = TRUE, eval = FALSE}
 # Grad.Rate_glm: Regressionsmodell
-#   Abhängige Variable: Grad.Rate
+#   Kriterium: Grad.Rate
 #   Features: PhD
 Grad.Rate_glm <- train(form = XX ~ XX,
                        data = XX,
@@ -179,7 +179,7 @@ Grad.Rate_glm <- train(form = XX ~ XX,
 
 ```{r}
 # Grad.Rate_glm: Regressionsmodell
-#   Abhängige Variable: Grad.Rate
+#   Kriterium: Grad.Rate
 #   Features: PhD
 Grad.Rate_glm <- train(form = Grad.Rate ~ PhD,
                        data = college_train,
@@ -205,7 +205,7 @@ summary(Grad.Rate_glm)
 # Für jede Zunahme um eins in PhD (der Anteil Angestellter mit einem PhD), steigt die erwartete Abschlussrate um 0.33. 
 ```
 
-4. Nun können wir die Modellvorhersagen extrahieren. Verwende dazu die `predict()` Funktion, um aus dem Modellouput die Vorhersagen zu extrahieren. Speichere die extrahierten Werte als `glm_fit`.
+4. Nun können wir die Modellvorhersagen extrahieren. Verwende dazu die `predict()` Funktion, um aus dem Modellouput die gefitteten Werte zu extrahieren. Speichere die extrahierten Werte als `glm_fit`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Extrahiere gefittete Werte
@@ -220,14 +220,14 @@ glm_fit <- predict(Grad.Rate_glm)
 
 ### D - Evaluiere Modellperformanz
 
-1. Nun wollen wir die Modellperformanz quantifizieren. Definiere dazu zunächst einen Vektor mit den tatsächlichen Werten und nenne diesen `criterion` (Im Englischen wird, im Kontext des maschinellen Lernens, die abhängige Variable als *criterion* bezeichnet).
+1. Nun wollen wir die Modellperformanz quantifizieren. Definiere dazu zunächst einen Vektor mit den tatsächlichen Werten und nenne diesen `criterion` (Kriterium).
 
 ```{r, echo = TRUE, eval = TRUE}
 # Definiere einen Vektor mit den tatsächlichen Werten
 criterion <- college_train$Grad.Rate
 ```
 
-2. Nun können wir mit der `postResample()` Funktion die Modellperformanz quantifizieren. Dazu müssen wir die gefitteten, sowie die tatsächlichen Werte als Argumente in die Funktion geben.
+2. Nun können wir mit der `postResample()` Funktion die Modellperformanz quantifizieren. Dazu müssen wir die gefitteten und die tatsächlichen Werte als Argumente in die Funktion geben.
 
 Genauer:
 
@@ -246,7 +246,7 @@ postResample(pred = glm_fit,   # Vorhergesagte/ gefittete Werte
              obs = criterion)  # Tatsächliche Werte
 ```
 
-3. Der Output der `postResample()` Funktion zeigt drei Werte, *RMSE*, *Rsquared* und *MAE*. Was bedeuten diese Werte? Wie interpretierst du die Resultate des Regressionsmodell, ist die Performanz gut oder schlecht?
+3. Der Output der `postResample()` Funktion zeigt drei Werte, *RMSE*, *Rsquared* und *MAE*. Was bedeuten diese Werte? Wie interpretierst du die Resultate des Regressionsmodells; ist die Performanz gut oder schlecht?
 
 ```{r}
 # Im Schnitt sind die Vorhersagen des Modells 12.86 Prozent von den wahren Werten
@@ -254,7 +254,7 @@ postResample(pred = glm_fit,   # Vorhergesagte/ gefittete Werte
 # nur gerade zehn Prozent erklären. Das Modell macht also nur schlechte Vorhersagen.
 ```
 
-4. Nun wollen wir unsere Ergebnisse visualisieren. Es ist grundsätzlich zu empfehlen, nicht nur die zusammenfassenden Performanzindikatoren anzuschauen, sondern auch darzustellen, wie gut Vorhersage und tatsächliche Werte übereinstimmen. So können zum Beispiel problematische Bereiche (etwa an den Endpunkten) in den Vorhersagen einfach erkennt werden. Aber Schritt für Schritt. Zuerst kreieren wir zwei `data.frame`s (**Hinweis:** der untenstehende Code ist komplizierter als nötig, dies damit wir ihn in der nächsten Übung mit mehreren Modellen wiederverwenden können):
+4. Nun wollen wir unsere Ergebnisse visualisieren. Es ist grundsätzlich zu empfehlen, nicht nur die zusammenfassenden Performanzindikatoren anzuschauen, sondern auch darzustellen, wie gut Vorhersage und tatsächliche Werte übereinstimmen. So können zum Beispiel problematische Bereiche (etwa an den Endpunkten) in den Vorhersagen einfach erkennt werden. Aber Schritt für Schritt. Zuerst kreieren wir zwei `data.frame`s (**Hinweis:** der untenstehende Code ist etwas komplizierter als nötig, dies damit wir ihn in der nächsten Übung mit mehreren Modellen wiederverwenden können):
   - `accuracy` - Absolute Abweichungen
   - `accuracy_agg` - Aggregierte (mittlere) absolute Abweichungen
 
@@ -264,7 +264,7 @@ accuracy <- tibble(criterion = criterion,
                    prediction = glm_fit) %>%
             pivot_longer(cols = -criterion, names_to = "model",
                          values_to = "prediction") %>% 
-                 # verechne absolute Abweichungen
+                 # berechne absolute Abweichungen
                  mutate(ae = abs(prediction - criterion))
 
 # accuracy_agg - ein dataframe mit den mittleren absoluten Abweichungen
@@ -352,7 +352,7 @@ Bisher haben wir nur ein Feature - `PhD` - zur Vorhersage von `Grad.Rate` verwen
 
 - `PhD` - der Prozentsatz des Lehrkörpers mit einem PhD.
 - `Room.Board` - Raumkosten.
-- `S.F.Ratio` - Verhältnis von Studenten zu Angestellten.
+- `S.F.Ratio` - Verhältnis der Anzahl Studenten zu Lehrkörper.
 
 1. Verwende die gleichen Schritte wie oben um ein Regressionsmodell mit drei Features zur Vorhersage von `Grad.Rate` zu rechnen. Speichere den Output unter `Grad.Rate_glm_three`. Genauer,...
 
@@ -363,7 +363,7 @@ Bisher haben wir nur ein Feature - `PhD` - zur Vorhersage von `Grad.Rate` verwen
 
 ```{r, echo = TRUE, eval = FALSE}
 # Grad.Rate_glm_three: Regressionsmodell
-#   abhängige Variable: Grad.Rate
+#   Kriterium: Grad.Rate
 #   Features: PhD, Room.Board, S.F.Ratio
 Grad.Rate_glm_three <- train(form = XXX ~ XXX + XXX + XXX,
                              data = XXX,
@@ -373,7 +373,7 @@ Grad.Rate_glm_three <- train(form = XXX ~ XXX + XXX + XXX,
 
 ```{r}
 # Grad.Rate_glm_three: Regressionsmodell
-#   abhängige Variable: Grad.Rate
+#   Kriterium: Grad.Rate
 #   Features: PhD, Room.Board, S.F.Ratio
 Grad.Rate_glm_three <- train(form = Grad.Rate ~ PhD + Room.Board + S.F.Ratio,
                              data = college_train,
@@ -432,7 +432,7 @@ accuracy <- tibble(criterion = criterion,
                    prediction = glm_fit_three) %>%
             pivot_longer(cols = -criterion, names_to = "model",
                          values_to = "prediction") %>% 
-                 # verechne absolute Abweichungen
+                 # berechne absolute Abweichungen
                  mutate(ae = abs(prediction - criterion))
 
 # accuracy_agg - ein dataframe mit den mittleren absoluten Abweichungen
@@ -479,7 +479,7 @@ ggplot(data = accuracy,
 
 Nun wollen wir alle Features verwenden!
 
-1. Mit den gleichen Schritten wie oben, rechne ein Regressionsmodell zur Vorhersage von `Grad.Rate` mit *allen* vorhandenen Features. Setze dazu das `form` Argument auf `Grad.Rate ~ .`, der Punkt bedeuted, dass alle Features (additiv) im Modell verwendet werden. Speichere den Output unter dem Namen `Grad.Rate_glm_all`.
+1. Mit den gleichen Schritten wie oben, rechne ein Regressionsmodell zur Vorhersage von `Grad.Rate` mit *allen* vorhandenen Features. Setze dazu das `form` Argument auf `Grad.Rate ~ .`, der Punkt bedeutet, dass alle Features (additiv) im Modell verwendet werden. Speichere den Output unter dem Namen `Grad.Rate_glm_all`.
 
 ```{r, echo = TRUE, eval = FALSE}
 Grad.Rate_glm_all <- train(form = XXX ~ .,
@@ -523,10 +523,10 @@ glm_fit_all <- predict(Grad.Rate_glm_all)
 
 # Modellperformanz des neuen Modells
 postResample(pred = glm_fit_all,   # Vorhergesagte Werte  
-             obs = criterion)        # Tatsächliche Werte
+             obs = criterion)      # Tatsächliche Werte
 ```
 
-5. (Optional). Create a scatter plot showing the relationship between your new model fits and the true values. How does this plot compare to your previous one?
+5. (Optional). Erstelle ein Streudiagramm, das die Beziehung zwischen den gefitteten Werten des neuen Modells und den tatsächlichen Werten zeigt. Wie verhält sich diese Darstellung im Vergleich zu der vorherigen?
 
 ```{r, out.width = "60%"}
 # accuracy - ein dataframe mit den absoluten Abweichungen
@@ -534,7 +534,7 @@ accuracy <- tibble(criterion = criterion,
                    prediction = glm_fit_all) %>%
             pivot_longer(cols = -criterion, names_to = "model",
                          values_to = "prediction") %>% 
-                 # verechne absolute Abweichungen
+                 # berechne absolute Abweichungen
                  mutate(ae = abs(prediction - criterion))
 
 # accuracy_agg - ein dataframe mit den mittleren absoluten Abweichungen
@@ -579,19 +579,19 @@ ggplot(data = accuracy,
 
 ### Klassifikation
 
-### G - Abhängige Variable als Faktor
+### G - Kriterium als Faktor
 
-Nun wollen wir uns an Klassifikationsprobleme wagen. Erinnere, dass in `caret` Funktionen die abhängige Variable für Klassifikationsprobleme die Klasse `factor` haben muss. In den folgenden Aufgaben wollen wir vorhersagen, ob es sich bei einem College um ein privates oder öffentliches College handelt (die `Private` Variable).
+Nun wollen wir uns an Klassifikationsprobleme wagen. Erinnere, dass in `caret` Funktionen das Kriterium für Klassifikationsprobleme die Klasse `factor` haben muss. In den folgenden Aufgaben wollen wir vorhersagen, ob es sich bei einem College um ein privates oder öffentliches College handelt (die `Private` Variable).
 
 
-1. Verwende die `class()` Funktion, um die Klasse der `Private` Variablen zu testen. Wen der Output `factor` ist, können wir mit dem maschinellen Lernen beginnen, andernfalls müssten wir die Klasse zuerst mit `college_train$Private <- as.factor(college_train$Private)` in einen Faktor umwandeln.
+1. Verwende die `class()` Funktion, um die Klasse der `Private` Variable zu testen. Wenn der Output `factor` ist, können wir mit dem maschinellen Lernen beginnen, andernfalls müssten wir die Klasse zuerst mit `college_train$Private <- as.factor(college_train$Private)` in einen Faktor umwandeln.
 
 ```{r, echo = TRUE}
 # Überprüfe die Klasse der Private Variable
 class(college_train$Private)
 ```
 
-2. Speichern die `Private` Variable als neues Objekt, `criterion`, so wie du das oben bei den Regressionsproblemen bereits getan hast.
+2. Speichere die `Private` Variable als neues Objekt, `criterion`, so wie du das oben bei den Regressionsproblemen bereits getan hast.
 
 ```{r}
 criterion <- college_train$Private
@@ -599,8 +599,8 @@ criterion <- college_train$Private
 
 ### H - Rechne ein Klassifikationsmodell
 
-1. Verwende die `train()` um eine logistische Regression zu rechnen, mit der du `Private` unter Verwendung aller Features vorhersagst.
-**Tipp:** Der Code dafür, hat dieselbe Struktur wie bei den vorherigen Aufgaben, du musst nur nur die Formel anpassen.
+1. Verwende die `train()` Funktion um eine logistische Regression zu rechnen, mit der du `Private` unter Verwendung aller Features vorhersagst.
+**Tipp:** Der Code dafür hat dieselbe Struktur wie bei den vorherigen Aufgaben, du musst nur die Formel anpassen.
 
 
 ```{r}
@@ -707,7 +707,7 @@ postResample(pred = mod_predictions,
 ```
 
 
-2. Rechne ein Klassifikationsmodell zur Vorhersage, ob ein College begehrt ist (definiert als mehr als 10000 Bewerbungen `Apps`) ist. Verwende dazu den untenstehenden Code um zunächst die abhängige Variable `hot` zu generieren. Ausserdem wirst du beim Rechnen des Modells Probleme haben, wenn du gewisse Variablen als Features verwendest. Welche Variablen musst du weglassen und wie gut ist das Modell?
+2. Rechne ein Klassifikationsmodell zur Vorhersage, ob ein College begehrt ist (definiert als mehr als 10000 Bewerbungen `Apps`). Verwende dazu den untenstehenden Code um zunächst das Kriterium `hot` zu generieren. Ausserdem wirst du beim Rechnen des Modells Probleme haben, wenn du gewisse Variablen als Features verwendest. Welche Variablen musst du weglassen und wie gut ist das Modell?
 
 ```{r, echo = TRUE}
 # Kreiere neue Variable hot
@@ -736,7 +736,7 @@ confusionMatrix(data = mod_predictions,
 
 
 
-## Examples
+## Beispiele
 
 ```{r, eval = FALSE, echo = TRUE}
 # Rechnen und Evaluieren eines Regressionsmodells ------------------------------
@@ -767,7 +767,7 @@ names(data_train) # Variablennamen
 train_control <- trainControl(method = "none") 
 
 # Schritt 3: Rechne Modell: -----------------------------
-#   abhängige Variable: hwy
+#   Kriterium: hwy
 #   Features: year, cyl, displ, trans
 
 # Regression
@@ -801,7 +801,7 @@ accuracy <- tibble(criterion = criterion,
                    prediction = glm_fit) %>%
             pivot_longer(cols = -criterion, names_to = "model",
                          values_to = "prediction") %>% 
-                 # verechne absolute Abweichungen
+                 # berechne absolute Abweichungen
                  mutate(ae = abs(prediction - criterion))
 
 # accuracy_agg - ein dataframe mit den mittleren absoluten Abweichungen
@@ -827,7 +827,7 @@ ggplot(data = accuracy,
 ```
 
 
-## Datasets
+## Datensätze
 
 ```{r, eval = TRUE, message = FALSE, echo = FALSE}
 library(tidyverse)
@@ -855,7 +855,7 @@ library(ggthemes)
 | `Outstate` | Unterrichtsgebühr für Studenten aus anderem Bundesstaat. |
 | `Room.Board` | Raumkosten. |
 | `Books` | Geschätzte Kosten für Bücher. |
-| `Personal` | Geschätze persönliche Ausgaben. |
+| `Personal` | Geschätzte persönliche Ausgaben. |
 | `PhD` | Prozent des Lehrkörpers mit einem PhD. |
 | `Terminal` | Prozent des Lehrkörpers mit einem Masterabschluss. |
 | `S.F.Ratio` | Studenten-Lehrkörper Verhältnis. |
@@ -881,7 +881,7 @@ library(ggthemes)
 | `train()`|`caret`|    Fitte Modell|
 | `predict(object, newdata)`|`base`|    Vorhersage von `newdata` basierend auf `object`|
 | `postResample()`|`caret`|   Berechne Modellperformanz für Regressionsproblem |
-| `confusionMatrix()`|`caret`|   Berechne Modellperformanz für Klassifiaktionsproblem| 
+| `confusionMatrix()`|`caret`|   Berechne Modellperformanz für Klassifikationsproblem| 
 
 
 ## Materialien

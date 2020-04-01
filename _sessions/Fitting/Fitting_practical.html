@@ -206,7 +206,7 @@ summary {
 <ol style="list-style-type: decimal">
 <li>Ein Regressionsmodell in R fitten kannst.</li>
 <li>Die Modelloutputs in R explorieren kannst.</li>
-<li>Modellperformanz einschätzen kannst.</li>
+<li>Die Modellperformanz einschätzen kannst.</li>
 <li>Den Effekt zusätzlicher Features erfassen kannst.</li>
 </ol>
 </div>
@@ -215,7 +215,7 @@ summary {
 <div id="a---setup" class="section level3">
 <h3>A - Setup</h3>
 <ol style="list-style-type: decimal">
-<li><p>Öffne dein <code>TheRBootcamp</code> R Projekt. Es sollte bereits die Ordner <code>1_Data</code> und <code>2_Code</code> enhalten. Stelle sicher, dass die Datensätze, welche im Datensätze Register gelistet sind, in <code>1_Data</code> Ordner vorhanden sind.</p></li>
+<li><p>Öffne dein <code>TheRBootcamp</code> R Projekt. Es sollte bereits die Ordner <code>1_Data</code> und <code>2_Code</code> enhalten. Stelle sicher, dass die Datensätze, welche im Datensätze Register gelistet sind, im <code>1_Data</code> Ordner vorhanden sind.</p></li>
 <li><p>Öffne ein neues R Skript. Schreibe am Anfang des Skripts mithilfe von Kommentaren deinen Namen und das Datum. Speichere das neue Skript unter dem Namen <code>Fitting_practical.R</code> im <code>2_Code</code> Ordner.</p></li>
 <li><p>Verwende <code>library()</code> um die <code>tidyverse</code> und <code>caret</code> Pakete zu laden.</p></li>
 </ol>
@@ -223,7 +223,7 @@ summary {
 library(tidyverse)
 library(caret)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>In diesem Practical verwenden wir ein Datensatz, der Daten von 388 U.S. Colleges enthält. Die Daten sind als <code>college_train.csv</code> gespeichert. Unter Verwendung des untenstehenden Codes, lese den Datensatz ein und speichere ihn unter dem Namen <code>college_train</code>.</li>
+<li>In diesem Practical verwenden wir einen Datensatz, der Daten von 388 U.S. Colleges enthält. Die Daten sind als <code>college_train.csv</code> gespeichert. Unter Verwendung des untenstehenden Codes, lese den Datensatz ein und speichere ihn unter dem Namen <code>college_train</code>.</li>
 </ol>
 <pre class="r"><code># Lese den college_train.csv Datensatz ein
 college_train &lt;- read_csv(file = &quot;1_Data/college_train.csv&quot;)</code></pre>
@@ -242,7 +242,7 @@ dim(XXX)</code></pre>
 </ol>
 <pre class="r"><code>View(XXX)</code></pre>
 <ol start="9" style="list-style-type: decimal">
-<li>Nun haben wir einen ersten Überblick über die Daten gewonnen. Doch bevor wir mit dem maschinellen Lernen beginnen können, müssen wir die Daten etwas umformattieren. Und zwar müssen wir alle <code>character</code> Variablen in <code>factor</code> umwandeln. Lasse dazu den untenstehenden Code laufen:</li>
+<li>Nun haben wir einen ersten Überblick über die Daten gewonnen. Doch bevor wir mit dem maschinellen Lernen beginnen können, müssen wir die Daten etwas umformatieren. Und zwar müssen wir alle <code>character</code> Variablen in <code>factor</code> umwandeln. Lasse dazu den untenstehenden Code laufen:</li>
 </ol>
 <pre class="r"><code># Konvertiere alle character variablen zu factor
 college_train &lt;- college_train %&gt;%
@@ -250,7 +250,7 @@ college_train &lt;- college_train %&gt;%
 </div>
 <div id="b---definiere-die-kontrollparameter" class="section level3">
 <h3>B - Definiere die Kontrollparameter</h3>
-<p>In <code>caret</code> verwenden wir die <code>trainControl()</code> Funktion, um zu definieren wie genau die Modelle gefitted werden sollen. Da wir uns im Moment auf die Grundlagen des Fittings konzentrieren, setzen wir für dieses Practical das Argument <code>method = &quot;none&quot;</code> (Normalerweise würde man das für einen tatsächlichen Einsatz von Machine Learning Modellen nicht machen; weshalb lernst du in einer späteren Session).</p>
+<p>In <code>caret</code> verwenden wir die <code>trainControl()</code> Funktion, um zu definieren wie genau die Modelle gefittet werden sollen. Da wir uns im Moment auf die Grundlagen des Fittings konzentrieren, setzen wir für dieses Practical das Argument <code>method = &quot;none&quot;</code> (Normalerweise würde man das für einen tatsächlichen Einsatz von Machine Learning Modellen nicht machen; weshalb lernst du in einer späteren Session).</p>
 <pre class="r"><code># Setze Resamplingmethode auf &quot;none&quot; um für den Moment alles einfach zu halten.
 ctrl_none &lt;- trainControl(method = &quot;none&quot;) </code></pre>
 </div>
@@ -260,7 +260,7 @@ ctrl_none &lt;- trainControl(method = &quot;none&quot;) </code></pre>
 <div id="c---fitte-ein-regressionsmodell" class="section level3">
 <h3>C - Fitte ein Regressionsmodell</h3>
 <ol style="list-style-type: decimal">
-<li>Fitte eine Regression zur Vorhersage der Abschlussrate (<code>Grad.Rate</code>) als Funktion eines Features, nähmlich dem Prozentsatz an Fakultätsangestellten mit PhDs (<code>PhD</code>). Speichere das Resultat unter dem Namen <code>Grad.Rate_glm</code>. Genauer:</li>
+<li>Fitte eine Regression zur Vorhersage der Abschlussrate (<code>Grad.Rate</code>) als Funktion eines Features, nämlich dem Prozentsatz des Lehrkörpers mit PhDs (<code>PhD</code>). Speichere das Resultat unter dem Namen <code>Grad.Rate_glm</code>. Genauer:</li>
 </ol>
 <ul>
 <li>setze das <code>form</code> Argument auf <code>Grad.Rate ~ PhD</code>.</li>
@@ -269,7 +269,7 @@ ctrl_none &lt;- trainControl(method = &quot;none&quot;) </code></pre>
 <li>setze das <code>trControl</code> Argument auf <code>ctrl_none</code>, das oben erstellte Objekt mit den Kontrollparametern.</li>
 </ul>
 <pre class="r"><code># Grad.Rate_glm: Regressionsmodell
-#   Abhängige Variable: Grad.Rate
+#   Kriterium: Grad.Rate
 #   Features: PhD
 Grad.Rate_glm &lt;- train(form = XX ~ XX,
                        data = XX,
@@ -282,7 +282,7 @@ Grad.Rate_glm &lt;- train(form = XX ~ XX,
 summary(XXX)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Schaue dir die Resultate an. Wie interpretierst du die Regressionskoeffizienten? Was ist der Zusammenhang zwischen PhD und der Abschlussrate?</p></li>
-<li><p>Nun können wir die Modellvorhersagen extrahieren. Verwende dazu die <code>predict()</code> Funktion, um aus dem Modellouput die Vorhersagen zu extrahieren. Speichere die extrahierten Werte als <code>glm_fit</code>.</p></li>
+<li><p>Nun können wir die Modellvorhersagen extrahieren. Verwende dazu die <code>predict()</code> Funktion, um aus dem Modellouput die gefitteten Werte zu extrahieren. Speichere die extrahierten Werte als <code>glm_fit</code>.</p></li>
 </ol>
 <pre class="r"><code># Extrahiere gefittete Werte
 glm_fit &lt;- predict(XXX)</code></pre>
@@ -290,12 +290,12 @@ glm_fit &lt;- predict(XXX)</code></pre>
 <div id="d---evaluiere-modellperformanz" class="section level3">
 <h3>D - Evaluiere Modellperformanz</h3>
 <ol style="list-style-type: decimal">
-<li>Nun wollen wir die Modellperformanz quantifizieren. Definiere dazu zunächst einen Vektor mit den tatsächlichen Werten und nenne diesen <code>criterion</code> (Im Englischen wird, im Kontext des maschinellen Lernens, die abhängige Variable als <em>criterion</em> bezeichnet).</li>
+<li>Nun wollen wir die Modellperformanz quantifizieren. Definiere dazu zunächst einen Vektor mit den tatsächlichen Werten und nenne diesen <code>criterion</code> (Kriterium).</li>
 </ol>
 <pre class="r"><code># Definiere einen Vektor mit den tatsächlichen Werten
 criterion &lt;- college_train$Grad.Rate</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Nun können wir mit der <code>postResample()</code> Funktion die Modellperformanz quantifizieren. Dazu müssen wir die gefitteten, sowie die tatsächlichen Werte als Argumente in die Funktion geben.</li>
+<li>Nun können wir mit der <code>postResample()</code> Funktion die Modellperformanz quantifizieren. Dazu müssen wir die gefitteten und die tatsächlichen Werte als Argumente in die Funktion geben.</li>
 </ol>
 <p>Genauer:</p>
 <ul>
@@ -306,8 +306,8 @@ criterion &lt;- college_train$Grad.Rate</code></pre>
 postResample(pred = XXX,   # Vorhergesagte/ gefittete Werte 
              obs = XXX)    # Tatsächliche Werte</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Der Output der <code>postResample()</code> Funktion zeigt drei Werte, <em>RMSE</em>, <em>Rsquared</em> und <em>MAE</em>. Was bedeuten diese Werte? Wie interpretierst du die Resultate des Regressionsmodell, ist die Performanz gut oder schlecht?</p></li>
-<li>Nun wollen wir unsere Ergebnisse visualisieren. Es ist grundsätzlich zu empfehlen, nicht nur die zusammenfassenden Performanzindikatoren anzuschauen, sondern auch darzustellen, wie gut Vorhersage und tatsächliche Werte übereinstimmen. So können zum Beispiel problematische Bereiche (etwa an den Endpunkten) in den Vorhersagen einfach erkennt werden. Aber Schritt für Schritt. Zuerst kreieren wir zwei <code>data.frame</code>s (<strong>Hinweis:</strong> der untenstehende Code ist komplizierter als nötig, dies damit wir ihn in der nächsten Übung mit mehreren Modellen wiederverwenden können):</li>
+<li><p>Der Output der <code>postResample()</code> Funktion zeigt drei Werte, <em>RMSE</em>, <em>Rsquared</em> und <em>MAE</em>. Was bedeuten diese Werte? Wie interpretierst du die Resultate des Regressionsmodells; ist die Performanz gut oder schlecht?</p></li>
+<li>Nun wollen wir unsere Ergebnisse visualisieren. Es ist grundsätzlich zu empfehlen, nicht nur die zusammenfassenden Performanzindikatoren anzuschauen, sondern auch darzustellen, wie gut Vorhersage und tatsächliche Werte übereinstimmen. So können zum Beispiel problematische Bereiche (etwa an den Endpunkten) in den Vorhersagen einfach erkennt werden. Aber Schritt für Schritt. Zuerst kreieren wir zwei <code>data.frame</code>s (<strong>Hinweis:</strong> der untenstehende Code ist etwas komplizierter als nötig, dies damit wir ihn in der nächsten Übung mit mehreren Modellen wiederverwenden können):</li>
 </ol>
 <ul>
 <li><code>accuracy</code> - Absolute Abweichungen</li>
@@ -318,7 +318,7 @@ accuracy &lt;- tibble(criterion = criterion,
                    prediction = glm_fit) %&gt;%
             pivot_longer(cols = -criterion, names_to = &quot;model&quot;,
                          values_to = &quot;prediction&quot;) %&gt;% 
-                 # verechne absolute Abweichungen
+                 # berechne absolute Abweichungen
                  mutate(ae = abs(prediction - criterion))
 
 # accuracy_agg - ein dataframe mit den mittleren absoluten Abweichungen
@@ -384,7 +384,7 @@ ggplot(data = accuracy,
 <ul>
 <li><code>PhD</code> - der Prozentsatz des Lehrkörpers mit einem PhD.</li>
 <li><code>Room.Board</code> - Raumkosten.</li>
-<li><code>S.F.Ratio</code> - Verhältnis von Studenten zu Angestellten.</li>
+<li><code>S.F.Ratio</code> - Verhältnis der Anzahl Studenten zu Lehrkörper.</li>
 </ul>
 <ol style="list-style-type: decimal">
 <li>Verwende die gleichen Schritte wie oben um ein Regressionsmodell mit drei Features zur Vorhersage von <code>Grad.Rate</code> zu rechnen. Speichere den Output unter <code>Grad.Rate_glm_three</code>. Genauer,…</li>
@@ -396,7 +396,7 @@ ggplot(data = accuracy,
 <li>setze das <code>trControl</code> Argument auf <code>ctrl_none</code>.</li>
 </ul>
 <pre class="r"><code># Grad.Rate_glm_three: Regressionsmodell
-#   abhängige Variable: Grad.Rate
+#   Kriterium: Grad.Rate
 #   Features: PhD, Room.Board, S.F.Ratio
 Grad.Rate_glm_three &lt;- train(form = XXX ~ XXX + XXX + XXX,
                              data = XXX,
@@ -442,7 +442,7 @@ postResample(pred = XXX, # Vorhergesagte Werte
 <h3>F - Verwende Alle Features</h3>
 <p>Nun wollen wir alle Features verwenden!</p>
 <ol style="list-style-type: decimal">
-<li>Mit den gleichen Schritten wie oben, rechne ein Regressionsmodell zur Vorhersage von <code>Grad.Rate</code> mit <em>allen</em> vorhandenen Features. Setze dazu das <code>form</code> Argument auf <code>Grad.Rate ~ .</code>, der Punkt bedeuted, dass alle Features (additiv) im Modell verwendet werden. Speichere den Output unter dem Namen <code>Grad.Rate_glm_all</code>.</li>
+<li>Mit den gleichen Schritten wie oben, rechne ein Regressionsmodell zur Vorhersage von <code>Grad.Rate</code> mit <em>allen</em> vorhandenen Features. Setze dazu das <code>form</code> Argument auf <code>Grad.Rate ~ .</code>, der Punkt bedeutet, dass alle Features (additiv) im Modell verwendet werden. Speichere den Output unter dem Namen <code>Grad.Rate_glm_all</code>.</li>
 </ol>
 <pre class="r"><code>Grad.Rate_glm_all &lt;- train(form = XXX ~ .,
                            data = XXX,
@@ -459,7 +459,7 @@ postResample(pred = XXX, # Vorhergesagte Werte
 glm_fit_all &lt;- predict(XXX)</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li><p>Wie stark hat sich die Modellperformanz gegenüber der vorherigen Modelle verbessert?</p></li>
-<li><p>(Optional). Create a scatter plot showing the relationship between your new model fits and the true values. How does this plot compare to your previous one?</p></li>
+<li><p>(Optional). Erstelle ein Streudiagramm, das die Beziehung zwischen den gefitteten Werten des neuen Modells und den tatsächlichen Werten zeigt. Wie verhält sich diese Darstellung im Vergleich zu der vorherigen?</p></li>
 </ol>
 <!-- 6. (Optional). Create a violin plot showing the distribution of absolute errors. How does this compare to your previous one? -->
 <!-- ```{r} -->
@@ -482,22 +482,22 @@ glm_fit_all &lt;- predict(XXX)</code></pre>
 <div id="klassifikation" class="section level3">
 <h3>Klassifikation</h3>
 </div>
-<div id="g---abhängige-variable-als-faktor" class="section level3">
-<h3>G - Abhängige Variable als Faktor</h3>
-<p>Nun wollen wir uns an Klassifikationsprobleme wagen. Erinnere, dass in <code>caret</code> Funktionen die abhängige Variable für Klassifikationsprobleme die Klasse <code>factor</code> haben muss. In den folgenden Aufgaben wollen wir vorhersagen, ob es sich bei einem College um ein privates oder öffentliches College handelt (die <code>Private</code> Variable).</p>
+<div id="g---kriterium-als-faktor" class="section level3">
+<h3>G - Kriterium als Faktor</h3>
+<p>Nun wollen wir uns an Klassifikationsprobleme wagen. Erinnere, dass in <code>caret</code> Funktionen das Kriterium für Klassifikationsprobleme die Klasse <code>factor</code> haben muss. In den folgenden Aufgaben wollen wir vorhersagen, ob es sich bei einem College um ein privates oder öffentliches College handelt (die <code>Private</code> Variable).</p>
 <ol style="list-style-type: decimal">
-<li>Verwende die <code>class()</code> Funktion, um die Klasse der <code>Private</code> Variablen zu testen. Wen der Output <code>factor</code> ist, können wir mit dem maschinellen Lernen beginnen, andernfalls müssten wir die Klasse zuerst mit <code>college_train$Private &lt;- as.factor(college_train$Private)</code> in einen Faktor umwandeln.</li>
+<li>Verwende die <code>class()</code> Funktion, um die Klasse der <code>Private</code> Variable zu testen. Wenn der Output <code>factor</code> ist, können wir mit dem maschinellen Lernen beginnen, andernfalls müssten wir die Klasse zuerst mit <code>college_train$Private &lt;- as.factor(college_train$Private)</code> in einen Faktor umwandeln.</li>
 </ol>
 <pre class="r"><code># Überprüfe die Klasse der Private Variable
 class(college_train$Private)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Speichern die <code>Private</code> Variable als neues Objekt, <code>criterion</code>, so wie du das oben bei den Regressionsproblemen bereits getan hast.</li>
+<li>Speichere die <code>Private</code> Variable als neues Objekt, <code>criterion</code>, so wie du das oben bei den Regressionsproblemen bereits getan hast.</li>
 </ol>
 </div>
 <div id="h---rechne-ein-klassifikationsmodell" class="section level3">
 <h3>H - Rechne ein Klassifikationsmodell</h3>
 <ol style="list-style-type: decimal">
-<li><p>Verwende die <code>train()</code> um eine logistische Regression zu rechnen, mit der du <code>Private</code> unter Verwendung aller Features vorhersagst. <strong>Tipp:</strong> Der Code dafür, hat dieselbe Struktur wie bei den vorherigen Aufgaben, du musst nur nur die Formel anpassen.</p></li>
+<li><p>Verwende die <code>train()</code> Funktion um eine logistische Regression zu rechnen, mit der du <code>Private</code> unter Verwendung aller Features vorhersagst. <strong>Tipp:</strong> Der Code dafür hat dieselbe Struktur wie bei den vorherigen Aufgaben, du musst nur die Formel anpassen.</p></li>
 <li><p>Exploriere den Modelloutput mit der <code>summary()</code> Funktion.</p></li>
 <li><p>Schaue dir die Resultate an. Welche Features scheinen wichtig für eine gute Modellperformanz zu sein?</p></li>
 </ol>
@@ -526,15 +526,15 @@ confusionMatrix(data = XXX,      # Vorhersagen
 <h3>Z - Herausforderungen</h3>
 <ol style="list-style-type: decimal">
 <li><p>Rechne eine Regression zur Vorhersage des Anteils an Alumni, welche ihrem College Geld spenden (<code>perc.alumni</code>). Wie gut ist die Modellperformanz? Welche Variablen scheinen für die Vorhersage wichtig zu sein?</p></li>
-<li><p>Rechne ein Klassifikationsmodell zur Vorhersage, ob ein College begehrt ist (definiert als mehr als 10000 Bewerbungen <code>Apps</code>) ist. Verwende dazu den untenstehenden Code um zunächst die abhängige Variable <code>hot</code> zu generieren. Ausserdem wirst du beim Rechnen des Modells Probleme haben, wenn du gewisse Variablen als Features verwendest. Welche Variablen musst du weglassen und wie gut ist das Modell?</p></li>
+<li><p>Rechne ein Klassifikationsmodell zur Vorhersage, ob ein College begehrt ist (definiert als mehr als 10000 Bewerbungen <code>Apps</code>). Verwende dazu den untenstehenden Code um zunächst das Kriterium <code>hot</code> zu generieren. Ausserdem wirst du beim Rechnen des Modells Probleme haben, wenn du gewisse Variablen als Features verwendest. Welche Variablen musst du weglassen und wie gut ist das Modell?</p></li>
 </ol>
 <pre class="r"><code># Kreiere neue Variable hot
 college_train &lt;- college_train %&gt;%
   mutate(hot = factor(Apps &gt;= 10000))</code></pre>
 </div>
 </div>
-<div id="examples" class="section level2">
-<h2>Examples</h2>
+<div id="beispiele" class="section level2">
+<h2>Beispiele</h2>
 <pre class="r"><code># Rechnen und Evaluieren eines Regressionsmodells ------------------------------
 
 # Schritt 0: Lade Pakete-----------
@@ -563,7 +563,7 @@ names(data_train) # Variablennamen
 train_control &lt;- trainControl(method = &quot;none&quot;) 
 
 # Schritt 3: Rechne Modell: -----------------------------
-#   abhängige Variable: hwy
+#   Kriterium: hwy
 #   Features: year, cyl, displ, trans
 
 # Regression
@@ -597,7 +597,7 @@ accuracy &lt;- tibble(criterion = criterion,
                    prediction = glm_fit) %&gt;%
             pivot_longer(cols = -criterion, names_to = &quot;model&quot;,
                          values_to = &quot;prediction&quot;) %&gt;% 
-                 # verechne absolute Abweichungen
+                 # berechne absolute Abweichungen
                  mutate(ae = abs(prediction - criterion))
 
 # accuracy_agg - ein dataframe mit den mittleren absoluten Abweichungen
@@ -619,8 +619,8 @@ ggplot(data = accuracy,
   # Passe Koordinaten an
   coord_cartesian(xlim = c(0, 45), ylim = c(0, 45))</code></pre>
 </div>
-<div id="datasets" class="section level2">
-<h2>Datasets</h2>
+<div id="datensätze" class="section level2">
+<h2>Datensätze</h2>
 <table>
 <thead>
 <tr class="header">
@@ -700,7 +700,7 @@ ggplot(data = accuracy,
 </tr>
 <tr class="even">
 <td align="left"><code>Personal</code></td>
-<td align="left">Geschätze persönliche Ausgaben.</td>
+<td align="left">Geschätzte persönliche Ausgaben.</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>PhD</code></td>
@@ -792,7 +792,7 @@ ggplot(data = accuracy,
 <tr class="odd">
 <td align="left"><code>confusionMatrix()</code></td>
 <td align="left"><code>caret</code></td>
-<td align="left">Berechne Modellperformanz für Klassifiaktionsproblem</td>
+<td align="left">Berechne Modellperformanz für Klassifikationsproblem</td>
 </tr>
 </tbody>
 </table>
