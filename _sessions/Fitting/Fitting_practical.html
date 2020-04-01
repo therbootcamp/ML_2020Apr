@@ -223,7 +223,7 @@ summary {
 library(tidyverse)
 library(caret)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>In diesem Practical verwenden wir ein Datensatz, der Daten von 388 U.S. Colleges enthält. Die Daten sind als <code>college_train.csv</code> gespeichert. Unter Verwendung des untenstehenden Codes, lese den Datensatz ein und speichere ihn unter dem Namen <code>college_train</code>.</li>
+<li>In diesem Practical verwenden wir einen Datensatz, der Daten von 388 U.S. Colleges enthält. Die Daten sind als <code>college_train.csv</code> gespeichert. Unter Verwendung des untenstehenden Codes, lese den Datensatz ein und speichere ihn unter dem Namen <code>college_train</code>.</li>
 </ol>
 <pre class="r"><code># Lese den college_train.csv Datensatz ein
 college_train &lt;- read_csv(file = &quot;1_Data/college_train.csv&quot;)</code></pre>
@@ -282,7 +282,7 @@ Grad.Rate_glm &lt;- train(form = XX ~ XX,
 summary(XXX)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Schaue dir die Resultate an. Wie interpretierst du die Regressionskoeffizienten? Was ist der Zusammenhang zwischen PhD und der Abschlussrate?</p></li>
-<li><p>Nun können wir die Modellvorhersagen extrahieren. Verwende dazu die <code>predict()</code> Funktion, um aus dem Modellouput die Vorhersagen zu extrahieren. Speichere die extrahierten Werte als <code>glm_fit</code>.</p></li>
+<li><p>Nun können wir die Modellvorhersagen extrahieren. Verwende dazu die <code>predict()</code> Funktion, um aus dem Modellouput die gefitteten Werte zu extrahieren. Speichere die extrahierten Werte als <code>glm_fit</code>.</p></li>
 </ol>
 <pre class="r"><code># Extrahiere gefittete Werte
 glm_fit &lt;- predict(XXX)</code></pre>
@@ -295,7 +295,7 @@ glm_fit &lt;- predict(XXX)</code></pre>
 <pre class="r"><code># Definiere einen Vektor mit den tatsächlichen Werten
 criterion &lt;- college_train$Grad.Rate</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Nun können wir mit der <code>postResample()</code> Funktion die Modellperformanz quantifizieren. Dazu müssen wir die gefitteten, sowie die tatsächlichen Werte als Argumente in die Funktion geben.</li>
+<li>Nun können wir mit der <code>postResample()</code> Funktion die Modellperformanz quantifizieren. Dazu müssen wir die gefitteten und die tatsächlichen Werte als Argumente in die Funktion geben.</li>
 </ol>
 <p>Genauer:</p>
 <ul>
@@ -306,8 +306,8 @@ criterion &lt;- college_train$Grad.Rate</code></pre>
 postResample(pred = XXX,   # Vorhergesagte/ gefittete Werte 
              obs = XXX)    # Tatsächliche Werte</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Der Output der <code>postResample()</code> Funktion zeigt drei Werte, <em>RMSE</em>, <em>Rsquared</em> und <em>MAE</em>. Was bedeuten diese Werte? Wie interpretierst du die Resultate des Regressionsmodell, ist die Performanz gut oder schlecht?</p></li>
-<li>Nun wollen wir unsere Ergebnisse visualisieren. Es ist grundsätzlich zu empfehlen, nicht nur die zusammenfassenden Performanzindikatoren anzuschauen, sondern auch darzustellen, wie gut Vorhersage und tatsächliche Werte übereinstimmen. So können zum Beispiel problematische Bereiche (etwa an den Endpunkten) in den Vorhersagen einfach erkennt werden. Aber Schritt für Schritt. Zuerst kreieren wir zwei <code>data.frame</code>s (<strong>Hinweis:</strong> der untenstehende Code ist komplizierter als nötig, dies damit wir ihn in der nächsten Übung mit mehreren Modellen wiederverwenden können):</li>
+<li><p>Der Output der <code>postResample()</code> Funktion zeigt drei Werte, <em>RMSE</em>, <em>Rsquared</em> und <em>MAE</em>. Was bedeuten diese Werte? Wie interpretierst du die Resultate des Regressionsmodells; ist die Performanz gut oder schlecht?</p></li>
+<li>Nun wollen wir unsere Ergebnisse visualisieren. Es ist grundsätzlich zu empfehlen, nicht nur die zusammenfassenden Performanzindikatoren anzuschauen, sondern auch darzustellen, wie gut Vorhersage und tatsächliche Werte übereinstimmen. So können zum Beispiel problematische Bereiche (etwa an den Endpunkten) in den Vorhersagen einfach erkennt werden. Aber Schritt für Schritt. Zuerst kreieren wir zwei <code>data.frame</code>s (<strong>Hinweis:</strong> der untenstehende Code ist etwas komplizierter als nötig, dies damit wir ihn in der nächsten Übung mit mehreren Modellen wiederverwenden können):</li>
 </ol>
 <ul>
 <li><code>accuracy</code> - Absolute Abweichungen</li>
@@ -318,7 +318,7 @@ accuracy &lt;- tibble(criterion = criterion,
                    prediction = glm_fit) %&gt;%
             pivot_longer(cols = -criterion, names_to = &quot;model&quot;,
                          values_to = &quot;prediction&quot;) %&gt;% 
-                 # verechne absolute Abweichungen
+                 # berechne absolute Abweichungen
                  mutate(ae = abs(prediction - criterion))
 
 # accuracy_agg - ein dataframe mit den mittleren absoluten Abweichungen
@@ -384,7 +384,7 @@ ggplot(data = accuracy,
 <ul>
 <li><code>PhD</code> - der Prozentsatz des Lehrkörpers mit einem PhD.</li>
 <li><code>Room.Board</code> - Raumkosten.</li>
-<li><code>S.F.Ratio</code> - Verhältnis von Studenten zu Angestellten.</li>
+<li><code>S.F.Ratio</code> - Verhältnis der Anzahl Studenten zu Lehrkörper.</li>
 </ul>
 <ol style="list-style-type: decimal">
 <li>Verwende die gleichen Schritte wie oben um ein Regressionsmodell mit drei Features zur Vorhersage von <code>Grad.Rate</code> zu rechnen. Speichere den Output unter <code>Grad.Rate_glm_three</code>. Genauer,…</li>
@@ -486,18 +486,18 @@ glm_fit_all &lt;- predict(XXX)</code></pre>
 <h3>G - Kriterium als Faktor</h3>
 <p>Nun wollen wir uns an Klassifikationsprobleme wagen. Erinnere, dass in <code>caret</code> Funktionen das Kriterium für Klassifikationsprobleme die Klasse <code>factor</code> haben muss. In den folgenden Aufgaben wollen wir vorhersagen, ob es sich bei einem College um ein privates oder öffentliches College handelt (die <code>Private</code> Variable).</p>
 <ol style="list-style-type: decimal">
-<li>Verwende die <code>class()</code> Funktion, um die Klasse der <code>Private</code> Variablen zu testen. Wen der Output <code>factor</code> ist, können wir mit dem maschinellen Lernen beginnen, andernfalls müssten wir die Klasse zuerst mit <code>college_train$Private &lt;- as.factor(college_train$Private)</code> in einen Faktor umwandeln.</li>
+<li>Verwende die <code>class()</code> Funktion, um die Klasse der <code>Private</code> Variable zu testen. Wenn der Output <code>factor</code> ist, können wir mit dem maschinellen Lernen beginnen, andernfalls müssten wir die Klasse zuerst mit <code>college_train$Private &lt;- as.factor(college_train$Private)</code> in einen Faktor umwandeln.</li>
 </ol>
 <pre class="r"><code># Überprüfe die Klasse der Private Variable
 class(college_train$Private)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Speichern die <code>Private</code> Variable als neues Objekt, <code>criterion</code>, so wie du das oben bei den Regressionsproblemen bereits getan hast.</li>
+<li>Speichere die <code>Private</code> Variable als neues Objekt, <code>criterion</code>, so wie du das oben bei den Regressionsproblemen bereits getan hast.</li>
 </ol>
 </div>
 <div id="h---rechne-ein-klassifikationsmodell" class="section level3">
 <h3>H - Rechne ein Klassifikationsmodell</h3>
 <ol style="list-style-type: decimal">
-<li><p>Verwende die <code>train()</code> um eine logistische Regression zu rechnen, mit der du <code>Private</code> unter Verwendung aller Features vorhersagst. <strong>Tipp:</strong> Der Code dafür, hat dieselbe Struktur wie bei den vorherigen Aufgaben, du musst nur nur die Formel anpassen.</p></li>
+<li><p>Verwende die <code>train()</code> Funktion um eine logistische Regression zu rechnen, mit der du <code>Private</code> unter Verwendung aller Features vorhersagst. <strong>Tipp:</strong> Der Code dafür hat dieselbe Struktur wie bei den vorherigen Aufgaben, du musst nur die Formel anpassen.</p></li>
 <li><p>Exploriere den Modelloutput mit der <code>summary()</code> Funktion.</p></li>
 <li><p>Schaue dir die Resultate an. Welche Features scheinen wichtig für eine gute Modellperformanz zu sein?</p></li>
 </ol>
@@ -526,7 +526,7 @@ confusionMatrix(data = XXX,      # Vorhersagen
 <h3>Z - Herausforderungen</h3>
 <ol style="list-style-type: decimal">
 <li><p>Rechne eine Regression zur Vorhersage des Anteils an Alumni, welche ihrem College Geld spenden (<code>perc.alumni</code>). Wie gut ist die Modellperformanz? Welche Variablen scheinen für die Vorhersage wichtig zu sein?</p></li>
-<li><p>Rechne ein Klassifikationsmodell zur Vorhersage, ob ein College begehrt ist (definiert als mehr als 10000 Bewerbungen <code>Apps</code>) ist. Verwende dazu den untenstehenden Code um zunächst das Kriterium <code>hot</code> zu generieren. Ausserdem wirst du beim Rechnen des Modells Probleme haben, wenn du gewisse Variablen als Features verwendest. Welche Variablen musst du weglassen und wie gut ist das Modell?</p></li>
+<li><p>Rechne ein Klassifikationsmodell zur Vorhersage, ob ein College begehrt ist (definiert als mehr als 10000 Bewerbungen <code>Apps</code>). Verwende dazu den untenstehenden Code um zunächst das Kriterium <code>hot</code> zu generieren. Ausserdem wirst du beim Rechnen des Modells Probleme haben, wenn du gewisse Variablen als Features verwendest. Welche Variablen musst du weglassen und wie gut ist das Modell?</p></li>
 </ol>
 <pre class="r"><code># Kreiere neue Variable hot
 college_train &lt;- college_train %&gt;%
@@ -597,7 +597,7 @@ accuracy &lt;- tibble(criterion = criterion,
                    prediction = glm_fit) %&gt;%
             pivot_longer(cols = -criterion, names_to = &quot;model&quot;,
                          values_to = &quot;prediction&quot;) %&gt;% 
-                 # verechne absolute Abweichungen
+                 # berechne absolute Abweichungen
                  mutate(ae = abs(prediction - criterion))
 
 # accuracy_agg - ein dataframe mit den mittleren absoluten Abweichungen
