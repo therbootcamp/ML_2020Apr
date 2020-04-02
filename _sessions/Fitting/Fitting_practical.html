@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 
 <meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -84,6 +84,7 @@ code {
 }
 img {
   max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -145,7 +146,6 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
-  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -157,6 +157,18 @@ summary {
   display: none;
 }
 </style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
 
 <!-- code folding -->
 
@@ -199,7 +211,7 @@ summary {
 </p>
 <div id="section" class="section level1 tabset">
 <h1></h1>
-<div id="überblick" class="section level2">
+<div id="uberblick" class="section level2">
 <h2>Überblick</h2>
 <p>In diesem Practical wirst du die Grundlagen des Modellfittings und von Regressionsmodellen lernen.</p>
 <p>Am Ende dieses Practicals wirst du wissen wie du:</p>
@@ -223,55 +235,51 @@ summary {
 library(tidyverse)
 library(caret)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>In diesem Practical verwenden wir einen Datensatz, der Daten von 388 U.S. Colleges enthält. Die Daten sind als <code>college_train.csv</code> gespeichert. Unter Verwendung des untenstehenden Codes, lese den Datensatz ein und speichere ihn unter dem Namen <code>college_train</code>.</li>
+<li>In diesem Practical verwenden wir einen Datensatz, der Daten von 388 U.S. Colleges enthält. Die Daten sind als <code>graduation_train.csv</code> gespeichert. Unter Verwendung des untenstehenden Codes, lese den Datensatz ein und speichere ihn unter dem Namen <code>graduation_train</code>.</li>
 </ol>
-<pre class="r"><code># Lese den college_train.csv Datensatz ein
-college_train &lt;- read_csv(file = &quot;1_Data/college_train.csv&quot;)</code></pre>
+<pre class="r"><code># Lese den graduation_train.csv Datensatz ein
+graduation_train &lt;- read_csv(file = &quot;1_Data/graduation_train.csv&quot;)</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li><p>Schaue dir die ersten paar Zeilen des Datensatzes in der Konsole an.</p></li>
-<li><p>Wie viele Zeilen und Spalten enthält der Datensatz? Verwende zur Beantwortung die <code>dim()</code> Funktion</p></li>
+<li><p>Schaue dir die Namen des Datensatzes mithilfe der <code>names()</code> Funktion an.</p></li>
 </ol>
-<pre class="r"><code># Print Anzahl Zeilen und Spalten von college_train 
-dim(XXX)</code></pre>
+<pre class="r"><code>names(XX)</code></pre>
 <ol start="7" style="list-style-type: decimal">
-<li>Schaue dir die Namen des Datensatzes mithilfe der <code>names()</code> Funktion an.</li>
-</ol>
-<pre class="r"><code>names(XXX)</code></pre>
-<ol start="8" style="list-style-type: decimal">
 <li>Öffne den Datensatz in einem separaten Fenster mithilfe von <code>View()</code> und schaue dir die Daten an.</li>
 </ol>
-<pre class="r"><code>View(XXX)</code></pre>
+<pre class="r"><code>View(XX)</code></pre>
 <ol start="9" style="list-style-type: decimal">
-<li>Nun haben wir einen ersten Überblick über die Daten gewonnen. Doch bevor wir mit dem maschinellen Lernen beginnen können, müssen wir die Daten etwas umformatieren. Und zwar müssen wir alle <code>character</code> Variablen in <code>factor</code> umwandeln. Lasse dazu den untenstehenden Code laufen:</li>
+<li>Nun hast du einen ersten Überblick über die Daten gewonnen. Bevor du nun mit dem maschinellen Lernen beginnen können, musst du noch sicherstellen, dass alle <code>character</code> Variablen als <code>factor</code> vorliegen. Lasse dazu den untenstehenden Code laufen:</li>
 </ol>
 <pre class="r"><code># Konvertiere alle character variablen zu factor
-college_train &lt;- college_train %&gt;%
+graduation_train &lt;- graduation_train %&gt;%
           mutate_if(is.character, factor)</code></pre>
 </div>
 <div id="b---definiere-die-kontrollparameter" class="section level3">
 <h3>B - Definiere die Kontrollparameter</h3>
-<p>In <code>caret</code> verwenden wir die <code>trainControl()</code> Funktion, um zu definieren wie genau die Modelle gefittet werden sollen. Da wir uns im Moment auf die Grundlagen des Fittings konzentrieren, setzen wir für dieses Practical das Argument <code>method = &quot;none&quot;</code> (Normalerweise würde man das für einen tatsächlichen Einsatz von Machine Learning Modellen nicht machen; weshalb lernst du in einer späteren Session).</p>
+<ol style="list-style-type: decimal">
+<li>In <code>caret</code> wird die <code>trainControl()</code> Funktion verwendet, um zu definieren wie genau die Modelle gefittet werden sollen. Da aktuell der Fokus auf den Grundlagen des Fittings liegt, setze für das gesamte Practical das Argument <code>method = &quot;none&quot;</code> und speichere das Objekt als <code>ctrl_none</code>.</li>
+</ol>
 <pre class="r"><code># Setze Resamplingmethode auf &quot;none&quot; um für den Moment alles einfach zu halten.
 ctrl_none &lt;- trainControl(method = &quot;none&quot;) </code></pre>
-</div>
-<div id="regression" class="section level3">
-<h3>Regression</h3>
+<br>
+<p style="font-size:20px;background-color:#6ABA9A;color:white;padding-left:20px" align="left" width="100%">
+Teil 1: <b>Regressionsfall</b>
+</p>
 </div>
 <div id="c---fitte-ein-regressionsmodell" class="section level3">
 <h3>C - Fitte ein Regressionsmodell</h3>
 <ol style="list-style-type: decimal">
-<li>Fitte eine Regression zur Vorhersage der Abschlussrate (<code>Grad.Rate</code>) als Funktion eines Features, nämlich dem Prozentsatz des Lehrkörpers mit PhDs (<code>PhD</code>). Speichere das Resultat unter dem Namen <code>Grad.Rate_glm</code>. Genauer:</li>
+<li>Fitte eine Regression zur Vorhersage der Abschlussrate (<code>Abschlussrate</code>) als Funktion eines Features, nämlich dem Prozentsatz des Lehrkörpers mit PhDs (<code>Prozent_PhD</code>). Speichere das Resultat unter dem Namen <code>abschluss_glm</code>. Genauer:</li>
 </ol>
 <ul>
-<li>setze das <code>form</code> Argument auf <code>Grad.Rate ~ PhD</code>.</li>
-<li>setze das <code>data</code> Argument auf <code>college_train</code>.</li>
+<li>setze das <code>form</code> Argument auf <code>Abschlussrate ~ Prozent_PhD</code>.</li>
+<li>setze das <code>data</code> Argument auf <code>graduation_train</code>.</li>
 <li>setze das <code>method</code> Argument auf <code>&quot;glm&quot;</code> für Regression.</li>
 <li>setze das <code>trControl</code> Argument auf <code>ctrl_none</code>, das oben erstellte Objekt mit den Kontrollparametern.</li>
 </ul>
-<pre class="r"><code># Grad.Rate_glm: Regressionsmodell
-#   Kriterium: Grad.Rate
-#   Features: PhD
-Grad.Rate_glm &lt;- train(form = XX ~ XX,
+<pre class="r"><code># abschluss_glm: Regressionsmodell
+abschluss_glm &lt;- train(form = XX ~ XX,
                        data = XX,
                        method = &quot;XX&quot;,
                        trControl = XX)</code></pre>
@@ -279,23 +287,23 @@ Grad.Rate_glm &lt;- train(form = XX ~ XX,
 <li>Exploriere den Modelloutput mithilfe der <code>summary()</code> Funktion.</li>
 </ol>
 <pre class="r"><code># Zeige Regressionstabelle
-summary(XXX)</code></pre>
+summary(XX)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Schaue dir die Resultate an. Wie interpretierst du die Regressionskoeffizienten? Was ist der Zusammenhang zwischen PhD und der Abschlussrate?</p></li>
-<li><p>Nun können wir die Modellvorhersagen extrahieren. Verwende dazu die <code>predict()</code> Funktion, um aus dem Modellouput die gefitteten Werte zu extrahieren. Speichere die extrahierten Werte als <code>glm_fit</code>.</p></li>
+<li><p>Schaue dir die Resultate an. Wie interpretierst du die Modellparameter?</p></li>
+<li><p>Nun extrahiere die gefitteten Werte mittels <code>predict()</code>. Speichere die extrahierten Werte als <code>glm_fit</code>.</p></li>
 </ol>
 <pre class="r"><code># Extrahiere gefittete Werte
-glm_fit &lt;- predict(XXX)</code></pre>
+glm_fit &lt;- predict(XX)</code></pre>
 </div>
 <div id="d---evaluiere-modellperformanz" class="section level3">
 <h3>D - Evaluiere Modellperformanz</h3>
 <ol style="list-style-type: decimal">
-<li>Nun wollen wir die Modellperformanz quantifizieren. Definiere dazu zunächst einen Vektor mit den tatsächlichen Werten und nenne diesen <code>criterion</code> (Kriterium).</li>
+<li>Nun evaluiere die Modellperformanz. Definiere dazu zunächst einen Vektor mit den tatsächlichen Kriteriumswerten in <code>graduation_train</code> und nenne diesen <code>criterion</code> (Kriterium).</li>
 </ol>
 <pre class="r"><code># Definiere einen Vektor mit den tatsächlichen Werten
-criterion &lt;- college_train$Grad.Rate</code></pre>
+criterion &lt;- graduation_train$Abschlussrate</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Nun können wir mit der <code>postResample()</code> Funktion die Modellperformanz quantifizieren. Dazu müssen wir die gefitteten und die tatsächlichen Werte als Argumente in die Funktion geben.</li>
+<li>Verwende nun die <code>postResample()</code> Funktion um die Modellperformanz quantifizieren. Dazu musst du die gefitteten und die tatsächlichen Werte als Argumente in die Funktion geben.</li>
 </ol>
 <p>Genauer:</p>
 <ul>
@@ -303,234 +311,125 @@ criterion &lt;- college_train$Grad.Rate</code></pre>
 <li>setze das <code>obs</code> Argument auf <code>criterion</code> (die tatsächlichen Werte).</li>
 </ul>
 <pre class="r"><code># Modellperformanz der gerechneten Regression
-postResample(pred = XXX,   # Vorhergesagte/ gefittete Werte 
-             obs = XXX)    # Tatsächliche Werte</code></pre>
+postResample(pred = XX,   # Vorhergesagte/ gefittete Werte 
+             obs = XX)    # Tatsächliche Werte</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Der Output der <code>postResample()</code> Funktion zeigt drei Werte, <em>RMSE</em>, <em>Rsquared</em> und <em>MAE</em>. Was bedeuten diese Werte? Wie interpretierst du die Resultate des Regressionsmodells; ist die Performanz gut oder schlecht?</p></li>
-<li>Nun wollen wir unsere Ergebnisse visualisieren. Es ist grundsätzlich zu empfehlen, nicht nur die zusammenfassenden Performanzindikatoren anzuschauen, sondern auch darzustellen, wie gut Vorhersage und tatsächliche Werte übereinstimmen. So können zum Beispiel problematische Bereiche (etwa an den Endpunkten) in den Vorhersagen einfach erkennt werden. Aber Schritt für Schritt. Zuerst kreieren wir zwei <code>data.frame</code>s (<strong>Hinweis:</strong> der untenstehende Code ist etwas komplizierter als nötig, dies damit wir ihn in der nächsten Übung mit mehreren Modellen wiederverwenden können):</li>
+<li>Der Output der <code>postResample()</code> Funktion zeigt drei Werte, <em>RMSE</em>, <em>Rsquared</em> und <em>MAE</em>. Was bedeuten diese Werte? Wie interpretierst du die Resultate des Regressionsmodells; ist die Performanz gut oder schlecht?</li>
 </ol>
-<ul>
-<li><code>accuracy</code> - Absolute Abweichungen</li>
-<li><code>accuracy_agg</code> - Aggregierte (mittlere) absolute Abweichungen</li>
-</ul>
-<pre class="r"><code># accuracy - ein dataframe mit den absoluten Abweichungen
-accuracy &lt;- tibble(criterion = criterion,
-                   prediction = glm_fit) %&gt;%
-            pivot_longer(cols = -criterion, names_to = &quot;model&quot;,
-                         values_to = &quot;prediction&quot;) %&gt;% 
-                 # berechne absolute Abweichungen
-                 mutate(ae = abs(prediction - criterion))
-
-# accuracy_agg - ein dataframe mit den mittleren absoluten Abweichungen
-accuracy_agg &lt;- accuracy %&gt;%
-                  group_by(model) %&gt;%
-                  summarise(mae = mean(ae))   # berechne MAE</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Schaue dir die beiden Objekte <code>accuracy</code> und <code>accuracy_agg</code> an.</li>
-</ol>
-<pre class="r"><code>accuracy
-accuracy_agg</code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>Kreiere nun ein Streudiagramm mithilfe des untenstehenden Codes. Das Streudiagramm zeigt den Zusammenhang zwischen den gefitteten und den tatsächlichen Werten. Die Linie gibt dabei an, wo Vorhersage und tatsächliche Werte perfekt übereinstimmen.</li>
-</ol>
-<pre class="r"><code># Grundstruktur des Plots
-ggplot(data = accuracy,
-       aes(x = prediction, y = criterion)) +
-  # Füge Datenpunkte hinzu
-  geom_point(alpha = .2) +
-  # Füge Linie hinzu
-  geom_abline(slope = 1, intercept = 0) +
-  # Passe Titel und Achsenbeschriftungen an
-  labs(title = &quot;Regression: Ein Feature&quot;,
-       subtitle = &quot;Linie gibt perfekte Performanz an&quot;,
-       x = &quot;Vorhergesagte Werte&quot;,
-       y = &quot;Tatsächliche Werte&quot;) +
-  # Passe Koordinaten an
-  coord_cartesian(xlim = c(0, 100), ylim = c(0, 100))</code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li>Schaue dir den Plot an. Wie interpretierst du die Ergebnisse? Macht das Modell gute oder schlechte Vorhersagen?</li>
-</ol>
-<!-- 8. Nun kreieren wir einen Violinenplot, der die Verteilung der absoluten Abweichungen, sowie deren Mittelwert darstellt. -->
-<!-- ```{r, echo = TRUE, eval = FALSE} -->
-<!-- # Grundstruktur des Plots -->
-<!-- ggplot(data = accuracy,  -->
-<!--        aes(x = model, y = ae, fill = model)) +  -->
-<!--   # Füge Verteilungen hinzu -->
-<!--   geom_violin() +  -->
-<!--   # Füge Rohdatenpunkte hinzu -->
-<!--   geom_jitter(width = .05, alpha = .2) + -->
-<!--   # Achsenbeschriftungen und Titel -->
-<!--   labs(title = "Verteilung der absoluten Abweichungen", -->
-<!--        subtitle = "Zahl gibt mittlere absolute Abweichung an", -->
-<!--        x = "Modell", -->
-<!--        y = "Absolute Abweichungen") + -->
-<!--   # Unterdrücke das Erstellen einer Legende -->
-<!--   guides(fill = FALSE) + -->
-<!--   # Füge label mit Mittelwert hinzu -->
-<!--   annotate(geom = "label",  -->
-<!--            x = accuracy_agg$model,  -->
-<!--            y = accuracy_agg$mae,  -->
-<!--            label = round(accuracy_agg$mae, 2)) -->
-<!-- ``` -->
-<!-- 9. What does the plot show you about the model fits? On average, how far away were the model fits from the true values? -->
-<!-- ```{r} -->
-<!-- # On average, the model fits are 12.86 away from the true criterion values. -->
-<!-- #  However, there is also quite a bit of variability -->
-<!-- ``` -->
 </div>
 <div id="e---mehr-features" class="section level3">
 <h3>E - Mehr Features</h3>
-<p>Bisher haben wir nur ein Feature - <code>PhD</code> - zur Vorhersage von <code>Grad.Rate</code> verwendet. Das Modell hatte keine sonderlich gute Performanz, daher wollen wir nun testen, ob ein Modell mit zusätzlichen Features die Daten deutlich besser abbilden kann. Wir verwenden die folgenden drei Variablen:</p>
+<p>Bisher hast du nur ein Feature - <code>Prozent_PhD</code> - zur Vorhersage von <code>Abschlussrate</code> verwendet. Das Modell hatte keine sonderlich gute Performanz, daher macht es Sinn nun zu testen, ob ein Modell mit zusätzlichen Features die Daten vielleicht besser abbilden kann. Verwende folgenden drei Variablen:</p>
 <ul>
-<li><code>PhD</code> - der Prozentsatz des Lehrkörpers mit einem PhD.</li>
-<li><code>Room.Board</code> - Raumkosten.</li>
-<li><code>S.F.Ratio</code> - Verhältnis der Anzahl Studenten zu Lehrkörper.</li>
+<li><code>Prozent_PhD</code> - der Prozentsatz des Lehrkörpers mit einem PhD.</li>
+<li><code>Kosten_Unterkunft</code> - Raumkosten.</li>
+<li><code>Verhaeltnis_Stud.Doz.</code> - Verhältnis der Anzahl Studenten zu Lehrkörper.</li>
 </ul>
 <ol style="list-style-type: decimal">
-<li>Verwende die gleichen Schritte wie oben um ein Regressionsmodell mit drei Features zur Vorhersage von <code>Grad.Rate</code> zu rechnen. Speichere den Output unter <code>Grad.Rate_glm_three</code>. Genauer,…</li>
+<li>Verwende die gleichen Schritte wie oben um ein Regressionsmodell mit drei Features zur Vorhersage von <code>Abschlussrate</code> zu rechnen. Speichere den Output unter <code>abschluss_glm_three</code>. Genauer,…</li>
 </ol>
 <ul>
-<li>setze das <code>form</code> Argument auf <code>Grad.Rate ~ PhD + Room.Board + S.F.Ratio</code>.</li>
-<li>setze das <code>data</code> Argument auf <code>college_train</code>.</li>
+<li>setze das <code>form</code> Argument auf <code>Abschlussrate ~ Prozent_PhD + Kosten_Unterkunft + Verhaeltnis_Stud.Doz.</code>.</li>
+<li>setze das <code>data</code> Argument auf <code>graduation_train</code>.</li>
 <li>setze das <code>method</code> Argument auf <code>&quot;glm&quot;</code> für Regression.</li>
 <li>setze das <code>trControl</code> Argument auf <code>ctrl_none</code>.</li>
 </ul>
-<pre class="r"><code># Grad.Rate_glm_three: Regressionsmodell
-#   Kriterium: Grad.Rate
-#   Features: PhD, Room.Board, S.F.Ratio
-Grad.Rate_glm_three &lt;- train(form = XXX ~ XXX + XXX + XXX,
-                             data = XXX,
-                             method = &quot;XXX&quot;,
-                             trControl = XXX)</code></pre>
+<pre class="r"><code># abschluss_glm_three: Regressionsmodell
+abschluss_glm_three &lt;- train(form = XX ~ XX + XX + XX,
+                             data = XX,
+                             method = &quot;XX&quot;,
+                             trControl = XX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Exploriere den Output mit der <code>summary()</code> Funktion. Welche Features sind wichtig?</li>
 </ol>
-<pre class="r"><code>summary(XXX)</code></pre>
+<pre class="r"><code>summary(XX)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Extrahiere die gefitteten Werte und speichere sie als <code>glm_fit_three</code>.</li>
 </ol>
 <pre class="r"><code># Speichere die Vorhersagen
-glm_fit_three &lt;- predict(XXX)</code></pre>
+glm_fit_three &lt;- predict(XX)</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Quantifiziere die Performanz des Modells mit der <code>postResample()</code> Funktion. Wie gut ist das Modell im Vergleich zum vorherigen Modell mit nur einem Feature?</li>
 </ol>
 <pre class="r"><code># Modellperformanz des neuen Modells
-postResample(pred = XXX, # Vorhergesagte Werte 
-             obs = XXX)  # Tatsächliche Werte</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Kreiere ein Streudiagramm, welches den Zusammenhang zwischen den Vorhersagen des neuen Modells mit den tatsächlichen Werten vergleicht. Zeigt sich die Verbesserung in der Modellperformanz auch im Plot?</li>
-</ol>
-<!-- 6. (Optional). Create a violin plot showing the distribution of absolute errors. How does this compare to your previous one? -->
-<!-- ```{r} -->
-<!-- # Plot B) Violin plot of absolute errors -->
-<!-- ggplot(data = accuracy,  -->
-<!--        aes(x = model, y = ae, fill = model)) +  -->
-<!--   geom_violin() +  -->
-<!--   geom_jitter(width = .05, alpha = .2) + -->
-<!--   labs(title = "Distributions of Fitting Absolute Errors", -->
-<!--        subtitle = "Numbers indicate means", -->
-<!--        x = "Model", -->
-<!--        y = "Absolute Error") + -->
-<!--   guides(fill = FALSE) + -->
-<!--   annotate(geom = "label",  -->
-<!--            x = accuracy_agg$model,  -->
-<!--            y = accuracy_agg$mae,  -->
-<!--            label = round(accuracy_agg$mae, 2)) -->
-<!-- ``` -->
+postResample(pred = XX, # Vorhergesagte Werte 
+             obs = XX)  # Tatsächliche Werte</code></pre>
 </div>
 <div id="f---verwende-alle-features" class="section level3">
 <h3>F - Verwende Alle Features</h3>
-<p>Nun wollen wir alle Features verwenden!</p>
 <ol style="list-style-type: decimal">
-<li>Mit den gleichen Schritten wie oben, rechne ein Regressionsmodell zur Vorhersage von <code>Grad.Rate</code> mit <em>allen</em> vorhandenen Features. Setze dazu das <code>form</code> Argument auf <code>Grad.Rate ~ .</code>, der Punkt bedeutet, dass alle Features (additiv) im Modell verwendet werden. Speichere den Output unter dem Namen <code>Grad.Rate_glm_all</code>.</li>
+<li>Nun verwende alle Features! Mit den gleichen Schritten wie oben, rechne ein Regressionsmodell zur Vorhersage von <code>Abschlussrate</code> mit <em>allen</em> vorhandenen Features. Setze dazu das <code>form</code> Argument auf <code>Abschlussrate ~ .</code>, der Punkt bedeutet, dass alle Features (additiv) im Modell verwendet werden. Speichere den Output unter dem Namen <code>abschluss_glm_all</code>.</li>
 </ol>
-<pre class="r"><code>Grad.Rate_glm_all &lt;- train(form = XXX ~ .,
-                           data = XXX,
+<pre class="r"><code>abschluss_glm_all &lt;- train(form = XX ~ .,
+                           data = XX,
                            method = &quot;glm&quot;,
-                           trControl = XXX)</code></pre>
+                           trControl = XX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Exploriere das Modell mit der <code>summary()</code> Funktion. Welche Features sind wichtig?</li>
 </ol>
-<pre class="r"><code>summary(XXX)</code></pre>
+<pre class="r"><code>summary(XX)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Extrahiere die gefitteten Werte und speichere sie als <code>glm_fit_all</code>.</li>
 </ol>
 <pre class="r"><code># Speichere die Vorhersagen
-glm_fit_all &lt;- predict(XXX)</code></pre>
+glm_fit_all &lt;- predict(XX)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li><p>Wie stark hat sich die Modellperformanz gegenüber der vorherigen Modelle verbessert?</p></li>
-<li><p>(Optional). Erstelle ein Streudiagramm, das die Beziehung zwischen den gefitteten Werten des neuen Modells und den tatsächlichen Werten zeigt. Wie verhält sich diese Darstellung im Vergleich zu der vorherigen?</p></li>
+<li>Wie stark hat sich die Modellperformanz gegenüber der vorherigen Modelle verbessert?</li>
 </ol>
-<!-- 6. (Optional). Create a violin plot showing the distribution of absolute errors. How does this compare to your previous one? -->
-<!-- ```{r} -->
-<!-- # Plot B) Violin plot of absolute errors -->
-<!-- ggplot(data = accuracy,  -->
-<!--        aes(x = model, y = ae, fill = model)) +  -->
-<!--   geom_violin() +  -->
-<!--   geom_jitter(width = .05, alpha = .2) + -->
-<!--   labs(title = "Distributions of Fitting Absolute Errors", -->
-<!--        subtitle = "Numbers indicate means", -->
-<!--        x = "Model", -->
-<!--        y = "Absolute Error") + -->
-<!--   guides(fill = FALSE) + -->
-<!--   annotate(geom = "label",  -->
-<!--            x = accuracy_agg$model,  -->
-<!--            y = accuracy_agg$mae,  -->
-<!--            label = round(accuracy_agg$mae, 2)) -->
-<!-- ``` -->
+<br>
+<p style="font-size:20px;background-color:#6ABA9A;color:white;padding-left:20px" align="left" width="100%">
+Teil 2: <b>Klassifikationsfall</b>
+</p>
 </div>
-<div id="klassifikation" class="section level3">
-<h3>Klassifikation</h3>
-</div>
-<div id="g---kriterium-als-faktor" class="section level3">
-<h3>G - Kriterium als Faktor</h3>
-<p>Nun wollen wir uns an Klassifikationsprobleme wagen. Erinnere, dass in <code>caret</code> Funktionen das Kriterium für Klassifikationsprobleme die Klasse <code>factor</code> haben muss. In den folgenden Aufgaben wollen wir vorhersagen, ob es sich bei einem College um ein privates oder öffentliches College handelt (die <code>Private</code> Variable).</p>
+<div id="g---faktor-als-kriterium" class="section level3">
+<h3>G - Faktor als Kriterium</h3>
+<p>Nun wage dich an ein Klassifikationsproblem. Erinnere, dass in <code>caret</code> Funktionen für Klassifikationsprobleme das Kriterium die Klasse <code>factor</code> haben muss. In den folgenden Aufgaben sage vorher, ob es sich bei einem College um ein Privatuniversitaets oder öffentliches College handelt (die <code>Privatuniversitaet</code> Variable).</p>
 <ol style="list-style-type: decimal">
-<li>Verwende die <code>class()</code> Funktion, um die Klasse der <code>Private</code> Variable zu testen. Wenn der Output <code>factor</code> ist, können wir mit dem maschinellen Lernen beginnen, andernfalls müssten wir die Klasse zuerst mit <code>college_train$Private &lt;- as.factor(college_train$Private)</code> in einen Faktor umwandeln.</li>
+<li>Verwende die <code>class()</code> Funktion, um die Klasse der <code>Privatuniversitaet</code> Variable zu testen. Wenn der Output <code>factor</code> ist, können wir mit dem maschinellen Lernen beginnen.</li>
 </ol>
-<pre class="r"><code># Überprüfe die Klasse der Private Variable
-class(college_train$Private)</code></pre>
+<pre class="r"><code># Überprüfe die Klasse der Privatuniversitaet Variable
+class(graduation_train$Privatuniversitaet)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Speichere die <code>Private</code> Variable als neues Objekt, <code>criterion</code>, so wie du das oben bei den Regressionsproblemen bereits getan hast.</li>
+<li>Speichere die <code>Privatuniversitaet</code> Variable als neues Objekt, <code>criterion</code>, so wie du das oben bei den Regressionsproblemen bereits getan hast.</li>
 </ol>
 </div>
 <div id="h---rechne-ein-klassifikationsmodell" class="section level3">
 <h3>H - Rechne ein Klassifikationsmodell</h3>
 <ol style="list-style-type: decimal">
-<li><p>Verwende die <code>train()</code> Funktion um eine logistische Regression zu rechnen, mit der du <code>Private</code> unter Verwendung aller Features vorhersagst. <strong>Tipp:</strong> Der Code dafür hat dieselbe Struktur wie bei den vorherigen Aufgaben, du musst nur die Formel anpassen.</p></li>
+<li><p>Verwende die <code>train()</code> Funktion um eine logistische Regression zu rechnen, mit der du <code>Privatuniversitaet</code> unter Verwendung aller Features vorhersagst. <strong>Tipp:</strong> Der Code dafür hat dieselbe Struktur wie bei den vorherigen Aufgaben, du musst nur die Formel anpassen.</p></li>
 <li><p>Exploriere den Modelloutput mit der <code>summary()</code> Funktion.</p></li>
 <li><p>Schaue dir die Resultate an. Welche Features scheinen wichtig für eine gute Modellperformanz zu sein?</p></li>
 </ol>
 </div>
-<div id="i---modellperformanz" class="section level3">
-<h3>I - Modellperformanz</h3>
+<div id="i---evaluiere-den-fit" class="section level3">
+<h3>I - Evaluiere den Fit</h3>
 <ol style="list-style-type: decimal">
-<li>Nun wollen wir die Modellperformanz evaluieren. Extrahiere die gefitteten Werte und speichere sie als <code>glm_fit_private</code>.</li>
+<li>Nun evaluiere den Fit. Extrahiere die gefitteten Werte und speichere sie als <code>glm_fit_Privatuniversitaet</code>.</li>
 </ol>
-<pre class="r"><code>glm_fit_private &lt;- predict(XXX)</code></pre>
+<pre class="r"><code>glm_fit_Privatuniversitaet &lt;- predict(XX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Evaluiere die Modellperformanz mit der <code>confusionMatrix()</code> Funktion.</li>
+<li>Verwende die <code>confusionMatrix()</code> Funktion um die Performanz zu bestimmen.</li>
 </ol>
 <pre class="r"><code># Evaluiere Modellperformanz
-confusionMatrix(data = XXX,      # Vorhersagen
-                reference = XXX) # Tatsächliche Werte</code></pre>
+confusionMatrix(data = XX,      # Vorhersagen
+                reference = XX) # Tatsächliche Werte</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Schaue dir die Resultate an. Wie hoch ist die Richtigkeit (accuracy) des Modells? Was bedeutet diese Zahl?</p></li>
+<li><p>Schaue dir die Resultate an. Wie hoch ist die Genauigkeit (accuracy) des Modells? Was bedeutet diese Zahl?</p></li>
 <li><p>Wie hoch ist die Sensitivität? Was bedeutet diese Zahl?</p></li>
 <li><p>Wie hoch ist der <em>positive predictive value</em>? Wie interpretierst du diese Zahl?</p></li>
 <li><p>Wie hoch ist die Spezifität? Wie interpretierst du diese Zahl?</p></li>
 <li><p>Wie hoch ist der <em>negative predictive value</em>? Wie interpretierst du diese Zahl?</p></li>
 </ol>
 </div>
-<div id="z---herausforderungen" class="section level3">
-<h3>Z - Herausforderungen</h3>
+<div id="z---challenges" class="section level3">
+<h3>Z - Challenges</h3>
 <ol style="list-style-type: decimal">
-<li><p>Rechne eine Regression zur Vorhersage des Anteils an Alumni, welche ihrem College Geld spenden (<code>perc.alumni</code>). Wie gut ist die Modellperformanz? Welche Variablen scheinen für die Vorhersage wichtig zu sein?</p></li>
-<li><p>Rechne ein Klassifikationsmodell zur Vorhersage, ob ein College begehrt ist (definiert als mehr als 10000 Bewerbungen <code>Apps</code>). Verwende dazu den untenstehenden Code um zunächst das Kriterium <code>hot</code> zu generieren. Ausserdem wirst du beim Rechnen des Modells Probleme haben, wenn du gewisse Variablen als Features verwendest. Welche Variablen musst du weglassen und wie gut ist das Modell?</p></li>
+<li><p>Rechne eine Regression zur Vorhersage des Anteils an Alumni, welche ihrem College Geld spenden (<code>Prozent_Spenden</code>). Wie gut ist die Modellperformanz? Welche Variablen scheinen für die Vorhersage wichtig zu sein?</p></li>
+<li><p>Rechne ein Klassifikationsmodell zur Vorhersage, ob ein College begehrt ist (definiert als mehr als 10000 Bewerbungen <code>Bewerbungen</code>). Verwende dazu den untenstehenden Code um zunächst das Kriterium <code>hot</code> zu generieren. Ausserdem wirst du beim Rechnen des Modells Probleme haben, wenn du gewisse Variablen als Features verwendest. Welche Variablen musst du weglassen und wie gut ist das Modell?</p></li>
 </ol>
 <pre class="r"><code># Kreiere neue Variable hot
-college_train &lt;- college_train %&gt;%
-  mutate(hot = factor(Apps &gt;= 10000))</code></pre>
+graduation_train &lt;- graduation_train %&gt;%
+  mutate(hot = factor(Bewerbungen &gt;= 10000))</code></pre>
 </div>
 </div>
 <div id="beispiele" class="section level2">
@@ -562,7 +461,7 @@ names(data_train) # Variablennamen
 # hier Anpassungen vornehmen
 train_control &lt;- trainControl(method = &quot;none&quot;) 
 
-# Schritt 3: Rechne Modell: -----------------------------
+# Schritt 3: Fitte Modell: -----------------------------
 #   Kriterium: hwy
 #   Features: year, cyl, displ, trans
 
@@ -572,54 +471,25 @@ hwy_glm &lt;- train(form = hwy ~ year + cyl + displ + trans,
                  method = &quot;glm&quot;,
                  trControl = train_control)
 
-# Modelloutput
+# Inspiziere Modell
 summary(hwy_glm)
 
-# Schritt 4: Evaluiere Modellperformanz ------------------------------
+# Schritt 4: Evaluiere Fit ------------------------------
 
-# Extrahiere vorhergesagte Werte
+# Extrahiere gefittete Werte
 glm_fit &lt;- predict(hwy_glm)
 
-# Extrahiere tatsächliche Werte
+# Extrahiere tatsächliche Kriteriumswerte
 criterion &lt;- data_train$hwy
 
-# Berechne Modellperformanz
+# Evaluiere die Performanz
 postResample(pred = glm_fit, 
              obs = criterion)
 
 #     RMSE Rsquared      MAE 
-# 3.246182 0.678465 2.501346 
-
-# Schritt 5: Visualisiere Modellvorhersagen -------------------------
-
-# accuracy - ein dataframe mit den absoluten Abweichungen
-accuracy &lt;- tibble(criterion = criterion,
-                   prediction = glm_fit) %&gt;%
-            pivot_longer(cols = -criterion, names_to = &quot;model&quot;,
-                         values_to = &quot;prediction&quot;) %&gt;% 
-                 # berechne absolute Abweichungen
-                 mutate(ae = abs(prediction - criterion))
-
-# accuracy_agg - ein dataframe mit den mittleren absoluten Abweichungen
-accuracy_agg &lt;- accuracy %&gt;%
-                  group_by(model) %&gt;%
-                  summarise(mae = mean(ae))   # berechne MAE
-
-# Grundstruktur des Plots
-ggplot(data = accuracy,
-       aes(x = prediction, y = criterion)) +
-  # Füge Datenpunkte hinzu
-  geom_point(alpha = .2) +
-  # Füge Linie hinzu
-  geom_abline(slope = 1, intercept = 0) +
-  # Passe Titel und Achsenbeschriftungen an
-  labs(subtitle = &quot;Linie gibt perfekte Performanz an&quot;,
-       x = &quot;Vorhergesagte Werte&quot;,
-       y = &quot;Tatsächliche Werte&quot;) +
-  # Passe Koordinaten an
-  coord_cartesian(xlim = c(0, 45), ylim = c(0, 45))</code></pre>
+# 3.246182 0.678465 2.501346 </code></pre>
 </div>
-<div id="datensätze" class="section level2">
+<div id="datensatze" class="section level2">
 <h2>Datensätze</h2>
 <table>
 <thead>
@@ -631,104 +501,95 @@ ggplot(data = accuracy,
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/college_train.csv">college_train.csv</a></td>
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/graduation_train.csv">graduation_train.csv</a></td>
 <td align="left">1000</td>
 <td align="left">21</td>
 </tr>
 </tbody>
 </table>
-<ul>
-<li>Die <code>college_train</code> Daten stammen aus dem <code>College</code> Datensatz des <code>ISLR</code> Pakets. Die Daten enthalten Statistiken vieler U.S. Colleges aus einem Bericht von 1995.</li>
-</ul>
-<div id="variablen-in-college_train" class="section level4">
-<h4>Variablen in <code>college_train</code></h4>
+<p>Die <code>graduation_train</code> und <code>graduation_test</code> datensätze entstammen dem <code>College</code> Datensatz aus dem <code>ISLR</code> Paket. sie enthalten Statistiken für eine grosse Anzahl US Colleges auf Basis des <em>US News and World Reports</em> aus dem Jahr 1995.</p>
 <table>
-<colgroup>
-<col width="26%" />
-<col width="73%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Name</th>
-<th align="left">Beschreibung</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>Private</code></td>
-<td align="left">Eine Variable mit den Werten <code>Yes</code> und <code>No</code>, die angeben, ob ein College öffentlich ist oder nicht.</td>
+<td align="left">Privatuniversitaet</td>
+<td align="left">Ja oder Nein</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Apps</code></td>
-<td align="left">Anzahl erhaltene Bewerbungen.</td>
+<td align="left">Bewerbungen</td>
+<td align="left">Anzahl Bewerbungen</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>Accept</code></td>
-<td align="left">Anzahl akzeptierte Bewerbungen.</td>
+<td align="left">Angenommen</td>
+<td align="left">Anzahl angenommene Bewerbungen</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Enroll</code></td>
-<td align="left">Anzahl neue eingeschriebener Studenten.</td>
+<td align="left">Eingeschrieben</td>
+<td align="left">Anzahl eingeschrieben</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>Top10perc</code></td>
-<td align="left">Prozent neuer Studenten der besten 10% in der High School.</td>
+<td align="left">Prozent_Top10</td>
+<td align="left">Prozent der Studierenden innerhalb Top 10% in High School</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Top25perc</code></td>
-<td align="left">Prozent neuer Studenten der besten 25% in der High School.</td>
+<td align="left">Prozent_Top25</td>
+<td align="left">Prozent der Studierenden innerhalb Top 25% in High School</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>F.Undergrad</code></td>
-<td align="left">Anzahl Vollzeit Bachelorstudenten.</td>
+<td align="left">Vollzeit</td>
+<td align="left">Anzahl Studierende in Vollzeit</td>
 </tr>
 <tr class="even">
-<td align="left"><code>P.Undergrad</code></td>
-<td align="left">Anzahl Teilzeit Bachelorstudenten.</td>
+<td align="left">Teilzeit</td>
+<td align="left">Anzahl Studierende in Teilzeit</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>Outstate</code></td>
-<td align="left">Unterrichtsgebühr für Studenten aus anderem Bundesstaat.</td>
+<td align="left">Kosten_ausserhalb</td>
+<td align="left">Kosten für Studierende aus einem anderen Staat</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Room.Board</code></td>
-<td align="left">Raumkosten.</td>
+<td align="left">Kosten_Unterkunft</td>
+<td align="left">Kosten für Studierende für Unterkunft und Verpflegung</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>Books</code></td>
-<td align="left">Geschätzte Kosten für Bücher.</td>
+<td align="left">Kosten_Buecher</td>
+<td align="left">Kosten für Studierende für Bücher</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Personal</code></td>
-<td align="left">Geschätzte persönliche Ausgaben.</td>
+<td align="left">Kosten_persoenlich</td>
+<td align="left">Kosten für Studierende für Persönliches</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>PhD</code></td>
-<td align="left">Prozent des Lehrkörpers mit einem PhD.</td>
+<td align="left">Prozent_PhD</td>
+<td align="left">Anteil PhDs innerhalb der Dozentenschaft</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Terminal</code></td>
-<td align="left">Prozent des Lehrkörpers mit einem Masterabschluss.</td>
+<td align="left">Prozent_Degree</td>
+<td align="left">Anteil Abschlüsse innerhalb der Dozentenschaft</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>S.F.Ratio</code></td>
-<td align="left">Studenten-Lehrkörper Verhältnis.</td>
+<td align="left">Verhaeltnis_Stud.Doz.</td>
+<td align="left">Verhältnis Studierene zu Dozenten</td>
 </tr>
 <tr class="even">
-<td align="left"><code>perc.alumni</code></td>
-<td align="left">Prozent der Alumni, welche dem College spenden.</td>
+<td align="left">Prozent_Spenden</td>
+<td align="left">Anteil Alumnis, die an das College spenden</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>Expend</code></td>
-<td align="left">Bildungsausgaben pro Student.</td>
+<td align="left">Kosten_Student</td>
+<td align="left">Ausbildungskosten für das College pro Student</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Grad.Rate</code></td>
-<td align="left">Abschlussrate.</td>
+<td align="left">Abschlussrate</td>
+<td align="left">Abschlussrate</td>
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 <div id="funktionen" class="section level2">
 <h2>Funktionen</h2>
@@ -827,23 +688,6 @@ $(document).ready(function () {
 
 
 </script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
