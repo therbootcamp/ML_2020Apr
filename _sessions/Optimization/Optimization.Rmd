@@ -2,7 +2,7 @@
 title: "Optimizing"
 author: "Maschinelles Lernen mit R<br>
   <a href='https://therbootcamp.github.io'>
-    Basel R Bootcamp
+    The R Bootcamp
   </a>
   <br>
   <a href='https://therbootcamp.github.io/ML_2020Apr/'>
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-      Machine Learning mit R | April 2020
+      Maschinelles Lernen mit R | April 2020
       </font>
     </a>
     </span>
@@ -170,8 +170,8 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
 # Overfitting vermeiden
 
 <ul>
-  <li class="m1"><span>Overfitting tritt ein, wenn ein model die <high>Daten zu genau fitted</high> und deswegen <high>keine guten Vorhersagen</high> liefert</span></li><br>
-  <li class="m2"><span>Gute Performanz in Training bedeutet also nicht unbedingt <high>gute Performanz in Test</high>.</span></li>
+  <li class="m1"><span>Overfitting tritt ein, wenn ein Modell die <high>Daten zu genau fitted</high> und deswegen <high>keine guten Vorhersagen</high> liefert</span></li><br>
+  <li class="m2"><span>Gute Performanz im Training bedeutet also nicht unbedingt <high>gute Performanz im Test</high>.</span></li>
 </ul>
 
 ]
@@ -197,7 +197,7 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
 <ul>
   <li class="m1"><span>Die meisten ML Modelle besitzen Tuning Parameter, die die  Modellkomplexität kontrollieren</span></li><br>
   <li class="m2"><span>Um diese Tuning Parameter zu fitten wird ein <high>Validationsdatensatz</high> kreiert.</span></li>
-  <li class="m3"><spanVorgehen:</span></li>  
+  <li class="m3"><span>Vorgehen:</span></li>  
   <ol>
     <li><span>Fitte Modell mit verschiedenen Werten für die Tuning Parameter</span></li>
     <li><span>Auf Basis des Validationsdatensatzes wähle die besten Tuning Parameter</span></li>
@@ -222,7 +222,7 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Resampling-Methoden automatisieren und generalisieren das das Tuning der Modelle</span></li><br>
+  <li class="m1"><span>Resampling Methoden automatisieren und generalisieren das Tuning der Modelle</span></li><br>
 </ul>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
@@ -241,7 +241,7 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
     <i>k-fold cross-validation</i>
   </td>
   <td bgcolor="white">
-    Trennt die Daten in <i>k</i>-Teile, verwendet <high>jeden Teil einmal</high> als Validationset, während die restlichen Teile <i>k-1</i> als Trainingset dienen. 
+    Trennt die Daten in <i>k</i>-Teile, verwendet <high>jeden Teil einmal</high> als Validationsset, während die restlichen Teile <i>k-1</i> als Trainingsset dienen. 
   </td>  
 </tr>
 <tr>
@@ -270,7 +270,7 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Resampling-Methoden automatisieren und generalisieren das das Tuning der Modelle</span></li><br>
+  <li class="m1"><span>Resampling Methoden automatisieren und generalisieren das Tuning der Modelle</span></li><br>
 </ul>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
@@ -289,7 +289,7 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
     <i>k-fold cross-validation</i>
   </td>
   <td bgcolor="white">
-    Trennt die Daten in <i>k</i>-Teile, verwendet <high>jeden Teil einmal</high> als Validationset, während die restlichen Teile <i>k-1</i> als Trainingset dienen. 
+    Trennt die Daten in <i>k</i>-Teile, verwendet <high>jeden Teil einmal</high> als Validationsset, während die restlichen Teile <i>k-1</i> als Trainingsset dienen. 
   </td>  
 </tr>
 <tr>
@@ -318,7 +318,7 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Resampling-Methoden automatisieren und generalisieren das das Tuning der Modelle</span></li><br>
+  <li class="m1"><span>Resampling-Methoden automatisieren und generalisieren das Tuning der Modelle</span></li><br>
 </ul>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
@@ -337,7 +337,7 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
     <i>k-fold cross-validation</i>
   </td>
   <td bgcolor="white">
-    Trennt die Daten in <i>k</i>-Teile, verwendet <high>jeden Teil einmal</high> als Validationset, während die restlichen Teile <i>k-1</i> als Trainingset dienen. 
+    Trennt die Daten in <i>k</i>-Teile, verwendet <high>jeden Teil einmal</high> als Validationsset, während die restlichen Teile <i>k-1</i> als Trainingsset dienen. 
   </td>  
 </tr>
 <tr>

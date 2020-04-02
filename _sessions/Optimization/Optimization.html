@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
     <title>Optimizing</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Maschinelles Lernen mit R   Basel R Bootcamp" />
+    <meta name="author" content="Maschinelles Lernen mit R   The R Bootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
   </head>
@@ -12,7 +12,7 @@
 class: center, middle, inverse, title-slide
 
 # Optimizing
-### Maschinelles Lernen mit R<br> <a href='https://therbootcamp.github.io'> Basel R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### Maschinelles Lernen mit R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
 ### April 2020
 
 ---
@@ -34,7 +34,7 @@ layout: true
     &lt;/a&gt;
     &lt;a href="https://therbootcamp.github.io/"&gt;
       &lt;font color="#7E7E7E"&gt;
-      Machine Learning mit R | April 2020
+      Maschinelles Lernen mit R | April 2020
       &lt;/font&gt;
     &lt;/a&gt;
     &lt;/span&gt;
@@ -56,8 +56,8 @@ layout: true
 # Overfitting vermeiden
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Overfitting tritt ein, wenn ein model die &lt;high&gt;Daten zu genau fitted&lt;/high&gt; und deswegen &lt;high&gt;keine guten Vorhersagen&lt;/high&gt; liefert&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Gute Performanz in Training bedeutet also nicht unbedingt &lt;high&gt;gute Performanz in Test&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Overfitting tritt ein, wenn ein Modell die &lt;high&gt;Daten zu genau fitted&lt;/high&gt; und deswegen &lt;high&gt;keine guten Vorhersagen&lt;/high&gt; liefert&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Gute Performanz im Training bedeutet also nicht unbedingt &lt;high&gt;gute Performanz im Test&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 ]
@@ -83,7 +83,7 @@ layout: true
 &lt;ul&gt;
   &lt;li class="m1"&gt;&lt;span&gt;Die meisten ML Modelle besitzen Tuning Parameter, die die  Modellkomplexität kontrollieren&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
   &lt;li class="m2"&gt;&lt;span&gt;Um diese Tuning Parameter zu fitten wird ein &lt;high&gt;Validationsdatensatz&lt;/high&gt; kreiert.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m3"&gt;&lt;spanVorgehen:&lt;/span&gt;&lt;/li&gt;  
+  &lt;li class="m3"&gt;&lt;span&gt;Vorgehen:&lt;/span&gt;&lt;/li&gt;  
   &lt;ol&gt;
     &lt;li&gt;&lt;span&gt;Fitte Modell mit verschiedenen Werten für die Tuning Parameter&lt;/span&gt;&lt;/li&gt;
     &lt;li&gt;&lt;span&gt;Auf Basis des Validationsdatensatzes wähle die besten Tuning Parameter&lt;/span&gt;&lt;/li&gt;
@@ -103,12 +103,12 @@ layout: true
 
 ---
 
-# Resampling methods
+# Resampling Methoden
 
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Resampling-Methoden automatisieren und generalisieren das das Tuning der Modelle&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Resampling Methoden automatisieren und generalisieren das Tuning der Modelle&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
 &lt;/ul&gt;
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
@@ -116,10 +116,10 @@ layout: true
   &lt;col width="70%"&gt;
 &lt;tr&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Method&lt;/b&gt;
+    &lt;b&gt;Methode&lt;/b&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Description&lt;/b&gt;
+    &lt;b&gt;Beschreibung&lt;/b&gt;
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -127,7 +127,7 @@ layout: true
     &lt;i&gt;k-fold cross-validation&lt;/i&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    Trennt die Daten in &lt;i&gt;k&lt;/i&gt;-Teile, verwendet &lt;high&gt;jeden Teil einmal&lt;/high&gt; als Validationset, während die restlichen Teile &lt;i&gt;k-1&lt;/i&gt; als Trainingset dienen. 
+    Trennt die Daten in &lt;i&gt;k&lt;/i&gt;-Teile, verwendet &lt;high&gt;jeden Teil einmal&lt;/high&gt; als Validationsset, während die restlichen Teile &lt;i&gt;k-1&lt;/i&gt; als Trainingsset dienen. 
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -151,21 +151,23 @@ layout: true
 
 ---
 
-# Resampling methods
+# Resampling Methoden
 
 .pull-left4[
 
-Resampling methods automatize and generalize model tuning. 
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Resampling Methoden automatisieren und generalisieren das Tuning der Modelle&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+&lt;/ul&gt;
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
   &lt;col width="30%"&gt;
   &lt;col width="70%"&gt;
 &lt;tr&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Method&lt;/b&gt;
+    &lt;b&gt;Methode&lt;/b&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Description&lt;/b&gt;
+    &lt;b&gt;Beschreibung&lt;/b&gt;
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -173,7 +175,7 @@ Resampling methods automatize and generalize model tuning.
     &lt;i&gt;k-fold cross-validation&lt;/i&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    Splits the data in k-pieces, use &lt;high&gt;each piece once&lt;/high&gt; as the validation set, while using the other one for training. 
+    Trennt die Daten in &lt;i&gt;k&lt;/i&gt;-Teile, verwendet &lt;high&gt;jeden Teil einmal&lt;/high&gt; als Validationsset, während die restlichen Teile &lt;i&gt;k-1&lt;/i&gt; als Trainingsset dienen. 
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -181,7 +183,7 @@ Resampling methods automatize and generalize model tuning.
     &lt;i&gt;Bootstrap&lt;/i&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    For &lt;i&gt;B&lt;/i&gt; bootstrap rounds &lt;high&gt;sample&lt;/high&gt; from the data &lt;high&gt;with replacement&lt;/high&gt; and split the data in training and validation set.  
+    Über &lt;i&gt;B&lt;/i&gt; Bootstrap Runden ziehe &lt;high&gt;Zufallsstrichproben mit Zurücklegen&lt;/high&gt; aus den Daten und trenne die Stichprobe in Training und Validation auf.
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -197,21 +199,23 @@ Resampling methods automatize and generalize model tuning.
 
 ---
 
-# Resampling methods
+# Resampling Methoden
 
 .pull-left4[
 
-Resampling methods automatize and generalize model tuning. 
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Resampling-Methoden automatisieren und generalisieren das Tuning der Modelle&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+&lt;/ul&gt;
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
   &lt;col width="30%"&gt;
   &lt;col width="70%"&gt;
 &lt;tr&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Method&lt;/b&gt;
+    &lt;b&gt;Methode&lt;/b&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Description&lt;/b&gt;
+    &lt;b&gt;Beschreibung&lt;/b&gt;
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -219,7 +223,7 @@ Resampling methods automatize and generalize model tuning.
     &lt;i&gt;k-fold cross-validation&lt;/i&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    Splits the data in k-pieces, use &lt;high&gt;each piece once&lt;/high&gt; as the validation set, while using the other one for training. 
+    Trennt die Daten in &lt;i&gt;k&lt;/i&gt;-Teile, verwendet &lt;high&gt;jeden Teil einmal&lt;/high&gt; als Validationsset, während die restlichen Teile &lt;i&gt;k-1&lt;/i&gt; als Trainingsset dienen. 
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -227,7 +231,7 @@ Resampling methods automatize and generalize model tuning.
     &lt;i&gt;Bootstrap&lt;/i&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    For &lt;i&gt;B&lt;/i&gt; bootstrap rounds &lt;high&gt;sample&lt;/high&gt; from the data &lt;high&gt;with replacement&lt;/high&gt; and split the data in training and validation set.  
+    Über &lt;i&gt;B&lt;/i&gt; Bootstrap Runden ziehe &lt;high&gt;Zufallsstrichproben mit Zurücklegen&lt;/high&gt; aus den Daten und trenne die Stichprobe in Training und Validation auf.
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -258,7 +262,9 @@ class: center, middle
 
 .pull-left45[
 
-Penalizes regression loss for having large `\(\beta\)` values using the &lt;high&gt;lambda &amp;lambda; tuning parameter&lt;/high&gt; and one of several penalty functions.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Bestraft proportional zum &lt;high&gt;Tuning parameter &amp;lambda;&lt;/high&gt; den Loss einer Regression für die Grösse der Modellparameter&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+&lt;/ul&gt;
 
 $$Regularized \;loss = \sum_i^n (y_i-\hat{y}_i)^2+\lambda \sum_j^p f(\beta_j)) $$
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
@@ -267,10 +273,10 @@ $$Regularized \;loss = \sum_i^n (y_i-\hat{y}_i)^2+\lambda \sum_j^p f(\beta_j)) $
     &lt;b&gt;Name&lt;/b&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Function&lt;/b&gt;
+    &lt;b&gt;Funktion&lt;/b&gt;
   &lt;/td&gt; 
   &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Description&lt;/b&gt;
+    &lt;b&gt;Strafe&lt;/b&gt;
   &lt;/td&gt; 
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -281,7 +287,7 @@ $$Regularized \;loss = \sum_i^n (y_i-\hat{y}_i)^2+\lambda \sum_j^p f(\beta_j)) $
     |&amp;beta;&lt;sub&gt;j&lt;/sub&gt;|
   &lt;/td&gt; 
   &lt;td bgcolor="white"&gt;
-    Penalize by the &lt;high&gt;absolute&lt;/high&gt; regression weights.
+    Proportional zu den &lt;high&gt;absoluten&lt;/high&gt; Regressionsgewichten.
   &lt;/td&gt; 
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -292,7 +298,7 @@ $$Regularized \;loss = \sum_i^n (y_i-\hat{y}_i)^2+\lambda \sum_j^p f(\beta_j)) $
     &amp;beta;&lt;sub&gt;j&lt;/sub&gt;&lt;sup&gt;2&lt;/sup&gt;
   &lt;/td&gt;  
   &lt;td bgcolor="white"&gt;
-    Penalize by the &lt;high&gt;squared&lt;/high&gt; regression weights.
+    Proportional zu den &lt;high&gt;quadrierten&lt;/high&gt; Regressionsgewichten.
   &lt;/td&gt; 
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -303,7 +309,7 @@ $$Regularized \;loss = \sum_i^n (y_i-\hat{y}_i)^2+\lambda \sum_j^p f(\beta_j)) $
     |&amp;beta;&lt;sub&gt;j&lt;/sub&gt;| + &amp;beta;&lt;sub&gt;j&lt;/sub&gt;&lt;sup&gt;2&lt;/sup&gt;
   &lt;/td&gt; 
   &lt;td bgcolor="white"&gt;
-    Penalize by Lasso and Ridge penalties.
+    Summe von Lasso und Ridge.
   &lt;/td&gt; 
 &lt;/tr&gt;
 &lt;/table&gt;
