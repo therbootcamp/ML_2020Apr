@@ -571,11 +571,7 @@ logreg2
 <ul style="margin-bottom:-20px">
   <li class="m1"><span><b>Distanz</b></span></li>
   <ul class="level">
-<<<<<<< HEAD
-    <li><span>LogLoss dient i.A.R. <high>zum Fitten von Parametern</high>, verwendet, und wie MSE und MAE auch zur Evaluation.</span></li>
-=======
-    <li><span>LogLoss – ein Distanzmass wie MSE und MAE – wird i.A.R. <high>zum Fitten von Parametern</high>, verwendet.</span></li>
->>>>>>> f5890be05bb954a13506f3d8083b80ab29b38f47
+  <li><span>LogLoss dient i.A.R. <high>zum Fitten von Parametern</high>, verwendet, und wie MSE und MAE auch zur Evaluation.</span></li>
   </ul>
 </ul>
 
@@ -586,11 +582,7 @@ $$\small MSE = \frac{1}{n}\sum_{i}^{n}(y-\hat{y})^2; \: MAE = \frac{1}{n}\sum_{i
 <ul>
   <li class="m2"><span><b>Übereinstimmung</b></span></li>
   <ul class="level">
-<<<<<<< HEAD
     <li><span>0-1 loss evaluiert die Übereinstimmung zwischen <high>vorhergesagter Klasse und tatsächlicher Klasse </high>, was im Vergleich <high>leicht zu interpretieren</high> ist.</span></li>
-=======
-    <li><span>Die 0-1 loss function testet, ob die <high>vorhergesagte Kategorie, der tatsächlichen Kategorie entspricht</high>. Sie ist <high>leichter zu interpretieren</high>.</span></li>
->>>>>>> f5890be05bb954a13506f3d8083b80ab29b38f47
   </ul>
 </ul>
 
