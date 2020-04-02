@@ -235,7 +235,7 @@ $(document).ready(function () {
 library(tidyverse)
 library(caret)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>In diesem Practical verwenden wir einen Datensatz, der Daten von 388 U.S. Colleges enthält. Die Daten sind als <code>graduation_train.csv</code> gespeichert. Unter Verwendung des untenstehenden Codes, lese den Datensatz ein und speichere ihn unter dem Namen <code>graduation_train</code>.</li>
+<li>In diesem Practical analysierst du einen Datensatz, der Daten von 388 U.S. Colleges enthält. Die Daten sind als <code>graduation_train.csv</code> gespeichert. Unter Verwendung des untenstehenden Codes, lese den Datensatz ein und speichere ihn unter dem Namen <code>graduation_train</code>.</li>
 </ol>
 <pre class="r"><code># Lese den graduation_train.csv Datensatz ein
 graduation_train &lt;- read_csv(file = &quot;1_Data/graduation_train.csv&quot;)</code></pre>
@@ -385,7 +385,7 @@ Teil 2: <b>Klassifikationsfall</b>
 <h3>G - Faktor als Kriterium</h3>
 <p>Nun wage dich an ein Klassifikationsproblem. Erinnere, dass in <code>caret</code> Funktionen für Klassifikationsprobleme das Kriterium die Klasse <code>factor</code> haben muss. In den folgenden Aufgaben sage vorher, ob es sich bei einem College um ein Privatuniversitaets oder öffentliches College handelt (die <code>Privatuniversitaet</code> Variable).</p>
 <ol style="list-style-type: decimal">
-<li>Verwende die <code>class()</code> Funktion, um die Klasse der <code>Privatuniversitaet</code> Variable zu testen. Wenn der Output <code>factor</code> ist, können wir mit dem maschinellen Lernen beginnen.</li>
+<li>Verwende die <code>class()</code> Funktion, um die Klasse der <code>Privatuniversitaet</code> Variable zu testen. Wenn der Output <code>factor</code> ist, kannst du mit dem maschinellen Lernen beginnen.</li>
 </ol>
 <pre class="r"><code># Überprüfe die Klasse der Privatuniversitaet Variable
 class(graduation_train$Privatuniversitaet)</code></pre>

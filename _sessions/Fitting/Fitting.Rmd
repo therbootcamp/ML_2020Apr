@@ -191,8 +191,8 @@ logreg2 = logreg1 +
 <p style="padding-top:1px"></p>
 
 <ul>
-<li class="m1"><span>Modelle können wir uns als <high>Familie von Modellen</high> vorstellen, wobei jede Parameterkombination ein unterschiedliches Modell definiert</span></li>
-<li class="m2"><span>Wenn wir ein Modell fitten, <high>identifizieren wir</high> von der Familie von Modellen <high>dasjenige Modell, welches unsere Daten am besten abbildet</high>.</span></li>
+<li class="m1"><span>Modelle sind eigentlich <high>Familie von Modellen</high>, wobei jede Parameterkombination ein unterschiedliches Modell definiert</span></li>
+<li class="m2"><span>Ein Modell zu fitten bedeutet, von der Familie von Modellen dasjenige zu <high>identifizieren welches die Daten am besten abbildet</high>.</span></li>
 </ul>
 
 ]
@@ -210,7 +210,7 @@ logreg2 = logreg1 +
 
 ---
 
-# Welches dieser Modelle ist besser? Weshalb?
+# Welches Modelle ist besser?
 
 ```{r, echo = FALSE, fig.width = 6, fig.height = 3, dpi = 300, out.width = "90%"}
 ggarrange(bad_raw, great_raw, ncol = 2, nrow = 1)
@@ -219,7 +219,7 @@ ggarrange(bad_raw, great_raw, ncol = 2, nrow = 1)
 
 ---
 
-# Welches dieser Modelle ist besser? Weshalb?
+# Welches Modelle ist besser?
 
 ```{r, echo = FALSE, fig.width = 6, fig.height = 3, dpi = 300, out.width = "90%"}
 ggarrange(bad_err, great_err, ncol = 2, nrow = 1)
@@ -228,13 +228,13 @@ ggarrange(bad_err, great_err, ncol = 2, nrow = 1)
 
 ---
 
-# Verlustfunktion (*Loss function*)
+# Loss function
 
 .pull-left45[
 
 <ul>
-<li class="m1"><span>Eines der <high> wichtigsten Konzepte</high> in der Statistik und im maschinellen Lernen.</span></li>
-<li class="m2"><span>Die Verlustfunktion definiert eine <high>Zusammenfassung der durch ein Modell begangenen Fehler</high>.</span></li>
+<li class="m1"><span>Eines <high>zentrales Konzepte</high> in der Statistik und im maschinellen Lernen.</span></li>
+<li class="m2"><span>Die Loss function ist eine <high>Zusammenfassung der durch ein Modell begangenen Fehler</high>.</span></li>
 </ul>
 <p style="padding-top:7px">
 
@@ -330,7 +330,7 @@ bad_err + labs(title=element_blank(),subtitle = element_blank())
 
 ---
 
-# Verlustfunktion in der Regression
+# Loss function in der Regression
 
 .pull-left45[
 
@@ -564,17 +564,15 @@ logreg2
 
 ---
 
-# Verlustfunktion in Klassifikationsproblemen – Zwei Wege
+# Loss in Klassifikation
 
 .pull-left45[
 
 <ul style="margin-bottom:-20px">
-  <li class="m1"><span><b>Distanz</b>
-  <br><br>
+  <li class="m1"><span><b>Distanz</b></span></li>
   <ul class="level">
-    <li><span>LogLoss wird – wie MSE und MAE –  als Distanzmass <high>zum Fitten von Parametern</high>, verwendet. Es ist somit eine Alternative zu MSE und MAE.</span></li>
+    <li><span>LogLoss dient i.A.R. <high>zum Fitten von Parametern</high>, verwendet, kann aber wie MSE und MAE auch zur Evaluation verwendet werden.</span></li>
   </ul>
-  </span></li>
 </ul>
 
 $$\small LogLoss = -\frac{1}{n}\sum_{i}^{n}(log(\hat{y})y+log(1-\hat{y})(1-y))$$
@@ -582,12 +580,10 @@ $$\small MSE = \frac{1}{n}\sum_{i}^{n}(y-\hat{y})^2; \: MAE = \frac{1}{n}\sum_{i
 
 
 <ul>
-  <li class="m2"><span><b>Überlappung</b>
-  <br><br>
+  <li class="m2"><span><b>Überlappung</b></span></li>
   <ul class="level">
-    <li><span>Die 0-1 Verlustfunktion tested, ob die <high>vorhergesagte Kategorie, der tatsächlichen Kategorie entspricht</high>. Wird häufig wegen der <high>einfachen Interpretation</high> verwendet.</span></li>
+    <li><span>Die 0-1 loss function testet, ob die <high>vorhergesagte Kategorie, der tatsächlichen Kategorie entspricht</high>, was im Vergleich <high>leicht zu interpretieren</high> ist.</span></li>
   </ul>
-  </span></li>
 </ul>
 
 $$\small Verlust_{01}=\frac{1}{n}\sum_i^n I(y \neq \lfloor \hat{y} \rceil)$$
@@ -615,10 +611,9 @@ logreg2
 
 <br>
 
-<b> Wahrheitsmatrix </b>
+<u> Wahrheitsmatrix</u>
 
 <font style="font-size:22px">
-<br>
 <table style="cellspacing:0; cellpadding:0; border:none;">
 <col width=20%>
 <col width=40%>
@@ -695,11 +690,9 @@ $$\small Spezifität = \frac{RN}{ RN + FP }$$
 
 <br>
 
-<b> Wahrheitsmatrix </b>
+<u> Wahrheitsmatrix</u>
 
 <font style="font-size:22px">
-<br>
-
 <table style="cellspacing:0; cellpadding:0; border:none;">
 <col width=20%>
 <col width=40%>

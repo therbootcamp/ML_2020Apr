@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Fitting</title>
     <meta charset="utf-8" />
@@ -57,8 +57,8 @@ layout: true
 &lt;p style="padding-top:1px"&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li class="m1"&gt;&lt;span&gt;Modelle können wir uns als &lt;high&gt;Familie von Modellen&lt;/high&gt; vorstellen, wobei jede Parameterkombination ein unterschiedliches Modell definiert&lt;/span&gt;&lt;/li&gt;
-&lt;li class="m2"&gt;&lt;span&gt;Wenn wir ein Modell fitten, &lt;high&gt;identifizieren wir&lt;/high&gt; von der Familie von Modellen &lt;high&gt;dasjenige Modell, welches unsere Daten am besten abbildet&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;li class="m1"&gt;&lt;span&gt;Modelle sind eigentlich &lt;high&gt;Familie von Modellen&lt;/high&gt;, wobei jede Parameterkombination ein unterschiedliches Modell definiert&lt;/span&gt;&lt;/li&gt;
+&lt;li class="m2"&gt;&lt;span&gt;Ein Modell zu fitten bedeutet, von der Familie von Modellen dasjenige zu &lt;high&gt;identifizieren welches die Daten am besten abbildet&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 ]
@@ -76,27 +76,27 @@ layout: true
 
 ---
 
-# Welches dieser Modelle ist besser? Weshalb?
+# Welches Modelle ist besser?
 
 &lt;img src="Fitting_files/figure-html/unnamed-chunk-2-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
-# Welches dieser Modelle ist besser? Weshalb?
+# Welches Modelle ist besser?
 
 &lt;img src="Fitting_files/figure-html/unnamed-chunk-3-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
-# Verlustfunktion (*Loss function*)
+# Loss function
 
 .pull-left45[
 
 &lt;ul&gt;
-&lt;li class="m1"&gt;&lt;span&gt;Eines der &lt;high&gt; wichtigsten Konzepte&lt;/high&gt; in der Statistik und im maschinellen Lernen.&lt;/span&gt;&lt;/li&gt;
-&lt;li class="m2"&gt;&lt;span&gt;Die Verlustfunktion definiert eine &lt;high&gt;Zusammenfassung der durch ein Modell begangenen Fehler&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;li class="m1"&gt;&lt;span&gt;Eines &lt;high&gt;zentrales Konzepte&lt;/high&gt; in der Statistik und im maschinellen Lernen.&lt;/span&gt;&lt;/li&gt;
+&lt;li class="m2"&gt;&lt;span&gt;Die Loss function ist eine &lt;high&gt;Zusammenfassung der durch ein Modell begangenen Fehler&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p style="padding-top:7px"&gt;
 
@@ -188,7 +188,7 @@ Wenn `\(b_{i} = 0\)`, heisst das, `\(x_{i}\)` &lt;high&gt;bringt keinen Zusatznu
 
 ---
 
-# Verlustfunktion in der Regression
+# Loss function in der Regression
 
 .pull-left45[
 
@@ -415,17 +415,15 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 
 ---
 
-# Verlustfunktion in Klassifikationsproblemen – Zwei Wege
+# Loss in Klassifikation
 
 .pull-left45[
 
 &lt;ul style="margin-bottom:-20px"&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Distanz&lt;/b&gt;
-  &lt;br&gt;&lt;br&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Distanz&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;LogLoss wird – wie MSE und MAE –  als Distanzmass &lt;high&gt;zum Fitten von Parametern&lt;/high&gt;, verwendet. Es ist somit eine Alternative zu MSE und MAE.&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;LogLoss dient i.A.R. &lt;high&gt;zum Fitten von Parametern&lt;/high&gt;, verwendet, kann aber wie MSE und MAE auch zur Evaluation verwendet werden.&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;
-  &lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 `$$\small LogLoss = -\frac{1}{n}\sum_{i}^{n}(log(\hat{y})y+log(1-\hat{y})(1-y))$$`
@@ -433,12 +431,10 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 
 
 &lt;ul&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Überlappung&lt;/b&gt;
-  &lt;br&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Überlappung&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;Die 0-1 Verlustfunktion tested, ob die &lt;high&gt;vorhergesagte Kategorie, der tatsächlichen Kategorie entspricht&lt;/high&gt;. Wird häufig wegen der &lt;high&gt;einfachen Interpretation&lt;/high&gt; verwendet.&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Die 0-1 loss function testet, ob die &lt;high&gt;vorhergesagte Kategorie, der tatsächlichen Kategorie entspricht&lt;/high&gt;, was im Vergleich &lt;high&gt;leicht zu interpretieren&lt;/high&gt; ist.&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;
-  &lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 `$$\small Verlust_{01}=\frac{1}{n}\sum_i^n I(y \neq \lfloor \hat{y} \rceil)$$`
@@ -464,10 +460,9 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 
 &lt;br&gt;
 
-&lt;b&gt; Wahrheitsmatrix &lt;/b&gt;
+&lt;u&gt; Wahrheitsmatrix&lt;/u&gt;
 
 &lt;font style="font-size:22px"&gt;
-&lt;br&gt;
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
 &lt;col width=20%&gt;
 &lt;col width=40%&gt;

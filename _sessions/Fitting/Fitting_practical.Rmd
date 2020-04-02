@@ -92,7 +92,7 @@ library(tidyverse)
 library(caret)
 ```
 
-4. In diesem Practical verwenden wir einen Datensatz, der Daten von 388 U.S. Colleges enthält. Die Daten sind als `graduation_train.csv` gespeichert. Unter Verwendung des untenstehenden Codes, lese den Datensatz ein und speichere ihn unter dem Namen `graduation_train`.
+4. In diesem Practical analysierst du einen Datensatz, der Daten von 388 U.S. Colleges enthält. Die Daten sind als `graduation_train.csv` gespeichert. Unter Verwendung des untenstehenden Codes, lese den Datensatz ein und speichere ihn unter dem Namen `graduation_train`.
 
 ```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
 # Lese den graduation_train.csv Datensatz ein
@@ -371,7 +371,7 @@ Teil 2: <b>Klassifikationsfall</b>
 
 Nun wage dich an ein Klassifikationsproblem. Erinnere, dass in `caret` Funktionen für Klassifikationsprobleme das Kriterium die Klasse `factor` haben muss. In den folgenden Aufgaben sage vorher, ob es sich bei einem College um ein Privatuniversitaets oder öffentliches College handelt (die `Privatuniversitaet` Variable).
 
-1. Verwende die `class()` Funktion, um die Klasse der `Privatuniversitaet` Variable zu testen. Wenn der Output `factor` ist, können wir mit dem maschinellen Lernen beginnen.
+1. Verwende die `class()` Funktion, um die Klasse der `Privatuniversitaet` Variable zu testen. Wenn der Output `factor` ist, kannst du mit dem maschinellen Lernen beginnen.
 
 ```{r, echo = TRUE}
 # Überprüfe die Klasse der Privatuniversitaet Variable
