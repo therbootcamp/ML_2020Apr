@@ -7,6 +7,8 @@ require(gganimate)
 gap = gapminder::gapminder %>% filter(country != 'Kuwait') %>%
   rename('BIP pro Kopf' = gdpPercap, Lebenserwartung = lifeExp)
 
+write_csv(gap %>% rename(Land = country, Kontinent = continent, Jahr = year, Population = pop), '_sessions/Unsupervised/1_Data/gap.csv')
+
 cols = c(baselrbootcamp_colors,'#235A97')
 names(cols) = unique(gap$continent)
 p = ggplot(gap, aes(x = `BIP pro Kopf`, 
@@ -636,11 +638,37 @@ mtext(names(d),side=c(1,2),line=c(1.5,1.5),cex=1.2)
 dev.off()
 
 
+
+vars = c('ONEOFF_PURCHASES_FREQUENCY',
+         'BALANCE','BALANCE_FREQUENCY','CREDITLIMIT','TENURE',
+         'PURCHASES_FREQUENCY','PURCHASES','INSTALLMENTS_PURCHASES')
+
 a = mclust::Mclust(d)
 plot(a, what = 'classification', 
      col = sample(colorRampPalette(baselrbootcamp_colors)(20)), 
      pch=16,bty='n',xaxt='n',yaxt='n')
 
-mtext()
+sel = caret::findCorrelation(cor(cr),cutoff = 0.5,verbose=T)
+names(cr)[sel]
+
+hist(cr$ONEOFF_PURCHASES)
+
+cr = read_csv('_sessions/Unsupervised/1_Data/credit_raw.csv')
+cr = cr %>% select(BALANCE,BALANCE_FREQUENCY,PURCHASES,CREDIT_LIMIT,ONEOFF_PURCHASES,
+                   MINIMUM_PAYMENTS, PRC_FULL_PAYMENT, TENURE) %>% na.omit() 
+write_csv(cr, '_sessions/Unsupervised/1_Data/credit.csv')
+
+dim(cr)
+
+cr$cl = a$classification
+
+res = cr %>% mutate_all(scale) %>% group_by(cl) %>% select(-1) %>% summarize_all(mean)
+
+
+a = Mclust(cr %>% select(-1) %>% na.omit() %>% scale())
+kmeans()
+dbscan(cr %>% select(-1) %>% na.omit() %>% scale(), eps = .2)
+
+
 
 

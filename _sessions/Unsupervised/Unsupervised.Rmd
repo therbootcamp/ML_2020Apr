@@ -668,7 +668,7 @@ gap_dbscan
   <li class="m1"><span>Eine <high>probabilistische Erweiterung des <i>k</i>-means Algorithmus</high> auf Basis des multivariater Normalverteilungen</span></li>
   <li class="m2"><span>Guter Umgang mit Clustern <high>verschiedener Orientierungen und Dichten</high></span></li>
     <li class="m3"><span><high>Einfache Schätzung <i>k</i></high>über Modellvergleiche</span></li>
-    <li class="m4"><span>Komplexe "Topologien" machen Gaussian mixtures jedoch Schwierigkeiten</span></li>
+    <li class="m4"><span><high>Komplexe "Topologien"</high> machen Gaussian mixtures jedoch Schwierigkeiten</span></li>
 </ul>
 
 ]
