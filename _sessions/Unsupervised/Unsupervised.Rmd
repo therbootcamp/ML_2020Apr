@@ -143,7 +143,7 @@ gap1952 = gapminder::gapminder %>% filter(country != 'Kuwait') %>%
 # Gapminder
 
 <ul>
-  <li class="m1"><span>Hans Rosling's Gapminder Projekt kartographiert die <high>gesundheitlich und ökonomische Entwicklung in den Ländern</high> der Welt.</span></li>
+  <li class="m1"><span>Hans Rosling's Gapminder Projekt kartographiert die <high>gesundheitliche und ökonomische Entwicklung in den Ländern</high> der Welt.</span></li>
   <li class="m2"><span>Gibt es klar abgrenzbare Klassen von Ländern</high>: z.B. <high>Entwickelte versus Entwicklungsländer</high>.</span></li>
 </ul>
 
@@ -171,7 +171,7 @@ gap1952 = gapminder::gapminder %>% filter(country != 'Kuwait') %>%
 # Gapminder
 
 <ul>
-  <li class="m1"><span>Hans Rosling's Gapminder Projekt kartographiert die <high>gesundheitlich und ökonomische Entwicklung in den Ländern</high> der Welt.</span></li>
+  <li class="m1"><span>Hans Rosling's Gapminder Projekt kartographiert die <high>gesundheitlichz und ökonomische Entwicklung in den Ländern</high> der Welt.</span></li>
   <li class="m2"><span>Gibt es klar abgrenzbare Klassen von Ländern</high>: z.B. <high>Entwickelte versus Entwicklungsländer</high>.</span></li>
 </ul>
 
@@ -199,7 +199,7 @@ gap1952 = gapminder::gapminder %>% filter(country != 'Kuwait') %>%
 # Gap in 1952
 
 <ul>
-  <li class="m1"><span>Gibt es <high>in 1952 Klassen von Ländern</high> gemäss Lebenserwartung und BIP per Kopf in 1952?</span></li><br>
+  <li class="m1"><span>Gibt es <high>in 1952 Klassen von Ländern</high> gemäss Lebenserwartung und BIP pro Kopf in 1952?</span></li><br>
   <li class="m2"><span>Verfahren:</span></li><br>
   <ul>
     <li><span><high><i>k</i>-means</high></span></li><br>
@@ -231,8 +231,8 @@ gap1952 = gapminder::gapminder %>% filter(country != 'Kuwait') %>%
   <li class="m2"><span><b>Algorithmus</b></span></li><br>
   <ol class="">
     <li><span>Zufällige <high>Startpunkte</high> für die Clusterzentroide wählen.</span></li><br>
-    <li><span>Cases dem nächstgelegenen <high>Klassenzentroide zuweisen</high>.</span></li><br>
-    <li><span><high>neue Clusterzentroide</high> als Mittel aller Cases eines Clusters berechnen.</span></li>
+    <li><span>Cases dem nächstgelegenen <high>Klassenzentroid zuweisen</high>.</span></li><br>
+    <li><span><high>Neue Clusterzentroide</high> als Mittel aller Cases eines Clusters berechnen.</span></li>
   </ol>
 </ul>
 
@@ -258,8 +258,8 @@ gap1952 = gapminder::gapminder %>% filter(country != 'Kuwait') %>%
   <li class="m2"><span><b>Algorithmus</b></span></li><br>
   <ol class="">
     <li><span>Zufällige <high>Startpunkte</high> für die Clusterzentroide wählen.</span></li><br>
-    <li><span>Cases dem nächstgelegenen <high>Klassenzentroide zuweisen</high>.</span></li><br>
-    <li><span><high>neue Clusterzentroide</high> als Mittel aller Cases eines Clusters berechnen.</span></li>
+    <li><span>Cases dem nächstgelegenen <high>Klassenzentroid zuweisen</high>.</span></li><br>
+    <li><span><high>Neue Clusterzentroide</high> als Mittel aller Cases eines Clusters berechnen.</span></li>
   </ol>
 </ul>
 
