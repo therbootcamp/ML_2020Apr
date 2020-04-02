@@ -195,7 +195,7 @@ $(document).ready(function () {
 <col width='10%'>
 <tr style="border:none">
 <td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
-<font style='font-style:normal'>Machine Learning with R</font><br> <a href='https://therbootcamp.github.io/ML_2019Oct/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Basel R Bootcamp</font> </a>
+<font style='font-style:normal'>Machine Learning mit R</font><br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Basel R Bootcamp</font> </a>
 </td>
 <td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
 <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
@@ -1455,51 +1455,7 @@ postResample(pred = lasso_pred,
              obs = criterion_test)
 
 #     RMSE Rsquared      MAE 
-# 1653.675    0.832  942.870 
-
-
-# Visualise Accuracy -------------------------
-
-# Tidy competition results
-accuracy &lt;- tibble(criterion_test = criterion_test,
-                   Regression = glm_pred,
-                   Ridge = ridge_pred,
-                   Lasso = lasso_pred) %&gt;%
-               gather(model, prediction, -criterion_test) %&gt;%
-               # Add error measures
-               mutate(se = prediction - criterion_test,
-                      ae = abs(prediction - criterion_test))
-
-# Calculate summaries
-accuracy_agg &lt;- accuracy %&gt;%
-                  group_by(model) %&gt;%
-                  summarise(mae = mean(ae))   # Calculate MAE (mean absolute error)
-
-# Plot A) Scatterplot of truth versus predictions
-ggplot(data = accuracy,
-       aes(x = criterion_test, y = prediction, col = model)) +
-  geom_point(alpha = .5) +
-  geom_abline(slope = 1, intercept = 0) +
-  labs(x = &quot;True Prices&quot;,
-       y = &quot;Predicted Prices&quot;,
-       title = &quot;Predicting Diamond Prices&quot;,
-       subtitle = &quot;Black line indicates perfect performance&quot;)
-
-# Plot B) Violin plot of absolute errors
-ggplot(data = accuracy, 
-       aes(x = model, y = ae, fill = model)) + 
-  geom_violin() + 
-  geom_jitter(width = .05, alpha = .2) +
-  labs(title = &quot;Fitting Absolute Errors&quot;,
-       subtitle = &quot;Numbers indicate means&quot;,
-       x = &quot;Model&quot;,
-       y = &quot;Absolute Error (Log Transformed)&quot;) +
-  guides(fill = FALSE) +
-  annotate(geom = &quot;label&quot;, 
-           x = accuracy_agg$model, 
-           y = accuracy_agg$mae, 
-           label = round(accuracy_agg$mae, 2)) +
-  scale_y_continuous(trans=&#39;log&#39;)</code></pre>
+# 1653.675    0.832  942.870 </code></pre>
 </div>
 <div id="datasets" class="section level2">
 <h2>Datasets</h2>

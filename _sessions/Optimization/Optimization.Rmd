@@ -27,6 +27,7 @@ output:
       highlightLines: true
       countIncrementalSlides: false
       ratio: '16:9'
+      
 ---
 
 layout: true
@@ -55,10 +56,11 @@ layout: true
 
 ```{r, eval = TRUE, echo = FALSE, warning=F,message=F}
 # Code to knit slides
-baselers <- readr::read_csv("../../1_Data/baselers.csv")
 
+require(tidyverse)
+basel <- readr::read_csv("1_Data/basel.csv") %>% na.omit()
 
-source("https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/_materials/code/baselrbootcamp_palettes.R")
+source("code/baselrbootcamp_palettes.R")
 ```
 
 
@@ -79,11 +81,10 @@ options(digits = 4)
 knitr::opts_chunk$set(comment=NA, fig.width=6, fig.height=6, echo = TRUE, eval = TRUE,
                       message = FALSE, warning = FALSE, fig.align = 'center', dpi = 200)
 library(tidyverse)
-#library(baselers)
+#library(basel)
 library(ggthemes)
 library(caret)
 
-baselers <- read_csv("../../1_Data/baselers.csv")
 
 print2 <- function(x, nlines=10,...)
    cat(head(capture.output(print(x,...)), nlines), sep="\n")
@@ -195,13 +196,13 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Die meisten ML Modelle besitzen Tuning Parameter, die die  Modellkomplexität kontrollieren</span></li><br>
+  <li class="m1"><span>Die meisten ML Modelle besitzen Tuning Parameter, die die <high>Modellkomplexität</high> kontrollieren</span></li><br>
   <li class="m2"><span>Um diese Tuning Parameter zu fitten wird ein <high>Validationsdatensatz</high> kreiert.</span></li>
-  <li class="m3"><spanVorgehen:</span></li>  
+  <li class="m3"><span><b>Vorgehen</b></span></li>  
   <ol>
-    <li><span>Fitte Modell mit verschiedenen Werten für die Tuning Parameter</span></li>
-    <li><span>Auf Basis des Validationsdatensatzes wähle die besten Tuning Parameter</span></li>
-    <li><span>Fitte Modell für gesamten Traningsdatensatz.</span></li>
+    <li><span>Fitte Modell mit <high>verschiedenen Tuning Parameter</high> Werte</span></li>
+    <li><span>Auf Basis des <high>Validationsdatensatzes</high> wähle die besten Tuning Parameter</span></li>
+    <li><span>Fitte Modell für <high>gesamten Traningsdatensatz</high>.</span></li>
   </ol>
 </ul>
 
@@ -222,7 +223,7 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Resampling-Methoden automatisieren und generalisieren das das Tuning der Modelle</span></li><br>
+  <li class="m1"><span>Resampling-Methoden <high>automatisieren</high> und generalisieren das das Tuning der Modelle</span></li><br>
 </ul>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
@@ -270,7 +271,7 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Resampling-Methoden automatisieren und generalisieren das das Tuning der Modelle</span></li><br>
+  <li class="m1"><span>Resampling-Methoden <high>automatisieren</high> und generalisieren das das Tuning der Modelle</span></li><br>
 </ul>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
@@ -318,7 +319,7 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Resampling-Methoden automatisieren und generalisieren das das Tuning der Modelle</span></li><br>
+  <li class="m1"><span>Resampling-Methoden <high>automatisieren</high> und generalisieren das das Tuning der Modelle</span></li><br>
 </ul>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
@@ -377,7 +378,7 @@ class: center, middle
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Bestraft proportional zum <high>Tuning parameter &lambda;</high> den Loss einer Regression für die Grösse der Modellparameter</span></li><br>
+  <li class="m1"><span>Bestraft proportional zum <high>Tuning parameter &lambda;</high> den Loss einer Regression für die Grösse der Modellparameter</span></li>
 </ul>
 
 $$Regularized \;loss = \sum_i^n (y_i-\hat{y}_i)^2+\lambda \sum_j^p f(\beta_j)) $$
@@ -448,21 +449,17 @@ $$Regularized \;loss = \sum_i^n (y_i-\hat{y}_i)^2+\lambda \sum_j^p f(\beta_j)) $
 
 # Regularized regression
 
-<p style="padding-top:1px"></p>
-
-Despite <high>superficial similarities</high>, Lasso and Ridge show very different behavior.
-
-<p style="padding-top:10px"></p>
-
-<b>Ridge</b>
-
-By penalizing the most extreme &beta;s most strongly, Ridge leads to (relatively) more <high>uniform &beta;s</high>.
-
-<p style="padding-top:10px"></p>
-
-<b>Lasso</b>
-
-By penalizing all &beta;s equally, irrespective of magnitude, Lasso drives some &beta;s to 0 resulting effectively in <high>automatic feature selection</high>.
+<ul>
+  <li class="m1"><span>Ridge und Lasso verhalten sich <high>erstaunlich unterschiedlich</high></span></li><br>
+  <li class="m2"><span><b>Ridge</b></span></li><br>
+  <ul>
+    <li><span>Durch die Quadrierung werden vor allem extreme &beta;s in ihrer Grösse reduziert.</span></li><br>
+  </ul>
+  <li class="m3"><span><b>Lasso</b></span></li><br>
+  <ul>
+    <li><span>Bei absoluten Werte werden alle &beta;s gleichermassen in ihrer Grösse reduziert, was zu einer automatischen Feature-Auswahl führt, wenn einige &beta;s Null werden.</span></li><br>
+  </ul>
+</ul>
 
 ]
 
@@ -493,11 +490,13 @@ By penalizing all &beta;s equally, irrespective of magnitude, Lasso drives some 
 .pull-left4[
 
 
-To fit Lasso or Ridge penalized regression in R, use `method = "glmnet"`.
+<ul>
+  <li class="m1"><span>Verwende <mono>method = "glmnet"</mono> für Lasso und Ridge</high></span></li><br>
+  <li class="m2"><span>Die Art der Regularisierung wird über das <highm>tuneGrid</highm> Argument spezifiziert</span></li><br>
+  </ul>
+</ul>
 
-Specify the <high>type of penalty</high> and the <high>penalty weight</high> using the <mono>tuneGrid</mono> argument. 
-
-<u><mono>tuneGrid settings</mono></u>
+<u><mono>tuneGrid Einstellungen</mono></u>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
 <tr>
@@ -505,7 +504,7 @@ Specify the <high>type of penalty</high> and the <high>penalty weight</high> usi
     <b>Parameter</b>
   </td>
   <td bgcolor="white">
-    <b>Description</b>
+    <b>Beschreibung</b>
   </td> 
 </tr>
 <tr>
@@ -513,7 +512,7 @@ Specify the <high>type of penalty</high> and the <high>penalty weight</high> usi
     <mono>alpha = 1</mono>
   </td>
   <td bgcolor="white">
-    Regression with Lasso penalty.
+    Regression mit Lasso Regularisierung.
   </td> 
 </tr>
 <tr>
@@ -521,7 +520,7 @@ Specify the <high>type of penalty</high> and the <high>penalty weight</high> usi
     <mono>alpha = 0</mono>
   </td>
   <td bgcolor="white">
-    Regression with Ridge penalty.
+    Regression mut Ridge Regularisierung.
   </td> 
 </tr>
 <tr>
@@ -529,7 +528,7 @@ Specify the <high>type of penalty</high> and the <high>penalty weight</high> usi
     <mono>lambda</mono>
   </td>
   <td bgcolor="white">
-  Regularization penalty weight.
+  Gewicht der Regularisierung.
   </td> 
 </tr>
 </table>
@@ -540,18 +539,18 @@ Specify the <high>type of penalty</high> and the <high>penalty weight</high> usi
 .pull-right45[
 
 ```{r, eval = FALSE}
-# Train ridge regression
-train(form = criterion ~ .,
-      data = data_train,
+# Trainiere ridge regression
+train(form = einkommen ~ .,
+      data = basel,
       method = "glmnet",  
       trControl = ctrl,
       tuneGrid = 
         expand.grid(alpha = 0,   # Ridge 
                     lambda = 1)) # Lambda
 
-# Train lasso regression
-train(form = criterion ~ .,
-      data = data_train,
+# Trainiere lasso regression
+train(form = einkommen ~ .,
+      data = basel,
       method = "glmnet",  
       trControl = ctrl,
       tuneGrid = 
@@ -578,7 +577,10 @@ class: center, middle
 
 .pull-left4[
 
-Decision trees have a <high>complexity parameter</high> called `cp`.
+<ul>
+  <li class="m1"><span>Der Tuning Parameter in Decision Trees heisst <mono>cp</mono> (<high>complexity parameter</high>).</span></li>
+  </ul>
+</ul>
 
 <p style="padding-top:3px"></p>
 
@@ -591,7 +593,7 @@ Loss = & Impurity\,+\\
 $$
 <p style="padding-top:3px"></p>
 
-<u><mono>tuneGrid settings</mono></u>
+<u><mono>tuneGrid Einstellungen</mono></u>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
 <tr>
@@ -599,23 +601,23 @@ $$
     <b>Parameter</b>
   </td>
   <td bgcolor="white">
-    <b>Description</b>
+    <b>Beschreibung</b>
   </td> 
 </tr>
 <tr>
   <td bgcolor="white">
-    Small <mono>cp</mono>, e.g., <mono>cp<.01</mono>
+    Niedriger <mono>cp</mono>, z.B. <mono>cp<.01</mono>
   </td>
   <td bgcolor="white">
-    Low penalty leading to <high>complex trees</high>.
+    Niedrige Strafe, die zu <high>komplexen Bäumen</high> fürht.
   </td> 
 </tr>
 <tr>
   <td bgcolor="white">
-    Large <mono>cp</mono>, e.g., <mono>cp<.20</mono>
+    Hoher <mono>cp</mono>, z.B. <mono>cp<.20</mono>
   </td>
   <td bgcolor="white">
-    Large penalty leading to <high>simple trees</high>.
+    Hohe Strafe, die zu <high>einfachen Bäumen</high> führt.
   </td> 
 </tr>
 </table>
@@ -639,7 +641,10 @@ $$
 
 .pull-left4[
 
-Decision trees have a <high>complexity parameter</high> called `cp`.
+<ul>
+  <li class="m1"><span>Der Tuning Parameter in Decision Trees heisst <mono>cp</mono> (<high>complexity parameter</high>).</span></li>
+  </ul>
+</ul>
 
 <p style="padding-top:3px"></p>
 
@@ -652,7 +657,7 @@ Loss = & Impurity\,+\\
 $$
 <p style="padding-top:3px"></p>
 
-<u><mono>tuneGrid settings</mono></u>
+<u><mono>tuneGrid Einstellungen</mono></u>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
 <tr>
@@ -660,23 +665,23 @@ $$
     <b>Parameter</b>
   </td>
   <td bgcolor="white">
-    <b>Description</b>
+    <b>Beschreibung</b>
   </td> 
 </tr>
 <tr>
   <td bgcolor="white">
-    Small <mono>cp</mono>, e.g., <mono>cp<.01</mono>
+    Niedriger <mono>cp</mono>, z.B. <mono>cp<.01</mono>
   </td>
   <td bgcolor="white">
-    Low penalty leading to <high>complex trees</high>.
+    Niedrige Strafe, die zu <high>komplexen Bäumen</high> fürht.
   </td> 
 </tr>
 <tr>
   <td bgcolor="white">
-    Large <mono>cp</mono>, e.g., <mono>cp<.20</mono>
+    Hoher <mono>cp</mono>, z.B. <mono>cp<.20</mono>
   </td>
   <td bgcolor="white">
-    Large penalty leading to <high>simple trees</high>.
+    Hohe Strafe, die zu <high>einfachen Bäumen</high> führt.
   </td> 
 </tr>
 </table>
@@ -686,21 +691,21 @@ $$
 .pull-right5[
 
 ```{r, eval = FALSE}
-# Decision tree with a defined cp = .01
-train(form = income ~ .,
-      data = baselers,
-      method = "rpart",  # Decision Tree
+# Decision Tree mit cp = .01
+train(form = einkommen ~ .,
+      data = basel,
+      method = "rpart", 
       trControl = ctrl,
       tuneGrid = 
-        expand.grid(cp = .01)) # cp
+        expand.grid(cp = .01))
 
-# Decision tree with a defined cp = .2
-train(form = income ~ .,
-      data = baselers,
-      method = "rpart",  # Decision Tree
+# Decision Tree mit cp = .2
+train(form = einkommen ~ .,
+      data = basel,
+      method = "rpart", 
       trControl = ctrl,
       tuneGrid = 
-        expand.grid(cp = .2)) # cp
+        expand.grid(cp = .2))
 ```
 
 ]
@@ -722,11 +727,13 @@ class: center, middle
 
 .pull-left4[
 
-Random Forests have a <high>diversity parameter</high> called <mono>mtry</mono>.
+<ul>
+  <li class="m1"><span>Der Tuning Parameter in Random Trees heisst <mono>mtry</mono> und kontrolliert die <high>Diversität</high>.</span></li>
+  <li class="m2"><span><mono>mtry</mono> bestimmt <high>wie viele Feature</high> für den Split eines Knoten herangezogen werden.</span></li>
+  </ul>
+</ul>
 
-Technically, this controls how many features are randomly considered at each split of the trees.
-
-<u><mono>tuneGrid settings</mono></u>
+<u><mono>tuneGrid Einstellungen</mono></u>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
 <tr>
@@ -734,23 +741,23 @@ Technically, this controls how many features are randomly considered at each spl
     <b>Parameter</b>
   </td>
   <td bgcolor="white">
-    <b>Description</b>
+    <b>Beschreibung</b>
   </td> 
 </tr>
 <tr>
   <td bgcolor="white">
-    Small <mono>mtry</mono>, e.g., <mono>mtry = 1</mono>
+    Niedriges <mono>mtry</mono>, z.B., <mono>mtry = 1</mono>
   </td>
   <td bgcolor="white">
-    <high>Diverse forest.</high> In a way, less complex.
+    <high>Diverser Wald.</high> Auf eine Weise, weniger komplex.
   </td> 
 </tr>
 <tr>
   <td bgcolor="white">
-    Large <mono>mtry</mono>, e.g., <mono>mtry>5</mono>
+    Hohes <mono>mtry</mono>, z.B., <mono>mtry = 5</mono>
   </td>
   <td bgcolor="white">
-    <high>Similar forest.</high> In a way, more complex.
+    <high>Monotoner Wald.</high> Auf eine Weise, komplexer.
   </td> 
 </tr>
 </table>
@@ -771,11 +778,13 @@ Technically, this controls how many features are randomly considered at each spl
 
 .pull-left4[
 
-Random Forests have a <high>diversity parameter</high> called <mono>mtry</mono>.
+<ul>
+  <li class="m1"><span>Der Tuning Parameter in Random Trees heisst <mono>mtry</mono> und kontrolliert die <high>Diversität</high>.</span></li>
+  <li class="m2"><span><mono>mtry</mono> bestimmt <high>wie viele Feature</high> für den Split eines Knoten herangezogen werden.</span></li>
+  </ul>
+</ul>
 
-Technically, this controls how many features are randomly considered at each split of the trees.
-
-<u><mono>tuneGrid settings</mono></u>
+<u><mono>tuneGrid Einstellungen</mono></u>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
 <tr>
@@ -783,23 +792,23 @@ Technically, this controls how many features are randomly considered at each spl
     <b>Parameter</b>
   </td>
   <td bgcolor="white">
-    <b>Description</b>
+    <b>Beschreibung</b>
   </td> 
 </tr>
 <tr>
   <td bgcolor="white">
-    Small <mono>mtry</mono>, e.g., <mono>mtry = 1</mono>
+    Niedriges <mono>mtry</mono>, z.B., <mono>mtry = 1</mono>
   </td>
   <td bgcolor="white">
-    <high>Diverse forest.</high> In a way, less complex.
+    <high>Diverser Wald.</high> Auf eine Weise, weniger komplex.
   </td> 
 </tr>
 <tr>
   <td bgcolor="white">
-    Large <mono>mtry</mono>, e.g., <mono>mtry>5</mono>
+    Hohes <mono>mtry</mono>, z.B., <mono>mtry = 5</mono>
   </td>
   <td bgcolor="white">
-    <high>Similar forest.</high> In a way, more complex.
+    <high>Monotoner Wald.</high> Auf eine Weise, komplexer.
   </td> 
 </tr>
 </table>
@@ -809,21 +818,21 @@ Technically, this controls how many features are randomly considered at each spl
 .pull-right5[
 
 ```{r, eval = FALSE}
-# Random forest with a defined mtry = 2
-train(form = income ~ .,
-      data = baselers,
-      method = "rf",  # Random forest
+# Random forest mit mtry = 2
+train(form = einkommen ~ .,
+      data = basel,
+      method = "rf",  
       trControl = ctrl,
       tuneGrid = 
-        expand.grid(mtry = 2)) # mtry
+        expand.grid(mtry = 2)) 
 
-# Random forest with a defined mtry = 5
-train(form = income ~ .,
-      data = baselers,
-      method = "rf",  # Random forest
+# Random forest mit mtry = 5
+train(form = einkommen ~ .,
+      data = basel,
+      method = "rf",  
       trControl = ctrl,
       tuneGrid = 
-        expand.grid(mtry = 5)) # mtry
+        expand.grid(mtry = 5)) 
 ```
 
 ]
@@ -833,34 +842,33 @@ train(form = income ~ .,
 
 
 ---
+
 class: center,  middle
 
 <br><br>
 
-# caret
+<h1><a>Parameter Tuning mit 10-fold CV in <mono>caret</mono></h1>
 
-### Parameter tuning with k-fold cross-validation
-
-```{r, echo = FALSE, out.width = "60%"}
-knitr::include_graphics("https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png")
-```
 
 
 ---
 
 .pull-left45[
 
-# <i>k</i>-fold cross validation for Ridge and Lasso
+# <i>k</i>-fache Cross Validation für Ridge und Lasso
 
-<p style="padding-top:1px"></p>
 
-<b>Goal</b>
-
-Use 10-fold cross-validation to identify <high>optimal regularization parameters</high> for a regression model. 
-
-<b>Consider</b>
-
-$\alpha \in 0, .5, 1$ and $\lambda \in 1, 2, ..., 100$
+<ul>
+  <li class="m1"><span><b>Ziel</b>:</span></li><br>
+  <ul>
+    <li><span>Identifiziere durch 10-fache Cross Validation die <high>besten Regularisierungsparameter</high> für ein Rgressionsmodell</span></li><br>
+  </ul>
+  <li class="m2"><span><b>Berücksichtige</b>:</span></li><br>
+  <ul>
+    <li><span>&alpha; &in; 0, .5, 1</span></li>
+    <li><span>&lambda; &in; 1, 2, ..., 100</span></li>
+  </ul>
+</ul>
 
 ]
 
@@ -884,10 +892,11 @@ $\alpha \in 0, .5, 1$ and $\lambda \in 1, 2, ..., 100$
 
 .pull-left4[
 
-Specify the use of k-fold cross-validation using the `trainControl()` function.
+<ul>
+  <li class="m1"><span>Spezifiziere über <mono>trainControl</mono> die Art des Resamplings</span></li><br>
+</ul>
 
-
-<u><mono>trainControl() arguments</mono></u>
+<u><mono>trainControl() Argumente</mono></u>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
 <tr>
@@ -895,7 +904,7 @@ Specify the use of k-fold cross-validation using the `trainControl()` function.
     <b>Argument</b>
   </td>
   <td bgcolor="white">
-    <b>Description</b>
+    <b>Beschreibung</b>
   </td>  
 </tr>
 <tr>
@@ -903,7 +912,7 @@ Specify the use of k-fold cross-validation using the `trainControl()` function.
     <mono>method</mono>
   </td>
   <td bgcolor="white">
-    The resampling method, use `"cv"` for cross validation.
+    Die Resampling Methode; verwende `"cv"` für Cross Validation.
   </td>  
 </tr>
 <tr>
@@ -911,7 +920,7 @@ Specify the use of k-fold cross-validation using the `trainControl()` function.
     <mono>number</mono>
   </td>
   <td bgcolor="white">
-    The number of folds.
+    Die Anzahl der "Folds".
   </td>  
 </tr>
 </table>
@@ -922,13 +931,13 @@ Specify the use of k-fold cross-validation using the `trainControl()` function.
 .pull-right5[
 
 ```{r, eval = FALSE}
-# Specify 10 fold cross-validation
+# Spezifiziere 10-fache Cross Validation
 ctrl_cv <- trainControl(method = "cv",
                         number = 10)
 
-# Predict income using glmnet
-glmnet_mod <- train(form = income ~ .,
-                    data = baselers,
+# Prädiziere einkommen mit glmnet
+glmnet_mod <- train(form = einkommen ~ .,
+                    data = basel,
                     method = "glmnet",  
                     trControl = ctrl_cv)
 ```
@@ -941,24 +950,24 @@ glmnet_mod <- train(form = income ~ .,
 
 .pull-left4[
 
-Specify the tuning parameter values to consider using the <high><mono>tuneGrid</mono></high>.
+<ul>
+  <li class="m1"><span>Spezifiziere über <mono>tuneGrid</mono> die <high>Kandidatensets</high> für die Tuning Parameter</span></li><br>
+  <li class="m2"><span><mono>tuneGrid</mono> eine <mono>liste</mono> oder einen <mono>data.frame</mono>; komfortable durch <mono>expand.grid()</mono> erstellt</span></li><br>
+</ul>
 
-<mono>tuneGrid</mono> expects a <high>list or data frame</high> as input. 
-
-<high>Parameter combinations</high> can be easily created using <mono>expand.grid</mono>.
 
 ]
 
 .pull-right5[
 
 ```{r}
-# Specify 10 fold cross-validation
+# Spezifiziere 10-fache Cross Validation
 ctrl_cv <- trainControl(method = "cv",
                         number = 10)
 
-# Predict income using glmnet
-glmnet_mod <- train(form = income ~ .,
-                    data = baselers,
+# Prädiziere einkommen mit glmnet
+glmnet_mod <- train(form = einkommen ~ .,
+                    data = basel,
                     method = "glmnet",  
                     trControl = ctrl_cv,
                     tuneGrid = expand.grid(
@@ -973,7 +982,7 @@ glmnet_mod <- train(form = income ~ .,
 
 .pull-left4[
 
-# <i>k</i>-Fold Cross validation
+# <i>k</i>-fold Cross Validation
 
 <p style="padding-top:1px"></p>
 
@@ -1005,7 +1014,7 @@ print2(glmnet_mod, nlines=23)
 
 ---
 
-# <i>k</i>-Fold Cross validation
+# <i>k</i>-fold Cross Validation
 
 .pull-left4[
 
@@ -1040,8 +1049,8 @@ plot(glmnet_mod)
 # Final model
 
 ```{r, eval = FALSE}
-# Model coefficients for best 
-#   alpha and lambda
+# Modellparameter unter dem besten Werten
+# für alpha und lambda
 coef(glmnet_mod$finalModel,
      glmnet_mod$bestTune$lambda)
 ```
@@ -1052,9 +1061,10 @@ coef(glmnet_mod$finalModel,
 <br>
 
 ```{r, echo = F }
-# Print final model coefficients using best lambda
-print2(coef(glmnet_mod$finalModel,
-     glmnet_mod$bestTune$lambda), 22)
+# Modellparameter unter dem besten Werten
+# für alpha und lambda
+print(coef(glmnet_mod$finalModel,
+         glmnet_mod$bestTune$lambda), 22)
 ```
 
 ]
@@ -1065,27 +1075,29 @@ print2(coef(glmnet_mod$finalModel,
 
 .pull-left35[
 
-Compare the prediction performance of several models with `resamples()`.
 
-The `summary()` of this object will print 'prediction' error statistics from cross-validation during training. This is your <high>estimate of future prediction performance</high>!
+<ul>
+  <li class="m1"><span>Vergleiche die <high>Performanz für die Validationsets</high> mit <mono>resamples()</mono></span></li><br>
+  <li class="m2"><span>Die <mono>summary()</mono> des Objekts gibt einen ausführlichen <high>Überblick</high> über die Performnz.</span></li><br>
+</ul>
 
 ]
 
 .pull-right55[
 
 ```{r, eval = F}
-# Simple competitor model
-glm_mod <-  train(form = income ~ .,
-                  data = baselers,  
+# Einfaches Modell
+glm_mod <-  train(form = einkommen ~ .,
+                  data = basel,  
                   method = "glm",
                   trControl = ctrl_cv)
 
-# Determine prediction statistics 
+# Berechne Performanzen 
 resamples_mod <- resamples(
   list(glmnet = glmnet_mod,
        glm = glm_mod))
 
-# Print result summary
+# Zeige Überblick
 summary(resamples_mod)
 
 ```
@@ -1112,8 +1124,8 @@ The `summary()` of this object will print 'prediction' error statistics from cro
 
 ```{r, echo = F}
 # Competitor model
-glm_mod <-  train(form = income ~ .,
-                  data = baselers,  
+glm_mod <-  train(form = einkommen ~ .,
+                  data = basel,  
                   method = "glm",
                   trControl = ctrl_cv)
 
@@ -1130,4 +1142,4 @@ summary(resamples_mod)
 ---
 class: middle, center
 
-<h1><a href=https://therbootcamp.github.io/ML_2019Oct/_sessions/Optimization/Optimization_practical.html>Practical</a></h1>
+<h1><a href=https://therbootcamp.github.io/ML_2020Apr/_sessions/Optimization/Optimization_practical.html>Practical</a></h1>

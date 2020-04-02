@@ -341,11 +341,20 @@ highm {
 ul {
  list-style-image:url("bullets/bcssss.png");
  display:block;	
-}
+  }
+  
+ul.over {
+ list-style-image:url("bullets/bcssss.png");
+ display:block;	
+  }
 
-li {
+ol {list-style: none; counter-reset: li}
 
-}
+ol li::before {content: counter(li); color: #EA4B68;
+    display: inline-block; width: 1em; margin-left: -1.5em;
+    margin-right: 0.5em; text-align: right; direction: rtl;font-weight:900;}
+ol li {counter-increment: li}
+
 
 li span {
   position: relative;

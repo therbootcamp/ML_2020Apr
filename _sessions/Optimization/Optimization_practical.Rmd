@@ -3,8 +3,8 @@ title: "Optimization"
 author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
-      <font style='font-style:normal'>Machine Learning with R</font><br>
-      <a href='https://therbootcamp.github.io/ML_2019Oct/'>
+      <font style='font-style:normal'>Machine Learning mit R</font><br>
+      <a href='https://therbootcamp.github.io/ML_2020Apr/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
       <a href='https://therbootcamp.github.io'>
@@ -969,48 +969,6 @@ postResample(pred = lasso_pred,
 # 1653.675    0.832  942.870 
 
 
-# Visualise Accuracy -------------------------
-
-# Tidy competition results
-accuracy <- tibble(criterion_test = criterion_test,
-                   Regression = glm_pred,
-                   Ridge = ridge_pred,
-                   Lasso = lasso_pred) %>%
-               gather(model, prediction, -criterion_test) %>%
-               # Add error measures
-               mutate(se = prediction - criterion_test,
-                      ae = abs(prediction - criterion_test))
-
-# Calculate summaries
-accuracy_agg <- accuracy %>%
-                  group_by(model) %>%
-                  summarise(mae = mean(ae))   # Calculate MAE (mean absolute error)
-
-# Plot A) Scatterplot of truth versus predictions
-ggplot(data = accuracy,
-       aes(x = criterion_test, y = prediction, col = model)) +
-  geom_point(alpha = .5) +
-  geom_abline(slope = 1, intercept = 0) +
-  labs(x = "True Prices",
-       y = "Predicted Prices",
-       title = "Predicting Diamond Prices",
-       subtitle = "Black line indicates perfect performance")
-
-# Plot B) Violin plot of absolute errors
-ggplot(data = accuracy, 
-       aes(x = model, y = ae, fill = model)) + 
-  geom_violin() + 
-  geom_jitter(width = .05, alpha = .2) +
-  labs(title = "Fitting Absolute Errors",
-       subtitle = "Numbers indicate means",
-       x = "Model",
-       y = "Absolute Error (Log Transformed)") +
-  guides(fill = FALSE) +
-  annotate(geom = "label", 
-           x = accuracy_agg$model, 
-           y = accuracy_agg$mae, 
-           label = round(accuracy_agg$mae, 2)) +
-  scale_y_continuous(trans='log')
 ```
 
 

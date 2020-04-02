@@ -464,7 +464,7 @@ $$ \large \boldsymbol b_{n+1} = \boldsymbol b_{n}+\gamma \nabla F(\boldsymbol b_
 ---
 
 
-# Zwei Problemtypen des Supervised Learnings
+# Zwei Problemtypen
 
 .pull-left5[
 
@@ -764,12 +764,6 @@ class: center,  middle
 <br><br>
 
 <h1><a>Regressionsmodelle fitten in <mono>caret</mono></h1>
-
-
-```{r, echo = FALSE}
-library(caret)
-data(cars)
-```
 
 
 
