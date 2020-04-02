@@ -3,7 +3,7 @@ title: "Predicting"
 author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
-      <font style='font-style:normal'>Machine Learning with R</font><br>
+      <font style='font-style:normal'>Maschinelles Lernen mit R</font><br>
       <a href='https://therbootcamp.github.io/ML_2020Apr/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
@@ -35,13 +35,13 @@ knitr::opts_chunk$set(comment = NA,
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-                      echo = FALSE, 
-                      eval = FALSE, 
+                      echo = TRUE, 
+                      eval = TRUE, 
                       warning = FALSE,
                       message = FALSE)
 
 options(digits = 3)
-require(tidyverse)
+
 ```
 
 <p align="center">
@@ -54,7 +54,7 @@ require(tidyverse)
 
 ## Überblick
 
-In diesem Practical wirst die modellbasierte Vorhersagen generieren und die Modelle anhand der Qualität dieser messen. 
+In diesem Practical wirst modellbasierte Vorhersagen generieren und die Modelle anhand der Qualität dieser messen. 
 
 Am Ende des Practicals wirst du wissen wie man...
 
@@ -79,7 +79,15 @@ Am Ende des Practicals wirst du wissen wie man...
 
 4. Lade die Pakete `tidyverse`, `caret`, `party`, `partykit`.
 
-5. Definiere wie zuvor ein `ctrl_none` Objekt mit dem wir im Traning die Samplingmethode auf `none`. Erst in der nächsten Session beginnen wir dies zu ändern.
+```{r}
+library(tidyverse)
+library(caret)
+library(party)
+library(partykit)
+```
+
+
+5. Definiere wie zuvor ein `ctrl_none` Objekt mit dem wir im Traning die Samplingmethode auf `none` setzen. Erst in der nächsten Session beginnen wir dies zu ändern.
 
 ```{r echo = TRUE}
 # Setze Samplingmethode auf none
@@ -107,7 +115,7 @@ graduation_test <- read_csv(file = "1_Data/graduation_test.csv")
 
 3. Verwende `names(XX)`, `summary(XX)`, und `View()` um einen weiteren Überblick über die Daten zu bekommen.
 
-4. Wiederum, führe den Code unten aus um sicherzustellen, dass alle `character` Feature als Faktoren vorliegen. 
+4. Wiederum, führe den Code unten aus um sicherzustellen, dass alle `character` Features als Faktoren vorliegen. 
 
 ```{r, echo = TRUE}
 # Konvertiere alle character zu factor
@@ -157,7 +165,7 @@ abschluss_glm$finalModel
 summary(abschluss_glm)
 ```
 
-4. Mittels `predict()` generiere die gefitteten Werden von `abschluss_glm` und speichere sie als `glm_fit` ab. 
+4. Mittels `predict()` generiere die gefitteten Werte von `abschluss_glm` und speichere sie als `glm_fit` ab. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # Speichere die gefitteten Werte
@@ -177,7 +185,7 @@ hist(XX)
 ```
 
 ```{r}
-glm_fit[1:10]   # Only printing first 10
+glm_fit[1:10]
 hist(glm_fit)
 ```
 
@@ -204,19 +212,17 @@ abschluss_rpart <- train(form = Abschlussrate ~ .,
                   data = graduation_train,
                   method = "rpart",
                   trControl = ctrl_none,
-                  tuneGrid = expand.grid(cp = .01))   # Set complexity parameter
+                  tuneGrid = expand.grid(cp = .01))
 ```
 
-7. Explore your `abschluss_rpart` object by looking at `abschluss_rpart$finalModel` and plotting it with `plot(as.party(abschluss_rpart$finalModel))`, what do you find?
-
-7. Exploriere `abschluss_rpart` indem du `abschluss_rpart$finalModel` printest und `plot(as.party(abschluss_rpart$finalModel))` den Decision Tree plottest. Wie beurteilst du die Outputs?
+7. Exploriere `abschluss_rpart` indem du `abschluss_rpart$finalModel` printest und mit `plot(as.party(abschluss_rpart$finalModel))` den Decision Tree plottest. Wie beurteilst du die Outputs?
 
 ```{r}
 abschluss_rpart$finalModel
 plot(as.party(abschluss_rpart$finalModel))
 ```
 
-8. Mittels `predict()` generiere die gefitteten Werden von `abschluss_rpart` und speichere sie als `rpart_fit` ab.
+8. Mittels `predict()` generiere die gefitteten Werte von `abschluss_rpart` und speichere sie als `rpart_fit` ab.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Speichere die gefitteten Werte
@@ -236,13 +242,13 @@ hist(XX)
 ```
 
 ```{r}
-rpart_predfit[1:10] # Only first 10
-hist(rpart_predfit)
+rpart_fit[1:10]
+hist(rpart_fit)
 ```
 
 #### Random Forests
 
-10. Verwende `train()` um einen Random Forest namens `abschluss_rpart` zu fitten, welcher die `Abschlussrate` als Funktion aller anderen im Datensatz enthaltenen Features vorhersagt. D.h.,...
+10. Verwende `train()` um einen Random Forest namens `abschluss_rf` zu fitten, welcher die `Abschlussrate` als Funktion aller anderen im Datensatz enthaltenen Features vorhersagt. D.h.,...
 
 - setze das `form` Argument auf `Abschlussrate ~ .`.
 - setze das `data` Argument auf  `graduation_train`.
@@ -266,7 +272,7 @@ abschluss_rf <- train(form = Abschlussrate ~ .,
                  tuneGrid = expand.grid(mtry = 2))  
 ```
 
-11. Mittels `predict()` generiere die gefitteten Werden von `abschluss_rf` und speichere sie als `rf_fit` ab.
+11. Mittels `predict()` generiere die gefitteten Werte von `abschluss_rf` und speichere sie als `rf_fit` ab.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Speichere die gefitteten Werte
@@ -277,7 +283,7 @@ rf_fit <- predict(XX)
 rf_fit <- predict(abschluss_rf)
 ```
 
-12. Printe `glm_fit` und kriere ein Histogramm der Werte mittels `hist()`. Sind die Werte in einer plausiblen Region?
+12. Printe `rf_fit` und kriere ein Histogramm der Werte mittels `hist()`. Sind die Werte in einer plausiblen Region?
 
 ```{r, echo = TRUE, eval = FALSE}
 # Inspiziere die gefitteten Werte
@@ -286,7 +292,7 @@ hist(XX)
 ```
 
 ```{r}
-rf_fit[1:10]    # Only first 10
+rf_fit[1:10]
 hist(rf_fit)
 ```
 
@@ -303,7 +309,7 @@ criterion_train <- XX$XX
 criterion_train <- graduation_train$Abschlussrate
 ```
 
-14. Verwende `posResample()` um die Fitting Performanz der drei Modelle zu vergleichen. Setze hierfür das `obs` Argument auf das eben erstellte `criterion_train` und das `pred` Argument auf die gefitteten Werte des jeweiligen Modells (z.B. `glm_fit`).
+14. Verwende `postResample()` um die Fitting Performanz der drei Modelle zu vergleichen. Setze hierfür das `obs` Argument auf das eben erstellte `criterion_train` und das `pred` Argument auf die gefitteten Werte des jeweiligen Modells (z.B. `glm_fit`).
 
 ```{r, echo = TRUE, eval = FALSE}
 
@@ -322,7 +328,7 @@ postResample(pred = XX, obs = XX)
 postResample(pred = glm_fit, obs = criterion_train)
 
 # Decision Trees
-postResample(pred = rpart_predfit, obs = criterion_train)
+postResample(pred = rpart_fit, obs = criterion_train)
 
 # Random Forests
 postResample(pred = rf_fit, obs = criterion_train)
@@ -370,7 +376,7 @@ criterion_test <- graduation_test$Abschlussrate
 ```
 
 
-3. Verwende wiederum `posResample()` um nun die *Vorhersage* Performanz der drei Modelle zu vergleichen. Setze hierfür das `obs` Argument auf das eben erstellte `criterion_test` und das `pred` Argument auf die gefitteten Werte des jeweiligen Modells (z.B. `glm_pred`).
+3. Verwende wiederum `postResample()` um nun die *Vorhersage* Performanz der drei Modelle zu vergleichen. Setze hierfür das `obs` Argument auf das eben erstellte `criterion_test` und das `pred` Argument auf die gefitteten Werte des jeweiligen Modells (z.B. `glm_pred`).
 
 ```{r, echo = TRUE, eval = FALSE}
 # Regression
@@ -403,7 +409,8 @@ postResample(pred = rf_pred, obs = criterion_test)
 5. Vergleiche jeweils die Performanz der Modelle für Training und Test. In welchem Fall sind die Modelle schlechter? Welches Modell zeigt den grössten Unterschied? 
 
 ```{r}
-# The regression goodness of fit stayed the most constant. The random forest one droped considerably.
+# Der Fit der Regression blieb relativ konstant. Die Performanz des Random
+# hat deutlich abgenommen.
 ```
 
 
@@ -426,7 +433,7 @@ house_test <- read_csv(file = "1_Data/house_test.csv")
 
 3. Verwende `names(XX)`, `summary(XX)`, und `View()` um einen weiteren Überblick über die Daten zu bekommen.
 
-4. Wiederum, führe den Code unten aus um sicherzustellen, dass alle `character` Feature als Faktoren vorliegen. 
+4. Wiederum, führe den Code unten aus um sicherzustellen, dass alle `character` Features als Faktoren vorliegen. 
 
 ```{r, echo = TRUE}
 # Konvertiere alle character zu factor
@@ -440,7 +447,7 @@ house_test <- house_test %>%
 
 ### F - Modelliere die `house` Daten
 
-1. Fitte eine Regression, einen Decision Tree und einen Random Forest für `house_train.csv` wobei du `Preis` durch alle anderen Feature im Datensatz vorherzusagen versuchst.      
+1. Fitte eine Regression, einen Decision Tree und einen Random Forest für `house_train.csv` wobei du `Preis` durch alle anderen Features im Datensatz vorherzusagen versuchst.      
 
 ```{r}
 # Regression
@@ -464,12 +471,9 @@ preis_rf <- train(form = Preis ~ .,
                  tuneGrid = expand.grid(mtry = 2))
 ```
 
-2. Exploriere die Objekte in dem zu `XX$finalModel` inspezierst und `summary()` anwendest. 
+2. Exploriere die Objekte indem du `XX$finalModel` inspizierst und `summary()` anwendest. 
 
-3. Verwende `predict()` um jeweils für die drei Modell die vorhergesagten Werte separat für den Trainingsdatensatz und für den Testdatensatz. Kreiere also drei Objekte mit Namen `XX_fit` und drei Objekte mit Namen `XX_pred`. 
-
-
-4. Using `predict()`, save the fitted values of `preis_glm` object as `glm_fit`.
+3. Verwende `predict()` um jeweils für die drei Modelle die vorhergesagten Werte separat für den Trainingsdatensatz und für den Testdatensatz zu generieren. Kreiere also drei Objekte mit Namen `XX_fit` und drei Objekte mit Namen `XX_pred`. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # Gefittete Werte
@@ -484,15 +488,15 @@ rf_pred <- predict(preis_rf, newdata = house_test)
 
 ```
 
-5. Speichere die Kriteriumswerte im Trainings- und Testdatensatz separat als `criterion_train` und `criterion_test` ab. 
+4. Speichere die Kriteriumswerte im Trainings- und Testdatensatz separat als `criterion_train` und `criterion_test` ab. 
 
 ```{r}
-# Die Kriteriumwerte
+# Speichere die Kriteriumswerte
 criterion_train <- house_train$Preis
 criterion_test <- house_test$Preis
 ```
 
-6. Verwende `posResample()` um nun die *Fitting* und *Vorhersage* Performanz der drei Modelle zu vergleichen.
+6. Verwende `postResample()` um nun die *Fitting* und *Vorhersage* Performanz der drei Modelle zu vergleichen.
 
 ```{r}
 # Fitting
@@ -508,17 +512,17 @@ postResample(pred = rf_pred, obs = criterion_test)
 
 7. Welches Modell hat die beste Performanz im Fit? Welches in der Vorhersage? Welches zeigt den grössten Unterschied zwischen Fit und Vorhersage?
 
-```{}
+```{r}
 # Random Forest!
 ```
 
-8. Welches Modell würdet ihr nun für den Einsatz in der Praxis zu empfehlen? Und welche Vorhersagegenauigkeit ist in der Realität zu erwarten?
+8. Welches Modell würdet ihr nun für den Einsatz in der Praxis empfehlen? Und welche Vorhersagegenauigkeit ist in der Realität zu erwarten?
 
 ### X - Challenges: Model Tuning Parameter
 
-1. In allen Decision Trees wurde bisher der Komplexitätsparameter `cp` auf `0.01` gesetzt. Probiere nun aus was passiert, wenn du an ihm etwas drehst. Setze ihn z.B. auf `0.2` und schaue dir dann an wie Plot des Baums (`plot(as.party(XX_rpart$finalModel))`) sich verwendet. Werden die Bäume komplizierter? Wie verändert sich Fit- und Vorhersageperformanz?
+1. In allen Decision Trees wurde bisher der Komplexitätsparameter `cp` auf `0.01` gesetzt. Probiere nun aus was passiert, wenn du etwas an ihm drehst. Setze ihn z.B. auf `0.2` und schaue dir dann an wie der Plot des Baums (`plot(as.party(XX_rpart$finalModel))`) sich verändert. Werden die Bäume komplizierter? Wie verändert sich Fit- und Vorhersageperformanz?
 
-2. In allen Random Forests wurde bisher der Paramater `mtry` auf `2` gesetzt. Probiere nun aus was passiert, wenn du an ihm etwas drehst. Setze ihn z.B. auf `5`  und beobachte wie sich sich Fit- und Vorhersageperformanz verändern und auch die Zeit, die für das Traning des Modells beansprucht wird?
+2. In allen Random Forests wurde bisher der Paramater `mtry` auf `2` gesetzt. Probiere nun aus was passiert, wenn du etwas an ihm drehst. Setze ihn z.B. auf `5`  und beobachte wie sich Fit- und Vorhersageperformanz, sowie die Zeit, die für das Training des Modells beansprucht wird, verändern.
 
 ## Beispiele
 
@@ -531,7 +535,7 @@ library(caret)
 library(partykit)  
 library(party)    
 
-# Schritt 1: Load and Clean, and Explore Training data ----------------------
+# Schritt 1: Daten laden, aufbereiten und explorieren ----------------------
 
 # Trainingsdaten und Testdaten
 data_train <- read_csv("1_Data/mpg_train.csv")
@@ -562,7 +566,7 @@ hwy_rpart <- train(form = hwy ~ year + cyl + displ,
                 data = data_train,
                 method = "rpart",
                 trControl = trainControl(method = "none"),
-                tuneGrid = expand.grid(cp = .01))   # Set complexity parameter
+                tuneGrid = expand.grid(cp = .01))
 
 # Inspiziere gefitteten Decision Tree
 hwy_rpart$finalModel
@@ -594,19 +598,19 @@ postResample(pred = rf_fit, obs = criterion_train)
 # Schritt 5: Evaluiere Vorhersage: -----------------------------
 
 # Speichere vorhergesagte Werte
-glm_fit <- predict(hwy_glm, newdata = data_test)
-rpart_fit <- predict(hwy_rpart, newdata = data_test)
-rf_fit <- predict(hwy_rf, newdata = data_test)
+glm_pred <- predict(hwy_glm, newdata = data_test)
+rpart_pred <- predict(hwy_rpart, newdata = data_test)
+rf_pred <- predict(hwy_rf, newdata = data_test)
 
 # Evaluiere fit
-postResample(pred = glm_fit, obs = criterion_test)
-postResample(pred = rpart_fit, obs = criterion_test)
-postResample(pred = rf_fit, obs = criterion_test)
+postResample(pred = glm_pred, obs = criterion_test)
+postResample(pred = rpart_pred, obs = criterion_test)
+postResample(pred = rf_pred, obs = criterion_test)
 
 ```
 
 
-## Datasets
+## Datensätze
 
 ```{r, eval = TRUE, message = FALSE, echo = FALSE}
 library(tidyverse)
@@ -623,9 +627,9 @@ library(ggthemes)
 
 #### `graduation_train` und `graduation_test`
 
-Die `graduation_train` und `graduation_test` datensätze entstammen dem `College` Datensatz aus dem `ISLR` Paket. sie enthalten Statistiken für eine grosse Anzahl US Colleges auf Basis des *US News and World Reports* aus dem Jahr 1995.
+Die `graduation_train` und `graduation_test` Datensätze entstammen dem `College` Datensatz aus dem `ISLR` Paket. sie enthalten Statistiken für eine grosse Anzahl US Colleges auf Basis des *US News and World Reports* aus dem Jahr 1995.
 
-| Name | Description |
+| Name | Beschreibung |
 |:-------------|:-------------------------------------|
 |Privatuniversitaet| Ja oder Nein |
 |Bewerbungen| Anzahl Bewerbungen |
@@ -649,9 +653,9 @@ Die `graduation_train` und `graduation_test` datensätze entstammen dem `College
 
 #### `house_train` and `house_test`
 
-Die `house_train` und `house_test` Datensätz enthalten Hauspreise und -Eigenschaften in der King County in den USA, welches die Stadt Seattle beinhaltet. Quelle der Daten ist [Kaggle](https://www.kaggle.com/harlfoxem/housesalesprediction).
+Die `house_train` und `house_test` Datensätze enthalten Hauspreise und -Eigenschaften in der King County in den USA, welches die Stadt Seattle beinhaltet. Quelle der Daten ist [Kaggle](https://www.kaggle.com/harlfoxem/housesalesprediction).
 
-| Name | Description |
+| Name | Beschreibung |
 |:-------------|:-------------------------------------|
 |Preis| Preis des Hauses |
 |Schlafzimmer| Anzahl Schlafzimmer  |
@@ -673,18 +677,18 @@ Die `house_train` und `house_test` Datensätz enthalten Hauspreise und -Eigensch
 |Gesamt_sqft_2015| Gesamtfläche des Hauses in square foot in 2015 |
 |Grundstück_sqft_2015| Fläche des Grundstücks in square foot in 2015 |
 
-## Functions
+## Funktionen
 
-### Packages
+### Pakete
 
-|Package| Installation|
+|Paket| Installation|
 |:------|:------|
 |`tidyverse`|`install.packages("tidyverse")`|
 |`caret`|`install.packages("caret")`|
 |`partykit`|`install.packages("partykit")`|
 |`party`|`install.packages("party")`|
 
-### Functions
+### Funktionen
 
 | Funktion | Paket | Beschreibung |
 |:---|:------|:---------------------------------------------|
@@ -694,7 +698,7 @@ Die `house_train` und `house_test` Datensätz enthalten Hauspreise und -Eigensch
 | `postResample()`|`caret`| Evaluiere Performanz in Regressionsfällen   |
 | `confusionMatrix()`|`caret`|   Evaluiere Performanz in Klassifikationsfällen | 
 
-## Resources
+## Materialien
 
 ### Cheatsheet
 
