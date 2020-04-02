@@ -422,7 +422,11 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 &lt;ul style="margin-bottom:-20px"&gt;
   &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Distanz&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;ul class="level"&gt;
+<<<<<<< HEAD
+    &lt;li&gt;&lt;span&gt;LogLoss dient i.A.R. &lt;high&gt;zum Fitten von Parametern&lt;/high&gt;, verwendet, und wie MSE und MAE auch zur Evaluation.&lt;/span&gt;&lt;/li&gt;
+=======
     &lt;li&gt;&lt;span&gt;LogLoss – ein Distanzmass wie MSE und MAE – wird i.A.R. &lt;high&gt;zum Fitten von Parametern&lt;/high&gt;, verwendet.&lt;/span&gt;&lt;/li&gt;
+>>>>>>> f5890be05bb954a13506f3d8083b80ab29b38f47
   &lt;/ul&gt;
 &lt;/ul&gt;
 
@@ -431,13 +435,17 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 
 
 &lt;ul&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Überlappung&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Übereinstimmung&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;ul class="level"&gt;
+<<<<<<< HEAD
+    &lt;li&gt;&lt;span&gt;0-1 loss evaluiert die Übereinstimmung zwischen &lt;high&gt;vorhergesagter Klasse und tatsächlicher Klasse &lt;/high&gt;, was im Vergleich &lt;high&gt;leicht zu interpretieren&lt;/high&gt; ist.&lt;/span&gt;&lt;/li&gt;
+=======
     &lt;li&gt;&lt;span&gt;Die 0-1 loss function testet, ob die &lt;high&gt;vorhergesagte Kategorie, der tatsächlichen Kategorie entspricht&lt;/high&gt;. Sie ist &lt;high&gt;leichter zu interpretieren&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+>>>>>>> f5890be05bb954a13506f3d8083b80ab29b38f47
   &lt;/ul&gt;
 &lt;/ul&gt;
 
-`$$\small Verlust_{01}=\frac{1}{n}\sum_i^n I(y \neq \lfloor \hat{y} \rceil)$$`
+`$$\small Loss_{01}=\frac{1}{n}\sum_i^n I(y \neq \lfloor \hat{y} \rceil)$$`
 
 ]
 
@@ -507,7 +515,7 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 .pull-right45[
 
 
-&lt;b&gt;Richtigkeit&lt;/b&gt;: Prozentsatz richtiger Vorhersagen &lt;i&gt;über alle Fälle hinweg&lt;/i&gt;.
+&lt;b&gt;Genauigkeit&lt;/b&gt;: Prozentsatz richtiger Vorhersagen &lt;i&gt;über alle Fälle hinweg&lt;/i&gt;.
 
 `$$\small Richt. = \frac{RP + RN}{ RP + RN + FN + FP} = 1-Verlust_{01}$$`
 
@@ -587,7 +595,7 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 .pull-right45[
 
 
-&lt;b&gt;Richtigkeit&lt;/b&gt;: Prozentsatz richtiger Vorhersagen &lt;i&gt;über alle Fälle hinweg&lt;/i&gt;.
+&lt;b&gt;Genauigkeit&lt;/b&gt;: Prozentsatz richtiger Vorhersagen &lt;i&gt;über alle Fälle hinweg&lt;/i&gt;.
 
 `$$\small Richt. = \frac{RP + RN}{ RP + RN + FN + FP} = 1-Verlust_{01}$$`
 
@@ -607,13 +615,16 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 
 
 ---
+
 class: center,  middle
 
 &lt;br&gt;&lt;br&gt;
 
-# Fitten von Regressionsmodellen mit `caret`!
+&lt;h1&gt;&lt;a&gt;Regressionsmodelle fitten in &lt;mono&gt;caret&lt;/mono&gt;&lt;/h1&gt;
 
-&lt;img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+
+
 
 
 
@@ -710,7 +721,7 @@ confusionMatrix(fit, truth)
 
 &lt;ul&gt;
   &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;trainControl()&lt;/mono&gt; steuert, &lt;high&gt;wie &lt;mono&gt;caret&lt;/mono&gt; ein Modell fittet&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Für den Moment, verwende der Einfachheit halber &lt;mono&gt;method = "none"&lt;/mono&gt;. Mehr hierzu in der &lt;b&gt;Optimisierung&lt;/b&gt; Session.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Bis zur Session &lt;b&gt;Optimisierung&lt;/b&gt; verwenden wir &lt;highm&gt;method = "none"&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -742,7 +753,7 @@ ctrl &lt;- trainControl(method = "none")
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; ist &lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Zugpferd&lt;/high&gt;, wenn es um Fitting geht. Damit können &lt;high&gt;über 200 Modelle&lt;/high&gt; gefittet werden, wofür man jeweils nur das &lt;high&gt;method&lt;/high&gt; Argument anpassen muss.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; ist &lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Zugpferd&lt;/high&gt;, wenn es um Fitting geht. Es können &lt;high&gt;über 200 Modelle&lt;/high&gt; mit nur leichten Änderungen im &lt;high&gt;method&lt;/high&gt; Argument gefittet werden.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
@@ -834,7 +845,7 @@ Resampling: None
 
 .pull-left4[
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; ist &lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Zugpferd&lt;/high&gt;, wenn es um Fitting geht. Damit können &lt;high&gt;über 200 Modelle&lt;/high&gt; gefittet werden, wofür man jeweils nur das &lt;high&gt;method&lt;/high&gt; Argument anpassen muss.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; ist &lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Zugpferd&lt;/high&gt;, wenn es um Fitting geht. Es können &lt;high&gt;über 200 Modelle&lt;/high&gt; mit nur leichten Änderungen im &lt;high&gt;method&lt;/high&gt; Argument gefittet werden.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
@@ -928,8 +939,8 @@ Resampling: None
 # `train()`
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; ist &lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Zugpferd&lt;/high&gt;, wenn es um Fitting geht. Damit können &lt;high&gt;über 200 Modelle&lt;/high&gt; gefittet werden, wofür man jeweils nur das &lt;high&gt;method&lt;/high&gt; Argument anpassen muss.&lt;/span&gt;&lt;/li&gt;
-    &lt;li class="m2"&gt;&lt;span&gt;Alle 200+ Modelle findest du &lt;a href="http://topepo.github.io/caret/available-models.html"&gt;hier&lt;/a&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; ist &lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Zugpferd&lt;/high&gt;, wenn es um Fitting geht. Es können &lt;high&gt;über 200 Modelle&lt;/high&gt; mit nur leichten Änderungen im &lt;high&gt;method&lt;/high&gt; Argument gefittet werden.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Alle 200+ Modelle findest du &lt;a href="http://topepo.github.io/caret/available-models.html"&gt;hier&lt;/a&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 ]
@@ -965,13 +976,13 @@ Resampling: None
 
 ```
 # A tibble: 5 x 5
-  Kreditausfall Alter Geschlecht Karten Bildung
-          &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;
-1             0    45 M               3      11
-2             1    36 F               2      14
-3             0    76 F               5      12
-4             1    25 M               2      17
-5             1    36 F               3      12
+  Ausfall Alter Geschlecht Karten Bildung
+    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;
+1       0    45 M               3      11
+2       1    36 F               2      14
+3       0    76 F               5      12
+4       1    25 M               2      17
+5       1    36 F               3      12
 ```
 
 ]
@@ -982,14 +993,14 @@ Resampling: None
 ```r
 # Regressionsproblem
 
-loan_mod &lt;- train(form = Kreditausfall ~ .,
+loan_mod &lt;- train(form = Ausfall ~ .,
                   data = Loans,
                   method = "glm",
                   trControl = ctrl)
 
 # Klassifikationsproblem
 
-load_mod &lt;- train(form = factor(Kreditausfall) ~ .,
+load_mod &lt;- train(form = factor(Ausfall) ~ .,
                   data = Loans,
                   method = "glm",
                   trControl = ctrl)
@@ -1043,11 +1054,14 @@ load_mod &lt;- train(form = factor(Kreditausfall) ~ .,
 .pull-right5[
 
 
+
+
+
 ```r
 # Fitte Regressionsmodell
 eink_mod &lt;-
   train(form = einkommen ~ alter + groesse,
-        data = basel       # Daten
+        data = basel,       # Daten
         method = "glm",    # Regression
         trControl = ctrl)  # Kontrollparameter
 
@@ -1055,21 +1069,72 @@ eink_mod &lt;-
 names(eink_mod$finalModel)
 ```
 
-
-
-
 ```
 [1] "coefficients"  "residuals"     "fitted.values"
 [4] "effects"       "R"             "rank"         
  [ reached getOption("max.print") -- omitted 28 entries ]
 ```
 
+]
+
+---
+
+# &lt;mono&gt;.$finalModel&lt;/mono&gt;
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;train()&lt;/mono&gt; Funktion gibt eine &lt;mono&gt;list&lt;/mono&gt;e zurück. Diese enthält ein &lt;mono&gt;finalModel&lt;/mono&gt; Element - das ist unser &lt;high&gt;bestes gefittetes Model&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Greife auf das Modell mit &lt;mono&gt;.$finalModel&lt;/mono&gt; zu und &lt;high&gt;exploriere&lt;/high&gt; das Objekt mit generischen Funktionen:&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+&lt;tr&gt;
+  &lt;td&gt;
+  &lt;b&gt;Funktion&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td&gt;
+    &lt;b&gt;Beschreibung&lt;/b&gt;
+  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;summary()&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Überblick über die wichtigsten Resultate.
+  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;names()&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Zeige Namen aller benannten Elemente (häufig mit `$` ansteuerbar).
+  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right5[
+
+
+
 
 ```r
+# Fitte Regressionsmodell
+eink_mod &lt;-
+  train(form = einkommen ~ alter + groesse,
+        data = basel,       # Daten
+        method = "glm",    # Regression
+        trControl = ctrl)  # Kontrollparameter
+
 # Zugriff auf spezifische Elemente
 eink_mod$finalModel$coefficients
 ```
-
 
 ```
 (Intercept)       alter     groesse 
@@ -1123,17 +1188,39 @@ eink_mod$finalModel$coefficients
 .pull-right5[
 
 
+
+
 ```r
 # Zeige Modelloutput
 summary(eink_mod)
 ```
 
- &lt;p align = "center"&gt;
-&lt;img src="image/summary.png" height=225px&gt;
-&lt;/p&gt;
+```
+
+Call:
+NULL
+
+Deviance Residuals: 
+   Min      1Q  Median      3Q     Max  
+ -4042    -849      11     842    4748  
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  877.239    220.726    3.97  7.1e-05 ***
+ [ reached getOption("max.print") -- omitted 2 rows ]
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for gaussian family taken to be 1543046)
+
+    Null deviance: 5.1695e+10  on 6119  degrees of freedom
+Residual deviance: 9.4388e+09  on 6117  degrees of freedom
+AIC: 104578
+
+Number of Fisher Scoring iterations: 2
+```
 
 ]
-
 
 ---
 
@@ -1146,6 +1233,8 @@ summary(eink_mod)
 &lt;/ul&gt;
 
 &lt;br&gt;
+
+
 
 
 ```r
@@ -1164,7 +1253,7 @@ glm_fits[1:8]
 .pull-right45[
 
 
-&lt;img src="Fitting_files/figure-html/unnamed-chunk-26-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Fitting_files/figure-html/unnamed-chunk-27-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -1196,7 +1285,7 @@ postResample(glm_fits,
 
 .pull-right45[
 
-&lt;img src="Fitting_files/figure-html/unnamed-chunk-28-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Fitting_files/figure-html/unnamed-chunk-29-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -1211,19 +1300,17 @@ postResample(glm_fits,
 &lt;p style="padding-top:10px"&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;confusionMatrix()&lt;/mono&gt; Funktion erstellt eine Zusammenfassung der Modellperformanz bei &lt;high&gt;Klassifikationsproblemen&lt;/high&gt;. Zu spezifizierende Argumente sind wiederum die vorhergesagten Werte und die tatsächlichen Werte.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;confusionMatrix()&lt;/mono&gt; erstellt eine Zusammenfassung der &lt;high&gt;Modellperformanz bei Klassifikationsproblemen&lt;/high&gt;. Inputs sind wiederum die vorhergesagten und tatsächlichen Werte.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;br&gt;
 
 
 
 ```r
-# sehhilfe zu factor
-basel$sehhilfe &lt;- factor(basel$sehhilfe)
-
 # Regressionsmodell zur Klassifikation
 sehhilfe_mod &lt;-
-  train(form = sehhilfe ~ alter + geschlecht,
+  train(form = factor(sehhilfe) ~ alter + geschlecht,
         data = basel,   
         method = "glm",   
         trControl = ctrl)
@@ -1239,7 +1326,7 @@ confusionMatrix(predict(sehhilfe_mod),
 
 .pull-right4[
 
-&lt;br&gt;
+&lt;br&gt;&lt;br&gt;
 
 
 ```
@@ -1265,11 +1352,7 @@ Prediction   ja nein
          Neg Pred Value :   NaN         
              Prevalence : 0.651         
          Detection Rate : 0.651         
-   Detection Prevalence : 1.000         
-      Balanced Accuracy : 0.500         
-                                        
-       'Positive' Class : ja            
-                                        
+ [ reached getOption("max.print") -- omitted 5 rows ]
 ```
 
 

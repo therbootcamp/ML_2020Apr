@@ -571,7 +571,11 @@ logreg2
 <ul style="margin-bottom:-20px">
   <li class="m1"><span><b>Distanz</b></span></li>
   <ul class="level">
+<<<<<<< HEAD
+    <li><span>LogLoss dient i.A.R. <high>zum Fitten von Parametern</high>, verwendet, und wie MSE und MAE auch zur Evaluation.</span></li>
+=======
     <li><span>LogLoss – ein Distanzmass wie MSE und MAE – wird i.A.R. <high>zum Fitten von Parametern</high>, verwendet.</span></li>
+>>>>>>> f5890be05bb954a13506f3d8083b80ab29b38f47
   </ul>
 </ul>
 
@@ -580,13 +584,17 @@ $$\small MSE = \frac{1}{n}\sum_{i}^{n}(y-\hat{y})^2; \: MAE = \frac{1}{n}\sum_{i
 
 
 <ul>
-  <li class="m2"><span><b>Überlappung</b></span></li>
+  <li class="m2"><span><b>Übereinstimmung</b></span></li>
   <ul class="level">
+<<<<<<< HEAD
+    <li><span>0-1 loss evaluiert die Übereinstimmung zwischen <high>vorhergesagter Klasse und tatsächlicher Klasse </high>, was im Vergleich <high>leicht zu interpretieren</high> ist.</span></li>
+=======
     <li><span>Die 0-1 loss function testet, ob die <high>vorhergesagte Kategorie, der tatsächlichen Kategorie entspricht</high>. Sie ist <high>leichter zu interpretieren</high>.</span></li>
+>>>>>>> f5890be05bb954a13506f3d8083b80ab29b38f47
   </ul>
 </ul>
 
-$$\small Verlust_{01}=\frac{1}{n}\sum_i^n I(y \neq \lfloor \hat{y} \rceil)$$
+$$\small Loss_{01}=\frac{1}{n}\sum_i^n I(y \neq \lfloor \hat{y} \rceil)$$
 
 ]
 
@@ -658,7 +666,7 @@ logreg2
 .pull-right45[
 
 
-<b>Richtigkeit</b>: Prozentsatz richtiger Vorhersagen <i>über alle Fälle hinweg</i>.
+<b>Genauigkeit</b>: Prozentsatz richtiger Vorhersagen <i>über alle Fälle hinweg</i>.
 
 $$\small Richt. = \frac{RP + RN}{ RP + RN + FN + FP} = 1-Verlust_{01}$$
 
@@ -738,7 +746,7 @@ $$\small Spezifität = \frac{RN}{ RN + FP }$$
 .pull-right45[
 
 
-<b>Richtigkeit</b>: Prozentsatz richtiger Vorhersagen <i>über alle Fälle hinweg</i>.
+<b>Genauigkeit</b>: Prozentsatz richtiger Vorhersagen <i>über alle Fälle hinweg</i>.
 
 $$\small Richt. = \frac{RP + RN}{ RP + RN + FN + FP} = 1-Verlust_{01}$$
 
@@ -758,15 +766,19 @@ $$\small Spezifität = \frac{RN}{ RN + FP }$$
 
 
 ---
+
 class: center,  middle
 
 <br><br>
 
-# Fitten von Regressionsmodellen mit `caret`!
+<h1><a>Regressionsmodelle fitten in <mono>caret</mono></h1>
 
-```{r, echo = FALSE, out.width = "70%"}
-knitr::include_graphics("https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png")
+
+```{r, echo = FALSE}
+library(caret)
+data(cars)
 ```
+
 
 
 ```{r, echo = FALSE}
@@ -866,7 +878,7 @@ confusionMatrix(fit, truth)
 
 <ul>
   <li class="m1"><span><mono>trainControl()</mono> steuert, <high>wie <mono>caret</mono> ein Modell fittet</high>.</span></li>
-  <li class="m2"><span>Für den Moment, verwende der Einfachheit halber <mono>method = "none"</mono>. Mehr hierzu in der <b>Optimisierung</b> Session.</span></li>
+  <li class="m2"><span>Bis zur Session <b>Optimisierung</b> verwenden wir <highm>method = "none"</highm>.</span></li>
 </ul>
 
 <br>
@@ -900,7 +912,7 @@ knitr::include_graphics("image/traincontrol_help.jpg")
 .pull-left4[
 
 <ul>
-  <li class="m1"><span><mono>train()</mono> ist <mono>caret</mono>'s <high>Zugpferd</high>, wenn es um Fitting geht. Damit können <high>über 200 Modelle</high> gefittet werden, wofür man jeweils nur das <high>method</high> Argument anpassen muss.</span></li>
+  <li class="m1"><span><mono>train()</mono> ist <mono>caret</mono>'s <high>Zugpferd</high>, wenn es um Fitting geht. Es können <high>über 200 Modelle</high> mit nur leichten Änderungen im <high>method</high> Argument gefittet werden.</span></li>
 </ul>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
@@ -981,7 +993,7 @@ eink_mod
 
 .pull-left4[
 <ul>
-  <li class="m1"><span><mono>train()</mono> ist <mono>caret</mono>'s <high>Zugpferd</high>, wenn es um Fitting geht. Damit können <high>über 200 Modelle</high> gefittet werden, wofür man jeweils nur das <high>method</high> Argument anpassen muss.</span></li>
+  <li class="m1"><span><mono>train()</mono> ist <mono>caret</mono>'s <high>Zugpferd</high>, wenn es um Fitting geht. Es können <high>über 200 Modelle</high> mit nur leichten Änderungen im <high>method</high> Argument gefittet werden.</span></li>
 </ul>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
@@ -1064,8 +1076,8 @@ eink_mod
 # `train()`
 
 <ul>
-  <li class="m1"><span><mono>train()</mono> ist <mono>caret</mono>'s <high>Zugpferd</high>, wenn es um Fitting geht. Damit können <high>über 200 Modelle</high> gefittet werden, wofür man jeweils nur das <high>method</high> Argument anpassen muss.</span></li>
-    <li class="m2"><span>Alle 200+ Modelle findest du <a href="http://topepo.github.io/caret/available-models.html">hier</a>.</span></li>
+  <li class="m1"><span><mono>train()</mono> ist <mono>caret</mono>'s <high>Zugpferd</high>, wenn es um Fitting geht. Es können <high>über 200 Modelle</high> mit nur leichten Änderungen im <high>method</high> Argument gefittet werden.</span></li>
+  <li class="m2"><span>Alle 200+ Modelle findest du <a href="http://topepo.github.io/caret/available-models.html">hier</a>.</span></li>
 </ul>
 
 ]
@@ -1099,7 +1111,7 @@ eink_mod
 <br>
 
 ```{r, echo = FALSE}
-Loans <- tibble::tibble(Kreditausfall = c(0, 1, 0, 1, 1),
+Loans <- tibble::tibble(Ausfall = c(0, 1, 0, 1, 1),
               Alter = c(45, 36, 76, 25, 36),
              Geschlecht = c("M", "F", "F", "M", "F"),
              Karten = c(3, 2, 5, 2, 3),
@@ -1116,14 +1128,14 @@ Loans
 ```{r, eval = FALSE}
 # Regressionsproblem
 
-loan_mod <- train(form = Kreditausfall ~ .,
+loan_mod <- train(form = Ausfall ~ .,
                   data = Loans,
                   method = "glm",
                   trControl = ctrl)
 
 # Klassifikationsproblem
 
-load_mod <- train(form = factor(Kreditausfall) ~ .,
+load_mod <- train(form = factor(Ausfall) ~ .,
                   data = Loans,
                   method = "glm",
                   trControl = ctrl)
@@ -1176,11 +1188,16 @@ load_mod <- train(form = factor(Kreditausfall) ~ .,
 
 .pull-right5[
 
-```{r, eval = FALSE, echo = TRUE}
+```{r, echo = F}
+options(width=60, max.print=6)
+```
+
+
+```{r}
 # Fitte Regressionsmodell
 eink_mod <-
   train(form = einkommen ~ alter + groesse,
-        data = basel       # Daten
+        data = basel,       # Daten
         method = "glm",    # Regression
         trControl = ctrl)  # Kontrollparameter
 
@@ -1188,29 +1205,66 @@ eink_mod <-
 names(eink_mod$finalModel)
 ```
 
-```{r, eval = TRUE, echo = FALSE}
-eink_mod <- train(form = einkommen ~ alter + groesse, # Formula
-             data = basel,   # Training data
-             method = "glm",    # Regression
-             trControl = ctrl)  # Control Parameters
-```
+]
 
-```{r, echo =F}
+---
+
+# <mono>.$finalModel</mono>
+
+.pull-left4[
+
+<ul>
+  <li class="m1"><span>Die <mono>train()</mono> Funktion gibt eine <mono>list</mono>e zurück. Diese enthält ein <mono>finalModel</mono> Element - das ist unser <high>bestes gefittetes Model</high>.</span></li>
+  <li class="m2"><span>Greife auf das Modell mit <mono>.$finalModel</mono> zu und <high>exploriere</high> das Objekt mit generischen Funktionen:</span></li>
+</ul>
+
+<br>
+
+<table style="cellspacing:0; cellpadding:0; border:none;">
+<tr>
+  <td>
+  <b>Funktion</b>
+  </td>
+  <td>
+    <b>Beschreibung</b>
+  </td>
+</tr>
+<tr>
+  <td bgcolor="white">
+    <mono>summary()</mono>
+  </td>
+  <td bgcolor="white">
+    Überblick über die wichtigsten Resultate.
+  </td>
+</tr>
+<tr>
+  <td bgcolor="white">
+    <mono>names()</mono>
+  </td>
+  <td bgcolor="white">
+    Zeige Namen aller benannten Elemente (häufig mit `$` ansteuerbar).
+  </td>
+</tr>
+</table>
+
+]
+
+.pull-right5[
+
+```{r, echo = F}
 options(width=60, max.print=6)
-
-# Look at all named outputs
-names(eink_mod$finalModel)
 ```
 
-```{r, eval = F}
+```{r}
+# Fitte Regressionsmodell
+eink_mod <-
+  train(form = einkommen ~ alter + groesse,
+        data = basel,       # Daten
+        method = "glm",    # Regression
+        trControl = ctrl)  # Kontrollparameter
+
 # Zugriff auf spezifische Elemente
 eink_mod$finalModel$coefficients
-```
-
-```{r, echo =F}
-# Access specific outputs
-eink_mod$finalModel$coefficients
-options(width=104, max.print=1000)
 ```
 
 ]
@@ -1259,17 +1313,16 @@ options(width=104, max.print=1000)
 
 .pull-right5[
 
-```{r, eval = FALSE, echo = TRUE}
+```{r, echo = F}
+options(width=70, max.print=6)
+```
+
+```{r}
 # Zeige Modelloutput
 summary(eink_mod)
 ```
 
- <p align = "center">
-<img src="image/summary.png" height=225px>
-</p>
-
 ]
-
 
 ---
 
@@ -1282,6 +1335,10 @@ summary(eink_mod)
 </ul>
 
 <br>
+
+```{r, echo = F}
+options(width=60, max.print=30)
+```
 
 ```{r}
 # Extrahiere gefittete Werte
@@ -1339,18 +1396,16 @@ great_err + labs(title=element_blank(),subtitle = element_blank())
 <p style="padding-top:10px"></p>
 
 <ul>
-  <li class="m1"><span>Die <mono>confusionMatrix()</mono> Funktion erstellt eine Zusammenfassung der Modellperformanz bei <high>Klassifikationsproblemen</high>. Zu spezifizierende Argumente sind wiederum die vorhergesagten Werte und die tatsächlichen Werte.</span></li>
+  <li class="m1"><span><mono>confusionMatrix()</mono> erstellt eine Zusammenfassung der <high>Modellperformanz bei Klassifikationsproblemen</high>. Inputs sind wiederum die vorhergesagten und tatsächlichen Werte.</span></li>
 </ul>
 
+<br>
 
 
 ```{r, eval = F}
-# sehhilfe zu factor
-basel$sehhilfe <- factor(basel$sehhilfe)
-
 # Regressionsmodell zur Klassifikation
 sehhilfe_mod <-
-  train(form = sehhilfe ~ alter + geschlecht,
+  train(form = factor(sehhilfe) ~ alter + geschlecht,
         data = basel,   
         method = "glm",   
         trControl = ctrl)
@@ -1381,7 +1436,7 @@ res <- confusionMatrix(predict(sehhilfe_mod),
 
 .pull-right4[
 
-<br>
+<br><br>
 
 ```{r, echo  = F}
 res
