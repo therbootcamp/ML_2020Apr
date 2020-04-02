@@ -4,7 +4,7 @@ author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
       <font style='font-style:normal'>Machine Learning with R</font><br>
-      <a href='https://therbootcamp.github.io/ML_2019Oct/'>
+      <a href='https://therbootcamp.github.io/ML_2020Apr/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
       <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0
         <i class='fab fa-linkedin' style='font-size: .9em;'></i>
       </a>
       <a href='https://therbootcamp.github.io'>
-        <font style='font-style:normal'>Basel R Bootcamp</font>
+        <font style='font-style:normal'>The R Bootcamp</font>
       </a>
     </td>
     <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
@@ -701,23 +701,25 @@ plot(profile, type = c("g", "o"))
 |[violent_crime](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/violent_crime.csv)| 1000 | 102|
 |[nonviolent_crime](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/nonviolent_crime.csv)| 1000 | 102|
 
-- The `pima_diabetes` is a subset of the `PimaIndiansDiabetes2` data set in the `mlbench` package. It contains medical and demographic data of Pima Indians.
 
-- The `murders_crime`, `violent_crime`, and `non_violent_crime` data are subsets of the Communities and Crime Unnormalized Data Set data set from the UCI Machine Learning Repository. To see column descriptions, visit this site: [Communities and Crime Unnormalized Data Set](https://archive.ics.uci.edu/ml/datasets/Communities+and+Crime+Unnormalized). Due to the large number of variables (102), we do not include the full tables below.
 
-#### Variable description of `pima_diabetes`
+#### `diabetes`
+
+The `diabetes` is a subset of the `PimaIndiansDiabetes` data set in the `mlbench` package. It contains medical and demographic data of Pima Indians.
 
 | Name | Description |
-|:-------------|:-------------------------------------|
-| `pregnant` | Number of times pregnant. |
-| `glucose` | Plasma glucose concentration (glucose tolerance test).  |
-| `pressure` | Diastolic blood pressure (mm Hg). |
-| `triceps` | Triceps skin fold thickness (mm). |
-| `insulin` | 2-Hour serum insulin (mu U/ml). |
-| `mass` | Body mass index (weight in kg/(height in m)\^2). |
-| `pedigree` | Diabetes pedigree function. |
-| `age` | Age (years). |
-| `diabetes` | Class variable (test for diabetes). |
+|Diabetes| Diagnose: positiv (pos) oder negativ (pos) |
+|Schwangerschaften| Anzahl Schwangerschaften |
+|Glucose| Glukosekonzentration im Plasma |
+|Blutdruck| Diastolischer Blutdruck |
+|BMI| Body Mass Index |
+|fam_Vorerkrankungen| Familiäre Vorerkrankungen (pedigree function) |
+|Alter| Alter in Jahren |
+
+
+#### `diabetes`
+
+The `murders_crime`, `violent_crime`, and `non_violent_crime` data are subsets of the Communities and Crime Unnormalized Data Set data set from the UCI Machine Learning Repository. To see column descriptions, visit this site: [Communities and Crime Unnormalized Data Set](https://archive.ics.uci.edu/ml/datasets/Communities+and+Crime+Unnormalized). Due to the large number of variables (102), we do not include the full tables below.
 
 
 ## Functions

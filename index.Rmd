@@ -30,21 +30,21 @@ output:
 
 ### Downloads
 
-##### [**Data sets**](https://www.dropbox.com/s/v7s5kesbc10fcvq/baselrbootcamp_MLdata.zip?dl=1)
+##### [**Projekt**](https://www.dropbox.com/s/jas48hijozni5gk/TheRBootcamp.zip?dl=1)
 
 ##### [**Cheatsheets**](https://www.dropbox.com/s/26kjubck26lbwnw/cheatsheets.pdf?dl=1)
 
 <br>
 
-### Materials
+### Materialien
 
 |  | Tag | Tag 2 | 
 |:--|:-------------|:-------------|
 |0| Willkommen!<br>[Folien](_sessions/Welcome/Welcome.html) | Wiederholung<br>[Folien](_sessions/Recap/Recap.html)|
 |1| Was ist ML?<br>[Folien](_sessions/WhatIsML/WhatIsML.html)| Unsupervised learning<br>[Folien](_sessions/Unsupervised/Unsupervised.html), [Practical](_sessions/Unsupervised/Unsupervised_practical.html)|
-|2| Fitting <br>[Folien](_sessions/Fitting/Fitting.html), [Practical](_sessions/Fitting/Fitting_practical.R) | Features<br>[Folien](_sessions/Features/Features.html), [Practical](_sessions/Features/Features_practical.html)|
-|3| Predicting<br>[Folien](_sessions/Prediction/Prediction.html), [Practical](_sessions/Prediction/Prediction_practical.html) | Modelle<br>[Folien](_sessions/Models/Models.html), [Practical](_sessions/Models/Models_practical.html)|
-|4|Optimizing <br>[Folien](_sessions/Optimization/Optimization.html), [Practical](_sessions/Optimization/Optimization_practical.html) | Ausblick<br> [Folien](_sessions/LookAhead/LookAhead.html)|
+|2| Fitting <br>[Folien](_sessions/Fitting/Fitting.html), [Practical](_sessions/Fitting/Fitting_practical.R) | Features |
+|3| Predicting<br>[Folien](_sessions/Prediction/Prediction.html), [Practical](_sessions/Prediction/Prediction_practical.html) | Modelle |
+|4|Optimizing <br>[Folien](_sessions/Optimization/Optimization.html), [Practical](_sessions/Optimization/Optimization_practical.html) | Ausblick|
 
 <br>
 

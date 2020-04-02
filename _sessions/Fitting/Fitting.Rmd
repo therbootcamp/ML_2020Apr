@@ -234,11 +234,11 @@ ggarrange(bad_err, great_err, ncol = 2, nrow = 1)
 
 <ul>
 <li class="m1"><span>Eines <high>zentrales Konzepte</high> in der Statistik und im maschinellen Lernen.</span></li>
-<li class="m2"><span>Die Loss function ist eine <high>Zusammenfassung der durch ein Modell begangenen Fehler</high>.</span></li>
+<li class="m2"><span>Die Loss Funktion ist eine <high>Zusammenfassung der durch ein Modell begangenen Fehler</high>.</span></li>
 </ul>
 <p style="padding-top:7px">
 
-$$\Large Verlust = f(Fehler)$$
+$$\Large Loss = f(Fehler)$$
 
 <p style="padding-top:7px">
 

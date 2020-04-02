@@ -195,7 +195,7 @@ $(document).ready(function () {
 <col width='10%'>
 <tr style="border:none">
 <td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
-<font style='font-style:normal'>Machine Learning with R</font><br> <a href='https://therbootcamp.github.io/ML_2019Oct/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Basel R Bootcamp</font> </a>
+<font style='font-style:normal'>Machine Learning with R</font><br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>The R Bootcamp</font> </a>
 </td>
 <td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
 <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
@@ -379,12 +379,12 @@ varimp_glm</code></pre>
 <pre><code>glm variable importance
 
          Overall
-glucose   100.00
-mass       76.21
-age        52.67
-pregnant   10.72
-pedigree    2.02
-pressure    0.00</code></pre>
+glucose    100.0
+mass        55.7
+age         49.4
+pregnant    32.1
+pedigree    29.6
+pressure     0.0</code></pre>
 <pre class="r"><code># print variable importance
 plot(varimp_glm)</code></pre>
 <p><img src="Features_practical_files/figure-html/unnamed-chunk-20-1.png" width="576" style="display: block; margin: auto;" /></p>
@@ -423,26 +423,26 @@ confusionMatrix(pima_glm_pred, criterion)</code></pre>
 
           Reference
 Prediction neg pos
-       neg 344  89
-       pos  59 122
+       neg 339  88
+       pos  64 123
                                         
-               Accuracy : 0.759         
-                 95% CI : (0.723, 0.792)
+               Accuracy : 0.752         
+                 95% CI : (0.716, 0.786)
     No Information Rate : 0.656         
-    P-Value [Acc &gt; NIR] : 2.34e-08      
+    P-Value [Acc &gt; NIR] : 1.69e-07      
                                         
-                  Kappa : 0.447         
+                  Kappa : 0.436         
                                         
- Mcnemar&#39;s Test P-Value : 0.0171        
+ Mcnemar&#39;s Test P-Value : 0.0621        
                                         
-            Sensitivity : 0.854         
-            Specificity : 0.578         
+            Sensitivity : 0.841         
+            Specificity : 0.583         
          Pos Pred Value : 0.794         
-         Neg Pred Value : 0.674         
+         Neg Pred Value : 0.658         
              Prevalence : 0.656         
-         Detection Rate : 0.560         
-   Detection Prevalence : 0.705         
-      Balanced Accuracy : 0.716         
+         Detection Rate : 0.552         
+   Detection Prevalence : 0.695         
+      Balanced Accuracy : 0.712         
                                         
        &#39;Positive&#39; Class : neg           
                                         </code></pre>
@@ -451,26 +451,26 @@ Prediction neg pos
 
           Reference
 Prediction neg pos
-       neg 353  96
-       pos  50 115
+       neg 338  80
+       pos  65 131
                                         
-               Accuracy : 0.762         
-                 95% CI : (0.727, 0.795)
+               Accuracy : 0.764         
+                 95% CI : (0.728, 0.797)
     No Information Rate : 0.656         
-    P-Value [Acc &gt; NIR] : 8.3e-09       
+    P-Value [Acc &gt; NIR] : 4.87e-09      
                                         
-                  Kappa : 0.444         
+                  Kappa : 0.467         
                                         
- Mcnemar&#39;s Test P-Value : 0.000196      
+ Mcnemar&#39;s Test P-Value : 0.245         
                                         
-            Sensitivity : 0.876         
-            Specificity : 0.545         
-         Pos Pred Value : 0.786         
-         Neg Pred Value : 0.697         
+            Sensitivity : 0.839         
+            Specificity : 0.621         
+         Pos Pred Value : 0.809         
+         Neg Pred Value : 0.668         
              Prevalence : 0.656         
-         Detection Rate : 0.575         
-   Detection Prevalence : 0.731         
-      Balanced Accuracy : 0.710         
+         Detection Rate : 0.550         
+   Detection Prevalence : 0.681         
+      Balanced Accuracy : 0.730         
                                         
        &#39;Positive&#39; Class : neg           
                                         </code></pre>
@@ -632,8 +632,8 @@ corr_matrix &lt;- cor(murders_train_pred)
 
 # find excessively correlated variables
 findCorrelation(corr_matrix)</code></pre>
-<pre><code> [1] 11 17 27 30 41 44 51 53 54 55 57 58 59 61 64 71 84 85 87  7  8 13 20
-[24] 21 31 38 43  1 62 67 79 80 81</code></pre>
+<pre><code> [1] 17 20 27 30 37 40 41 44 48 51 53 54 55 57 58 59 60 61 63 64 71 81 85
+[24]  7  8  1 21 43 11 62 42 67 79 83 84 56</code></pre>
 <ol start="8" style="list-style-type: decimal">
 <li>Using the code below, remove the excessively correlated features from the training predictor set.</li>
 </ol>
@@ -694,57 +694,57 @@ confusionMatrix(murders_pred, criterion)</code></pre>
 
           Reference
 Prediction  no yes
-       no  446 192
-       yes 184 545
-                                      
-               Accuracy : 0.725       
-                 95% CI : (0.7, 0.748)
-    No Information Rate : 0.539       
-    P-Value [Acc &gt; NIR] : &lt;2e-16      
-                                      
-                  Kappa : 0.447       
-                                      
- Mcnemar&#39;s Test P-Value : 0.718       
-                                      
-            Sensitivity : 0.708       
-            Specificity : 0.739       
-         Pos Pred Value : 0.699       
-         Neg Pred Value : 0.748       
-             Prevalence : 0.461       
-         Detection Rate : 0.326       
-   Detection Prevalence : 0.467       
-      Balanced Accuracy : 0.724       
-                                      
-       &#39;Positive&#39; Class : no          
-                                      </code></pre>
+       no  428 200
+       yes 202 537
+                                       
+               Accuracy : 0.706        
+                 95% CI : (0.681, 0.73)
+    No Information Rate : 0.539        
+    P-Value [Acc &gt; NIR] : &lt;2e-16       
+                                       
+                  Kappa : 0.408        
+                                       
+ Mcnemar&#39;s Test P-Value : 0.96         
+                                       
+            Sensitivity : 0.679        
+            Specificity : 0.729        
+         Pos Pred Value : 0.682        
+         Neg Pred Value : 0.727        
+             Prevalence : 0.461        
+         Detection Rate : 0.313        
+   Detection Prevalence : 0.459        
+      Balanced Accuracy : 0.704        
+                                       
+       &#39;Positive&#39; Class : no           
+                                       </code></pre>
 <pre class="r"><code>confusionMatrix(murders_clean_pred, criterion)</code></pre>
 <pre><code>Confusion Matrix and Statistics
 
           Reference
 Prediction  no yes
-       no  471 199
-       yes 159 538
-                                        
-               Accuracy : 0.738         
-                 95% CI : (0.714, 0.761)
-    No Information Rate : 0.539         
-    P-Value [Acc &gt; NIR] : &lt;2e-16        
-                                        
-                  Kappa : 0.475         
-                                        
- Mcnemar&#39;s Test P-Value : 0.0393        
-                                        
-            Sensitivity : 0.748         
-            Specificity : 0.730         
-         Pos Pred Value : 0.703         
-         Neg Pred Value : 0.772         
-             Prevalence : 0.461         
-         Detection Rate : 0.345         
-   Detection Prevalence : 0.490         
-      Balanced Accuracy : 0.739         
-                                        
-       &#39;Positive&#39; Class : no            
-                                        </code></pre>
+       no  467 187
+       yes 163 550
+                                       
+               Accuracy : 0.744        
+                 95% CI : (0.72, 0.767)
+    No Information Rate : 0.539        
+    P-Value [Acc &gt; NIR] : &lt;2e-16       
+                                       
+                  Kappa : 0.486        
+                                       
+ Mcnemar&#39;s Test P-Value : 0.219        
+                                       
+            Sensitivity : 0.741        
+            Specificity : 0.746        
+         Pos Pred Value : 0.714        
+         Neg Pred Value : 0.771        
+             Prevalence : 0.461        
+         Detection Rate : 0.342        
+   Detection Prevalence : 0.478        
+      Balanced Accuracy : 0.744        
+                                       
+       &#39;Positive&#39; Class : no           
+                                       </code></pre>
 </div>
 <div id="data-compression-with-pca" class="section level4">
 <h4>Data compression with PCA</h4>
@@ -769,26 +769,26 @@ confusionMatrix(murders_pca, criterion)</code></pre>
 
           Reference
 Prediction  no yes
-       no  490 196
-       yes 140 541
+       no  483 190
+       yes 147 547
                                        
-               Accuracy : 0.754        
-                 95% CI : (0.73, 0.777)
+               Accuracy : 0.753        
+                 95% CI : (0.73, 0.776)
     No Information Rate : 0.539        
     P-Value [Acc &gt; NIR] : &lt;2e-16       
                                        
-                  Kappa : 0.509        
+                  Kappa : 0.506        
                                        
- Mcnemar&#39;s Test P-Value : 0.0027       
+ Mcnemar&#39;s Test P-Value : 0.0221       
                                        
-            Sensitivity : 0.778        
-            Specificity : 0.734        
-         Pos Pred Value : 0.714        
-         Neg Pred Value : 0.794        
+            Sensitivity : 0.767        
+            Specificity : 0.742        
+         Pos Pred Value : 0.718        
+         Neg Pred Value : 0.788        
              Prevalence : 0.461        
-         Detection Rate : 0.358        
-   Detection Prevalence : 0.502        
-      Balanced Accuracy : 0.756        
+         Detection Rate : 0.353        
+   Detection Prevalence : 0.492        
+      Balanced Accuracy : 0.754        
                                        
        &#39;Positive&#39; Class : no           
                                        </code></pre>
@@ -812,68 +812,68 @@ varimp_glm</code></pre>
 
   only 20 most important variables shown (out of 99)
 
-                    Overall
-PctForeignBorn        100.0
-PctNotSpeakEnglWell    98.2
-pctWRetire             97.8
-PersPerFam             85.7
-PctKidsBornNeverMar    82.0
-racepctblack           81.1
-PctFam2Par             81.1
-PctHousNoPhone         75.6
-NumUnderPov            74.3
-racePctAsian           73.6
-NumStreet              71.7
-agePct12t21            69.4
-PctKids2Par            65.7
-PctBornSameState       63.2
-population             58.8
-PctOccupManu           57.9
-pctWSocSec             57.8
-PctEmplManu            56.2
-MedRentPctHousInc      52.7
-blackPerCap            50.1</code></pre>
+                  Overall
+PctOccupManu        100.0
+PctRecImmig8         85.0
+PctImmigRec8         80.3
+PctYoungKids2Par     77.6
+MedRentPctHousInc    75.5
+numbUrban            70.6
+NumImmig             70.5
+PctLargHouseFam      70.3
+medIncome            69.4
+indianPerCap         68.5
+HousVacant           65.3
+PctRecImmig5         62.4
+population           62.1
+PctLargHouseOccup    62.0
+medFamInc            61.6
+PctBornSameState     59.1
+PctWOFullPlumb       58.8
+PctHousOccup         58.6
+racePctWhite         58.4
+PctRecImmig10        58.4</code></pre>
 <pre class="r"><code>varimp_glm_clean</code></pre>
 <pre><code>glm variable importance
 
-  only 20 most important variables shown (out of 68)
+  only 20 most important variables shown (out of 65)
 
                     Overall
 NumKidsBornNeverMar   100.0
-PctKidsBornNeverMar    79.5
-PctEmplManu            61.4
-PctHousOccup           56.2
-MedRentPctHousInc      54.1
-PctOccupManu           48.8
-pctWRetire             48.2
-PctHousNoPhone         46.7
-PctUsePubTrans         46.3
-PctBornSameState       45.4
-racepctblack           45.3
-PersPerFam             42.5
-PctForeignBorn         39.9
-OwnOccQrange           39.1
-pctWPubAsst            38.4
-PctRecentImmig         35.4
-MedOwnCostPctInc       34.8
-PctOccupMgmtProf       34.7
-FemalePctDiv           34.5
-racePctAsian           34.1</code></pre>
+PctOccupManu           67.3
+PctHousOwnOcc          60.5
+PctKidsBornNeverMar    57.7
+pctWInvInc             52.8
+racepctblack           50.6
+MedYrHousBuilt         49.4
+householdsize          49.1
+agePct16t24            49.0
+PctYoungKids2Par       47.4
+PctBornSameState       46.7
+NumStreet              45.3
+NumInShelters          44.8
+PctBSorMore            44.8
+PctEmploy              42.4
+indianPerCap           41.8
+MedRentPctHousInc      36.8
+PersPerOwnOccHous      35.6
+racePctWhite           35.2
+PctWOFullPlumb         34.8</code></pre>
 <pre class="r"><code>varimp_glm_pca</code></pre>
 <pre><code>glm variable importance
 
      Overall
-PC1   100.00
-PC2    94.19
-PC4    80.80
-PC3    77.90
-PC5    74.74
-PC11   60.11
-PC8    48.74
-PC6    35.34
-PC7    32.85
-PC9     9.67
-PC10    0.00</code></pre>
+PC1    100.0
+PC2     93.6
+PC3     79.5
+PC4     69.9
+PC5     69.8
+PC8     31.7
+PC7     25.0
+PC10    20.7
+PC11    18.8
+PC6      5.0
+PC9      0.0</code></pre>
 <pre class="r"><code># print variable importance
 plot(varimp_glm)</code></pre>
 <p><img src="Features_practical_files/figure-html/unnamed-chunk-42-1.png" width="576" style="display: block; margin: auto;" /></p>

@@ -1064,7 +1064,7 @@ coef(glmnet_mod$finalModel,
 # Modellparameter unter dem besten Werten
 # für alpha und lambda
 print(coef(glmnet_mod$finalModel,
-         glmnet_mod$bestTune$lambda), 22)
+           glmnet_mod$bestTune$lambda))
 ```
 
 ]
