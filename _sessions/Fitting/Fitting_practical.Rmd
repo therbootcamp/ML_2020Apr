@@ -148,7 +148,7 @@ college_train <- college_train %>%
 
 ### B - Definiere die Kontrollparameter
 
-In `caret` verwenden wir die `trainControl()` Funktion, um zu definieren wie genau die Modelle gefittet werden sollen. Da wir uns im Moment auf die Grundlagen des Fittings konzentrieren, setzen wir für dieses Practical das Argument `method = "none"` (Normalerweise würde man das für einen tatsächlichen Einsatz von Machine Learning Modellen nicht machen; weshalb lernst du in einer späteren Session).
+1. In `caret` verwenden wir die `trainControl()` Funktion, um zu definieren wie genau die Modelle gefittet werden sollen. Da wir uns im Moment auf die Grundlagen des Fittings konzentrieren, setzen wir für dieses Practical das Argument `method = "none"` (Normalerweise würde man das für einen tatsächlichen Einsatz von Machine Learning Modellen nicht machen; weshalb lernst du in einer späteren Session).
 
 ```{r echo = TRUE}
 # Setze Resamplingmethode auf "none" um für den Moment alles einfach zu halten.
