@@ -571,7 +571,7 @@ logreg2
 <ul style="margin-bottom:-20px">
   <li class="m1"><span><b>Distanz</b></span></li>
   <ul class="level">
-    <li><span>LogLoss dient i.A.R. <high>zum Fitten von Parametern</high>, verwendet, kann aber wie MSE und MAE auch zur Evaluation verwendet werden.</span></li>
+    <li><span>LogLoss – ein Distanzmass wie MSE und MAE – wird i.A.R. <high>zum Fitten von Parametern</high>, verwendet.</span></li>
   </ul>
 </ul>
 
@@ -582,7 +582,7 @@ $$\small MSE = \frac{1}{n}\sum_{i}^{n}(y-\hat{y})^2; \: MAE = \frac{1}{n}\sum_{i
 <ul>
   <li class="m2"><span><b>Überlappung</b></span></li>
   <ul class="level">
-    <li><span>Die 0-1 loss function testet, ob die <high>vorhergesagte Kategorie, der tatsächlichen Kategorie entspricht</high>, was im Vergleich <high>leicht zu interpretieren</high> ist.</span></li>
+    <li><span>Die 0-1 loss function testet, ob die <high>vorhergesagte Kategorie, der tatsächlichen Kategorie entspricht</high>. Sie ist <high>leichter zu interpretieren</high>.</span></li>
   </ul>
 </ul>
 
