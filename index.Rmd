@@ -1,10 +1,10 @@
 ---
-title: "Machine Learning with R"
+title: "Machine Learning mit R"
 author: "
       <a href='https://therbootcamp.github.io'>
         <i class='fas fa-home' style='font-size:1em;'></i>
       </a>
-      <a href='https://therbootcamp.github.io/ML_2019Oct/'>
+      <a href='https://therbootcamp.github.io/ML_2020Apr/'>
         <i class='fas fa-clock' style='font-size:1em;' ></i>
       </a>
       <a href='mailto:therbootcamp@gmail.com'>
@@ -14,10 +14,10 @@ author: "
         <i class='fab fa-linkedin' style='font-size: 1em;'></i>
       </a>
       <a href='https://therbootcamp.github.io'>
-        <font style='font-style:normal;font-size:20px;padding-left:5px'>Basel R Bootcamp</font>
+        <font style='font-style:normal;font-size:20px;padding-left:5px'>The R Bootcamp</font>
       </a>
       <br>
-      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style= 'height:17px;vertical-align:baseline'/><font style='font-style:normal;font-size:20px;padding-left:8px'>October 2019</font>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style= 'height:17px;vertical-align:baseline'/><font style='font-style:normal;font-size:20px;padding-left:8px'>April 2020</font>
       "
 date: ""
 output:
@@ -28,27 +28,23 @@ output:
 
 <br>
 
-### Wifi
-
-##### [**Instructions**](https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/wifi_instruct.png)
-
 ### Downloads
 
 ##### [**Data sets**](https://www.dropbox.com/s/v7s5kesbc10fcvq/baselrbootcamp_MLdata.zip?dl=1)
 
-##### [**PDFs**](https://www.dropbox.com/s/v1agyihirsvkpl0/MLwR2019Oct_pdfs.zip?dl=1)
+##### [**Cheatsheets**](https://www.dropbox.com/s/26kjubck26lbwnw/cheatsheets.pdf?dl=1)
 
 <br>
 
 ### Materials
 
-|  | Day 1<br>Basics| Day 2<br>Advanced| 
+|  | Tag | Tag 2 | 
 |:--|:-------------|:-------------|
-|0| Welcome!<br>[slides](_sessions/Welcome/Welcome.html) | Recap<br>[slides](_sessions/Recap/Recap.html)|
-|1| What is ML?<br>[slides](_sessions/WhatIsML/WhatIsML.html)| Optimization<br>[slides](_sessions/Optimization/Optimization.html), [practical](_sessions/Optimization/Optimization_practical.html)|
-|2| R for ML <br>[slides](_sessions/RforML/RforML.html), [interactive](_sessions/RforML/RforML_interactive.R) | Features<br>[slides](_sessions/Features/Features.html), [practical](_sessions/Features/Features_practical.html)|
-|3| Fitting<br>[slides](_sessions/Fitting/Fitting.html), [practical](_sessions/Fitting/Fitting_practical.html) | Models<br>[slides](_sessions/Models/Models.html), [practical](_sessions/Models/Models_practical.html)|
-|4|Prediction <br>[slides](_sessions/Prediction/Prediction.html), [practical](_sessions/Prediction/Prediction_practical.html) | Look ahead<br> [slides](_sessions/LookAhead/LookAhead.html)|
+|0| Willkommen!<br>[Folien](_sessions/Welcome/Welcome.html) | Wiederholung<br>[Folien](_sessions/Recap/Recap.html)|
+|1| Was ist ML?<br>[Folien](_sessions/WhatIsML/WhatIsML.html)| Unsupervised learning<br>[Folien](_sessions/Unsupervised/Unsupervised.html), [Practical](_sessions/Unsupervised/Unsupervised_practical.html)|
+|2| Fitting <br>[Folien](_sessions/Fitting/Fitting.html), [Practical](_sessions/Fitting/Fitting_practical.R) | Features<br>[Folien](_sessions/Features/Features.html), [Practical](_sessions/Features/Features_practical.html)|
+|3| Predicting<br>[Folien](_sessions/Prediction/Prediction.html), [Practical](_sessions/Prediction/Prediction_practical.html) | Modelle<br>[Folien](_sessions/Models/Models.html), [Practical](_sessions/Models/Models_practical.html)|
+|4|Optimizing <br>[Folien](_sessions/Optimization/Optimization.html), [Practical](_sessions/Optimization/Optimization_practical.html) | Ausblick<br> [Folien](_sessions/LookAhead/LookAhead.html)|
 
 <br>
 
