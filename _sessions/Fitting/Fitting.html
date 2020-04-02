@@ -433,11 +433,15 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 &lt;ul&gt;
   &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Übereinstimmung&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;ul class="level"&gt;
+<<<<<<< HEAD
 &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
     &lt;li&gt;&lt;span&gt;0-1 loss evaluiert die Übereinstimmung zwischen &lt;high&gt;vorhergesagter Klasse und tatsächlicher Klasse &lt;/high&gt;, was im Vergleich &lt;high&gt;leicht zu interpretieren&lt;/high&gt; ist.&lt;/span&gt;&lt;/li&gt;
 =======
     &lt;li&gt;&lt;span&gt;Die 0-1 loss function testet, ob die &lt;high&gt;vorhergesagte Kategorie, der tatsächlichen Kategorie entspricht&lt;/high&gt;. Sie ist &lt;high&gt;leichter zu interpretieren&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; f5890be05bb954a13506f3d8083b80ab29b38f47
+=======
+    &lt;li&gt;&lt;span&gt;0-1 loss evaluiert die Übereinstimmung zwischen &lt;high&gt;vorhergesagter Klasse und tatsächlicher Klasse &lt;/high&gt;, was im Vergleich &lt;high&gt;leicht zu interpretieren&lt;/high&gt; ist.&lt;/span&gt;&lt;/li&gt;
+>>>>>>> 8857b2aad17a237330c1005748154429daf0ea86
   &lt;/ul&gt;
 &lt;/ul&gt;
 
@@ -537,7 +541,7 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 .pull-left45[
 
 &lt;ul style="margin-bottom:-20px"&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Die Wahrheitsmatrix (&lt;i&gt;confusion matrix&lt;/i&gt;) &lt;high&gt;enthält die Anzahl einer bestimmten Klasse zugeordneten Werte&lt;/high&gt; als Funktion der tasächlichen Klasse.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die Wahrheitsmatrix (&lt;i&gt;confusion matrix&lt;/i&gt;) &lt;high&gt;enthält die Anzahl einer bestimmten Klasse zugeordneter Werte&lt;/high&gt; als Funktion der tasächlichen Klasse.&lt;/span&gt;&lt;/li&gt;
   &lt;li class="m2"&gt;&lt;span&gt;Anhand der Wahrheitsmatrix können unterschiedliche &lt;high&gt;statistische Gütekriterien&lt;/high&gt; berechnet werden.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -654,7 +658,7 @@ class: center,  middle
     &lt;mono&gt;train()&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td&gt;
-    Spezifiziere das Modell und finde die *besten* Parameterschätzwerte.
+    Spezifiziere das Modell und finde die &lt;i&gt;besten&lt;/i&gt; Parameterschätzwerte.
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -766,7 +770,7 @@ ctrl &lt;- trainControl(method = "none")
     &lt;mono&gt;form&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    Modellformel, zur Spezifikation der AV und Features.
+    Modellformel, zur Spezifikation von Kriterium und Features.
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -858,7 +862,7 @@ Resampling: None
     &lt;mono&gt;form&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    Modellformel, zur Spezifikation der AV und Features.
+    Modellformel, zur Spezifikation von Kriterium und Features.
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -961,8 +965,8 @@ Resampling: None
   &lt;li class="m1"&gt;&lt;span&gt;Das Kriterium muss die richtige Klasse haben:
   &lt;br&gt;&lt;br&gt;
   &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;&lt;high&gt;&lt;mono&gt;numeric&lt;/mono&gt;&lt;/high&gt; AV &amp;rarr; &lt;high&gt;Regression&lt;/high&gt;&lt;br&gt;&lt;/span&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;span&gt;&lt;high&gt;&lt;mono&gt;factor&lt;/mono&gt;&lt;/high&gt; AV &amp;rarr; &lt;high&gt;Klassifkation&lt;/high&gt;&lt;br&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;&lt;mono&gt;numeric&lt;/mono&gt;&lt;/high&gt; Kriterium &amp;rarr; &lt;high&gt;Regression&lt;/high&gt;&lt;br&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;&lt;mono&gt;factor&lt;/mono&gt;&lt;/high&gt; Kriterium &amp;rarr; &lt;high&gt;Klassifkation&lt;/high&gt;&lt;br&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;
   &lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -1203,7 +1207,7 @@ Deviance Residuals:
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
 (Intercept)  877.239    220.726    3.97  7.1e-05 ***
- [ reached getOption("max.print") -- omitted 2 rows ]
+ [ erreichte getOption("max.print") --  2 Zeilen ausgelassen ]
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -1348,7 +1352,7 @@ Prediction   ja nein
          Neg Pred Value :   NaN         
              Prevalence : 0.651         
          Detection Rate : 0.651         
- [ reached getOption("max.print") -- omitted 5 rows ]
+ [ erreichte getOption("max.print") --  5 Zeilen ausgelassen ]
 ```
 
 

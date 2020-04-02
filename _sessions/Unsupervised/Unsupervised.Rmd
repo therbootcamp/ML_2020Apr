@@ -2,7 +2,7 @@
 title: "Unsupervised learning"
 author: "Maschinelles Lernen mit R<br>
   <a href='https://therbootcamp.github.io'>
-    Basel R Bootcamp
+    The R Bootcamp
   </a>
   <br>
   <a href='https://therbootcamp.github.io/ML_2020Apr/'>
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-      Machine Learning mit R | April 2020
+      Maschinelles Lernen mit R | April 2020
       </font>
     </a>
     </span>

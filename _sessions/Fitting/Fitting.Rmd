@@ -684,7 +684,7 @@ $$\small Spezifität = \frac{RN}{ RN + FP }$$
 .pull-left45[
 
 <ul style="margin-bottom:-20px">
-  <li class="m1"><span>Die Wahrheitsmatrix (<i>confusion matrix</i>) <high>enthält die Anzahl einer bestimmten Klasse zugeordneten Werte</high> als Funktion der tasächlichen Klasse.</span></li>
+  <li class="m1"><span>Die Wahrheitsmatrix (<i>confusion matrix</i>) <high>enthält die Anzahl einer bestimmten Klasse zugeordneter Werte</high> als Funktion der tasächlichen Klasse.</span></li>
   <li class="m2"><span>Anhand der Wahrheitsmatrix können unterschiedliche <high>statistische Gütekriterien</high> berechnet werden.</span></li>
 </ul>
 
@@ -807,7 +807,7 @@ data(cars)
     <mono>train()</mono>
   </td>
   <td>
-    Spezifiziere das Modell und finde die *besten* Parameterschätzwerte.
+    Spezifiziere das Modell und finde die <i>besten</i> Parameterschätzwerte.
   </td>
 </tr>
 <tr>
@@ -921,7 +921,7 @@ knitr::include_graphics("image/traincontrol_help.jpg")
     <mono>form</mono>
   </td>
   <td bgcolor="white">
-    Modellformel, zur Spezifikation der AV und Features.
+    Modellformel, zur Spezifikation von Kriterium und Features.
   </td>
 </tr>
 <tr>
@@ -1002,7 +1002,7 @@ eink_mod
     <mono>form</mono>
   </td>
   <td bgcolor="white">
-    Modellformel, zur Spezifikation der AV und Features.
+    Modellformel, zur Spezifikation von Kriterium und Features.
   </td>
 </tr>
 <tr>
@@ -1094,8 +1094,8 @@ eink_mod
   <li class="m1"><span>Das Kriterium muss die richtige Klasse haben:
   <br><br>
   <ul class="level">
-    <li><span><high><mono>numeric</mono></high> AV &rarr; <high>Regression</high><br></span></li>
-    <li><span><high><mono>factor</mono></high> AV &rarr; <high>Klassifkation</high><br></span></li>
+    <li><span><high><mono>numeric</mono></high> Kriterium &rarr; <high>Regression</high><br></span></li>
+    <li><span><high><mono>factor</mono></high> Kriterium &rarr; <high>Klassifkation</high><br></span></li>
   </ul>
   </span></li>
 </ul>
