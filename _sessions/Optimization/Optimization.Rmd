@@ -195,26 +195,15 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Overfitting tritt ein, wenn ein model die <high>Daten zu genau fitted</high> und deswegen <high>keine guten Vorhersagen</high> liefert</span></li><br>
-  <li class="m2"><span>Gute Performanz in Training bedeutet also nicht unbedingt <high>gute Performanz in Test</high>.</span></li>
+  <li class="m1"><span>Die meisten ML Modelle besitzen Tuning Parameter, die die  Modellkomplexität kontrollieren</span></li><br>
+  <li class="m2"><span>Um diese Tuning Parameter zu fitten wird ein <high>Validationsdatensatz</high> kreiert.</span></li>
+  <li class="m3"><spanVorgehen:</span></li>  
+  <ol>
+    <li><span>Fitte Modell mit verschiedenen Werten für die Tuning Parameter</span></li>
+    <li><span>Auf Basis des Validationsdatensatzes wähle die besten Tuning Parameter</span></li>
+    <li><span>Fitte Modell für gesamten Traningsdatensatz.</span></li>
+  </ol>
 </ul>
-
-All machine learning models are equipped with tuning parameters that <high> control model complexity<high>. 
-
-These tuning parameters can be identified using a <high>validation set</high> created from the traning data.
-
-<u>Logic</u>
-
-1 - Create separate test set. 
-
-2 - Fit model using various tuning parameters.
-
-3 - Select tuning leading to best prediction on
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;validation set.
-
-4 - Refit model to entire training set (training + 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;validation).
-
 
 ]
 
@@ -228,21 +217,23 @@ These tuning parameters can be identified using a <high>validation set</high> cr
 
 ---
 
-# Resampling methods
+# Resampling Methoden
 
 .pull-left4[
 
-Resampling methods automatize and generalize model tuning. 
+<ul>
+  <li class="m1"><span>Resampling-Methoden automatisieren und generalisieren das das Tuning der Modelle</span></li><br>
+</ul>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
   <col width="30%">
   <col width="70%">
 <tr>
   <td bgcolor="white">
-    <b>Method</b>
+    <b>Methode</b>
   </td>
   <td bgcolor="white">
-    <b>Description</b>
+    <b>Beschreibung</b>
   </td>  
 </tr>
 <tr>
@@ -250,7 +241,7 @@ Resampling methods automatize and generalize model tuning.
     <i>k-fold cross-validation</i>
   </td>
   <td bgcolor="white">
-    Splits the data in k-pieces, use <high>each piece once</high> as the validation set, while using the other one for training. 
+    Trennt die Daten in <i>k</i>-Teile, verwendet <high>jeden Teil einmal</high> als Validationset, während die restlichen Teile <i>k-1</i> als Trainingset dienen. 
   </td>  
 </tr>
 <tr>
@@ -258,7 +249,7 @@ Resampling methods automatize and generalize model tuning.
     <i>Bootstrap</i>
   </td>
   <td bgcolor="white">
-    For <i>B</i> bootstrap rounds <high>sample</high> from the data <high>with replacement</high> and split the data in training and validation set.  
+    Über <i>B</i> Bootstrap Runden ziehe <high>Zufallsstrichproben mit Zurücklegen</high> aus den Daten und trenne die Stichprobe in Training und Validation auf.
   </td>  
 </tr>
 </table>
@@ -274,21 +265,23 @@ Resampling methods automatize and generalize model tuning.
 
 ---
 
-# Resampling methods
+# Resampling Methoden
 
 .pull-left4[
 
-Resampling methods automatize and generalize model tuning. 
+<ul>
+  <li class="m1"><span>Resampling-Methoden automatisieren und generalisieren das das Tuning der Modelle</span></li><br>
+</ul>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
   <col width="30%">
   <col width="70%">
 <tr>
   <td bgcolor="white">
-    <b>Method</b>
+    <b>Methode</b>
   </td>
   <td bgcolor="white">
-    <b>Description</b>
+    <b>Beschreibung</b>
   </td>  
 </tr>
 <tr>
@@ -296,7 +289,7 @@ Resampling methods automatize and generalize model tuning.
     <i>k-fold cross-validation</i>
   </td>
   <td bgcolor="white">
-    Splits the data in k-pieces, use <high>each piece once</high> as the validation set, while using the other one for training. 
+    Trennt die Daten in <i>k</i>-Teile, verwendet <high>jeden Teil einmal</high> als Validationset, während die restlichen Teile <i>k-1</i> als Trainingset dienen. 
   </td>  
 </tr>
 <tr>
@@ -304,7 +297,7 @@ Resampling methods automatize and generalize model tuning.
     <i>Bootstrap</i>
   </td>
   <td bgcolor="white">
-    For <i>B</i> bootstrap rounds <high>sample</high> from the data <high>with replacement</high> and split the data in training and validation set.  
+    Über <i>B</i> Bootstrap Runden ziehe <high>Zufallsstrichproben mit Zurücklegen</high> aus den Daten und trenne die Stichprobe in Training und Validation auf.
   </td>  
 </tr>
 </table>
@@ -320,21 +313,23 @@ Resampling methods automatize and generalize model tuning.
 
 ---
 
-# Resampling methods
+# Resampling Methoden
 
 .pull-left4[
 
-Resampling methods automatize and generalize model tuning. 
+<ul>
+  <li class="m1"><span>Resampling-Methoden automatisieren und generalisieren das das Tuning der Modelle</span></li><br>
+</ul>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
   <col width="30%">
   <col width="70%">
 <tr>
   <td bgcolor="white">
-    <b>Method</b>
+    <b>Methode</b>
   </td>
   <td bgcolor="white">
-    <b>Description</b>
+    <b>Beschreibung</b>
   </td>  
 </tr>
 <tr>
@@ -342,7 +337,7 @@ Resampling methods automatize and generalize model tuning.
     <i>k-fold cross-validation</i>
   </td>
   <td bgcolor="white">
-    Splits the data in k-pieces, use <high>each piece once</high> as the validation set, while using the other one for training. 
+    Trennt die Daten in <i>k</i>-Teile, verwendet <high>jeden Teil einmal</high> als Validationset, während die restlichen Teile <i>k-1</i> als Trainingset dienen. 
   </td>  
 </tr>
 <tr>
@@ -350,7 +345,7 @@ Resampling methods automatize and generalize model tuning.
     <i>Bootstrap</i>
   </td>
   <td bgcolor="white">
-    For <i>B</i> bootstrap rounds <high>sample</high> from the data <high>with replacement</high> and split the data in training and validation set.  
+    Über <i>B</i> Bootstrap Runden ziehe <high>Zufallsstrichproben mit Zurücklegen</high> aus den Daten und trenne die Stichprobe in Training und Validation auf.
   </td>  
 </tr>
 </table>
@@ -381,7 +376,9 @@ class: center, middle
 
 .pull-left45[
 
-Penalizes regression loss for having large $\beta$ values using the <high>lambda &lambda; tuning parameter</high> and one of several penalty functions.
+<ul>
+  <li class="m1"><span>Bestraft proportional zum <high>Tuning parameter &lambda;</high> den Loss einer Regression für die Grösse der Modellparameter</span></li><br>
+</ul>
 
 $$Regularized \;loss = \sum_i^n (y_i-\hat{y}_i)^2+\lambda \sum_j^p f(\beta_j)) $$
 <table style="cellspacing:0; cellpadding:0; border:none;">
@@ -390,10 +387,10 @@ $$Regularized \;loss = \sum_i^n (y_i-\hat{y}_i)^2+\lambda \sum_j^p f(\beta_j)) $
     <b>Name</b>
   </td>
   <td bgcolor="white">
-    <b>Function</b>
+    <b>Funktion</b>
   </td> 
   <td bgcolor="white">
-    <b>Description</b>
+    <b>Strafe</b>
   </td> 
 </tr>
 <tr>
@@ -404,7 +401,7 @@ $$Regularized \;loss = \sum_i^n (y_i-\hat{y}_i)^2+\lambda \sum_j^p f(\beta_j)) $
     |&beta;<sub>j</sub>|
   </td> 
   <td bgcolor="white">
-    Penalize by the <high>absolute</high> regression weights.
+    Proportional zu den <high>absoluten</high> Regressionsgewichten.
   </td> 
 </tr>
 <tr>
@@ -415,7 +412,7 @@ $$Regularized \;loss = \sum_i^n (y_i-\hat{y}_i)^2+\lambda \sum_j^p f(\beta_j)) $
     &beta;<sub>j</sub><sup>2</sup>
   </td>  
   <td bgcolor="white">
-    Penalize by the <high>squared</high> regression weights.
+    Proportional zu den <high>quadrierten</high> Regressionsgewichten.
   </td> 
 </tr>
 <tr>
@@ -426,7 +423,7 @@ $$Regularized \;loss = \sum_i^n (y_i-\hat{y}_i)^2+\lambda \sum_j^p f(\beta_j)) $
     |&beta;<sub>j</sub>| + &beta;<sub>j</sub><sup>2</sup>
   </td> 
   <td bgcolor="white">
-    Penalize by Lasso and Ridge penalties.
+    Summe von Lasso und Ridge.
   </td> 
 </tr>
 </table>
