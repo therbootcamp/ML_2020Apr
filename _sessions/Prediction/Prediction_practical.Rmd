@@ -1,10 +1,10 @@
 ---
-title: "Prediction"
+title: "Predicting"
 author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
       <font style='font-style:normal'>Machine Learning with R</font><br>
-      <a href='https://therbootcamp.github.io/ML_2019Oct/'>
+      <a href='https://therbootcamp.github.io/ML_2020Apr/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
       <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0
         <i class='fab fa-linkedin' style='font-size: .9em;'></i>
       </a>
       <a href='https://therbootcamp.github.io'>
-        <font style='font-style:normal'>Basel R Bootcamp</font>
+        <font style='font-style:normal'>The R Bootcamp</font>
       </a>
     </td>
     <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
@@ -50,14 +50,58 @@ options(digits = 3)
 
 # {.tabset}
 
-## Overview
 
-By the end of this practical you will know how to:
+## Überblick
 
-1. Fit regression, decision trees and random forests to training data.
-2. Evaluate model fitting *and* prediction performance in a test set.
-3. Compare the fitting and prediction performance of two models.
-4. Explore the effects of features on model predictions.
+In diesem Practical wirst die modellbasierte Vorhersagen generieren und die Modelle anhand der Qualität dieser messen. 
+
+Am Ende des Practicals wirst du wissen wie man...
+
+1. Regression, Decision tree, und Random forest an Trainingsdaten fitted. 
+2. Modelle anhand der Traningsdaten und anhand der Testdaten evaluiert und vergleicht.
+
+## Aufgaben
+
+### A - Setup
+
+1. Öffne dein `TheRBootcamp` R project. Es sollte die Ordner `1_Data` und `2_Code` enthalten. Stelle sicher, dass du alle Datensätze, welche im `Datensätze` Tab aufgelisted sind, in deinem `1_Data` Ordner hast. 
+
+2. Öffne ein neues R Skript. Schreibe deinen Namen, das Datum und "Predicting Practical" als Kommentare an den Anfang des Skripts.
+
+```{r, eval = FALSE, echo = TRUE}
+## NAME
+## DATUM
+## Predicting Practical
+```
+
+3. Speichere das neue Skript unter dem Namen `predicting_practical.R` im `2_Code` Ordner.
+
+4. Lade die Pakete `tidyverse`, `caret`, `party`, `partykit`.
+
+### B - Lade den `graduation` Datensatz
+
+1. Verwende die `read_csv()` Funktion um den Datensatz `gap.csv` als Objekt `gap` einzulesen.
+
+```{r, echo = T, eval = T, message = F}
+# Lese gap.csv
+gap <- read_csv('1_Data/gap.csv')
+```
+
+2. Printe den Datensatz. 
+
+3. Verwende `summary()` um einen weiteren Überblick über die Daten zu bekommen.
+
+4. Verwende den Code unten um einen neuen Datensatz mit ausschliesslich den Daten aus dem Jahr 2007 und den beiden Variablen `Lebenserwartung` und `BIP pro Kopf` zu erstellen.
+
+```{r, echo = T, eval = T, message = F}
+# gap in 2007
+gap2007 <- gap %>% 
+  filter(Jahr == 2007) %>% 
+  select(`BIP pro Kopf`, Lebenserwartung)
+```
+
+
+
 
 ## Tasks
 
@@ -153,7 +197,7 @@ college_test <- college_test %>%
 
 ### B - Fitting
 
-Your goal in this set of tasks is again to fit models predicting `Grad.Rate`, the percentage of attendees who graduate from each college.
+Your goal in this set of tasks is again to fit models predicting `Abschlussrate`, the percentage of attendees who graduate from each college.
 
 1. Using `trainControl()`, set your training control method to `"none"`. Save your object as `ctrl_none`.
 
@@ -1365,6 +1409,26 @@ house_test <- read_csv("../../1_Data/house_test.csv")
 
 | Name | Description |
 |:-------------|:-------------------------------------|
+|Privatuniversitaet| Ja oder Nein |
+|Bewerbungen| Anzahl Bewerbungen |
+|Angenommen| Anzahl angenommene Bewerbungen  |
+|Eingeschrieben| Anzahl eingeschrieben  |
+|Prozent_Top10| Prozent der Studierenden innerhalb Top 10% in High School |
+|Prozent_Top25| Prozent der Studierenden innerhalb Top 25% in High School   |
+|Vollzeit| Anzahl Studierende in Vollzeit  |
+|Teilzeit| Anzahl Studierende in Teilzeit  |
+|Kosten_ausserhalb| Kosten für Studierende aus einem anderen Staat |
+|Kosten_Unterkunft| Kosten für Studierende für Unterkunft und Verpflegung  |
+|Kosten_Buecher| Kosten für Studierende für Bücher  |
+|Kosten_persoenlich| Kosten für Studierende für Persönliches  |
+|Prozent_PhD| Anteil PhDs innerhalb der Dozentenschaft |
+|Prozent_Degree| Anteil Abschlüsse innerhalb der Dozentenschaft |
+|Verhaeltnis_Stud.Doz.| Verhältnis Studierene zu Dozenten  |
+|Prozent_Spenden| Anteil Alumnis, die an das College spenden |
+|Kosten_Student| Ausbildungskosten für das College pro Student |
+|Abschlussrate| Abschlussrate |
+
+
 | `Private` | A factor with levels No and Yes indicating private or public university. |
 | `Apps` | Number of applications received.  |
 | `Accept` | Number of applications accepted. |
