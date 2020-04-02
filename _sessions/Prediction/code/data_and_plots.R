@@ -69,7 +69,7 @@ house_test = read_csv('_sessions/Prediction/1_Data/house_test_eng.csv')
 
 cat(paste0('  = ',names(house_train),',\n'),sep='')
 
-house_train = house_train = rename(
+house_train = house_train %>%  rename(
   Preis  = price,
   Schlafzimmer  = bedrooms,
   Baeder  = bathrooms,
@@ -86,13 +86,13 @@ house_train = house_train = rename(
   Renovationsjahr  = yr_renovated,
   Postleitzahl  = zipcode,
   Breitengrad  = lat,
-  Längengrad  = long,
+  Laengengrad  = long,
   Gesamt_sqft_2015  = sqft_living15,
   Grundstück_sqft_2015  = sqft_lot15
   )
 
 
-house_test = house_test = rename(
+house_test = house_test %>%  rename(
   Preis  = price,
   Schlafzimmer  = bedrooms,
   Baeder  = bathrooms,
@@ -109,7 +109,7 @@ house_test = house_test = rename(
   Renovationsjahr  = yr_renovated,
   Postleitzahl  = zipcode,
   Breitengrad  = lat,
-  Längengrad  = long,
+  Laengengrad  = long,
   Gesamt_sqft_2015  = sqft_living15,
   Grundstück_sqft_2015  = sqft_lot15
 )
@@ -118,4 +118,4 @@ write_csv(house_train, '_sessions/Prediction/1_Data/house_train.csv')
 write_csv(house_test, '_sessions/Prediction/1_Data/house_test.csv')
 
 
-
+cat(paste0('|',names(house_train),'|  |\n'),sep='')
