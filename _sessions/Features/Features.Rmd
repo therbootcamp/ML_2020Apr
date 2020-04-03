@@ -124,20 +124,20 @@ library(ggthemes)
 # Feature Probleme
 
 <ul>
-  <li class="m1"><span><b>Zu viele Feature</b></span></li>
+  <li class="m1"><span><b>Zu viele Features</b></span></li>
   <ul class="level">
     <li><span>Fluch der <high>Dimensionalität</high></span></li>
     <li><span>Feature <high>Wichtigkeit</high></span></li>
   </ul><br>
-  <li class="m2"><span><b>Falsche Feature</b>
+  <li class="m2"><span><b>Falsche Features</b>
   <ul class="level">
-    <li><span><high>Skalierung</high> der Feature</span></li>
-    <li><span><high>Korrelation</high> der Feature</span></li>
-    <li><span><high>Qualität</high> der Feature</span></li>
+    <li><span><high>Skalierung</high> der Features</span></li>
+    <li><span><high>Korrelation</high> der Features</span></li>
+    <li><span><high>Qualität</high> der Features</span></li>
   </ul>
   <li class="m3"><span><b>Neue Features kreieren</b>
   <ul class="level">
-    <li><span><high>"Engineerig"</high> der Feature</span></li>
+    <li><span><high>"Engineerig"</high> der Features</span></li>
   </ul>
   </span></li>
 </ul>
@@ -164,15 +164,15 @@ library(ggthemes)
 <ul>
   <li class="m1"><span><b>Dichte</b></span></li>
   <ul class="level">
-    <li><span>Die Menge der Fälle, die notwendig sind um den <high>Datenraum abzudecken</high> steigt exponentiell mit der Menge der Feature.</span></li>
+    <li><span>Die Menge der Fälle, die notwendig sind um den <high>Datenraum abzudecken</high> steigt exponentiell mit der Menge der Features.</span></li>
   </ul><br>
   <li class="m2"><span><b>Redundanz</b></span></li>
   <ul class="level">
-    <li><span>Redundanz zwischen den Featuren steigt i.a.R. mit der Anzahl der Feature, was zu <high>Unsicherheiten</high> in der Schätzung führt.der Feature</span></li>
+    <li><span>Redundanz zwischen den Features steigt i.a.R. mit der Anzahl der Features, was zu <high>Unsicherheiten</high> in der Schätzung führt.</span></li>
   </ul><br>
   <li class="m3"><span><b>Effizienz</b></span></li>
   <ul class="level">
-    <li><span>Mit der Menge der Feature steigt i.a.R die Anzahl der <high>Parameter</high> und damit auch i.a.R die benötigten die <high>komputationalen Ressourcen</high>.</span></li>
+    <li><span>Mit der Menge der Feature steigt i.a.R die Anzahl der <high>Parameter</high> und damit auch i.a.R die benötigten <high>komputationalen Ressourcen</high>.</span></li>
   </ul>
   </span></li>
 </ul>
@@ -201,15 +201,15 @@ library(ggthemes)
 <ul>
   <li class="m1"><span><b>Manuelle Selektion</b></span></li>
   <ul class="level">
-    <li><span>Feature können auf manuell auf Basis <high>statistischer oder theoretischer Gesichtspunkte</high> ausgewählt werden.</span></li>
+    <li><span>Features können manuell auf Basis <high>statistischer oder theoretischer Gesichtspunkte</high> ausgewählt werden.</span></li>
   </ul><br>
   <li class="m2"><span><b>Automatische Selektion</b></span></li>
   <ul class="level">
-    <li><span>Verwende <high>Modelle</high> die automatisch Feature selegieren, z.B., Lasso Regression, oder Algorithmen für Featureselektion</span></li>
+    <li><span>Verwende <high>Modelle</high> die automatisch Features selegieren, z.B., Lasso Regression, oder Algorithmen für Featureselektion</span></li>
   </ul><br>
   <li class="m3"><span><b>Automatische Reduktion</b></span></li>
   <ul class="level">
-    <li><span><high>Komprimiere die Dimensionalität</high> mir Methoden der Dimensionsreduktion, z.B. mit Principal Component Analysis (PCA)..</span></li>
+    <li><span><high>Komprimiere die Dimensionalität</high> mit Methoden der Dimensionsreduktion, z.B. mit Principal Component Analysis (PCA).</span></li>
   </ul>
   </span></li>
 </ul>
@@ -300,12 +300,12 @@ plot(varImp(einkommen_lm),col='#EA4B68',cex=1.3,scales = list(cex=1.3,lineheight
 # `rfe()`
 
 <ul>
-  <li class="m1"><span>Die rekursive Featureselektion <mono>rfe()</mono> verwendet <high>Cross-Validation</high> um die besten <i>n</i> Feature zu identifizieren.</span></li>
+  <li class="m1"><span>Die rekursive Featureselektion <mono>rfe()</mono> verwendet <high>Cross-Validation</high> um die besten <i>n</i> Features zu identifizieren.</span></li>
   <li class="m2"><span><b>Algorithmus</b></span></li>
   <ol>
     <li><span><high>Kandidatenset</high> <mono>n = [2, 3, 5, 10]</mono>.</span></li>
     <li><span>Wiederholtes <high>Resampling</high> und Aufteilen der Daten.</span></li>
-    <li><span>Evaluiere <high>Vorhersageleistung</high> für jeweils die besten <mono>n</mono> Feature.</span></li>
+    <li><span>Evaluiere <high>Vorhersageleistung</high> für jeweils die besten <mono>n</mono> Features.</span></li>
     <li><span>Selegiere bestes <mono>n</mono> auf Basis der <high>aggregierten Vorhersageleistung</high>.</span></li>
   </ol>
 </ul>
@@ -344,8 +344,8 @@ print2(out, 20)
 
 <ul>
   <li class="m1"><span>Das <high>Standardmodell</high> für Dimensionsreduktion.</span></li><br>
-  <li class="m2"><span>Verwendet ein lineares (Regression) um die Feature in einem <high>neuen, kleineren Featureraum</high> zu re-representieren.</span></li><br>
-  <li class="m3"><span>Der neue Featureraum wird so gewählt, dass er die <high>maximal mögliche Varianz</high> an den ursprünglichen Featuren präserviert.</span></li>
+  <li class="m2"><span>Verwendet ein lineares Modell (Regression) um die Features in einem <high>neuen, kleineren Featureraum</high> zu re-repräsentieren.</span></li><br>
+  <li class="m3"><span>Der neue Featureraum wird so gewählt, dass er die <high>maximal mögliche Varianz</high> an den ursprünglichen Features präserviert.</span></li>
 </ul>
 
 ]
@@ -390,7 +390,7 @@ plot(varImp(model, scale=F),col='#EA4B68',cex=1.3,scales = list(cex=1.3,lineheig
 .pull-right45[
 
 ```{r fig.height=5.1, fig.width=8, eval = F}
-# train model WITH PCA preprocessing
+# Trainiere Modell MIT PCA
 model = train(einkommen ~ ., method = 'lm', 
               data = bas_train,
               preProc = c('pca'))
@@ -398,7 +398,7 @@ plot(varImp(model))
 ```
 
 ```{r fig.height=5.1, fig.width=8, echo = F}
-# train model WITH PCA preprocessing
+# Trainiere Modell MIT PCA
 model = train(einkommen ~ . -id, method = 'lm', 
               data = bas_train,
               preProc = c('pca'),
@@ -417,14 +417,14 @@ plot(varImp(model, scale=F),col='#EA4B68',cex=1.3,scales = list(cex=1.3,lineheig
 ### Multikollinearität
 
 <ul>
-  <li class="m1"><span>Multikollinearität bedeutet, dass Feature zu stark korreliert sind, was in schädlicher Redundanz, <high>instabile Fits resultiert</high>, und <high>schlechtere Vorhersagen führt</high>.</span></li>
+  <li class="m1"><span>Multikollinearität bedeutet, dass Features zu stark korreliert sind, was in schädlicher Redundanz, <high>instabilen Fits resultiert</high>, und zu <high>schlechteren Vorhersagen führt</high>.</span></li>
 </ul>
 
 ```{r}
-# Identifiziere redundante Feature
+# Identifiziere redundante Features
 findCorrelation(cor(basel))
 
-# Entferene redundante Feature
+# Entferne redundante Features
 remove <- findCorrelation(cor(basel))
 basel <- basel %>%
   select(-remove)
@@ -442,12 +442,12 @@ basel <- basel %>%
 </ul>
 
 ```{r, eval = F}
-# Standardisiere Feature
+# Standardisiere Features
 train(..., preProc("center", "scale"))
 ```
 
 <ul>
-  <li class="m3"><span>Feature ohne "Varianz" tragen nicht zur Vorhersage bei, aber <high>vergrössern die Komplexität des Modells.</span></li>
+  <li class="m3"><span>Features ohne "Varianz" tragen nicht zur Vorhersage bei, aber <high>vergrössern die Komplexität des Modells.</span></li>
 </ul>
 
 ```{r}
@@ -466,13 +466,13 @@ nearZeroVar(basel)
 .pull-left35[
 
 <ul>
-  <li class="m1"><span><b>Triviale Feature</b></span></li>
+  <li class="m1"><span><b>Triviale Features</b></span></li>
   <ul>
     <li><span>Erfolgreiche Vorhersage bedeutet nicht, dass ein <high>bedeutsames Muster</high> identifiziert wurde</span></li>
   </ul><br>
-  <li class="m2"><span><b>Fehlende Feature</b></span></li>
+  <li class="m2"><span><b>Fehlende Features</b></span></li>
   <ul>
-    <li><span>Erfolgreiche Vorhersage basiert i.d.R. auf der Entwicklung <high>neuer, relvanterer Feature</high>.</span></li><br>
+    <li><span>Erfolgreiche Vorhersage basiert i.d.R. auf der Entwicklung <high>neuer, relvanterer Features</high>.</span></li><br>
   </ul>
 </ul>
 
@@ -492,7 +492,7 @@ nearZeroVar(basel)
 
 ---
 
-# Trivial features
+# Triviale Features
 
 .pull-left3[
 
@@ -519,7 +519,7 @@ New York Times <a href="https://www.nytimes.com/2017/10/09/science/stanford-sexu
 
 ---
 
-# Trivial features
+# Triviale Features
 
 In 2012 sagte [Nate Silver](https://en.wikipedia.org/wiki/Nate_Silver) die Ausgänge der Präsidentschaftswahlen in 50 Staaten voraus, nachdem er dies für 49 Staaten in 2008 getan hat. <high>Wie ist dieser Erfolg zu bewerten?</high>
 
@@ -545,7 +545,7 @@ In 2012 sagte [Nate Silver](https://en.wikipedia.org/wiki/Nate_Silver) die Ausg�
 
 ---
 
-# (Immer!) fehlen Feature
+# (Immer!) fehlende Features
 
 
 .pull-left85[
@@ -570,7 +570,7 @@ In 2012 sagte [Nate Silver](https://en.wikipedia.org/wiki/Nate_Silver) die Ausg�
 
 ---
 
-# Feature engineering
+# Feature Engineering
 
 .pull-left45[
 
@@ -602,5 +602,5 @@ In 2012 sagte [Nate Silver](https://en.wikipedia.org/wiki/Nate_Silver) die Ausg�
 
 class: middle, center
 
-<h1><a href="https://therbootcamp.github.io/ML_2019Oct/_sessions/Features/Features_practical.html">Practical</a></h1>
+<h1><a href="https://therbootcamp.github.io/ML_2020Apr/_sessions/Features/Features_practical.html">Practical</a></h1>
 
