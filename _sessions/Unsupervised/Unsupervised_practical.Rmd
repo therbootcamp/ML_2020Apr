@@ -3,7 +3,7 @@ title: "Clustering"
 author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
-      <font style='font-style:normal'>Maschinelles lernen mit R</font><br>
+      <font style='font-style:normal'>Maschinelles Lernen mit R</font><br>
       <a href='https://therbootcamp.github.io/ML_2020Apr/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
@@ -48,6 +48,9 @@ set.seed(100)
 ```{r, message = FALSE, eval = TRUE, echo = FALSE}
 # Load datasets locally
 library(tidyverse)
+library(cstab)
+library(dbscan)
+library(mclust)
 gap = gapminder::gapminder %>% filter(country != 'Kuwait')
 
 ```
@@ -131,7 +134,7 @@ gap2007_km
 
 3. Die erste Zeile und die Tabelle Cluster means geben Aufschluss darüber, welche Cluster das Modell identifiziert hat. 
 
-4. Ganz unten im Output steht eine Liste der im Objekt enthaltenen Elemente. Verwende `gap2007_km$XX` um das Element `cluster` als eigenes Objekt `clusers` und das Element `centers` als eigenes Objekt `centers` zu speichern. 
+4. Ganz unten im Output steht eine Liste der im Objekt enthaltenen Elemente. Verwende `gap2007_km$XX` um das Element `cluster` als eigenes Objekt `clusters` und das Element `centers` als eigenes Objekt `centers` zu speichern. 
 
 ```{r}
 # gap2007_km 
@@ -139,11 +142,12 @@ clusters <- gap2007_km$cluster
 centers <- gap2007_km$centers
 ```
 
-5. Verwende den Code unten eine Abbildung mit der Daten mit Clusterzuweisungen zu erstellen. Wenn ihr damit vertraut seit, dürft ihr natürlich auch das wesentlich `ggplot2` benutzen.
+5. Verwende den Code unten um eine Abbildung mit den Daten mit Clusterzuweisungen zu erstellen. Wenn ihr damit vertraut seit, dürft ihr dafür natürlich auch `ggplot2` benutzen.
 
 ```{r, echo = T}
 # kmeans plot für gap in 2007
 plot(gap2007, col = clusters)
+
 ```
 
 6. Mit dem Code unten ergänze nun die Zentroide der Cluster.
@@ -199,7 +203,7 @@ plot(binnenvarianz)
 
 3. Was sagt euch der Plot? Gibt es Ellbogen im Verlauf, die bestimmte Werte für *k* nahelegen?
 
-4. Auf Basis des Verlaufs erscheinen verschiedene werte für *k* plausibel: 1, 3, oder 7. Verwendet die `cDistance()` Funktion aus dem `cstab` Paket im Code unten um Schätzungen für *k* innerhalb der Werte `2:20` auf Basis der Gap- und Slope-Statistik zu erhalten. 
+4. Auf Basis des Verlaufs erscheinen verschiedene Werte für *k* plausibel: 1, 3, oder 7. Verwende die `cDistance()` Funktion aus dem `cstab` Paket im Code unten um Schätzungen für *k* innerhalb der Werte `2:20` auf Basis der Gap- und Slope-Statistik zu erhalten. 
 
 ```{r, echo = T, eval = F}
 # schätze k mit cstab
@@ -230,11 +234,11 @@ k_est <- cStability(data = as.matrix(gap2007_stand),
 k_est$k_instab
 ```
 
-Notiz: Erinnere dich, es gibt kein richtiges *k*. Aus diesem Grund ist in Fällen, in denen die Clusterlösung visuell inspiziert werden kann, das Augenmass der etablierte Goldstandard. Bei mehr als zwei Featuren wird dies natürlich zunehmend schwieriger, so dass einem nichts übrig bleibt als sich auf komputationale Verfahren zu stützen. 
+Notiz: Erinnere dich, es gibt kein richtiges *k*. Aus diesem Grund ist in Fällen, in denen die Clusterlösung visuell inspiziert werden kann, das Augenmass der etablierte Goldstandard. Bei mehr als zwei Features wird dies natürlich zunehmend schwieriger, sodass einem nichts anderes übrig bleibt als sich auf komputationale Verfahren zu stützen. 
 
 ### E - DBSCAN
 
-1. Verwende `dbscan()` aus dem `dbscan` Paket um die Daten erneut zu clustern. Hier ist es erneut essentiell, die standardisierten Daten `gap2007_stand` zu verwenden, da ansonsten der `eps` Parameter effektiv keinen Kreis, sondern eine sehr, sehr flache Ellipse beschreibt. Nur wenn alle Feature die selbe Skala haben, bedeutet `eps` eine Distanz der gleichen Grösse für alle Feature. Setzt `eps` auf `.5`. 
+1. Verwende `dbscan()` aus dem `dbscan` Paket um die Daten erneut zu clustern. Hier ist es erneut essentiell, die standardisierten Daten `gap2007_stand` zu verwenden, da ansonsten der `eps` Parameter effektiv keinen Kreis, sondern eine sehr, sehr flache Ellipse beschreibt. Nur wenn alle Features die selbe Skala haben, bedeutet `eps` eine Distanz der gleichen Grösse für alle Feature. Setze `eps` auf `.5`. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # clustere mit DBSCAN
@@ -288,7 +292,7 @@ plot(gap2007_stand, col = gap2007_stand_dbscan.1$cluster + 1)
 
 ### F - Gaussian Mixtures
 
-1. Zum Abschluss, verwende `Mclust()` aus dem `mclust` Paket um über Gaussian Mixture Modell die Cluster zu bestimmen. Arbeite hier mit dem nicht-standardisierten Datensatz `gap2007`. Dies  ist möglich, weil Gaussian Mixtures die Skalen der Variablen automatisch berücksichtigt. 
+1. Zum Abschluss, verwende `Mclust()` aus dem `mclust` Paket um über Gaussian Mixture Modelle die Cluster zu bestimmen. Arbeite hier mit dem nicht-standardisierten Datensatz `gap2007`. Dies ist möglich, weil Gaussian Mixtures die Skalen der Variablen automatisch berücksichtigt. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # clustere mit Gaussian mixtures
@@ -296,34 +300,40 @@ gap2007_gm <- Mclust(XX)
 ```
 
 ```{r, error=TRUE}
-# clustere mit DBSCAN
+# clustere mit Gaussian mixtures
 gap2007_gm <- Mclust(gap2007)
 ```
 
 2. Printe das Objekt `gap2007_gm` um es zu inspizieren.
 
-3. Der Output verrät relativ wenig, nur welche Elemente enthalten sind. Verwendet `table(gap2007_gm$classification)` um einen Überblick über die Clusterzuweisungen zu erhalten. Wie viele Cluster wurden identifiziert?    
+3. Der Output verrät relativ wenig, nur welche Elemente enthalten sind. Verwende `table(gap2007_gm$classification)` um einen Überblick über die Clusterzuweisungen zu erhalten. Wie viele Cluster wurden identifiziert?    
 
-4. Verwendet das `classification` Element um wie üblich die Daten mit den Clusterzuweisungen zu plotten. 
+4. Verwende das `classification` Element um wie üblich die Daten mit den Clusterzuweisungen zu plotten. 
 
 ```{r}
 # plot
 plot(gap2007_stand, col = gap2007_gm$classification)
 ```
 
-5. Führt nun alternativ `plot(gap2007_gm, what = 'classification')` aus, um den eigenen Plot des `mclust` Pakets zu sehen. 
+5. Führe nun alternativ `plot(gap2007_gm, what = 'classification')` aus, um den eigenen Plot des `mclust` Pakets zu sehen. 
 
 ```{r}
 # plot
 plot(gap2007_gm, what = 'classification')
 ```
 
-6. Versucht nachzuvollziehen was der `mclust` Plot euch zeigt. Erinnere dich, die Ellupsen sind Normalverteilungen, die jeweils eigene Skalen und Feature-Zusammenhänge berücksichtigen können.  
+6. Versuche nachzuvollziehen was der `mclust` Plot euch zeigt. Erinnere dich, die Ellipsen sind Normalverteilungen, die jeweils eigene Skalen und Feature-Zusammenhänge berücksichtigen können.  
 
-7. Eine interessante Eigenschaft von Gaussian Mixtures ist, dass man direkt die Unsicherheit der Clusterzuweisung evaluieren kann. Führt `plot(gap2007_gm, what = 'uncertainty')` aus. Die Grösse der Punkte zeigen an, wie gross die Unsicherheit (oder Rivalität) in der Zuweisung der Punkte zu den Clustern war. 
+7. Eine interessante Eigenschaft von Gaussian Mixtures ist, dass man direkt die Unsicherheit der Clusterzuweisung evaluieren kann. Führe `plot(gap2007_gm, what = 'uncertainty')` aus. Die Grössen der Punkte zeigen an, wie gross die Unsicherheit (oder Rivalität) in der Zuweisung der Punkte zu den Clustern war. 
+
+```{r}
+# plot
+plot(gap2007_gm, what = 'uncertainty')
+```
+
 ### X - Challenges: Modellselektion Gaussian mixtures
 
-1. : Eine nützliche Eigenschaft der `Mclust()` Funktion ist, dass parallel verschieden komplexe Varianten des Modells mit verschiedenem *k* geschätzt werden und dass am Ende nicht nur das beste *k* ausgewählt wird, sondern die beste Kombination von *k* und Modell. Ihr erhalten einen Überblick über den Prozess mit `plot(gap2007_gm, what = 'BIC')`.
+1. Eine nützliche Eigenschaft der `Mclust()` Funktion ist, dass parallel verschieden komplexe Varianten des Modells mit verschiedenem *k* geschätzt werden und dass am Ende nicht nur das beste *k* ausgewählt wird, sondern die beste Kombination von *k* und Modell. Du erhälst einen Überblick über den Prozess mit `plot(gap2007_gm, what = 'BIC')`.
 
 ```{r}
 # plot
@@ -336,10 +346,15 @@ BIC ist das sogenannte Bayesian Information Criterion und dient der Auswahl eine
 
 ```{r}
 # plot
-plot(gap2007_gm, what = 'BIC')
+plot(gap2007_gm, what = 'BIC', ylim = c(-4200, -3900))
 ```
 
 3. Lasse dir mit `?mclustModelNames` die Erläuterung zu den Modellbezeichnungen anzeigen. Dort findest zu heraus, dass das Modell annimmt, dass das Volumen der einzelnen Cluster (hier die Fläche der Ellipsoide) gleich ist. Dies lässt sich auch in `plot(gap2007_gm, what = 'classification')` erkennen.  
+
+```{r}
+plot(gap2007_gm, what = 'classification')
+```
+
 
 4. Verwende nun den Code unten um explizit nur bestimmte Gaussian Mixture Modelle zu verwenden. Verwende hierzu `modelNames = 'XX'` wobei 'XX' das Kürzel des jeweiligen Modells ist. Plotte im Anschluss die gefunden Lösungen. Probiere zunächst `EEI` aus. Danach spiele ein wenig herum.
 
@@ -361,7 +376,7 @@ plot(gap2007_gm, what = 'classification')
 1. Verwende die `read_csv()` Funktion um den Datensatz `credit.csv` als Objekt `credit` einzulesen.
 
 ```{r, echo = T, eval = T, message = F}
-# Lese gap.csv
+# Lese credit.csv
 credit <- read_csv('1_Data/credit.csv')
 ```
 
@@ -474,7 +489,7 @@ Der `gap` Datensatz basiert auf dem [Gapminder](https://www.gapminder.org/) Proj
 
 #### credit.csv
 
-Der `credit` Datensatz ist ein Ausschnitt des Öffentlich verfügbaren [*Credit Card Dataset*](https://www.kaggle.com/arjunbhasin2013/ccdata). Der Datensatz beinhaltet die 8 Feature, die einen Auschnitt des Verhaltens von 8636 Kreditkartenkunden beschreiben.  
+Der `credit` Datensatz ist ein Ausschnitt des Öffentlich verfügbaren [*Credit Card Dataset*](https://www.kaggle.com/arjunbhasin2013/ccdata). Der Datensatz beinhaltet 8 Features, die einen Auschnitt des Verhaltens von 8636 Kreditkartenkunden beschreiben.  
 
 |Variable | Beschreibung |
 |:-------------|:-------------------------------------|
@@ -506,7 +521,7 @@ Der `credit` Datensatz ist ein Ausschnitt des Öffentlich verfügbaren [*Credit 
 
 *Clustering*
 
-| Function| Package | Description |
+| Funktion| Paket | Beschreibung |
 |:---|:------|:---------------------------------------------|
 | `kmeans()`|`stats`| Clustere die Daten mit *k*-means | 
 | `dbscan()`|`dbscan`| Clustere die Daten mit DBSCAN | 
@@ -514,13 +529,13 @@ Der `credit` Datensatz ist ein Ausschnitt des Öffentlich verfügbaren [*Credit 
 
 *k-selection*
 
-| Function| Package | Description |
+| Funktion| Paket | Beschreibung |
 |:---|:------|:---------------------------------------------|
 | `cDistance()`|`cstab`| Identifiziere *k* mit distanzbasierten Methoden, z.B., der Gap Statistik.  | 
 | `cStability()`|`cstab`| Identifiziere *k* mit stabilitätsbasierten Methoden. | 
 
 
-## Resourcen
+## Materialien
 
 ### Dokumentation
 
