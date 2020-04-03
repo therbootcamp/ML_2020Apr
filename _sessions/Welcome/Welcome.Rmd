@@ -2,7 +2,7 @@
 title: "Willkommen"
 author: "Maschinelles Lernen mit R<br>
   <a href='https://therbootcamp.github.io'>
-    Basel R Bootcamp
+    The R Bootcamp
   </a>
   <br>
   <a href='https://therbootcamp.github.io/ML_2020Apr/'>
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-      Machine Learning mit R | April 2020
+      Maschinelles Lernen mit R | April 2020
       </font>
     </a>
     </span>
@@ -121,9 +121,9 @@ Klicke auf <high>"....running..."</high> auf unserer Website!
   </ul><br>
   <li class="m2"><span><high>Block</high>
   <ul class="level">
-    <li><span>Folien-basierten Einführung</span></li>
+    <li><span>Folien-basierte Einführung</span></li>
     <li><span>Viele Übungen</span></li>
-    <li><span>Interaktiven Zusammenfassung</span></li>
+    <li><span>Interaktive Zusammenfassung</span></li>
   </ul>
   </span></li>
 </ul>
@@ -156,7 +156,7 @@ Klicke auf <high>"....running..."</high> auf unserer Website!
   <li class="m2"><span><high>Materialien</high>
   <br><br>
   <ul class="level">
-    <li><span>Immer <a href="https://therbootcamp.github.io/EDA_2020Feb/">online verfügbar</a></span></li>
+    <li><span>Immer <a href="https://therbootcamp.github.io/ML_2020Apr/">online verfügbar</a></span></li>
   </ul>
   </span></li>
 </ul>
@@ -203,7 +203,7 @@ Klicke auf <high>"....running..."</high> auf unserer Website!
 
   <iframe src="https://therbootcamp.github.io/ML_2020Apr/_sessions/Fitting/Fitting_practical.html" height="480px" width = "500px"></iframe>
 
-  Beispiel:<a href="https://therbootcamp.github.io/ML_2020Apr/_sessions/Fitting/Fitting_practical.html"> Daten </a>
+  Beispiel:<a href="https://therbootcamp.github.io/ML_2020Apr/_sessions/Fitting/Fitting_practical.html"> Fitting </a>
 
 ]
 
