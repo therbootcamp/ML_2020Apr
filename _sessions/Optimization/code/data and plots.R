@@ -28,7 +28,7 @@ Gehalt  = Salary,
 Liga87  = NewLeague) %>% 
   select(Gehalt, contains("86"), everything())
 
-baseball_test = hitters_train %>% rename(
+baseball_test = hitters_test %>% rename(
   Schlaeger86 = AtBat,
   Getroffen86  = Hits,
   Home_runs86  = HmRun,

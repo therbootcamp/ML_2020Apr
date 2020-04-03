@@ -27,7 +27,7 @@ baseball_glmnet <- train(form = Gehalt ~ .,
                       )
 baseball_glmnet$bestTune
 plot(baseball_glmnet)
-
+  
 
 
 # findCorrelation(cor(baseball_train %>% select_if(is.numeric)))

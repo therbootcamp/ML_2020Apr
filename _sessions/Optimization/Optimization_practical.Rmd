@@ -63,7 +63,6 @@ baseball_test <- read_csv("1_Data/baseball_test.csv")
 # {.tabset}
 
 
-
 ## Überblick
 
 In diesem Practical wirst du optimale Tuning Parameter identifizieren für bestmögliche Vorhersageperformanz. 
@@ -707,7 +706,7 @@ Die `house_train` und `house_test` Datensätze enthalten Hauspreise und -Eigensc
 
 ### Funktionen
 
-| Function| Paket | Beschreibung |
+| Funktion| Paket | Beschreibung |
 |:---|:------|:---------------------------------------------|
 | `trainControl()`|`caret`|   Definiere wie das Modell trainiert wird | 
 | `train()`|`caret`|  Trainiere (fitte) ein Modell   |
