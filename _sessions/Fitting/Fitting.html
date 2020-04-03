@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
     <title>Fitting</title>
     <meta charset="utf-8" />
@@ -96,7 +96,7 @@ layout: true
 
 &lt;ul&gt;
 &lt;li class="m1"&gt;&lt;span&gt;Eines &lt;high&gt;zentrales Konzepte&lt;/high&gt; in der Statistik und im maschinellen Lernen.&lt;/span&gt;&lt;/li&gt;
-&lt;li class="m2"&gt;&lt;span&gt;Die Loss function ist eine &lt;high&gt;Zusammenfassung der durch ein Modell begangenen Fehler&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;li class="m2"&gt;&lt;span&gt;Die Loss Funktion ist eine &lt;high&gt;Zusammenfassung der durch ein Modell begangenen Fehler&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p style="padding-top:7px"&gt;
 
@@ -422,7 +422,7 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 &lt;ul style="margin-bottom:-20px"&gt;
   &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Distanz&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;ul class="level"&gt;
-  &lt;li&gt;&lt;span&gt;LogLoss dient i.A.R. &lt;high&gt;zum Fitten von Parametern&lt;/high&gt;, verwendet, und wie MSE und MAE auch zur Evaluation.&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;span&gt;LogLoss wird i.A.R. &lt;high&gt;zum Fitten von Parametern&lt;/high&gt;, verwendet, und wie MSE und MAE auch zur Evaluation.&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/ul&gt;
 
@@ -509,7 +509,7 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 
 &lt;b&gt;Genauigkeit&lt;/b&gt;: Prozentsatz richtiger Vorhersagen &lt;i&gt;über alle Fälle hinweg&lt;/i&gt;.
 
-`$$\small Richt. = \frac{RP + RN}{ RP + RN + FN + FP} = 1-Verlust_{01}$$`
+`$$\small Richt. = \frac{RP + RN}{ RP + RN + FN + FP} = 1-Loss_{01}$$`
 
 &lt;p style="padding-top:10px"&gt;&lt;/p&gt;
 
@@ -589,7 +589,7 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 
 &lt;b&gt;Genauigkeit&lt;/b&gt;: Prozentsatz richtiger Vorhersagen &lt;i&gt;über alle Fälle hinweg&lt;/i&gt;.
 
-`$$\small Richt. = \frac{RP + RN}{ RP + RN + FN + FP} = 1-Verlust_{01}$$`
+`$$\small Richt. = \frac{RP + RN}{ RP + RN + FN + FP} = 1-Loss_{01}$$`
 
 &lt;p style="padding-top:10px"&gt;&lt;/p&gt;
 
@@ -679,7 +679,7 @@ class: center,  middle
 
 ctrl &lt;- trainControl(...)
 
-# Schritt 2: Fitte und exploriere das Modell
+# Schritt 2: Fitte und exploriere Modell
 #   train()
 
 mod &lt;- train(...)
@@ -687,7 +687,8 @@ summary(mod)
 mod$finalModel   # bestes Modell
 
 # Schritt 3: Beurteile Fit
-#   predict(), postResample(), fon
+#   predict(), postResample(),
+#   confusionMatrix()
 
 fit &lt;- predict(mod)
 postResample(fit, truth)
@@ -1174,7 +1175,7 @@ eink_mod$finalModel$coefficients
 
 ]
 
-.pull-right5[
+.pull-right55[
 
 
 
@@ -1196,7 +1197,7 @@ Deviance Residuals:
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
 (Intercept)  877.239    220.726    3.97  7.1e-05 ***
- [ reached getOption("max.print") -- omitted 2 rows ]
+ [ erreichte getOption("max.print") --  2 Zeilen ausgelassen ]
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -1341,7 +1342,7 @@ Prediction   ja nein
          Neg Pred Value :   NaN         
              Prevalence : 0.651         
          Detection Rate : 0.651         
- [ reached getOption("max.print") -- omitted 5 rows ]
+ [ erreichte getOption("max.print") --  5 Zeilen ausgelassen ]
 ```
 
 
