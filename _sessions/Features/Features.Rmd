@@ -205,7 +205,7 @@ library(ggthemes)
   </ul><br>
   <li class="m2"><span><b>Automatische Selektion</b></span></li>
   <ul class="level">
-    <li><span>Verwende <high>Modelle</high> die automatisch Features selektieren, z.B., Lasso Regression, oder Algorithmen für Featureselektion</span></li>
+    <li><span>Verwende <high>Modelle</high> die automatisch Features selegieren, z.B., Lasso Regression, oder Algorithmen für Featureselektion</span></li>
   </ul><br>
   <li class="m3"><span><b>Automatische Reduktion</b></span></li>
   <ul class="level">
@@ -492,7 +492,7 @@ nearZeroVar(basel)
 
 ---
 
-# Trivial features
+# Triviale Features
 
 .pull-left3[
 
@@ -519,7 +519,7 @@ New York Times <a href="https://www.nytimes.com/2017/10/09/science/stanford-sexu
 
 ---
 
-# Trivial features
+# Triviale Features
 
 In 2012 sagte [Nate Silver](https://en.wikipedia.org/wiki/Nate_Silver) die Ausgänge der Präsidentschaftswahlen in 50 Staaten voraus, nachdem er dies für 49 Staaten in 2008 getan hat. <high>Wie ist dieser Erfolg zu bewerten?</high>
 
@@ -545,7 +545,7 @@ In 2012 sagte [Nate Silver](https://en.wikipedia.org/wiki/Nate_Silver) die Ausg�
 
 ---
 
-# (Immer!) fehlen Features
+# (Immer!) fehlende Features
 
 
 .pull-left85[
@@ -570,7 +570,7 @@ In 2012 sagte [Nate Silver](https://en.wikipedia.org/wiki/Nate_Silver) die Ausg�
 
 ---
 
-# Feature engineering
+# Feature Engineering
 
 .pull-left45[
 

@@ -137,7 +137,7 @@ layout: true
   &lt;/ul&gt;&lt;br&gt;
   &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Automatische Selektion&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;Verwende &lt;high&gt;Modelle&lt;/high&gt; die automatisch Features selektieren, z.B., Lasso Regression, oder Algorithmen für Featureselektion&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Verwende &lt;high&gt;Modelle&lt;/high&gt; die automatisch Features selegieren, z.B., Lasso Regression, oder Algorithmen für Featureselektion&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;&lt;br&gt;
   &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Automatische Reduktion&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;ul class="level"&gt;
@@ -212,14 +212,14 @@ varImp(einkommen_lm)
 lm variable importance
 
         Overall
-alter    100.00
-essen     48.29
-glueck    30.86
-alkohol   28.13
-gewicht    3.56
-groesse    3.40
-fitness    2.16
-kinder     1.73
+alter   100.000
+essen    45.688
+glueck   29.461
+alkohol  21.211
+tattoos   7.201
+groesse   3.522
+fitness   2.998
+gewicht   2.811
 ```
 
 ]
@@ -275,15 +275,15 @@ Outer resampling method: Bootstrapped (25 reps)
 
 Resampling performance over subset size:
 
- Variables  RMSE Rsquared   MAE RMSESD RsquaredSD   MAESD Selected
-         3 0.385    0.843 0.310 0.0137    0.01276 0.01069         
-         4 0.361    0.862 0.288 0.0108    0.00958 0.00965        *
-         5 0.363    0.861 0.289 0.0103    0.00946 0.00921         
-        10 0.366    0.858 0.292 0.0121    0.01066 0.01061         
-        14 0.366    0.858 0.292 0.0120    0.01064 0.01070         
+ Variables  RMSE Rsquared   MAE RMSESD RsquaredSD  MAESD Selected
+         3 0.380    0.855 0.304 0.0149    0.01315 0.0114         
+         4 0.362    0.869 0.290 0.0145    0.01071 0.0114        *
+         5 0.363    0.868 0.292 0.0145    0.01031 0.0121         
+        10 0.367    0.866 0.294 0.0133    0.00957 0.0114         
+        14 0.367    0.865 0.294 0.0134    0.00969 0.0115         
 
 The top 4 variables (out of 4):
-   alter, essen, alkohol, glueck
+   alter, essen, glueck, alkohol
 ```
 
 ]
@@ -368,7 +368,7 @@ findCorrelation(cor(basel))
 ```
 
 ```
-integer(0)
+[1] 5
 ```
 
 ```r
@@ -445,7 +445,7 @@ integer(0)
 
 ---
 
-# Trivial features
+# Triviale Features
 
 .pull-left3[
 
@@ -472,7 +472,7 @@ New York Times &lt;a href="https://www.nytimes.com/2017/10/09/science/stanford-s
 
 ---
 
-# Trivial features
+# Triviale Features
 
 In 2012 sagte [Nate Silver](https://en.wikipedia.org/wiki/Nate_Silver) die Ausgänge der Präsidentschaftswahlen in 50 Staaten voraus, nachdem er dies für 49 Staaten in 2008 getan hat. &lt;high&gt;Wie ist dieser Erfolg zu bewerten?&lt;/high&gt;
 
@@ -498,7 +498,7 @@ In 2012 sagte [Nate Silver](https://en.wikipedia.org/wiki/Nate_Silver) die Ausg�
 
 ---
 
-# (Immer!) fehlen Features
+# (Immer!) fehlende Features
 
 
 .pull-left85[
@@ -523,7 +523,7 @@ In 2012 sagte [Nate Silver](https://en.wikipedia.org/wiki/Nate_Silver) die Ausg�
 
 ---
 
-# Feature engineering
+# Feature Engineering
 
 .pull-left45[
 

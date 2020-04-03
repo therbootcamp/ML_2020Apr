@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
     <title>Modelle</title>
     <meta charset="utf-8" />
@@ -77,7 +77,7 @@ under consideration."&lt;/i&gt;
 
 # Kenne dein Problem
 
-&lt;u&gt;Bias-Variance Dilemme&lt;/u&gt;
+&lt;u&gt;Bias-Variance Dilemma&lt;/u&gt;
 
 &lt;br&gt;
 
@@ -91,7 +91,7 @@ under consideration."&lt;/i&gt;
   &lt;/ul&gt;&lt;br&gt;
   &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Variance&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;Ensteht, wenn &lt;high&gt;Modellflexibilität&lt;/high&gt; zu hoch ist..&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Ensteht, wenn &lt;high&gt;Modellflexibilität&lt;/high&gt; zu hoch ist.&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;
   &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Noise&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;ul class="level"&gt;
@@ -122,7 +122,7 @@ class: center, middle
 # Linear oder Nicht-linear
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Linear models&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Lineare Modelle&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;ul class="level"&gt;
     &lt;li&gt;&lt;span&gt;Machen die Annahme, dass die Welt linear ist. Stimmt selten, führt jedoch zu &lt;high&gt;weniger overfitting&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;&lt;br&gt;
@@ -155,7 +155,7 @@ class: center, middle
 # Kernel Trick
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Transformiert ursprünglichen Featurespace in einen neuen , der damit z.B. das Trennen von Klassen ermöglicht.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Transformiert ursprünglichen Featurespace in einen neuen, der damit z.B. das Trennen von Klassen ermöglicht.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
   &lt;li class="m2"&gt;&lt;span&gt;Verwendet z.B. in &lt;high&gt;Support Vector Machines&lt;/high&gt; (z.B. &lt;mono&gt;method = "svmRadial"&lt;/mono&gt;) meist unter Verwendung einer &lt;high&gt;radial basis function&lt;/high&gt; (rdf).&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -188,8 +188,8 @@ class: center, middle
 &lt;br&gt;
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Deep learning&lt;/high&gt; (insbesondere Convolutional Neural Networks) sind besonders gut darin, &lt;high&gt;Feature selber zu entwickeln&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Das &lt;mono&gt;tensorflow&lt;/mono&gt; Paket bietet Zugang zu mächtigen &lt;high&gt;Tensorflow&lt;/high&gt; Library für Deep Learning von Google.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Deep learning&lt;/high&gt; (insbesondere Convolutional Neural Networks) sind besonders gut darin, &lt;high&gt;Features selber zu entwickeln&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Das &lt;mono&gt;tensorflow&lt;/mono&gt; Paket bietet Zugang zur mächtigen &lt;high&gt;Tensorflow&lt;/high&gt; Library für Deep Learning von Google.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
 &lt;/ul&gt;
 
 ]
@@ -215,7 +215,7 @@ class: center, middle
 
 ---
 
-# Robustness
+# Robustheit
 
 .pull-left4[
 
@@ -244,7 +244,7 @@ class: center, middle
 &lt;/tr&gt;
 &lt;tr style="background-color:#ffffff"&gt;
   &lt;td align="center"&gt;&lt;i&gt;Tolerance&lt;/i&gt;&lt;/td&gt;
-  &lt;td align="center"&gt;Vergrösser Fehlertoleranz&lt;/td&gt;
+  &lt;td align="center"&gt;Vergrössert Fehlertoleranz&lt;/td&gt;
   &lt;td align="center"&gt;&lt;mono&gt;svmRadial&lt;/mono&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr style="background-color:#ffffff"&gt;
@@ -340,7 +340,7 @@ class: center, middle
 # Bagging
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Aggregieren&lt;/high&gt; der Vorhersagen multipler Modelle, die auf Basis &lt;high&gt;Stichproben&lt;/high&gt; aus den Daten gefitted werden.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Aggregieren&lt;/high&gt; der Vorhersagen multipler Modelle, die auf Basis von &lt;high&gt;Stichproben&lt;/high&gt; aus den Daten gefitted werden.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
   &lt;li class="m2"&gt;&lt;span&gt;Besonders nützlich bei Modellen mit moderat guter, varierender Performanz.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
   &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Algorithmus&lt;/b&gt;:&lt;/span&gt;&lt;/li&gt;
   &lt;ol&gt;
@@ -408,7 +408,7 @@ class: center, middle
   &lt;/ul&gt;&lt;br&gt;&lt;br&gt;
   &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Decision Tree / Random forests&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
   &lt;ul&gt;
-    &lt;li&gt;&lt;span&gt;Feature müssen nicht für die Vorhersage verwendet werden (bei hohem &lt;mono&gt;mtry&lt;/mono&gt;).&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Features müssen nicht für die Vorhersage verwendet werden (bei hohem &lt;mono&gt;mtry&lt;/mono&gt;).&lt;/span&gt;&lt;/li&gt;
   &lt;ul&gt;
 &lt;/ul&gt;
 
@@ -468,7 +468,7 @@ class: center, middle
 
 class: middle, center
 
-&lt;h1&gt;&lt;a href="https://therbootcamp.github.io/ML_2019Oct/_sessions/Models/Models_practical.html"&gt;Practical&lt;/a&gt;&lt;/h1&gt;
+&lt;h1&gt;&lt;a href="https://therbootcamp.github.io/ML_2020Apr/_sessions/Models/Models_practical.html"&gt;Practical&lt;/a&gt;&lt;/h1&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
