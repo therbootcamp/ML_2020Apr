@@ -223,7 +223,7 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Resampling-Methoden <high>automatisieren</high> und generalisieren das das Tuning der Modelle</span></li><br>
+  <li class="m1"><span>Resampling-Methoden <high>automatisieren</high> und generalisieren das Tuning der Modelle</span></li><br>
 </ul>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
@@ -271,7 +271,7 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Resampling-Methoden <high>automatisieren</high> und generalisieren das das Tuning der Modelle</span></li><br>
+  <li class="m1"><span>Resampling-Methoden <high>automatisieren</high> und generalisieren das Tuning der Modelle</span></li><br>
 </ul>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
@@ -319,7 +319,7 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Resampling-Methoden <high>automatisieren</high> und generalisieren das das Tuning der Modelle</span></li><br>
+  <li class="m1"><span>Resampling-Methoden <high>automatisieren</high> und generalisieren das Tuning der Modelle</span></li><br>
 </ul>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
@@ -609,7 +609,7 @@ $$
     Niedriger <mono>cp</mono>, z.B. <mono>cp<.01</mono>
   </td>
   <td bgcolor="white">
-    Niedrige Strafe, die zu <high>komplexen Bäumen</high> fürht.
+    Niedrige Strafe, die zu <high>komplexen Bäumen</high> führt.
   </td> 
 </tr>
 <tr>
@@ -673,7 +673,7 @@ $$
     Niedriger <mono>cp</mono>, z.B. <mono>cp<.01</mono>
   </td>
   <td bgcolor="white">
-    Niedrige Strafe, die zu <high>komplexen Bäumen</high> fürht.
+    Niedrige Strafe, die zu <high>komplexen Bäumen</high> führt.
   </td> 
 </tr>
 <tr>
@@ -861,7 +861,7 @@ class: center,  middle
 <ul>
   <li class="m1"><span><b>Ziel</b>:</span></li><br>
   <ul>
-    <li><span>Identifiziere durch 10-fache Cross Validation die <high>besten Regularisierungsparameter</high> für ein Rgressionsmodell</span></li><br>
+    <li><span>Identifiziere durch 10-fache Cross Validation die <high>besten Regularisierungsparameter</high> für ein Regressionsmodell</span></li><br>
   </ul>
   <li class="m2"><span><b>Berücksichtige</b>:</span></li><br>
   <ul>
@@ -952,7 +952,7 @@ glmnet_mod <- train(form = einkommen ~ .,
 
 <ul>
   <li class="m1"><span>Spezifiziere über <mono>tuneGrid</mono> die <high>Kandidatensets</high> für die Tuning Parameter</span></li><br>
-  <li class="m2"><span><mono>tuneGrid</mono> eine <mono>liste</mono> oder einen <mono>data.frame</mono>; komfortable durch <mono>expand.grid()</mono> erstellt</span></li><br>
+  <li class="m2"><span><mono>tuneGrid</mono> eine <mono>liste</mono> oder einen <mono>data.frame</mono>; komfortabel durch <mono>expand.grid()</mono> erstellt</span></li><br>
 </ul>
 
 
@@ -987,7 +987,7 @@ glmnet_mod <- train(form = einkommen ~ .,
 <p style="padding-top:1px"></p>
 
 ```{r, eval = F}
-# Print summary information
+# Printe Überblick
 glmnet_mod
 ```
 
@@ -1019,7 +1019,7 @@ print2(glmnet_mod, nlines=23)
 .pull-left4[
 
 ```{r, eval = F, fig.width=3, fig.height=3, res=300}
-# Visualise tuning error curve
+# Visualisiere Tuningparameter Fehlerkurve
 plot(glmnet_mod)
 ```
 
@@ -1036,7 +1036,7 @@ The final values used for the model were alpha = 1 and lambda = 27.`
 .pull-right5[
 
 ```{r, echo = F, fig.width=4, fig.height=3.5, res=300}
-# Visualise tuning parameter error curve
+# Visualisiere Tuningparameter Fehlerkurve
 plot(glmnet_mod)
 ```
 
@@ -1078,7 +1078,7 @@ print(coef(glmnet_mod$finalModel,
 
 <ul>
   <li class="m1"><span>Vergleiche die <high>Performanz für die Validationsets</high> mit <mono>resamples()</mono></span></li><br>
-  <li class="m2"><span>Die <mono>summary()</mono> des Objekts gibt einen ausführlichen <high>Überblick</high> über die Performnz.</span></li><br>
+  <li class="m2"><span>Die <mono>summary()</mono> des Objekts gibt einen ausführlichen <high>Überblick</high> über die Performanz.</span></li><br>
 </ul>
 
 ]
@@ -1108,13 +1108,13 @@ summary(resamples_mod)
 
 .pull-left35[
 
-# Model comparison
+# Modellvergleich
 
 <p style="padding-top:1px"></p>
 
-Compare the prediction performance of several models with `resamples()`.
+Vergleiche die Vorhersageperformanz mehrerer Modelle mit `resamples()`.
 
-The `summary()` of this object will print 'prediction' error statistics from cross-validation during training. This is your <high>estimate of future prediction performance</high>!
+Das `summary()` des Outputobjekts printet Vorhersage Fehlerstatistiken der Cross Validation während des Trainings. Das ist eine <high>Schätzung der zukünftigen Vorhersageperformanz</high>!
 
 ]
 
@@ -1123,13 +1123,13 @@ The `summary()` of this object will print 'prediction' error statistics from cro
 <br><br>
 
 ```{r, echo = F}
-# Competitor model
+# Vergleichsmodell
 glm_mod <-  train(form = einkommen ~ .,
                   data = basel,  
                   method = "glm",
                   trControl = ctrl_cv)
 
-# Accuracy statistics 
+# Performanz
 resamples_mod <- resamples(list(glmnet = glmnet_mod,
                                 glm = glm_mod))
 summary(resamples_mod)

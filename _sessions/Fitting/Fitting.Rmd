@@ -684,7 +684,7 @@ $$\small Spezifität = \frac{RN}{ RN + FP }$$
 .pull-left45[
 
 <ul style="margin-bottom:-20px">
-  <li class="m1"><span>Die Wahrheitsmatrix (<i>confusion matrix</i>) <high>enthält die Anzahl einer bestimmten Klasse zugeordneter Werte</high> als Funktion der tasächlichen Klasse.</span></li>
+  <li class="m1"><span>Die Wahrheitsmatrix (<i>confusion matrix</i>) <high>enthält die Anzahl einer bestimmten Klasse zugeordneter Werte</high> als Funktion der tatsächlichen Klasse.</span></li>
   <li class="m2"><span>Anhand der Wahrheitsmatrix können unterschiedliche <high>statistische Gütekriterien</high> berechnet werden.</span></li>
 </ul>
 
