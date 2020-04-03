@@ -125,7 +125,7 @@ names(graduation_train)
 View(XX)
 ```
 
-9. Nun hast du einen ersten Überblick über die Daten gewonnen. Bevor du nun mit dem maschinellen Lernen beginnen können, musst du noch sicherstellen, dass alle `character` Variablen als `factor` vorliegen. Lasse dazu den untenstehenden Code laufen:
+9. Nun hast du einen ersten Überblick über die Daten gewonnen. Bevor du nun mit dem maschinellen Lernen beginnen kannst, musst du noch sicherstellen, dass alle `character` Variablen als `factor` vorliegen. Lasse dazu den untenstehenden Code laufen:
 
 ```{r, echo = TRUE}
 # Konvertiere alle character variablen zu factor
@@ -138,7 +138,7 @@ graduation_train <- graduation_train %>%
 1. In `caret` wird die `trainControl()` Funktion verwendet, um zu definieren wie genau die Modelle gefittet werden sollen. Da aktuell der Fokus auf den Grundlagen des Fittings liegt, setze für das gesamte Practical das Argument `method = "none"` und speichere das Objekt als `ctrl_none`. 
 
 ```{r echo = TRUE}
-# Setze Resamplingmethode auf "none" um für den Moment alles einfach zu halten.
+# Setze Samplingmethode auf "none" um für den Moment alles einfach zu halten.
 ctrl_none <- trainControl(method = "none") 
 ```
 
@@ -149,7 +149,7 @@ Teil 1: <b>Regressionsfall</b>
 
 ### C - Fitte ein Regressionsmodell
 
-1. Fitte eine Regression zur Vorhersage der Abschlussrate (`Abschlussrate`) als Funktion eines Features, nämlich dem Prozentsatz des Lehrkörpers mit PhDs (`Prozent_PhD`). Speichere das Resultat unter dem Namen `abschluss_glm`. Genauer:
+1. Fitte eine Regression zur Vorhersage der Abschlussrate (`Abschlussrate`) als Funktion eines Features, nämlich dem Prozentsatz der Dozentenschaft mit PhDs (`Prozent_PhD`). Speichere das Resultat unter dem Namen `abschluss_glm`. Genauer:
 
 - setze das `form` Argument auf `Abschlussrate ~ Prozent_PhD`.
 - setze das `data` Argument auf `graduation_train`.
@@ -242,11 +242,11 @@ postResample(pred = glm_fit,   # Vorhergesagte/ gefittete Werte
 
 ### E - Mehr Features
 
-Bisher hast du nur ein Feature - `Prozent_PhD` - zur Vorhersage von `Abschlussrate` verwendet. Das Modell hatte keine sonderlich gute Performanz, daher macht es Sinn nun zu testen, ob ein Modell mit zusätzlichen Features die Daten vielleicht besser abbilden kann. Verwende folgenden drei Variablen: 
+Bisher hast du nur ein Feature - `Prozent_PhD` - zur Vorhersage von `Abschlussrate` verwendet. Das Modell hatte keine sonderlich gute Performanz, daher macht es Sinn nun zu testen, ob ein Modell mit zusätzlichen Features die Daten vielleicht besser abbilden kann. Verwende die folgenden drei Variablen: 
 
-- `Prozent_PhD` - der Prozentsatz des Lehrkörpers mit einem PhD.
+- `Prozent_PhD` - der Prozentsatz der Dozentenschaft mit einem PhD.
 - `Kosten_Unterkunft` - Raumkosten.
-- `Verhaeltnis_Stud.Doz.` - Verhältnis der Anzahl Studenten zu Lehrkörper.
+- `Verhaeltnis_Stud.Doz.` - Verhältnis der Anzahl Studenten zu Dozentenschaft
 
 1. Verwende die gleichen Schritte wie oben um ein Regressionsmodell mit drei Features zur Vorhersage von `Abschlussrate` zu rechnen. Speichere den Output unter `abschluss_glm_three`. Genauer,...
 
@@ -449,7 +449,7 @@ confusionMatrix(data = glm_fit_Privatuniversitaet,   # Vorhersagen
 4. Wie hoch ist die Sensitivität? Was bedeutet diese Zahl?
 
 ```{r}
-# Die Sensitivität ist 0.893. Von den tatsächlich Privatuniversitaetn Colleges,
+# Die Sensitivität ist 0.893. Von den tatsächlich Privatuniversitaeten,
 # erkennt das Modell 89.3% als solche.
 ```
 
@@ -595,9 +595,9 @@ library(ggthemes)
 |:----|:-----|:------|
 |[graduation_train.csv](https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/graduation_train.csv)| 1000 | 21|
 
-Die `graduation_train` und `graduation_test` Datensätze entstammen dem `College` Datensatz aus dem `ISLR` Paket. sie enthalten Statistiken für eine grosse Anzahl US Colleges auf Basis des *US News and World Reports* aus dem Jahr 1995.
+Die `graduation_train` und `graduation_test` Datensätze entstammen dem `College` Datensatz aus dem `ISLR` Paket. Sie enthalten Statistiken für eine grosse Anzahl US Colleges auf Basis des *US News and World Reports* aus dem Jahr 1995.
 
-| Name | Description |
+| Name | Beschreibung |
 |:-------------|:-------------------------------------|
 |Privatuniversitaet| Ja oder Nein |
 |Bewerbungen| Anzahl Bewerbungen |

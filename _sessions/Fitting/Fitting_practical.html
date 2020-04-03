@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -84,7 +84,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -146,6 +145,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -157,18 +157,6 @@ summary {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -211,7 +199,7 @@ $(document).ready(function () {
 </p>
 <div id="section" class="section level1 tabset">
 <h1></h1>
-<div id="uberblick" class="section level2">
+<div id="überblick" class="section level2">
 <h2>Überblick</h2>
 <p>In diesem Practical wirst du die Grundlagen des Modellfittings und von Regressionsmodellen lernen.</p>
 <p>Am Ende dieses Practicals wirst du wissen wie du:</p>
@@ -249,7 +237,7 @@ graduation_train &lt;- read_csv(file = &quot;1_Data/graduation_train.csv&quot;)<
 </ol>
 <pre class="r"><code>View(XX)</code></pre>
 <ol start="9" style="list-style-type: decimal">
-<li>Nun hast du einen ersten Überblick über die Daten gewonnen. Bevor du nun mit dem maschinellen Lernen beginnen können, musst du noch sicherstellen, dass alle <code>character</code> Variablen als <code>factor</code> vorliegen. Lasse dazu den untenstehenden Code laufen:</li>
+<li>Nun hast du einen ersten Überblick über die Daten gewonnen. Bevor du nun mit dem maschinellen Lernen beginnen kannst, musst du noch sicherstellen, dass alle <code>character</code> Variablen als <code>factor</code> vorliegen. Lasse dazu den untenstehenden Code laufen:</li>
 </ol>
 <pre class="r"><code># Konvertiere alle character variablen zu factor
 graduation_train &lt;- graduation_train %&gt;%
@@ -260,7 +248,7 @@ graduation_train &lt;- graduation_train %&gt;%
 <ol style="list-style-type: decimal">
 <li>In <code>caret</code> wird die <code>trainControl()</code> Funktion verwendet, um zu definieren wie genau die Modelle gefittet werden sollen. Da aktuell der Fokus auf den Grundlagen des Fittings liegt, setze für das gesamte Practical das Argument <code>method = &quot;none&quot;</code> und speichere das Objekt als <code>ctrl_none</code>.</li>
 </ol>
-<pre class="r"><code># Setze Resamplingmethode auf &quot;none&quot; um für den Moment alles einfach zu halten.
+<pre class="r"><code># Setze Samplingmethode auf &quot;none&quot; um für den Moment alles einfach zu halten.
 ctrl_none &lt;- trainControl(method = &quot;none&quot;) </code></pre>
 <br>
 <p style="font-size:20px;background-color:#6ABA9A;color:white;padding-left:20px" align="left" width="100%">
@@ -270,7 +258,7 @@ Teil 1: <b>Regressionsfall</b>
 <div id="c---fitte-ein-regressionsmodell" class="section level3">
 <h3>C - Fitte ein Regressionsmodell</h3>
 <ol style="list-style-type: decimal">
-<li>Fitte eine Regression zur Vorhersage der Abschlussrate (<code>Abschlussrate</code>) als Funktion eines Features, nämlich dem Prozentsatz des Lehrkörpers mit PhDs (<code>Prozent_PhD</code>). Speichere das Resultat unter dem Namen <code>abschluss_glm</code>. Genauer:</li>
+<li>Fitte eine Regression zur Vorhersage der Abschlussrate (<code>Abschlussrate</code>) als Funktion eines Features, nämlich dem Prozentsatz der Dozentenschaft mit PhDs (<code>Prozent_PhD</code>). Speichere das Resultat unter dem Namen <code>abschluss_glm</code>. Genauer:</li>
 </ol>
 <ul>
 <li>setze das <code>form</code> Argument auf <code>Abschlussrate ~ Prozent_PhD</code>.</li>
@@ -319,11 +307,11 @@ postResample(pred = XX,   # Vorhergesagte/ gefittete Werte
 </div>
 <div id="e---mehr-features" class="section level3">
 <h3>E - Mehr Features</h3>
-<p>Bisher hast du nur ein Feature - <code>Prozent_PhD</code> - zur Vorhersage von <code>Abschlussrate</code> verwendet. Das Modell hatte keine sonderlich gute Performanz, daher macht es Sinn nun zu testen, ob ein Modell mit zusätzlichen Features die Daten vielleicht besser abbilden kann. Verwende folgenden drei Variablen:</p>
+<p>Bisher hast du nur ein Feature - <code>Prozent_PhD</code> - zur Vorhersage von <code>Abschlussrate</code> verwendet. Das Modell hatte keine sonderlich gute Performanz, daher macht es Sinn nun zu testen, ob ein Modell mit zusätzlichen Features die Daten vielleicht besser abbilden kann. Verwende die folgenden drei Variablen:</p>
 <ul>
-<li><code>Prozent_PhD</code> - der Prozentsatz des Lehrkörpers mit einem PhD.</li>
+<li><code>Prozent_PhD</code> - der Prozentsatz der Dozentenschaft mit einem PhD.</li>
 <li><code>Kosten_Unterkunft</code> - Raumkosten.</li>
-<li><code>Verhaeltnis_Stud.Doz.</code> - Verhältnis der Anzahl Studenten zu Lehrkörper.</li>
+<li><code>Verhaeltnis_Stud.Doz.</code> - Verhältnis der Anzahl Studenten zu Dozentenschaft</li>
 </ul>
 <ol style="list-style-type: decimal">
 <li>Verwende die gleichen Schritte wie oben um ein Regressionsmodell mit drei Features zur Vorhersage von <code>Abschlussrate</code> zu rechnen. Speichere den Output unter <code>abschluss_glm_three</code>. Genauer,…</li>
@@ -489,7 +477,7 @@ postResample(pred = glm_fit,
 #     RMSE Rsquared      MAE 
 # 3.246182 0.678465 2.501346 </code></pre>
 </div>
-<div id="datensatze" class="section level2">
+<div id="datensätze" class="section level2">
 <h2>Datensätze</h2>
 <table>
 <thead>
@@ -507,12 +495,12 @@ postResample(pred = glm_fit,
 </tr>
 </tbody>
 </table>
-<p>Die <code>graduation_train</code> und <code>graduation_test</code> datensätze entstammen dem <code>College</code> Datensatz aus dem <code>ISLR</code> Paket. sie enthalten Statistiken für eine grosse Anzahl US Colleges auf Basis des <em>US News and World Reports</em> aus dem Jahr 1995.</p>
+<p>Die <code>graduation_train</code> und <code>graduation_test</code> Datensätze entstammen dem <code>College</code> Datensatz aus dem <code>ISLR</code> Paket. Sie enthalten Statistiken für eine grosse Anzahl US Colleges auf Basis des <em>US News and World Reports</em> aus dem Jahr 1995.</p>
 <table>
 <thead>
 <tr class="header">
 <th align="left">Name</th>
-<th align="left">Description</th>
+<th align="left">Beschreibung</th>
 </tr>
 </thead>
 <tbody>
@@ -688,6 +676,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
