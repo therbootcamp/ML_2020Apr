@@ -1,11 +1,11 @@
 ---
-title: "Look ahead"
-author: "Machine Learning with R<br>
+title: "Ausblick"
+author: "Maschinelles Lernen mit R<br>
   <a href='https://therbootcamp.github.io'>
-    Basel R Bootcamp
+    The R Bootcamp
   </a>
   <br>
-  <a href='https://therbootcamp.github.io/ML_2019Oct/'>
+  <a href='https://therbootcamp.github.io/ML_2020Apr/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "Machine Learning with R<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "October 2019"
+date: "April 2020"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-       Machine Learning with R | October 2019
+      Maschinelles Lernen mit R | April 2020
       </font>
     </a>
     </span>
@@ -67,9 +67,9 @@ options(digits = 4)
 
 .pull-left45[
 <br><br><br><br><br>
-#  Hello Machine Learning Experts!
+#  Hallo Machine Learning Experten!
 
-In 2 days, 6 sessions, and 16 hours you have come a long way.
+In 2 Tagen, 7 Sessions, und 15 hours habt ihr euch die Grundlagen des maschnellen Lernens angeeignet.
 
 ]
 
@@ -80,21 +80,21 @@ In 2 days, 6 sessions, and 16 hours you have come a long way.
 
 ---
 
-#  Welcome to the Data Revolution
+#  Willkommen zur Datenrevolution
 
 .pull-left4[
 
-<i>"Machine learning will be the engine of global growth."</i><br>
+<i>"Machine learning will be the <high>engine of global growth</high>."</i><br>
 
-Financial times, July 2018
+[Financial times, July 2018]()
 
-<i>"Fuel of the future - Data is giving rise to a new economy."</i><br>
+<i>"<high>Fuel of the future</high> - Data is giving rise to a new economy."</i><br>
 
-The Economist, May 2017
+[The Economist, May 2017]()
 
-<i>"Wie Big Data die Finanzmärkte verändern könnte"</i><br>
+<i>"Wie Big Data die <high>Finanzmärkte verändern</high> könnte"</i><br>
 
-NZZ, August 2018
+[NZZ, August 2018]()
 
 ]
 
@@ -106,17 +106,17 @@ NZZ, August 2018
 
 ---
 
-# Changes to the economy
+# Änderungen in der Wirtschaft
 
 .pull-left4[
-### Businesses employ AI/ML
+### Unternehmeen dieee AI/ML verwenden
 <p align="left">
   <img src="image/bytemarks.png" height=380>
 </p>
 ]
 
 .pull-right55[
-### Jobs become obsolete
+### Jobs werden obsolet
 <p align="left">
   <img src="image/obsolete.png" height=380>
 </p>
@@ -130,7 +130,7 @@ NZZ, August 2018
 #  Repeating the past
 
 .pull-left35[
-### A nerdy cartoon
+### Ein nerdy Cartoon
 <p align="center">
 
 </p>
@@ -145,7 +145,7 @@ NZZ, August 2018
 ]
 
 .pull-right6[
-### The real world: Predictive policing
+### In der realen Welt: Predictive policing
 <a href="https://www.economist.com/briefing/2013/07/20/dont-even-think-about-it">The Economist</a><br>
 <a href="http://harvardcrcl.org/minority-report-why-we-should-question-predictive-policing/">Harvard Civil Rights Review</a>
 <p align = "center">
@@ -159,12 +159,12 @@ NZZ, August 2018
 ]
 
 
-<!---
+---
 
 #  Repeating the past
 
 .pull-left45[
-### Recidivity risk scores
+### Risikoscore für Rezidivität
 <p align="center">
   <img src="image/risk_score.png" height=347px><br>
   <font style="font-size:10px">from <a href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing">propublica.org</a></font>
@@ -174,7 +174,7 @@ NZZ, August 2018
 ]
 
 .pull-right45[
-### Empirical evaluation
+### Evaluation der Ergebnisse
 <a href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing">Pro Publica I</a>, 
 <a href="https://www.propublica.org/article/how-we-analyzed-the-compas-recidivism-algorithm">Pro Publica II</a>
 
@@ -185,11 +185,9 @@ NZZ, August 2018
 
 ]
 
---->
-
 ---
 
-# The end of privacy
+# Das Ende der Privatheit
 
 .pull-left3[
 
@@ -215,23 +213,23 @@ Michal Kosinski, Stanford University <a href="https://www.theguardian.com/world/
 
 <div class="center_text_2">
   <span>
-  What do you think?
+  Was denkst du?
   </span>
 </div> 
 
 
 ---
 
-# Next steps
+# Nächste Schritte
 
 .pull-left5[
 <font size = 4><i>
 <font size = 6>
-1. Practice<br>
-2. Read books<br>
-3. Consult websites<br>
-4. Support & consulting<br>
-5. Upcoming courses<br>
+1. Anwenden<br>
+2. Bücher<br>
+3. Webseiten<br>
+4. Hilfe & Consulting<br>
+5. Weiterführende Kurse<br>
 ]
 
 </font>
@@ -243,31 +241,32 @@ Michal Kosinski, Stanford University <a href="https://www.theguardian.com/world/
 
 ---
 
-# Books
+# Bücher  
 
-Here is a very incomplete series of good books. They are ordered by complexity, beginning with user-friendly books on <high>learning statistics</high> in R and ending with books focusing on the more <high>advanced topics of the R language</high>.
+Hier ist eine unvollständige Liste guter Bücher über R lose geordnet nach vorausgesetzter Erfahrung.<br><br>
 
-
-<table width="100%" style="cellspacing:0; cellpadding:0; border:none;">
+<table width="80%" style="cellspacing:0; cellpadding:0; border:none;">
 
   <tr>    
 
-
-    <td>
-  <a href="http://appliedpredictivemodeling.com/"><img border="0" alt="W3Schools" src="http://static1.squarespace.com/static/51156277e4b0b8b2ffe11c00/t/51157487e4b0b8b2ffe16829/1509217882069/?format=1500w" height="180" ></a>
-  </td>
-  
-      <td>
-  <a href="http://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf"><img border="0" alt="W3Schools" src="https://images-na.ssl-images-amazon.com/images/I/41EaH4W9LVL._SX332_BO1,204,203,200_.jpg" height="180" ></a>
-  </td>
-  
-        <td>
-  <a href="https://www.manning.com/books/deep-learning-with-r"><img border="0" alt="W3Schools" src="https://images-na.ssl-images-amazon.com/images/I/51h5d4dYaoL._SX396_BO1,204,203,200_.jpg" height="180" ></a>
+  <td> 
+  <a href="http://r4ds.had.co.nz/"><img border="0" alt="W3Schools" src="http://r4ds.had.co.nz/cover.png" height="180"></a>
   </td>
 
+  <td>
+  <a href="https://covers.oreillystatic.com/images/0636920028574/cat.gif"><img border="0" alt="W3Schools" src="https://covers.oreillystatic.com/images/0636920028574/cat.gif" height="180"></a>
+  </td>
+
+  <td> 
+  <a href="https://ggplot2-book.org/"><img border="0" alt="W3Schools" src="https://images-na.ssl-images-amazon.com/images/I/31uoy-qmhEL._SX331_BO1,204,203,200_.jpg" height="180"></a>
+  </td>
+
+  <td>
+  <a href="https://www.springer.com/de/book/9783540799979"><img border="0" alt="W3Schools" src="https://images.springer.com/sgw/books/medium/9783540799979.jpg" height="180" ></a>
+  </td>
   
   <td>
-  <a href="https://www.tidytextmining.com/"><img border="0" alt="W3Schools" src="https://www.tidytextmining.com/images/cover.png" height="180" ></a>
+  <a href="https://bookdown.org/ndphillips/YaRrr/"><img border="0" alt="W3Schools" src="https://bookdown.org/ndphillips/YaRrr/images/YaRrr_Cover.jpg" height="180" ></a>
   </td>
   
   <td>
@@ -279,15 +278,20 @@ Here is a very incomplete series of good books. They are ordered by complexity, 
 
   <tr style="background-color:#ffffff">
 
-    <td> 
-  <a href="http://r4ds.had.co.nz/"><img border="0" alt="W3Schools" src="http://r4ds.had.co.nz/cover.png" height="180"></a>
+  <td>
+  <a href="http://appliedpredictivemodeling.com/"><img border="0" alt="W3Schools" src="http://static1.squarespace.com/static/51156277e4b0b8b2ffe11c00/t/51157487e4b0b8b2ffe16829/1509217882069/?format=1500w" height="180" ></a>
   </td>
+  
+  <td>
+  <a href="http://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf"><img border="0" alt="W3Schools" src="https://images-na.ssl-images-amazon.com/images/I/41EaH4W9LVL._SX332_BO1,204,203,200_.jpg" height="180" ></a>
+  </td>
+  
+  <td>
+  <a href="https://www.manning.com/books/deep-learning-with-r"><img border="0" alt="W3Schools" src="https://images-na.ssl-images-amazon.com/images/I/51h5d4dYaoL._SX396_BO1,204,203,200_.jpg" height="180" ></a>
+  </td>
+
 
   <td>
-  <a href="https://covers.oreillystatic.com/images/0636920028574/cat.gif"><img border="0" alt="W3Schools" src="https://covers.oreillystatic.com/images/0636920028574/cat.gif" height="180"></a>
-  </td>
-
-        <td>
   <a href="https://csgillespie.github.io/efficientR/"><img border="0" alt="W3Schools" src="https://csgillespie.github.io/efficientR/figures/f0_web.png" height="180" ></a>
   </td>
 
@@ -313,38 +317,39 @@ Here is a very incomplete series of good books. They are ordered by complexity, 
 
 .pull-left4[
 
-# Websites
+# Webseiten
 
-The web is a great place to learn about R. 
+Das Netz ist vll. der beste Ort für Informationen über R.
 
-<font size = 4><i>Best begin your journey with:</i></font>
+<font size = 4><i>Beginnt eure Suche mit:</i></font>
 
-[Google](www.google.com) or [Rseek](www.rseek.org), which is a wrapper around google to maximize hits related to R. However, most of the time Google works just fine. Just be sure to add *r* to the the search query. 
+[Google](www.google.com). Stellt sicher, dass ihr *R* oder *Rproject* mit in eurer Suche habt. 
 
-<font size = 4><i>Then you will be redirected to one of two pages</i></font>
+<br>
+<font size = 4><i>Meistens werdet ihr dann weitergeleitet zu:</i></font>
 
-[R-bloggers](www.r-bloggers.com) is a website on which R users inform each other on the newest developments. See, e.g., Nathaniel's [entry](https://www.r-bloggers.com/the-new-and-improved-pirateplot-now-with-themes/).
+[R-bloggers](www.r-bloggers.com) informiert euch über die neusten R Entwicklungen. Meldet euch für den Newsletter an.
 
-[Stackoverflow](www.r-bloggers.com) is a website on which R users exchange problems and solutions to problems. Try post something yourself. You will be amazed by the turnaround. 
-
+[Stackoverflow](https://stackoverflow.com/questions/tagged/r) ist eine Seite für R Probleme und Lösungen. Versucht selbst mal ein Problem zu posten. Oft bekommt ihr erstaunlich schnell Antwort.
 
 ]
 
 .pull-right5[
 <p align="left" style="padding: 0 0px"><br><br><br><br><br><br><br><br><br>
-    <a href="https://www.google.com/"><img border="0" alt="W3Schools" src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/google.png" height="100"></a><img border="0" alt="W3Schools" src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/comma.png" height="50"><a href="http://rseek.org/"><img border="0" alt="W3Schools" src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rseek.png" height="100" style="margin-left:10px; margin-buttom:10px"></a><br><br><br2>
+    <a href="https://www.google.com/"><img border="0" alt="W3Schools" src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/google.png" height="100"></a><br><br><br2>
     <a href="https://www.r-bloggers.com/"><img border="0" alt="W3Schools" src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rbloggers.png" height="105" style="margin-bottom:10px"></a><br>
   <a href="https://stackoverflow.com/"><img border="0" alt="W3Schools" src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/stackoverflow.png" height="105"></a>
 </p>
 ]
 
-
-
 ---
 
-# Support & Consulting
+# Support
 
 <table class="tg"  style="cellspacing:0; cellpadding:0; border:none">
+  <col width="22%">
+  <col width="22%">
+  <col width="22%">
   <tr>
     <th class="tg-yw4l" valign='top'>
     <p align="center"><br>
@@ -389,47 +394,54 @@ The web is a great place to learn about R.
 ---
 
 
-# Upcoming courses
+# Weiterführende Kurse
 
 
 <table class="tg"  style="cellspacing:0; cellpadding:0; border:none;">
 <tr valign="top">
+  <col width="25%">
+  <col width="25%">
+  <col width="25%">
   <td>
     <p align="center">
-      <a class="project-link" href="mailto:therbootcamp@gmail.com?subject=Preregistration for Statistics with R&body=I would like to preregister for the R Bootcamp on 'Data Mining mit R' on February 14/15 in Basel, Switzerland." align="center">
-      <font style="font-size:20px;weight:700"><br>Data Mining mit R</font><br>
+      <a class="project-link" href="http://therbootcamp.github.io/#courses" align="center">
+      <font style="font-size:20px;weight:700"><br>Statistik mit R<br></font><br>
       <br>
-      <img src="https://therbootcamp.github.io/img/courses/1.png" height="250px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
-      <high>2 days, February 14/15, 2020</high><br><br><br>
-    </p>
-  </td>
-  <td>
-    <p align="center">
-      <a class="project-link" href="mailto:therbootcamp@gmail.com?subject=Preregistration for Statistics with R&body=I would like to preregister for the R Bootcamp on 'Statistik mit R' on March 13/14 in Basel, Switzerland." align="center">
-      <font style="font-size:20px;weight:700"><br>Statistik mit R</font><br>
-      <br>
-      <img src="https://therbootcamp.github.io/img/courses/3.png" height="250px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
-      <high>2 days, March 13/14, 2019</high><br><br><br>
+      <img src="https://therbootcamp.github.io/img/courses/2.png" height="230px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
+      <high>Mai 8/9, 2020</high><br><br><br>
       </a>
     </p>
   </td>
+
   <td>
     <p align="center">
-      <a class="project-link" href="mailto:therbootcamp@gmail.com?subject=Preregistration for Statistics with R&body=I would like to preregister for the R Bootcamp on 'Reporting mit R' on March 13/14 in Basel, Switzerland." align="center">
-      <font style="font-size:20px;weight:700"><br>Statistik mit R</font><br>
+      <a class="project-link" href="http://therbootcamp.github.io/#courses" align="center">
+      <font style="font-size:20px;weight:700"><br>Reporting mit R<br></font><br>
       <br>
-      <img src="https://therbootcamp.github.io/img/courses/4.png" height="250px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
-      <high>2 days, May 15/16, 2019</high><br><br><br>
+      <img src="https://therbootcamp.github.io/img/courses/4.png" height="230px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
+      <high>Juni 5/6, 2020</high><br><br><br>
       </a>
     </p>
   </td>
+  
+  <td>
+    <p align="center">
+      <a class="project-link" href="http://therbootcamp.github.io/#courses" align="center">
+      <font style="font-size:20px;weight:700"><br>Explorative Datenanalyse<br></font><br>
+      <br>
+      <img src="https://therbootcamp.github.io/img/courses/3.png" height="230px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
+      <high>September 4/5, 2020</high><br><br><br>
+      </a>
+    </p>
+  </td>
+  
   </tr>
 
 
 ---
 
 .pull-left45[
-# Please give us feedback
+# Bitte gebt uns Feedback
 <br><br>
 
 <p align = "center">
@@ -441,14 +453,13 @@ The web is a great place to learn about R.
 
 .pull-right45[
 
-<p align="center"><br><br><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfkjB8ka35FCiffvdnzP7gdu_RcG_GshXAu0DozIgVgH09jlw/viewform?embedded=true" width="430" height="550">Wird geladen...</iframe></p>
+<p align="center"><br><br>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSefABREozlrgBnY7dfRtoKZRVAlTOk83tW0LR1JgHJsJrdxfw/viewform?embedded=true" width="430" height="550" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></p>
 
 ]
 
 ---
 class: center, middle
 
-# Thank you! and one more thing...
+# Herzlichen Dank! und noch eine Sache...
 
-<!-- <a href="http://i.imgur.com/PgtvQar.png"><font size=5>Here is an R Joke.</font></a><br><br> -->
-<!-- <font size=5>And now one more thing</font>... -->

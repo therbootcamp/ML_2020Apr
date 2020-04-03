@@ -1,5 +1,5 @@
 ---
-title: "Prediction"
+title: "Predicting"
 author: "Maschinelles Lernen mit R<br>
   <a href='https://therbootcamp.github.io'>
     The R Bootcamp
