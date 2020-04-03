@@ -211,15 +211,15 @@ varImp(einkommen_lm)
 ```
 lm variable importance
 
-        Overall
-alter   100.000
-essen    52.613
-glueck   31.092
-alkohol  29.371
-datause  11.817
-gewicht   4.470
-tattoos   2.036
-kinder    1.816
+         Overall
+alter   100.0000
+essen    59.9362
+glueck   36.4257
+alkohol  33.7215
+groesse   6.3465
+tattoos   5.6667
+fitness   1.5374
+gewicht   1.0854
 ```
 
 ]
@@ -242,7 +242,7 @@ plot(varImp(einkommen_lm))
 # `rfe()`
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Die rekursive Featureselektion (&lt;mono&gt;rfe()&lt;/mono&gt;) verwendet Cross-Validation um die besten &lt;i&gt;n&lt;/i&gt; Feature zu identifizieren.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die rekursive Featureselektion &lt;mono&gt;rfe()&lt;/mono&gt; verwendet &lt;high&gt;Cross-Validation&lt;/high&gt; um die besten &lt;i&gt;n&lt;/i&gt; Feature zu identifizieren.&lt;/span&gt;&lt;/li&gt;
   &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Algorithmus&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;ol&gt;
     &lt;li&gt;&lt;span&gt;&lt;high&gt;Kandidatenset&lt;/high&gt; &lt;mono&gt;n = [2, 3, 5, 10]&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
@@ -275,15 +275,15 @@ Outer resampling method: Bootstrapped (25 reps)
 
 Resampling performance over subset size:
 
- Variables  RMSE Rsquared   MAE RMSESD RsquaredSD  MAESD Selected
-         3 0.395    0.848 0.317 0.0121     0.0120 0.0111         
-         4 0.371    0.866 0.297 0.0134     0.0116 0.0116         
-         5 0.368    0.868 0.296 0.0141     0.0115 0.0124        *
-        10 0.371    0.866 0.299 0.0142     0.0118 0.0127         
-        14 0.371    0.866 0.299 0.0143     0.0118 0.0128         
+ Variables  RMSE Rsquared   MAE RMSESD RsquaredSD   MAESD Selected
+         3 0.398    0.842 0.318 0.0118     0.0129 0.01081         
+         4 0.370    0.864 0.295 0.0111     0.0123 0.00832        *
+         5 0.371    0.863 0.296 0.0113     0.0123 0.00808         
+        10 0.373    0.862 0.298 0.0117     0.0123 0.00842         
+        14 0.373    0.862 0.298 0.0115     0.0121 0.00811         
 
-The top 5 variables (out of 5):
-   alter, essen, alkohol, glueck, datause
+The top 4 variables (out of 4):
+   alter, essen, alkohol, glueck
 ```
 
 ]
@@ -292,18 +292,18 @@ The top 5 variables (out of 5):
 
 # Principal component analysis
 
-.pull-left45[
+.pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Das &lt;high&gt;Standardmodell&lt;/high&gt; für Dimensionsreduktion.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Verwendet ein lineares (Regression) um die Feature in einem &lt;high&gt;neuen, kleineren Featureraum&lt;/high&gt; zu re-representieren.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m3"&gt;&lt;span&gt;Der neue Featureraum wird so gewählt, dass er die &lt;high&gt;maximal mögliche Varianz an den ursprünglichen Featuren präserviert.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Das &lt;high&gt;Standardmodell&lt;/high&gt; für Dimensionsreduktion.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Verwendet ein lineares (Regression) um die Feature in einem &lt;high&gt;neuen, kleineren Featureraum&lt;/high&gt; zu re-representieren.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Der neue Featureraum wird so gewählt, dass er die &lt;high&gt;maximal mögliche Varianz&lt;/high&gt; an den ursprünglichen Featuren präserviert.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 ]
 
 
-.pull-right45[
+.pull-right5[
 
 &lt;p align = "center"&gt;
 &lt;img src="image/pca.png" height=350&gt;
@@ -322,7 +322,7 @@ The top 5 variables (out of 5):
 
 
 ```r
-# train model WITHOUT PCA preprocessing
+# Trainiere Modell OHNE PCA
 model = train(einkommen ~ ., method = 'lm', 
            data = bas_train)
 
@@ -351,28 +351,30 @@ plot(varImp(model))
 
 ---
 
-# Other, easy feature problems
+# Andere, einfache Feature Probleme
 
 .pull-left45[
 
-### Multi-collinearity
+### Multikollinearität
 
-Multi-collinearity, &lt;high&gt;high feature correlations&lt;/high&gt;, mean that there is redundancy in the data, which can lead to &lt;high&gt;less stable fits&lt;/high&gt;, &lt;high&gt;uninterpretable variable importances&lt;/high&gt;, and &lt;high&gt;worse predictions&lt;/high&gt;.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Multikollinearität bedeutet, dass Feature zu stark korreliert sind, was in schädlicher Redundanz, &lt;high&gt;instabile Fits resultiert&lt;/high&gt;, und &lt;high&gt;schlechtere Vorhersagen führt&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-
-```r
-# identify redundant variables
-findCorrelation(cor(baselers))
-```
-
-```
-[1] 5
-```
 
 ```r
-# remove from data
-remove &lt;- findCorrelation(cor(baselers))
-baselers &lt;- baselers %&gt;%
+# Identifiziere redundante Feature
+findCorrelation(cor(basel))
+```
+
+```
+integer(0)
+```
+
+```r
+# Entferene redundante Feature
+remove &lt;- findCorrelation(cor(basel))
+basel &lt;- basel %&gt;%
   select(-remove)
 ```
 
@@ -380,22 +382,26 @@ baselers &lt;- baselers %&gt;%
 
 .pull-right45[
 
-### Unequal &amp; low variance 
+### Ungleiche oder zu niedrige Varianz
 
-Unequal variance &lt;high&gt;breaks regularization&lt;/high&gt; (L1, L2) and renders estimates difficult to interpret.
+&lt;ul&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Ungleiche Varianzen &lt;high&gt;verzerren&lt;/high&gt; Methoden, die gleiche Varianz erwarten (z.B. Lassos).&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 
 ```r
-# standardize and center variables
+# Standardisiere Feature
 train(..., preProc("center", "scale"))
 ```
 
-Low variance variables add parameters, but &lt;high&gt;can hardly contribute to prediction&lt;/high&gt; and are, thus, also redundant.
+&lt;ul&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Feature ohne "Varianz" tragen nicht zur Vorhersage bei, aber &lt;high&gt;vergrössern die Komplexität des Modells.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 
 ```r
-# identify low variance variables
-nearZeroVar(baselers)
+# Identifiziere Feature ohne Varianz
+nearZeroVar(basel)
 ```
 
 ```
@@ -407,24 +413,26 @@ integer(0)
 
 ---
 
-# Difficult feature problems
+# Schwierige Feature Probleme
 
 &lt;br&gt;
-.pull-left25[
+.pull-left35[
 
-1 - &lt;b&gt;Trivial features&lt;/b&gt; 
-
-Successful prediction not necessarily implies that a meaningful pattern has been detected.
-
-&lt;br&gt;
-2 - &lt;b&gt;Missing features&lt;/b&gt;
-
-Some problems are hard, requiring the engineering of new features. 
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Triviale Feature&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;span&gt;Erfolgreiche Vorhersage bedeutet nicht, dass ein &lt;high&gt;bedeutsames Muster&lt;/high&gt; identifiziert wurde&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Fehlende Feature&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;span&gt;Erfolgreiche Vorhersage basiert i.d.R. auf der Entwicklung &lt;high&gt;neuer, relvanterer Feature&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
 ]
 
 
-.pull-right65[
+.pull-right55[
 &lt;br&gt;
 
 &lt;p align = "center"&gt;
@@ -441,7 +449,7 @@ Some problems are hard, requiring the engineering of new features.
 
 .pull-left3[
 
-&lt;u&gt;&lt;a href="https://www.gwern.net/Tanks"&gt;An urban myth?!&lt;/a&gt;&lt;/u&gt;
+&lt;u&gt;&lt;a href="https://www.gwern.net/Tanks"&gt;Ein urban myth?!&lt;/a&gt;&lt;/u&gt;
 
 "The Army trained a program to differentiate American tanks from Russian tanks with 100% accuracy. Only later did analysts realize that the American tanks had been photographed on a sunny day and the Russian tanks had been photographed on a cloudy day. The computer had learned to detect brightness."&lt;br&gt;&lt;br&gt;
 New York Times &lt;a href="https://www.nytimes.com/2017/10/09/science/stanford-sexual-orientation-study.html" style="font-size:8px"&gt;[Full text]&lt;/a&gt;
@@ -466,8 +474,7 @@ New York Times &lt;a href="https://www.nytimes.com/2017/10/09/science/stanford-s
 
 # Trivial features
 
-
-In 2012, Nate Silver was praised to have correctly predicted the outcomes of the presidential election in 50 states after having correctly predicted 49 states in 2008. &lt;high&gt;But how much of a challenge was that?&lt;/high&gt;
+In 2012 sagte [Nate Silver](https://en.wikipedia.org/wiki/Nate_Silver) die Ausgänge der Präsidentschaftswahlen in 50 Staaten voraus, nachdem er dies für 49 Staaten in 2008 getan hat. &lt;high&gt;Wie ist dieser Erfolg zu bewerten?&lt;/high&gt;
 
 .pull-left5[
 
@@ -491,19 +498,28 @@ In 2012, Nate Silver was praised to have correctly predicted the outcomes of the
 
 ---
 
-# (Always!) missing features
+# (Immer!) fehlen Feature
 
-&lt;i&gt;"…some machine learning projects succeed and some fail. What makes the difference? Easily the most important factor is the features used."&lt;/i&gt;
 
-Pedro Domingos
+.pull-left85[
 
-&lt;i&gt;"The algorithms we used are very standard for Kagglers. […] We spent most of our efforts in feature engineering. [...] We were also very careful to discard features likely to expose us to the risk of over-fitting our model."&lt;/i&gt;
+&lt;i&gt;"…some machine learning projects succeed and some fail. What makes the difference? &lt;high&gt;Easily the most important factor is the features used&lt;/high&gt;."&lt;/i&gt;
 
-Xavier Conort
+[Pedro Domingos](https://en.wikipedia.org/wiki/Pedro_Domingos)
 
-&lt;i&gt;"Coming up with features is difficult, time-consuming, requires expert knowledge. "Applied machine learning" is basically feature engineering."&lt;/i&gt;
+&lt;br&gt;
 
-Andrew Ng
+&lt;i&gt;"The algorithms we used are very standard for Kagglers. […] &lt;high&gt;We spent most of our efforts in feature engineering&lt;/high&gt;. [...] We were also very careful to discard features likely to expose us to the risk of over-fitting our model."&lt;/i&gt;
+
+[Xavier Conort]()
+
+&lt;br&gt;
+
+&lt;i&gt;"Coming up with features is difficult, time-consuming, requires expert knowledge. &lt;high&gt;Applied machine learning is basically feature engineering&lt;/high&gt;."&lt;/i&gt;
+
+[Andrew Ng](https://en.wikipedia.org/wiki/Andrew_Ng)
+
+]
 
 ---
 
@@ -511,19 +527,17 @@ Andrew Ng
 
 .pull-left45[
 
+&lt;br&gt;
+
 &lt;i&gt;“Feature engineering is the process of &lt;high&gt;transforming raw data&lt;/high&gt; into features that &lt;high&gt;better represent the underlying problem&lt;/high&gt; to the predictive models, resulting in improved model accuracy on unseen data.”&lt;/i&gt;
 
-Jason Brownlee
+[Jason Brownlee]()
+
+&lt;br&gt;
 
 &lt;i&gt;"...while avoiding the &lt;high&gt;curse of dimensionality&lt;/high&gt;."&lt;/i&gt;
 
-duw
-
-&lt;u&gt;Feature engineering involves&lt;/u&gt;
-
-- &lt;b&gt;Transformations&lt;/b&gt;
-- &lt;b&gt;Interactions&lt;/b&gt;
-- &lt;b&gt;New features&lt;/b&gt;
+[duw]()
 
 ]
 
