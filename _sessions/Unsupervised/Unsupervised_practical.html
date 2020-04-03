@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 
 <meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
-<title>Clustering</title>
+<title>Unsupervised learning</title>
 
 <script src="Unsupervised_practical_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -84,6 +84,7 @@ code {
 }
 img {
   max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -145,7 +146,6 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
-  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -157,6 +157,18 @@ summary {
   display: none;
 }
 </style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
 
 <!-- code folding -->
 
@@ -177,7 +189,7 @@ summary {
 
 
 
-<h1 class="title toc-ignore">Clustering</h1>
+<h1 class="title toc-ignore">Unsupervised learning</h1>
 <h4 class="author"><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
 <col width='10%'>
 <col width='10%'>
@@ -199,7 +211,7 @@ summary {
 </p>
 <div id="section" class="section level1 tabset">
 <h1></h1>
-<div id="überblick" class="section level2">
+<div id="uberblick" class="section level2">
 <h2>Überblick</h2>
 <p>In diesem Practical wirst die Clusteranalyse an zwei Datensätzen üben.</p>
 <p>Am Ende des Practicals wirst du wissen wie man:</p>
@@ -443,7 +455,7 @@ table(mpg_km$cluster, mpg_dbscan$cluster)
 table(mpg_km$cluster, mpg_gm$classification)
 table(mpg_dbscan$cluster, mpg_gm$classification)</code></pre>
 </div>
-<div id="datensätze" class="section level2">
+<div id="datensatze" class="section level2">
 <h2>Datensätze</h2>
 <table>
 <thead>
@@ -672,23 +684,6 @@ $(document).ready(function () {
 
 
 </script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

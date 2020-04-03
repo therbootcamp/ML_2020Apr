@@ -11,7 +11,7 @@
 
 
 
-<title>Model competition</title>
+<title>Modelling Wettberweb</title>
 
 <script src="Models_practical_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -189,13 +189,13 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Model competition</h1>
+<h1 class="title toc-ignore">Modelling Wettberweb</h1>
 <h4 class="author"><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
 <col width='10%'>
 <col width='10%'>
 <tr style="border:none">
 <td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
-<font style='font-style:normal'>Machine Learning with R</font> <br> <a href='https://therbootcamp.github.io/ML_2019Oct/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Basel R Bootcamp</font> </a>  
+<font style='font-style:normal'>Maschinelles Lernen mit R</font><br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>The R Bootcamp</font> </a>
 </td>
 <td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
 <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
@@ -338,15 +338,13 @@ Accuracy
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/appliedML_2019Jan/master/1_Data/tweets_train.csv">tweets</a></td>
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/appliedML_2019Jan/master/1_Data/tweets_train.csv">tweets.csc</a></td>
 <td align="left">2500</td>
 <td align="left">23</td>
 </tr>
 </tbody>
 </table>
-<p>Note: The <code>tweets</code> data are a (heavily) pre-processed subsets of this original data set from <a href="https://www.kaggle.com/crowdflower/twitter-user-gender-classification">Kaggle</a>.</p>
-<div id="variable-descriptions" class="section level5">
-<h5>Variable descriptions</h5>
+<p>Der <code>tweets.csv</code> Datensatz ist ein (stark) vor-verarbeiteter Ausschnitt deses Datensatzes von <a href="https://www.kaggle.com/crowdflower/twitter-user-gender-classification">Kaggle</a>.</p>
 <table>
 <colgroup>
 <col width="39%" />
@@ -355,105 +353,104 @@ Accuracy
 <thead>
 <tr class="header">
 <th align="left">Name</th>
-<th align="left">Meaning</th>
+<th align="left">Bedeutung</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">gender</td>
-<td align="left">The criterion. Whether the person tweeting was <code>&quot;male&quot;</code> or <code>&quot;female&quot;</code>.</td>
+<td align="left">Das Kriterium. Ob die tweetende Person männlich (<code>male</code>) oder weiblich (<code>female</code>) ist.</td>
 </tr>
 <tr class="even">
 <td align="left">year_created</td>
-<td align="left">The year the person’s twitter account was created.</td>
+<td align="left">Das Jahr in dem der Twitter Account erstellt wurde.</td>
 </tr>
 <tr class="odd">
 <td align="left">hour_created</td>
-<td align="left">The hour of day (1:24h) the person’s twitter account was created.</td>
+<td align="left">Die Stunde des Tages (1:24h) in der der Twitter Account erstellt wurde.</td>
 </tr>
 <tr class="even">
 <td align="left">tweet_count</td>
-<td align="left">The number of tweets that the person has posted.</td>
+<td align="left">Die Anzahl der Tweets, die über den Account gepostet wurden.</td>
 </tr>
 <tr class="odd">
 <td align="left">retweet_count</td>
-<td align="left">The number of retweets that the person has posted.</td>
+<td align="left">Die Anzahl der Retweets, die über den Account gepostet wurden.</td>
 </tr>
 <tr class="even">
 <td align="left">user_timezone</td>
-<td align="left">The person’s time zone relative to GMT.</td>
+<td align="left">Die Zeitzone des Accounts relativ zu GMT.</td>
 </tr>
 <tr class="odd">
 <td align="left">name_nchar</td>
-<td align="left">The number of characters in the person’s twitter name.</td>
+<td align="left">Die Anzahl der Buchstaben im Namen des Accounts.</td>
 </tr>
 <tr class="even">
 <td align="left">name_male</td>
-<td align="left"><code>1</code> if the person’s twitter name contains one of the 1’000 most frequent male baby names in America, <code>0</code> if not.</td>
+<td align="left"><code>1</code>, wenn der Account Name einen der 1,000 Häufigsten männlichen Babynamen in Amerika enthält, ansonsten <code>0</code>.</td>
 </tr>
 <tr class="odd">
 <td align="left">name_female</td>
-<td align="left"><code>1</code> if the person’s twitter name contains one of the 1’000 most frequent female baby names in America, <code>0</code> if not.</td>
+<td align="left"><code>1</code>, wenn der Account Name einen der 1,000 Häufigsten weiblichen Babynamen in Amerika enthält, ansonsten <code>0</code>.</td>
 </tr>
 <tr class="even">
 <td align="left">descr_nchar</td>
-<td align="left">The number of characters in the person’s twitter account description.</td>
+<td align="left">Die Anzahl der Buchstaben im Namen Description Feld des Accounts</td>
 </tr>
 <tr class="odd">
 <td align="left">descr_male</td>
-<td align="left"><code>1</code> if the person’s twitter account description contains one of the 1’000 most frequent male baby names in America, <code>0</code> if not.</td>
+<td align="left"><code>1</code>, wenn das Description Feld des Accounts einen der 1,000 häufigsten männlichen Babynamen in Amerika enthält, ansonsten <code>0</code>.</td>
 </tr>
 <tr class="even">
 <td align="left">descr_female</td>
-<td align="left"><code>1</code> if the person’s twitter account description contains one of the 1’000 most frequent female baby names in America, <code>0</code> if not.</td>
+<td align="left"><code>1</code>, wenn das Description Feld des Accounts einen der 1,000 häufigsten weiblichen Babynamen in Amerika enthält, ansonsten <code>0</code>.</td>
 </tr>
 <tr class="odd">
 <td align="left">descr_sent</td>
-<td align="left">Average sentiment score (&gt;0 = positive sentiment) of the person’s twitter account description.</td>
+<td align="left">Durchschnittlicher Sentiment Score (&gt;0 = positives Sentiment) des Texts im Description Feld des Accounts.</td>
 </tr>
 <tr class="even">
 <td align="left">tweet_nchar</td>
-<td align="left">The number of characters in one randomly chosen tweet by the person.</td>
+<td align="left">Die Anzahl der Buchstaben in einem zufällig ausgewählten Tweets des Accounts.</td>
 </tr>
 <tr class="odd">
 <td align="left">tweet_male</td>
-<td align="left"><code>1</code> if the randomly chosen tweet contains one of the 1’000 most frequent male baby names in America, <code>0</code> if not.</td>
+<td align="left"><code>1</code>, wenn der zufällig ausgewählte Tweet einen der 1,000 häufigsten männlichen Babynamen in Amerika enthält, ansonsten <code>0</code>.</td>
 </tr>
 <tr class="even">
 <td align="left">tweet_female</td>
-<td align="left"><code>1</code> if the randomly chosen tweet contains one of the 1’000 most frequent female baby names in America, <code>0</code> if not.</td>
+<td align="left"><code>1</code>, wenn der zufällig ausgewählte Tweet einen der 1,000 häufigsten weiblichen Babynamen in Amerika enthält, ansonsten <code>0</code>.</td>
 </tr>
 <tr class="odd">
 <td align="left">tweet_sent</td>
-<td align="left">Average sentiment score (&gt;0 = positive sentiment) of the randomly chosen tweet.</td>
+<td align="left">Durchschnittlicher Sentiment Score (&gt;0 = positives Sentiment) des Texts zufällig ausgewählte Tweets.</td>
 </tr>
 <tr class="even">
 <td align="left">linkcol_red</td>
-<td align="left">Red value (1:255) in the link color according to the person’s twitter scheme.</td>
+<td align="left">Rotwert (1:255) in der Linkfarbe des Accounts.</td>
 </tr>
 <tr class="odd">
 <td align="left">linkcol_green</td>
-<td align="left">green value (1:255) in the link color according to the person’s twitter scheme.</td>
+<td align="left">Grünwert (1:255) in der Linkfarbe des Accounts.</td>
 </tr>
 <tr class="even">
 <td align="left">linkcol_blue</td>
-<td align="left">blue value (1:255) in the link color according to the person’s twitter scheme.</td>
+<td align="left">Blauwert (1:255) in der Linkfarbe des Accounts.</td>
 </tr>
 <tr class="odd">
 <td align="left">sidecol_red</td>
-<td align="left">Red value (1:255) in the side bar color according to the person’s twitter scheme.</td>
+<td align="left">Rotwert (1:255) in Seitenbande des Accounts.</td>
 </tr>
 <tr class="even">
 <td align="left">sidecol_green</td>
-<td align="left">Green value (1:255) in the side bar color according to the person’s twitter scheme.</td>
+<td align="left">Grünwert (1:255) in Seitenbande des Accounts.</td>
 </tr>
 <tr class="odd">
 <td align="left">sidecol_blue</td>
-<td align="left">Blue value (1:255) in the side bar color according to the person’s twitter scheme.</td>
+<td align="left">Blauwert (1:255) in Seitenbande des Accounts.</td>
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 <div id="cheatsheet" class="section level2">
 <h2>Cheatsheet</h2>

@@ -1,11 +1,9 @@
 ---
-title: "Model competition"
-subtitle: ""
+title: "Modelling Wettberweb"
 author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
-      <font style='font-style:normal'>Machine Learning mit R</font>
-      <br>
+      <font style='font-style:normal'>Maschinelles Lernen mit R</font><br>
       <a href='https://therbootcamp.github.io/ML_2020Apr/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
@@ -18,9 +16,9 @@ author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0
       <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
         <i class='fab fa-linkedin' style='font-size: .9em;'></i>
       </a>
-            <a href='https://therbootcamp.github.io'>
+      <a href='https://therbootcamp.github.io'>
         <font style='font-style:normal'>The R Bootcamp</font>
-      </a>&nbsp;&nbsp;
+      </a>
     </td>
     <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
       <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
@@ -179,42 +177,35 @@ library(ggthemes)
 
 |File  |Rows | Columns |
 |:----|:-----|:------|
-|[tweets](https://raw.githubusercontent.com/therbootcamp/appliedML_2019Jan/master/1_Data/tweets_train.csv)| 2500 | 23|
+|[tweets.csc](https://raw.githubusercontent.com/therbootcamp/appliedML_2019Jan/master/1_Data/tweets_train.csv)| 2500 | 23|
 
-```{r, message = FALSE, eval = TRUE, echo = FALSE}
-# Load datasets locally
-library(tidyverse)
-```
+Der `tweets.csv` Datensatz ist ein (stark) vor-verarbeiteter Ausschnitt deses Datensatzes von [Kaggle](https://www.kaggle.com/crowdflower/twitter-user-gender-classification). 
 
-Note: The `tweets` data are a (heavily) pre-processed subsets of this original data set from [Kaggle](https://www.kaggle.com/crowdflower/twitter-user-gender-classification). 
-
-##### Variable descriptions
-
-|Name  |Meaning |
+|Name  | Bedeutung |
 |:--------------------------|:-----------------------------------------|
-|gender| The criterion. Whether the person tweeting was `"male"` or `"female"`.|
-|year_created| The year the person's twitter account was created.|
-|hour_created| The hour of day (1:24h) the person's twitter account was created.|
-|tweet_count| The number of tweets that the person has posted.|
-|retweet_count| The number of retweets that the person has posted. |
-|user_timezone| The person's time zone relative to GMT. |
-|name_nchar| The number of characters in the person's twitter name. |
-|name_male| `1` if the person's twitter name contains one of the 1'000 most frequent male baby names in America, `0` if not.|
-|name_female|`1` if the person's twitter name contains one of the 1'000 most frequent female baby names in America, `0` if not.|
-|descr_nchar| The number of characters in the person's twitter account description.|
-|descr_male| `1` if the person's twitter account description contains one of the 1'000 most frequent male baby names in America, `0` if not.|
-|descr_female| `1` if the person's twitter account description contains one of the 1'000 most frequent female baby names in America, `0` if not.|
-|descr_sent| Average sentiment score (>0 = positive sentiment) of the person's twitter account description.|
-|tweet_nchar| The number of characters in one randomly chosen tweet by the person.|
-|tweet_male| `1` if the randomly chosen tweet contains one of the 1'000 most frequent male baby names in America, `0` if not.|
-|tweet_female| `1` if the randomly chosen tweet contains one of the 1'000 most frequent female baby names in America, `0` if not.|
-|tweet_sent| Average sentiment score (>0 = positive sentiment) of the randomly chosen tweet.|
-|linkcol_red| Red value (1:255) in the link color according to the person's twitter scheme. |
-|linkcol_green| green value (1:255) in the link color according to the person's twitter scheme.|
-|linkcol_blue| blue value (1:255) in the link color according to the person's twitter scheme.|
-|sidecol_red| Red value (1:255) in the side bar color according to the person's twitter scheme.|
-|sidecol_green| Green value (1:255) in the side bar color according to the person's twitter scheme.|
-|sidecol_blue| Blue value (1:255) in the side bar color according to the person's twitter scheme.|
+|gender| Das Kriterium. Ob die tweetende Person männlich (`male`) oder weiblich (`female`) ist.|
+|year_created| Das Jahr in dem der Twitter Account erstellt wurde.|
+|hour_created| Die Stunde des Tages (1:24h) in der der Twitter Account erstellt wurde.|
+|tweet_count| Die Anzahl der Tweets, die über den Account gepostet wurden.|
+|retweet_count | Die Anzahl der Retweets, die über den Account gepostet wurden. |
+|user_timezone| Die Zeitzone des Accounts relativ zu GMT. |
+|name_nchar| Die Anzahl der Buchstaben im Namen des Accounts.|
+|name_male| `1`, wenn der Account Name einen der 1,000 Häufigsten männlichen Babynamen in Amerika enthält, ansonsten `0`. |
+|name_female|`1`, wenn der Account Name einen der 1,000 Häufigsten weiblichen Babynamen in Amerika enthält, ansonsten `0`. |
+|descr_nchar| Die Anzahl der Buchstaben im Namen Description Feld des Accounts|
+|descr_male| `1`, wenn das Description Feld des Accounts einen der 1,000 häufigsten männlichen Babynamen in Amerika enthält, ansonsten `0`. |
+|descr_female| `1`, wenn das Description Feld des Accounts einen der 1,000 häufigsten weiblichen Babynamen in Amerika enthält, ansonsten `0`.|
+|descr_sent| Durchschnittlicher Sentiment Score (>0 = positives Sentiment) des Texts im Description Feld des Accounts. |
+|tweet_nchar| Die Anzahl der Buchstaben in einem zufällig ausgewählten Tweets des Accounts.|
+|tweet_male| `1`, wenn der zufällig ausgewählte Tweet einen der 1,000 häufigsten männlichen Babynamen in Amerika enthält, ansonsten `0`.|
+|tweet_female| `1`, wenn der zufällig ausgewählte Tweet einen der 1,000 häufigsten weiblichen Babynamen in Amerika enthält, ansonsten `0`.|
+|tweet_sent| Durchschnittlicher Sentiment Score (>0 = positives Sentiment) des Texts zufällig ausgewählte Tweets. |
+|linkcol_red| Rotwert (1:255) in der Linkfarbe des Accounts. |
+|linkcol_green| Grünwert (1:255) in der Linkfarbe des Accounts.|
+|linkcol_blue| Blauwert (1:255) in der Linkfarbe des Accounts.|
+|sidecol_red| Rotwert (1:255) in Seitenbande des Accounts.|
+|sidecol_green| Grünwert (1:255) in Seitenbande des Accounts.|
+|sidecol_blue| Blauwert (1:255) in Seitenbande des Accounts.|
 
 
 ## Cheatsheet
