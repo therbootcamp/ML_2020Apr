@@ -3,7 +3,7 @@ title: "Optimizing"
 author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
-      <font style='font-style:normal'>Machine Learning mit R</font><br>
+      <font style='font-style:normal'>Maschinelles Lernen mit R</font><br>
       <a href='https://therbootcamp.github.io/ML_2020Apr/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
@@ -35,8 +35,8 @@ knitr::opts_chunk$set(comment = NA,
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-                      echo = TRUE, 
-                      eval = TRUE, 
+                      echo = FALSE, 
+                      eval = FALSE, 
                       warning = FALSE,
                       message = FALSE)
 
@@ -72,7 +72,7 @@ Am Ende des Practicals wirst du wissen wie man...
 
 1. Cross-Validation zur Auswahl der Tuning Parameter verwendet. 
 2. Schätzungen für Vorhersageperformanz durch Cross-Validation erhält. 
-3. Wie sich eine simple Regression von Lasso und Ridge unterscheiden.
+3. Wie sich eine simple Regression von Lasso und Ridge unterscheidet.
 
 ## Aufgaben
 
@@ -147,7 +147,7 @@ ctrl_cv <- trainControl(method = "cv",
 
 ### C - Regression
 
-1. Fitte eine normale Regression auf bekanntem Wege (wie z.b. im Practical zu [Prediction](_sessions/Prediction/Prediction_practical.html)), die das `Gehalt` des Baseballspielers durch alle Feature im Datensatz vorhersagt. Einziger Unterschied: Setze das `trControl` Argument auf das eben definierte `ctrl_cv` Objekt. 
+1. Fitte eine normale Regression auf bekanntem Wege (wie z.b. im Practical zu [Prediction](_sessions/Prediction/Prediction_practical.html)), die das `Gehalt` des Baseballspielers durch alle Features im Datensatz vorhersagt. Einziger Unterschied: Setze das `trControl` Argument auf das eben definierte `ctrl_cv` Objekt. 
 
 
 ```{r, echo = TRUE, eval = FALSE}
@@ -175,7 +175,7 @@ gehalt_glm
 
 ### D - Ridge Regression
 
-1. Bevor du ein Regreessionsmodel mit Ridge fitten kannst, benötigst du das Kandidatensetz für die Tuning Parameter. Erstelle hierzu mit dem Code einen Vector von möglichen `lambda` Werten.  
+1. Bevor du ein Regressionsmodel mit Ridge fitten kannst, benötigst du das Kandidatenset für die Tuning Parameter. Erstelle hierzu mit dem Code einen Vector von möglichen `lambda` Werten.  
 
 ```{r, echo = TRUE}
 # Kandidaten für lambda
@@ -208,7 +208,7 @@ gehalt_ridge <- train(form = Gehalt ~ .,
                                              lambda = lambda_vec))
 ```
 
-3. Plotte das Objekt `gehalt_ridge` mit `plot()`. Was verrät dir der Plot? Welcher `lambda` Wert könnten optimal sein?
+3. Plotte das Objekt `gehalt_ridge` mit `plot()`. Was verrät dir der Plot? Welcher `lambda` Wert könnte optimal sein?
 
 ```{r}
 plot(gehalt_ridge)
@@ -232,7 +232,7 @@ coef(gehalt_ridge$finalModel,
 
 ### E - Lasso Regression
 
-1. Fitte eine Lasso Regression, die das `Gehalt` des Baseballspielers durch alle Feature im Datensatz vorhersagt. Beginne mit dem Code für die Ridge Regression und definiere als einzige Änderung `alpha = 1`.
+1. Fitte eine Lasso Regression, die das `Gehalt` des Baseballspielers durch alle Features im Datensatz vorhersagt. Beginne mit dem Code für die Ridge Regression und definiere als einzige Änderung `alpha = 1`.
 
 ```{r}
 # Fit a lasso regression
@@ -245,7 +245,7 @@ gehalt_lasso <- train(form = Gehalt ~ .,
                                           lambda = lambda_vec))
 ```
 
-2. Plotte das Objekt `gehalt_lasso` mit `plot()`. Was verrät dir der Plot? Welcher `lambda` Wert könnten optimal sein?
+2. Plotte das Objekt `gehalt_lasso` mit `plot()`. Was verrät dir der Plot? Welcher `lambda` Wert könnte optimal sein?
 
 ```{r}
 plot(gehalt_lasso)
@@ -254,11 +254,11 @@ plot(gehalt_lasso)
 3. Printe mit dem Code unten den durch die Cross-Validation als bestes `lambda` identifizierten Wert. Passt er zum Plot in der letzten Aufgabe?
 
 ```{r, echo = TRUE}
-# Print besten lambda Parameter
+# Printe besten lambda Parameter
 gehalt_lasso$bestTune$lambda
 ```
 
-4. Lasse dir mit dem Code unten die Parameter des finale Modells anzeigen. Wie beurteilst du den Output? Hat sich was im Vergleich zu Ridge verändert?
+4. Lasse dir mit dem Code unten die Parameter des finalen Modells anzeigen. Wie beurteilst du den Output? Hat sich was im Vergleich zu Ridge verändert?
 
 ```{r, echo = TRUE}
 # Erhalte die Modellparameter für das Modell unter dem optimalen lambda
@@ -268,7 +268,7 @@ coef(gehalt_lasso$finalModel,
 
 ### F - Decision Tree
 
-1. Bevor du einen Decision Tree per Cross-Validation fittest, benötigst du das Kandidatensetz für die Tuning Parameter. Erstelle hierzu mit dem Code einen Vector von möglichen `cp` Werten. 
+1. Bevor du einen Decision Tree per Cross-Validation fittest, benötigst du das Kandidatenset für die Tuning Parameter. Erstelle hierzu mit dem Code einen Vektor von möglichen `cp` Werten. 
 
 ```{r}
 # Kandidaten für cp
@@ -276,7 +276,7 @@ cp_vec <- seq(from = 0, to = 1, length = 100)
 ```
 
 
-2. Fitte einen Decision Tree, die das `Gehalt` des Baseballspielers durch alle Feature im Datensatz vorhersagt. Beginne mit dem bekannten Code und zusätzlich...
+2. Fitte einen Decision Tree, der das `Gehalt` des Baseballspielers durch alle Features im Datensatz vorhersagt. Beginne mit dem bekannten Code und zusätzlich...
 
 - setze das `trControl` Argument auf das `ctrl_cv` Objekt. 
 - setze das `tuneGrid` Argument auf `expand.grid(cp = cp_vec)`.
@@ -300,7 +300,7 @@ gehalt_rpart <- train(form = Gehalt ~ .,
 ```
 
 
-3. Plotte das Objekt `gehalt_rpart` mit `plot()`. Was verrät dir der Plot? Welcher `cp` Wert könnten optimal sein?
+3. Plotte das Objekt `gehalt_rpart` mit `plot()`. Was verrät dir der Plot? Welcher `cp` Wert könnte optimal sein?
 
 ```{r}
 plot(gehalt_rpart)
@@ -322,14 +322,14 @@ plot(as.party(gehalt_rpart$finalModel))
 
 ### G - Random Forests
 
-1. Bevor du einen Random Forest per Cross-Validation fittest, benötigst du das Kandidatensetz für die Tuning Parameter. Erstelle hierzu mit dem Code einen Vector von möglichen `mtry` Werten. 
+1. Bevor du einen Random Forest per Cross-Validation fittest, benötigst du das Kandidatenset für die Tuning Parameter. Erstelle hierzu mit dem Code einen Vektor von möglichen `mtry` Werten. 
 
 ```{r}
 # Kandidaten für mtry
 mtry_vec <- 1:10
 ```
 
-2. Fitte einen Random Forest, die das `Gehalt` des Baseballspielers durch alle Feature im Datensatz vorhersagt. Beginne mit dem bekannten Code und zusätzlich...
+2. Fitte einen Random Forest, der das `Gehalt` des Baseballspielers durch alle Features im Datensatz vorhersagt. Beginne mit dem bekannten Code und zusätzlich...
 
 - setze das `trControl` Argument auf das `ctrl_cv` Objekt. 
 - setze das `tuneGrid` Argument auf `expand.grid(mtry = mtry_vec)`.
@@ -362,7 +362,7 @@ plot(gehalt_rf)
 4. Printe mit dem Code unten den durch die Cross-Validation als bestes `mtry` identifizierten Wert. Passt er zum Plot in der letzten Aufgabe?
 
 ```{r, echo = TRUE}
-# Print besten mtry Parameter
+# Printe besten mtry Parameter
 gehalt_rf$bestTune$mtry
 ```
 
@@ -422,25 +422,34 @@ rpart_pred <- predict(gehalt_rpart, newdata = baseball_test)
 rf_pred <- predict(gehalt_rf, newdata = baseball_test)
 ```
 
-4. Verwende `postResample()` um die Vorhersagen mit den tatsächlichen Kriteriumswerten zu vergleeicheen. Welches Modll hat in der Vorhersage der Testdaten die beste Performanz?
+4. Verwende `postResample()` um die Vorhersagen mit den tatsächlichen Kriteriumswerten zu vergleichen. Welches Modell hat in der Vorhersage der Testdaten die beste Performanz?
+
+```{r}
+postResample(ridge_pred, criterion_test)
+postResample(lasso_pred, criterion_test)
+postResample(rpart_pred, criterion_test)
+postResample(rf_pred, criterion_test)
+```
+
 
 5. Vergleiche die geschätzten Vorhersageleistungen auf Basis von `resamples()` (aus der letzten Sektion) mit der Leistung für tatsächliche Vorhersage. Wie gross sind die Unterschiede?
 
 ### X - Challenges: Abschlussrate
 
-Vergleiche auf Basis der Schritte in diesem Practical die Performanz von Regression, Lasso, Ridge, Decision Tree und Random Forest für die `graduation_train` und `graduation_test` Datensätze aus dem letzten Practical. Lass die Modelle das Feature `Privatuniversität` auf Basis aller anderen Feature vorhersagen. Nicht vergessen für Klassifikation müssen das Kriterium ein `factor` sein.
+Vergleiche auf Basis der Schritte in diesem Practical die Performanz von Regression, Lasso, Ridge, Decision Tree und Random Forest für die `graduation_train` und `graduation_test` Datensätze aus dem letzten Practical. Lass die Modelle das Kriterium `Privatuniversität` auf Basis aller anderen Features vorhersagen. Nicht vergessen für Klassifikation muss das Kriterium ein `factor` sein.
 
 1. Welches Modell ist das beste? 
-2. Wie viel besser werden die Modelle durch Model Tuning? Vergleiche mit den Ergebnisse des letzten Practicals. 
-3. Setzt Lasso die Gewichte einzelne Feature auf 0? Was könnte das für die Relevanz des Features bedeuten?
+2. Wie viel besser werden die Modelle durch Model Tuning? Vergleiche mit den Ergebnissen des letzten Practicals. 
+3. Setzt Lasso die Gewichte einzelner Features auf 0? Was könnte das für die Relevanz des Features bedeuten?
 
 ### Y - Challenges: Hauspreise
 
-Vergleiche auf Basis der Schritte in diesem Practical die Performanz von Regression, Lasso, Ridge, Decision Tree und Random Forest für die `graduation_train` und `graduation_test` Datensätze aus dem letzten Practical. Lass die Modelle das Feature `Preis` auf Basis aller anderen Feature vorhersagen.
+Vergleiche auf Basis der Schritte in diesem Practical die Performanz von Regression, Lasso, Ridge, Decision Tree und Random Forest für die `house_train` und `house_test` Datensätze aus dem letzten Practical. Lass die Modelle das Kriterium `Preis` auf Basis aller anderen Features vorhersagen.
 
 1. Welches Modell ist das beste? 
-2. Wie viel besser werden die Modelle durch Model Tuning? Vergleiche mit den Ergebnisse des letzten Practicals. 
-3. Setzt Lasso die Gewichte einzelne Feature auf 0? Was könnte das für die Relevanz des Features bedeuten?
+2. Wie viel besser werden die Modelle durch Model Tuning? Vergleiche mit den Ergebnissen des letzten Practicals. 
+3. Setzt Lasso die Gewichte einzelner Features auf 0? Was könnte das für die Relevanz des Features bedeuten?
+
 
 
 ## Beispiele
@@ -609,7 +618,7 @@ library(ggthemes)
 
 Die `baseball_train` und `baseball_test` Datensätze entstammen dem `Hitters` Datensatz des `ISLR` Pakets. Sie enthalten Daten über Major League Baseball Spieler aus den Saisons 1986 und 1987.
 
-| Name | Description |
+| Name | Beschreibung |
 |Gehalt| Jahresgehalt zu Beginn des Jahres 1987 |
 |Schlaeger86| Einsätze als Schläger im Jahr 1986 |
 |Getroffen86| Treffer des Balls im Jahr 1986 |
@@ -698,7 +707,7 @@ Die `house_train` und `house_test` Datensätze enthalten Hauspreise und -Eigensc
 
 ### Funktionen
 
-| Function| Package | Description |
+| Function| Paket | Beschreibung |
 |:---|:------|:---------------------------------------------|
 | `trainControl()`|`caret`|   Definiere wie das Modell trainiert wird | 
 | `train()`|`caret`|  Trainiere (fitte) ein Modell   |
@@ -706,7 +715,7 @@ Die `house_train` und `house_test` Datensätze enthalten Hauspreise und -Eigensc
 | `postResample()`|`caret`| Evaluiere Performanz in Regressionsfällen   |
 | `confusionMatrix()`|`caret`|   Evaluiere Performanz in Klassifikationsfällen |
 
-## Ressourcen
+## Materialien
 
 <figure>
 <center>

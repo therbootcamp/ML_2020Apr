@@ -35,12 +35,16 @@ knitr::opts_chunk$set(comment = NA,
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-                      echo = TRUE, 
-                      eval = TRUE, 
+                      echo = FALSE, 
+                      eval = FALSE, 
                       warning = FALSE,
                       message = FALSE)
 
 options(digits = 3)
+library(tidyverse)
+library(caret)
+library(party)
+library(partykit)
 
 ```
 
