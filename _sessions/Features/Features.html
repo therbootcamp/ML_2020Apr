@@ -161,27 +161,30 @@ layout: true
 
 ---
 
-# Feature importance
+# Feature Wichtigkeit
 
 .pull-left4[
 
-&lt;high&gt;Feature importance&lt;/high&gt; characterizes how much a feature contributes to the fitting/prediction performance. 
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die Feature Wichtigkeit ist ein Mass für die &lt;high&gt;Bedeutung eines Features für Fit/Vorhersage der Daten&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;caret&lt;/mono&gt; berechnet die Feature Wichtigkeit &lt;high&gt;Modell-spezifisch und skaliert&lt;/high&gt; sie auf Werte innerhalb &lt;mono&gt;[0, 100]&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Strategien&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;1-Feature&lt;/high&gt; Modelle (z.B. &lt;mono&gt;LOESS&lt;/mono&gt;)&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Loss durch &lt;high&gt;Scrambling&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Wichtigkeit in &lt;high&gt;komplexen Modellen&lt;/high&gt; (z.B. Random Forest)&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;etc.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
 
-
-The metric is &lt;high&gt;model specific &lt;/high&gt;, but typically &lt;high&gt;normalized&lt;/high&gt; to `[0, 100]`.
-
-&lt;u&gt;Strategies&lt;/u&gt;
-- Single variable prediction (e.g., using `LOESS`, `ROC`) 
-- Accuracy loss from scrambling
-- `random forests` importance
-- etc.  
 ]
 
 .pull-right5[
 
 ```r
-# plot variable importance for lm(einkommen ~ .)
+# Plotte Feature Wichtigkeit für lm(einkommen ~ .)
 plot(varImp(einkommen_lm))
 ```
 
@@ -194,7 +197,10 @@ plot(varImp(einkommen_lm))
 # `varImp()`
 
 .pull-left45[
-`varImp()` &lt;high&gt;automatically selects appropriate measure&lt;/high&gt; of variable importance for a given algorithm. 
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;varImp()&lt;/mono&gt; Funktion liefert &lt;high&gt;Modell-spezifische Schätzungen&lt;/high&gt; der Feature Wichtigkeit&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 
 ```r
@@ -207,13 +213,13 @@ lm variable importance
 
         Overall
 alter   100.000
-essen    59.490
-glueck   38.448
-alkohol  37.627
-groesse   5.051
-kinder    2.990
-gewicht   2.107
-datause   1.991
+essen    52.613
+glueck   31.092
+alkohol  29.371
+datause  11.817
+gewicht   4.470
+tattoos   2.036
+kinder    1.816
 ```
 
 ]
@@ -221,7 +227,7 @@ datause   1.991
 .pull-right5[
 
 ```r
-# plot variable importance for lm(einkommen ~ .)
+# Plotte Feature Wichtigkeit für lm(einkommen ~ .)
 plot(varImp(einkommen_lm))
 ```
 
@@ -233,14 +239,18 @@ plot(varImp(einkommen_lm))
 
 .pull-left35[
 
-# Recursive feature selection `rfe()`
+# `rfe()`
 
-Find the &lt;high&gt;best number of `n` predictors&lt;/high&gt;, with `n` drawn from specified candidate sets `N`, e.g., `N = [2,3,5,10]`. 
-
-&lt;u&gt;Algorithm&lt;/u&gt;
-1. &lt;high&gt;Resample&lt;/high&gt; and split data&lt;br2&gt;
-2. Identify &lt;high&gt;best `n` predictors&lt;/high&gt; and their prediction performance&lt;br2&gt;
-3. &lt;high&gt;Aggregate performance&lt;/high&gt; and select best `n` and the accordingly best predictors
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die rekursive Featureselektion (&lt;mono&gt;rfe()&lt;/mono&gt;) verwendet Cross-Validation um die besten &lt;i&gt;n&lt;/i&gt; Feature zu identifizieren.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Algorithmus&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ol&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;Kandidatenset&lt;/high&gt; &lt;mono&gt;n = [2, 3, 5, 10]&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Wiederholtes &lt;high&gt;Resampling&lt;/high&gt; und Aufteilen der Daten.&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Evaluiere &lt;high&gt;Vorhersageleistung&lt;/high&gt; für jeweils die besten &lt;mono&gt;n&lt;/mono&gt; Feature.&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Selegiere bestes &lt;mono&gt;n&lt;/mono&gt; auf Basis der &lt;high&gt;aggregierten Vorhersageleistung&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -250,9 +260,9 @@ Find the &lt;high&gt;best number of `n` predictors&lt;/high&gt;, with `n` drawn 
 
 
 ```r
-# Run feature elimination
+# Rekursive Featureselektion
 rfe(x = ..., y = ..., 
-    sizes = c(3,4,5,10), # feature set sizes
+    sizes = c(3, 4, 5, 10), # Kandidaten für N
     rfeControl = rfeControl(functions = lmFuncs))
 ```
 
@@ -266,29 +276,29 @@ Outer resampling method: Bootstrapped (25 reps)
 Resampling performance over subset size:
 
  Variables  RMSE Rsquared   MAE RMSESD RsquaredSD  MAESD Selected
-         3 0.392    0.845 0.311 0.0127     0.0113 0.0105         
-         4 0.361    0.869 0.287 0.0134     0.0118 0.0107        *
-         5 0.363    0.868 0.289 0.0140     0.0124 0.0113         
-        10 0.366    0.865 0.292 0.0141     0.0130 0.0118         
-        14 0.367    0.865 0.293 0.0142     0.0130 0.0119         
+         3 0.395    0.848 0.317 0.0121     0.0120 0.0111         
+         4 0.371    0.866 0.297 0.0134     0.0116 0.0116         
+         5 0.368    0.868 0.296 0.0141     0.0115 0.0124        *
+        10 0.371    0.866 0.299 0.0142     0.0118 0.0127         
+        14 0.371    0.866 0.299 0.0143     0.0118 0.0128         
 
-The top 4 variables (out of 4):
-   alter, essen, alkohol, glueck
+The top 5 variables (out of 5):
+   alter, essen, alkohol, glueck, datause
 ```
 
 ]
 
 ---
 
-# Dimensionality reduction using `PCA`
+# Principal component analysis
 
 .pull-left45[
 
-The go-to algorithm for dimensionality reduction is &lt;high&gt;principal component analysis&lt;/high&gt; (PCA). 
-
-PCA is an &lt;high&gt;unsupervised&lt;/high&gt;, regression-based algorithm that re-represents the data in a &lt;high&gt;new feature space&lt;/high&gt;.  
-
-The new features aka principal components are greedy. &lt;high&gt;Skimming off the best components&lt;/high&gt; results in a small number of features that &lt;high&gt;preserve the original features&lt;/high&gt; as well as possible.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Das &lt;high&gt;Standardmodell&lt;/high&gt; für Dimensionsreduktion.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Verwendet ein lineares (Regression) um die Feature in einem &lt;high&gt;neuen, kleineren Featureraum&lt;/high&gt; zu re-representieren.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Der neue Featureraum wird so gewählt, dass er die &lt;high&gt;maximal mögliche Varianz an den ursprünglichen Featuren präserviert.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -306,7 +316,7 @@ The new features aka principal components are greedy. &lt;high&gt;Skimming off t
 
 ---
 
-# Using `PCA`
+# `preProc = c('pca')`
 
 .pull-left45[
 

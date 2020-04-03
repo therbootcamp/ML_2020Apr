@@ -300,18 +300,15 @@ plot(varImp(einkommen_lm),col='#EA4B68',cex=1.3,scales = list(cex=1.3,lineheight
 # `rfe()`
 
 <ul>
-  <li class="m1"><span>Die rekursive Featureselektion (<mono>rfe()</mono>) verwendet Cross-Validation um die besten <i>n</i> Feature zu identifizieren.</span></li>
-  <li class="m2"><span><b>Algorithmus</b>:</span></li>
+  <li class="m1"><span>Die rekursive Featureselektion <mono>rfe()</mono> verwendet Cross-Validation um die besten <i>n</i> Feature zu identifizieren.</span></li>
+  <li class="m2"><span><b>Algorithmus</b></span></li>
   <ol>
-    <li"><span>Resampling und </span></li>
+    <li><span><high>Kandidatenset</high> <mono>n = [2, 3, 5, 10]</mono>.</span></li>
+    <li><span>Wiederholtes <high>Resampling</high> und Aufteilen der Daten.</span></li>
+    <li><span>Evaluiere <high>Vorhersageleistung</high> für jeweils die besten <mono>n</mono> Feature.</span></li>
+    <li><span>Selegiere bestes <mono>n</mono> auf Basis der <high>aggregierten Vorhersageleistung</high>.</span></li>
   </ol>
 </ul>
-
-
-<u>Algorithm</u>
-1. <high>Resample</high> and split data<br2>
-2. Identify <high>best `n` predictors</high> and their prediction performance<br2>
-3. <high>Aggregate performance</high> and select best `n` and the accordingly best predictors
 
 ]
 
@@ -320,17 +317,17 @@ plot(varImp(einkommen_lm),col='#EA4B68',cex=1.3,scales = list(cex=1.3,lineheight
 <br><br>
 
 ```{r, eval = F}
-# Run feature elimination
+# Rekursive Featureselektion
 rfe(x = ..., y = ..., 
-    sizes = c(3,4,5,10), # feature set sizes
+    sizes = c(3, 4, 5, 10), # Kandidaten für N
     rfeControl = rfeControl(functions = lmFuncs))
 ```
 
 ```{r, echo = F}
-# Run feature elimination
+# Rekursive Featureselektion
 out = rfe(x = bas_train %>% select(-einkommen), 
     y = bas_train$einkommen,
-    sizes = c(3,4,5,10),   # Features set sizes should be considered
+    sizes = c(3, 4, 5, 10),   
     rfeControl = rfeControl(
       functions = lmFuncs,
       verbose = FALSE))
@@ -341,15 +338,15 @@ print2(out, 20)
 
 ---
 
-# Dimensionality reduction using `PCA`
+# Principal component analysis
 
 .pull-left45[
 
-The go-to algorithm for dimensionality reduction is <high>principal component analysis</high> (PCA). 
-
-PCA is an <high>unsupervised</high>, regression-based algorithm that re-represents the data in a <high>new feature space</high>.  
-
-The new features aka principal components are greedy. <high>Skimming off the best components</high> results in a small number of features that <high>preserve the original features</high> as well as possible.
+<ul>
+  <li class="m1"><span>Das <high>Standardmodell</high> für Dimensionsreduktion.</span></li>
+  <li class="m2"><span>Verwendet ein lineares (Regression) um die Feature in einem <high>neuen, kleineren Featureraum</high> zu re-representieren.</span></li>
+  <li class="m3"><span>Der neue Featureraum wird so gewählt, dass er die <high>maximal mögliche Varianz an den ursprünglichen Featuren präserviert.</span></li>
+</ul>
 
 ]
 
@@ -367,7 +364,7 @@ The new features aka principal components are greedy. <high>Skimming off the bes
 
 ---
 
-# Using `PCA`
+# `preProc = c('pca')`
 
 .pull-left45[
 
