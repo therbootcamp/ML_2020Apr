@@ -229,26 +229,29 @@ library(ggthemes)
 
 ---
 
-# Feature importance
+# Feature Wichtigkeit
 
 .pull-left4[
 
-<high>Feature importance</high> characterizes how much a feature contributes to the fitting/prediction performance. 
+
+<ul>
+  <li class="m1"><span>Die Feature Wichtigkeit ist ein Mass für die <high>Bedeutung eines Features für Fit/Vorhersage der Daten</high>.</span></li>
+  <li class="m2"><span><mono>caret</mono> berechnet die Feature Wichtigkeit <high>Modell-spezifisch und skaliert</high> sie auf Werte innerhalb <mono>[0, 100]</mono></span></li>
+  <li class="m3"><span><b>Strategien</b></span></li>
+  <ul class="level">
+    <li><span><high>1-Feature</high> Modelle (z.B. <mono>LOESS</mono>)</span></li>
+    <li><span>Loss durch <high>Scrambling</high></span></li>
+    <li><span>Wichtigkeit in <high>komplexen Modellen</high> (z.B. Random Forest)</span></li>
+    <li><span>etc.</span></li>
+  </ul>
+</ul>
 
 
-
-The metric is <high>model specific </high>, but typically <high>normalized</high> to `[0, 100]`.
-
-<u>Strategies</u>
-- Single variable prediction (e.g., using `LOESS`, `ROC`) 
-- Accuracy loss from scrambling
-- `random forests` importance
-- etc.  
 ]
 
 .pull-right5[
 ```{r, eval = FALSE}
-# plot variable importance for lm(einkommen ~ .)
+# Plotte Feature Wichtigkeit für lm(einkommen ~ .)
 plot(varImp(einkommen_lm))
 ```
 
@@ -263,7 +266,10 @@ plot(varImp(einkommen_lm),col='#EA4B68',cex=1.3,scales = list(cex=1.3,lineheight
 # `varImp()`
 
 .pull-left45[
-`varImp()` <high>automatically selects appropriate measure</high> of variable importance for a given algorithm. 
+
+<ul>
+  <li class="m1"><span>Die <mono>varImp()</mono> Funktion liefert <high>Modell-spezifische Schätzungen</high> der Feature Wichtigkeit</span></li>
+</ul>
 
 ```{r eval = FALSE}
 varImp(einkommen_lm)
@@ -277,7 +283,7 @@ print2(varImp(einkommen_lm_short), 11)
 
 .pull-right5[
 ```{r, eval = FALSE}
-# plot variable importance for lm(einkommen ~ .)
+# Plotte Feature Wichtigkeit für lm(einkommen ~ .)
 plot(varImp(einkommen_lm))
 ```
 
@@ -291,9 +297,16 @@ plot(varImp(einkommen_lm),col='#EA4B68',cex=1.3,scales = list(cex=1.3,lineheight
 
 .pull-left35[
 
-# Recursive feature selection `rfe()`
+# `rfe()`
 
-Find the <high>best number of `n` predictors</high>, with `n` drawn from specified candidate sets `N`, e.g., `N = [2,3,5,10]`. 
+<ul>
+  <li class="m1"><span>Die rekursive Featureselektion (<mono>rfe()</mono>) verwendet Cross-Validation um die besten <i>n</i> Feature zu identifizieren.</span></li>
+  <li class="m2"><span><b>Algorithmus</b>:</span></li>
+  <ol>
+    <li"><span>Resampling und </span></li>
+  </ol>
+</ul>
+
 
 <u>Algorithm</u>
 1. <high>Resample</high> and split data<br2>
