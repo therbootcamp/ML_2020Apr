@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -84,7 +84,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -146,6 +145,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -157,18 +157,6 @@ summary {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -195,7 +183,7 @@ $(document).ready(function () {
 <col width='10%'>
 <tr style="border:none">
 <td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
-<font style='font-style:normal'>Maschinelles lernen mit R</font><br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>The R Bootcamp</font> </a>
+<font style='font-style:normal'>Maschinelles Lernen mit R</font><br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>The R Bootcamp</font> </a>
 </td>
 <td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
 <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
@@ -211,7 +199,7 @@ $(document).ready(function () {
 </p>
 <div id="section" class="section level1 tabset">
 <h1></h1>
-<div id="uberblick" class="section level2">
+<div id="überblick" class="section level2">
 <h2>Überblick</h2>
 <p>In diesem Practical wirst die Clusteranalyse an zwei Datensätzen üben.</p>
 <p>Am Ende des Practicals wirst du wissen wie man:</p>
@@ -263,8 +251,8 @@ gap2007_km &lt;- kmeans(x = XX, centers = XX) </code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Printe <code>gap2007_km</code> in die Console und studiere den Output.</p></li>
 <li><p>Die erste Zeile und die Tabelle Cluster means geben Aufschluss darüber, welche Cluster das Modell identifiziert hat.</p></li>
-<li><p>Ganz unten im Output steht eine Liste der im Objekt enthaltenen Elemente. Verwende <code>gap2007_km$XX</code> um das Element <code>cluster</code> als eigenes Objekt <code>clusers</code> und das Element <code>centers</code> als eigenes Objekt <code>centers</code> zu speichern.</p></li>
-<li><p>Verwende den Code unten eine Abbildung mit der Daten mit Clusterzuweisungen zu erstellen. Wenn ihr damit vertraut seit, dürft ihr natürlich auch das wesentlich <code>ggplot2</code> benutzen.</p></li>
+<li><p>Ganz unten im Output steht eine Liste der im Objekt enthaltenen Elemente. Verwende <code>gap2007_km$XX</code> um das Element <code>cluster</code> als eigenes Objekt <code>clusters</code> und das Element <code>centers</code> als eigenes Objekt <code>centers</code> zu speichern.</p></li>
+<li><p>Verwende den Code unten um eine Abbildung mit den Daten mit Clusterzuweisungen zu erstellen. Wenn ihr damit vertraut seit, dürft ihr dafür natürlich auch <code>ggplot2</code> benutzen.</p></li>
 </ol>
 <pre class="r"><code># kmeans plot für gap in 2007
 plot(gap2007, col = clusters)</code></pre>
@@ -297,7 +285,7 @@ binnenvarianz &lt;- purrr::map_dbl(km_verlauf,
 <ol start="2" style="list-style-type: decimal">
 <li><p>Benutze <code>plot(XX)</code> um den Verlauf der <code>binnenvarianz</code> zu plotten.</p></li>
 <li><p>Was sagt euch der Plot? Gibt es Ellbogen im Verlauf, die bestimmte Werte für <em>k</em> nahelegen?</p></li>
-<li><p>Auf Basis des Verlaufs erscheinen verschiedene werte für <em>k</em> plausibel: 1, 3, oder 7. Verwendet die <code>cDistance()</code> Funktion aus dem <code>cstab</code> Paket im Code unten um Schätzungen für <em>k</em> innerhalb der Werte <code>2:20</code> auf Basis der Gap- und Slope-Statistik zu erhalten.</p></li>
+<li><p>Auf Basis des Verlaufs erscheinen verschiedene Werte für <em>k</em> plausibel: 1, 3, oder 7. Verwende die <code>cDistance()</code> Funktion aus dem <code>cstab</code> Paket im Code unten um Schätzungen für <em>k</em> innerhalb der Werte <code>2:20</code> auf Basis der Gap- und Slope-Statistik zu erhalten.</p></li>
 </ol>
 <pre class="r"><code># schätze k mit cstab
 k_est &lt;- cDistance(data = as.matrix(XX),
@@ -306,12 +294,12 @@ k_est &lt;- cDistance(data = as.matrix(XX),
 <li><p>Lass dir mit <code>k_est$k_Gap</code> und <code>k_est$k_Slope</code> ausgeben. Sinnvolle Schätzungen?</p></li>
 <li><p>Versuche nun das selbe mit <code>cStability()</code>. Lass dir im Anschluss den Wert <code>k_instab</code> ausgeben. Sinnvoller?</p></li>
 </ol>
-<p>Notiz: Erinnere dich, es gibt kein richtiges <em>k</em>. Aus diesem Grund ist in Fällen, in denen die Clusterlösung visuell inspiziert werden kann, das Augenmass der etablierte Goldstandard. Bei mehr als zwei Featuren wird dies natürlich zunehmend schwieriger, so dass einem nichts übrig bleibt als sich auf komputationale Verfahren zu stützen.</p>
+<p>Notiz: Erinnere dich, es gibt kein richtiges <em>k</em>. Aus diesem Grund ist in Fällen, in denen die Clusterlösung visuell inspiziert werden kann, das Augenmass der etablierte Goldstandard. Bei mehr als zwei Features wird dies natürlich zunehmend schwieriger, sodass einem nichts anderes übrig bleibt als sich auf komputationale Verfahren zu stützen.</p>
 </div>
 <div id="e---dbscan" class="section level3">
 <h3>E - DBSCAN</h3>
 <ol style="list-style-type: decimal">
-<li>Verwende <code>dbscan()</code> aus dem <code>dbscan</code> Paket um die Daten erneut zu clustern. Hier ist es erneut essentiell, die standardisierten Daten <code>gap2007_stand</code> zu verwenden, da ansonsten der <code>eps</code> Parameter effektiv keinen Kreis, sondern eine sehr, sehr flache Ellipse beschreibt. Nur wenn alle Feature die selbe Skala haben, bedeutet <code>eps</code> eine Distanz der gleichen Grösse für alle Feature. Setzt <code>eps</code> auf <code>.5</code>.</li>
+<li>Verwende <code>dbscan()</code> aus dem <code>dbscan</code> Paket um die Daten erneut zu clustern. Hier ist es erneut essentiell, die standardisierten Daten <code>gap2007_stand</code> zu verwenden, da ansonsten der <code>eps</code> Parameter effektiv keinen Kreis, sondern eine sehr, sehr flache Ellipse beschreibt. Nur wenn alle Features die selbe Skala haben, bedeutet <code>eps</code> eine Distanz der gleichen Grösse für alle Feature. Setze <code>eps</code> auf <code>.5</code>.</li>
 </ol>
 <pre class="r"><code># clustere mit DBSCAN
 gap2007_stand_dbscan &lt;- dbscan(x = XX, 
@@ -334,18 +322,23 @@ plot(XX, col = XX + 1)</code></pre>
 <div id="f---gaussian-mixtures" class="section level3">
 <h3>F - Gaussian Mixtures</h3>
 <ol style="list-style-type: decimal">
-<li>Zum Abschluss, verwende <code>Mclust()</code> aus dem <code>mclust</code> Paket um über Gaussian Mixture Modell die Cluster zu bestimmen. Arbeite hier mit dem nicht-standardisierten Datensatz <code>gap2007</code>. Dies ist möglich, weil Gaussian Mixtures die Skalen der Variablen automatisch berücksichtigt.</li>
+<li>Zum Abschluss, verwende <code>Mclust()</code> aus dem <code>mclust</code> Paket um über Gaussian Mixture Modelle die Cluster zu bestimmen. Arbeite hier mit dem nicht-standardisierten Datensatz <code>gap2007</code>. Dies ist möglich, weil Gaussian Mixtures die Skalen der Variablen automatisch berücksichtigt.</li>
 </ol>
 <pre class="r"><code># clustere mit Gaussian mixtures
 gap2007_gm &lt;- Mclust(XX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Printe das Objekt <code>gap2007_gm</code> um es zu inspizieren.</p></li>
-<li><p>Der Output verrät relativ wenig, nur welche Elemente enthalten sind. Verwendet <code>table(gap2007_gm$classification)</code> um einen Überblick über die Clusterzuweisungen zu erhalten. Wie viele Cluster wurden identifiziert?</p></li>
-<li><p>Verwendet das <code>classification</code> Element um wie üblich die Daten mit den Clusterzuweisungen zu plotten.</p></li>
-<li><p>Führt nun alternativ <code>plot(gap2007_gm, what = 'classification')</code> aus, um den eigenen Plot des <code>mclust</code> Pakets zu sehen.</p></li>
-<li><p>Versucht nachzuvollziehen was der <code>mclust</code> Plot euch zeigt. Erinnere dich, die Ellupsen sind Normalverteilungen, die jeweils eigene Skalen und Feature-Zusammenhänge berücksichtigen können.</p></li>
-<li><p>Eine interessante Eigenschaft von Gaussian Mixtures ist, dass man direkt die Unsicherheit der Clusterzuweisung evaluieren kann. Führt <code>plot(gap2007_gm, what = 'uncertainty')</code> aus. Die Grösse der Punkte zeigen an, wie gross die Unsicherheit (oder Rivalität) in der Zuweisung der Punkte zu den Clustern war. ### X - Challenges: Modellselektion Gaussian mixtures</p></li>
-<li><p>: Eine nützliche Eigenschaft der <code>Mclust()</code> Funktion ist, dass parallel verschieden komplexe Varianten des Modells mit verschiedenem <em>k</em> geschätzt werden und dass am Ende nicht nur das beste <em>k</em> ausgewählt wird, sondern die beste Kombination von <em>k</em> und Modell. Ihr erhalten einen Überblick über den Prozess mit <code>plot(gap2007_gm, what = 'BIC')</code>.</p></li>
+<li><p>Der Output verrät relativ wenig, nur welche Elemente enthalten sind. Verwende <code>table(gap2007_gm$classification)</code> um einen Überblick über die Clusterzuweisungen zu erhalten. Wie viele Cluster wurden identifiziert?</p></li>
+<li><p>Verwende das <code>classification</code> Element um wie üblich die Daten mit den Clusterzuweisungen zu plotten.</p></li>
+<li><p>Führe nun alternativ <code>plot(gap2007_gm, what = 'classification')</code> aus, um den eigenen Plot des <code>mclust</code> Pakets zu sehen.</p></li>
+<li><p>Versuche nachzuvollziehen was der <code>mclust</code> Plot euch zeigt. Erinnere dich, die Ellipsen sind Normalverteilungen, die jeweils eigene Skalen und Feature-Zusammenhänge berücksichtigen können.</p></li>
+<li><p>Eine interessante Eigenschaft von Gaussian Mixtures ist, dass man direkt die Unsicherheit der Clusterzuweisung evaluieren kann. Führe <code>plot(gap2007_gm, what = 'uncertainty')</code> aus. Die Grössen der Punkte zeigen an, wie gross die Unsicherheit (oder Rivalität) in der Zuweisung der Punkte zu den Clustern war.</p></li>
+</ol>
+</div>
+<div id="x---challenges-modellselektion-gaussian-mixtures" class="section level3">
+<h3>X - Challenges: Modellselektion Gaussian mixtures</h3>
+<ol style="list-style-type: decimal">
+<li>Eine nützliche Eigenschaft der <code>Mclust()</code> Funktion ist, dass parallel verschieden komplexe Varianten des Modells mit verschiedenem <em>k</em> geschätzt werden und dass am Ende nicht nur das beste <em>k</em> ausgewählt wird, sondern die beste Kombination von <em>k</em> und Modell. Du erhälst einen Überblick über den Prozess mit <code>plot(gap2007_gm, what = 'BIC')</code>.</li>
 </ol>
 <p>BIC ist das sogenannte Bayesian Information Criterion und dient der Auswahl eines Modells unter Berücksichtigung der Komplexität des Modells. In diesem Fall sind hohe Werte besser. In der Abbildung siehst du nun wie sich der BIC Wert über verschiedene <em>k</em> (Number of components) und Modelle (verschiedene Linien) entwickelt.</p>
 <ol start="2" style="list-style-type: decimal">
@@ -365,7 +358,7 @@ plot(gap2007_gm, what = &#39;classification&#39;)</code></pre>
 <ol style="list-style-type: decimal">
 <li>Verwende die <code>read_csv()</code> Funktion um den Datensatz <code>credit.csv</code> als Objekt <code>credit</code> einzulesen.</li>
 </ol>
-<pre class="r"><code># Lese gap.csv
+<pre class="r"><code># Lese credit.csv
 credit &lt;- read_csv(&#39;1_Data/credit.csv&#39;)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Printe den Datensatz und verwende <code>summary()</code> um einen weiteren Überblick über die Daten zu bekommen.</p></li>
@@ -450,7 +443,7 @@ table(mpg_km$cluster, mpg_dbscan$cluster)
 table(mpg_km$cluster, mpg_gm$classification)
 table(mpg_dbscan$cluster, mpg_gm$classification)</code></pre>
 </div>
-<div id="datensatze" class="section level2">
+<div id="datensätze" class="section level2">
 <h2>Datensätze</h2>
 <table>
 <thead>
@@ -513,7 +506,7 @@ table(mpg_dbscan$cluster, mpg_gm$classification)</code></pre>
 </div>
 <div id="credit.csv" class="section level4">
 <h4>credit.csv</h4>
-<p>Der <code>credit</code> Datensatz ist ein Ausschnitt des Öffentlich verfügbaren <a href="https://www.kaggle.com/arjunbhasin2013/ccdata"><em>Credit Card Dataset</em></a>. Der Datensatz beinhaltet die 8 Feature, die einen Auschnitt des Verhaltens von 8636 Kreditkartenkunden beschreiben.</p>
+<p>Der <code>credit</code> Datensatz ist ein Ausschnitt des Öffentlich verfügbaren <a href="https://www.kaggle.com/arjunbhasin2013/ccdata"><em>Credit Card Dataset</em></a>. Der Datensatz beinhaltet 8 Features, die einen Auschnitt des Verhaltens von 8636 Kreditkartenkunden beschreiben.</p>
 <table>
 <colgroup>
 <col width="26%" />
@@ -599,9 +592,9 @@ table(mpg_dbscan$cluster, mpg_gm$classification)</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th align="left">Function</th>
-<th align="left">Package</th>
-<th align="left">Description</th>
+<th align="left">Funktion</th>
+<th align="left">Paket</th>
+<th align="left">Beschreibung</th>
 </tr>
 </thead>
 <tbody>
@@ -631,9 +624,9 @@ table(mpg_dbscan$cluster, mpg_gm$classification)</code></pre>
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Function</th>
-<th align="left">Package</th>
-<th align="left">Description</th>
+<th align="left">Funktion</th>
+<th align="left">Paket</th>
+<th align="left">Beschreibung</th>
 </tr>
 </thead>
 <tbody>
@@ -651,8 +644,8 @@ table(mpg_dbscan$cluster, mpg_gm$classification)</code></pre>
 </table>
 </div>
 </div>
-<div id="resourcen" class="section level2">
-<h2>Resourcen</h2>
+<div id="materialien" class="section level2">
+<h2>Materialien</h2>
 <div id="dokumentation" class="section level3">
 <h3>Dokumentation</h3>
 <ul>
@@ -679,6 +672,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
