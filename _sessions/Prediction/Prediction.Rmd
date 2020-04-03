@@ -68,7 +68,7 @@ options(digits = 4)
 source("https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/_materials/code/baselrbootcamp_palettes.R")
 
 
-baselers <- read_csv("../../1_Data/baselers.csv")
+basel <- read_csv("1_Data/basel.csv")
 ```
 
 ```{r, echo = FALSE ,message = FALSE, warning = FALSE}
@@ -486,15 +486,15 @@ $$\large SSE = \sum_{i \in S_1}(y_i - \bar{y}_1)^2+\sum_{i \in S_2}(y_i - \bar{y
 ```{r, eval = FALSE}
 # Fitte einen decision tree
 
-train(form = default ~ ., # factor
-      data = Loans,
+train(form = verzug ~ ., # factor
+      data = Darlehen,
       method = "rpart",
       trControl = ctrl)
 
 # Fitte einen regression tree
 
-train(form = income ~ ., # kein factor
-      data = baselers,
+train(form = einkommen ~ ., # kein factor
+      data = basel,
       method = "rpart",
       trControl = ctrl)
 
@@ -612,8 +612,6 @@ class: center, middle
   <li class="m2"><span>Wenn das <high>Kriterium ein <mono>factor</mono></high> ist, verwendet <mono>caret</mono> Classificaton trees, anonsten einen Regression trees als Grundlage des Random Forest</highm>.</span></li>
 </ul>
 
-`caret` wird <high> automatisch </high> wählen, ob Klassifikations- oder Regressionsbäume verwendet werden sollen, je nachdem, ob das Kriterium ein `factor` ist oder nicht.
-
 ]
 
 .pull-right45[
@@ -621,15 +619,15 @@ class: center, middle
 ```{r, eval = FALSE}
 # Fitte ein random forest
 
-train(form = default ~ ., # factor
-      data = Loans,
+train(form = verzug ~ ., # factor
+      data = Darlehen,
       method = "rf", 
       trControl = ctrl)
 
 # Fitte ein random forest
 
-train(form = income ~ ., # kein factor
-      data = baselers, 
+train(form = einkommen ~ ., # kein factor
+      data = basel, 
       method = "rf", 
       trControl = ctrl)
 
@@ -706,16 +704,16 @@ set.seed(100)
 
 # Indizes für Training
 index <- 
-  createDataPartition(y = baselers$income,
+  createDataPartition(y = basel$einkommen,
                              p = .8,
                              list = FALSE)
 
 # Kreiere Trainingsdaten
-baselers_train <- baselers %>% 
+basel_train <- basel %>% 
   slice(index)
 
 # Kreiere Testdaten
-baselers_test <- baselers %>% 
+basel_test <- basel %>% 
   slice(-index)
 ```
 
@@ -772,20 +770,20 @@ baselers_test <- baselers %>%
 
 ```{r, eval = FALSE}
 # Fitte das Modell zu dne Trainingsdaten
-mod <- train(form = income ~ .,
+mod <- train(form = einkommen ~ .,
              method = "glm",
-             data = baselers_train)
+             data = basel_train)
 
 # Extrahiere die gefitteten Werte
 mod_fit <- predict(mod)
 
 # Berechne echte Vorhersagen für Testdaten
 mod_pred <- predict(mod, 
-                    newdata = baselers_test)
+                    newdata = basel_test)
 
 # Evaluiere das Ergebnis
 postResample(pred = mod_pred, 
-             obs = baselers_test$income)
+             obs = basel_test$einkommen)
 ```
 
 ]

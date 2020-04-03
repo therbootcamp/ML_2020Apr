@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Prediction</title>
     <meta charset="utf-8" />
@@ -371,15 +371,15 @@ $$
 ```r
 # Fitte einen decision tree
 
-train(form = default ~ ., # factor
-      data = Loans,
+train(form = verzug ~ ., # factor
+      data = Darlehen,
       method = "rpart",
       trControl = ctrl)
 
 # Fitte einen regression tree
 
-train(form = income ~ ., # kein factor
-      data = baselers,
+train(form = einkommen ~ ., # kein factor
+      data = basel,
       method = "rpart",
       trControl = ctrl)
 ```
@@ -496,8 +496,6 @@ class: center, middle
   &lt;li class="m2"&gt;&lt;span&gt;Wenn das &lt;high&gt;Kriterium ein &lt;mono&gt;factor&lt;/mono&gt;&lt;/high&gt; ist, verwendet &lt;mono&gt;caret&lt;/mono&gt; Classificaton trees, anonsten einen Regression trees als Grundlage des Random Forest&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-`caret` wird &lt;high&gt; automatisch &lt;/high&gt; wählen, ob Klassifikations- oder Regressionsbäume verwendet werden sollen, je nachdem, ob das Kriterium ein `factor` ist oder nicht.
-
 ]
 
 .pull-right45[
@@ -506,15 +504,15 @@ class: center, middle
 ```r
 # Fitte ein random forest
 
-train(form = default ~ ., # factor
-      data = Loans,
+train(form = verzug ~ ., # factor
+      data = Darlehen,
       method = "rf", 
       trControl = ctrl)
 
 # Fitte ein random forest
 
-train(form = income ~ ., # kein factor
-      data = baselers, 
+train(form = einkommen ~ ., # kein factor
+      data = basel, 
       method = "rf", 
       trControl = ctrl)
 ```
@@ -588,16 +586,16 @@ set.seed(100)
 
 # Indizes für Training
 index &lt;- 
-  createDataPartition(y = baselers$income,
+  createDataPartition(y = basel$einkommen,
                              p = .8,
                              list = FALSE)
 
 # Kreiere Trainingsdaten
-baselers_train &lt;- baselers %&gt;% 
+basel_train &lt;- basel %&gt;% 
   slice(index)
 
 # Kreiere Testdaten
-baselers_test &lt;- baselers %&gt;% 
+basel_test &lt;- basel %&gt;% 
   slice(-index)
 ```
 
@@ -655,20 +653,20 @@ baselers_test &lt;- baselers %&gt;%
 
 ```r
 # Fitte das Modell zu dne Trainingsdaten
-mod &lt;- train(form = income ~ .,
+mod &lt;- train(form = einkommen ~ .,
              method = "glm",
-             data = baselers_train)
+             data = basel_train)
 
 # Extrahiere die gefitteten Werte
 mod_fit &lt;- predict(mod)
 
 # Berechne echte Vorhersagen für Testdaten
 mod_pred &lt;- predict(mod, 
-                    newdata = baselers_test)
+                    newdata = basel_test)
 
 # Evaluiere das Ergebnis
 postResample(pred = mod_pred, 
-             obs = baselers_test$income)
+             obs = basel_test$einkommen)
 ```
 
 ]
