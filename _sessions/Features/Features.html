@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Features</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Machine Learning with R   Basel R Bootcamp" />
+    <meta name="author" content="Maschinelles Lernen mit R   The R Bootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
   </head>
@@ -12,8 +12,8 @@
 class: center, middle, inverse, title-slide
 
 # Features
-### Machine Learning with R<br> <a href='https://therbootcamp.github.io'> Basel R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2019Oct/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
-### October 2019
+### Maschinelles Lernen mit R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### April 2020
 
 ---
 
@@ -34,7 +34,7 @@ layout: true
     &lt;/a&gt;
     &lt;a href="https://therbootcamp.github.io/"&gt;
       &lt;font color="#7E7E7E"&gt;
-       Machine Learning with R | October 2019
+      Maschinelles Lernen mit R | April 2020
       &lt;/font&gt;
     &lt;/a&gt;
     &lt;/span&gt;
@@ -53,22 +53,26 @@ layout: true
 
 .pull-left45[
 
-# Feature issues
-&lt;br&gt;
-&lt;b&gt;Too many features&lt;/b&gt;
+# Feature Probleme
 
-- Curse of dimensionality
-- Feature importance
-
-&lt;b&gt;Wrong features&lt;/b&gt;
-
-- Feature scaling
-- Feature correlation
-- Feature quality
-
-&lt;b&gt;Create new features&lt;/b&gt;
-
-- Feature engineering
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Zu viele Feature&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Fluch der &lt;high&gt;Dimensionalität&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Feature &lt;high&gt;Wichtigkeit&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Falsche Feature&lt;/b&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;Skalierung&lt;/high&gt; der Feature&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;Korrelation&lt;/high&gt; der Feature&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;Qualität&lt;/high&gt; der Feature&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Neue Features kreieren&lt;/b&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;"Engineerig"&lt;/high&gt; der Feature&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -85,25 +89,31 @@ layout: true
 
 ---
 
-# Curse of dimensionality
+# Fluch der Dimensionalität
 
-.pull-left35[
+.pull-left45[
 
-As the number of features grows...
-
-&lt;high&gt;Performance&lt;/high&gt; - the amount of data that needs to generalize accurately grows exponentially.
-
-&lt;high&gt;Efficiency&lt;/high&gt; - the amount of computations grows (how much depends on the model).
-
-&lt;high&gt;Redundancy&lt;/high&gt; - the amount of redundancy grows (how much depends on the model). 
-
-&amp;#8594; &lt;high&gt;Small set of good predictors&lt;high&gt;
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Dichte&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Die Menge der Fälle, die notwendig sind um den &lt;high&gt;Datenraum abzudecken&lt;/high&gt; steigt exponentiell mit der Menge der Feature.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Redundanz&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Redundanz zwischen den Featuren steigt i.a.R. mit der Anzahl der Feature, was zu &lt;high&gt;Unsicherheiten&lt;/high&gt; in der Schätzung führt.der Feature&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Effizienz&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Mit der Menge der Feature steigt i.a.R die Anzahl der &lt;high&gt;Parameter&lt;/high&gt; und damit auch i.a.R die benötigten die &lt;high&gt;komputationalen Ressourcen&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 ]
 
-.pull-right6[
+.pull-right45[
 
-&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 &lt;p align="center"&gt;
 &lt;img src="image/cod.png"&gt;&lt;br&gt;
@@ -116,21 +126,31 @@ As the number of features grows...
 
 ---
 
-# How to reduce dimensionality?
+# Wie Dimensionalität reduzieren?
 
 .pull-left45[
 
-&lt;b&gt;3 ways&lt;/b&gt;
-
-1 - Reduce variables &lt;high&gt;manually&lt;/high&gt; based on statistical or intuitive considerations.
-
-2 - Reduce variables &lt;high&gt;automatically&lt;/high&gt; using the right ML algorithms, e.g., `random forests` or `lasso regression`, or feature selection algorithms, e.g., `recursive feature selection`.
-
-3 - Compress variables using &lt;high&gt;dimensionality reduction algorithms&lt;/high&gt;, such as `principal component analysis` (PCA).
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Manuelle Selektion&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Feature können auf manuell auf Basis &lt;high&gt;statistischer oder theoretischer Gesichtspunkte&lt;/high&gt; ausgewählt werden.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Automatische Selektion&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Verwende &lt;high&gt;Modelle&lt;/high&gt; die automatisch Feature selegieren, z.B., Lasso Regression, oder Algorithmen für Featureselektion&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Automatische Reduktion&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;Komprimiere die Dimensionalität&lt;/high&gt; mir Methoden der Dimensionsreduktion, z.B. mit Principal Component Analysis (PCA)..&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 ]
 
-.pull-right5[
+.pull-right45[
+
+&lt;br&gt;
 
 &lt;p align = "center"&gt;
 &lt;img src="image/highd.jpeg" height=350&gt;
@@ -161,8 +181,8 @@ The metric is &lt;high&gt;model specific &lt;/high&gt;, but typically &lt;high&g
 .pull-right5[
 
 ```r
-# plot variable importance for lm(income ~ .)
-plot(varImp(income_lm))
+# plot variable importance for lm(einkommen ~ .)
+plot(varImp(einkommen_lm))
 ```
 
 &lt;img src="Features_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
@@ -178,22 +198,22 @@ plot(varImp(income_lm))
 
 
 ```r
-varImp(income_lm)
+varImp(einkommen_lm)
 ```
 
 
 ```
 lm variable importance
 
-          Overall
-age       100.000
-food       41.134
-alcohol    25.247
-happiness  11.582
-tattoos     5.888
-children    2.745
-height      2.337
-weight      0.983
+        Overall
+alter    100.00
+essen     53.24
+alkohol   30.19
+glueck    28.96
+tattoos    7.82
+fitness    4.52
+groesse    4.39
+gewicht    4.21
 ```
 
 ]
@@ -201,8 +221,8 @@ weight      0.983
 .pull-right5[
 
 ```r
-# plot variable importance for lm(income ~ .)
-plot(varImp(income_lm))
+# plot variable importance for lm(einkommen ~ .)
+plot(varImp(einkommen_lm))
 ```
 
 &lt;img src="Features_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
@@ -245,15 +265,15 @@ Outer resampling method: Bootstrapped (25 reps)
 
 Resampling performance over subset size:
 
- Variables  RMSE Rsquared   MAE RMSESD RsquaredSD   MAESD Selected
-         3 0.371    0.861 0.292 0.0133     0.0139 0.01078         
-         4 0.367    0.863 0.288 0.0127     0.0126 0.00992        *
-         5 0.368    0.863 0.289 0.0122     0.0124 0.00951         
-        10 0.371    0.861 0.292 0.0123     0.0121 0.00922         
-        14 0.371    0.861 0.291 0.0122     0.0120 0.00918         
+ Variables  RMSE Rsquared   MAE RMSESD RsquaredSD  MAESD Selected
+         3 0.400    0.830 0.324 0.0124     0.0140 0.0112         
+         4 0.380    0.847 0.303 0.0114     0.0130 0.0111        *
+         5 0.381    0.846 0.304 0.0118     0.0136 0.0115         
+        10 0.383    0.844 0.306 0.0120     0.0138 0.0110         
+        14 0.383    0.844 0.307 0.0119     0.0139 0.0109         
 
 The top 4 variables (out of 4):
-   age, food, alcohol, happiness
+   alter, essen, alkohol, glueck
 ```
 
 ]
@@ -293,7 +313,7 @@ The new features aka principal components are greedy. &lt;high&gt;Skimming off t
 
 ```r
 # train model WITHOUT PCA preprocessing
-model = train(income ~ ., method = 'lm', 
+model = train(einkommen ~ ., method = 'lm', 
            data = bas_train)
 
 plot(varImp(model))
@@ -309,7 +329,7 @@ plot(varImp(model))
 
 ```r
 # train model WITH PCA preprocessing
-model = train(income ~ ., method = 'lm', 
+model = train(einkommen ~ ., method = 'lm', 
               data = bas_train,
               preProc = c('pca'))
 plot(varImp(model))
@@ -336,7 +356,7 @@ findCorrelation(cor(baselers))
 ```
 
 ```
-[1] 5
+integer(0)
 ```
 
 ```r
@@ -559,7 +579,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {

@@ -42,7 +42,7 @@ output:
 |:--|:-------------|:-------------|
 |0| Willkommen!<br>[Folien](_sessions/Welcome/Welcome.html) | Wiederholung|
 |1| Was ist ML?<br>[Folien](_sessions/WhatIsML/WhatIsML.html)| Unsupervised learning |
-|2| Fitting <br>[Folien](_sessions/Fitting/Fitting.html), [Practical](_sessions/Fitting/Fitting_practical.R) | Features |
+|2| Fitting <br>[Folien](_sessions/Fitting/Fitting.html), [Practical](_sessions/Fitting/Fitting_practical.html) | Features |
 |3| Predicting<br>[Folien](_sessions/Prediction/Prediction.html), [Practical](_sessions/Prediction/Prediction_practical.html) | Modelle |
 |4|Optimizing <br>[Folien](_sessions/Optimization/Optimization.html), [Practical](_sessions/Optimization/Optimization_practical.html) | Ausblick|
 

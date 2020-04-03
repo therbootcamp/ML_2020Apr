@@ -1,11 +1,11 @@
 ---
 title: "Features"
-author: "Machine Learning with R<br>
+author: "Maschinelles Lernen mit R<br>
   <a href='https://therbootcamp.github.io'>
-    Basel R Bootcamp
+    The R Bootcamp
   </a>
   <br>
-  <a href='https://therbootcamp.github.io/ML_2019Oct/'>
+  <a href='https://therbootcamp.github.io/ML_2020Apr/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "Machine Learning with R<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "October 2019"
+date: "April 2020"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-       Machine Learning with R | October 2019
+      Maschinelles Lernen mit R | April 2020
       </font>
     </a>
     </span>
@@ -58,7 +58,7 @@ require(caret)
 require(tidyverse)
 # Code to knit slides
 #bas = read_csv('1_Data/baselers.csv')
-bas = read_csv('../../1_Data/baselers.csv')
+bas = read_csv('1_Data/basel.csv') %>% na.omit()
 
 print2 <- function(x, nlines=10,...)
    cat(head(capture.output(print(x,...)), nlines), sep="\n")
@@ -80,19 +80,18 @@ bas <- bas %>% select_if(is.numeric)
 baselers = bas
 
 fitControl_cv <- trainControl(
-  method = "repeatedcv",
-  number = 1,
-  repeats = 1)
+  method = "cv",
+  number = 1)
 
-train_index = createDataPartition(bas$income, p = .8, list = FALSE)
+train_index = createDataPartition(bas$einkommen, p = .8, list = FALSE)
 bas_train = bas %>% slice(train_index)
 bas_test = bas %>% slice(-train_index)
 
-income_lm = train(income ~ . - id, 
+einkommen_lm = train(einkommen ~ . - id, 
            method = 'lm', 
            data = bas_train)
 
-income_lm_short = train(income ~ age + food + alcohol + happiness + fitness + datause + tattoos + weight + children + fitness + height, 
+einkommen_lm_short = train(einkommen ~ alter + essen + alkohol + glueck + fitness + datause + tattoos + gewicht + kinder + groesse, 
            method = 'lm', 
            data = bas_train)
 
@@ -122,22 +121,26 @@ library(ggthemes)
 
 .pull-left45[
 
-# Feature issues
-<br>
-<b>Too many features</b>
+# Feature Probleme
 
-- Curse of dimensionality
-- Feature importance
-
-<b>Wrong features</b>
-
-- Feature scaling
-- Feature correlation
-- Feature quality
-
-<b>Create new features</b>
-
-- Feature engineering
+<ul>
+  <li class="m1"><span><b>Zu viele Feature</b></span></li>
+  <ul class="level">
+    <li><span>Fluch der <high>Dimensionalität</high></span></li>
+    <li><span>Feature <high>Wichtigkeit</high></span></li>
+  </ul><br>
+  <li class="m2"><span><b>Falsche Feature</b>
+  <ul class="level">
+    <li><span><high>Skalierung</high> der Feature</span></li>
+    <li><span><high>Korrelation</high> der Feature</span></li>
+    <li><span><high>Qualität</high> der Feature</span></li>
+  </ul>
+  <li class="m3"><span><b>Neue Features kreieren</b>
+  <ul class="level">
+    <li><span><high>"Engineerig"</high> der Feature</span></li>
+  </ul>
+  </span></li>
+</ul>
 
 ]
 
@@ -154,25 +157,31 @@ library(ggthemes)
 
 ---
 
-# Curse of dimensionality
+# Fluch der Dimensionalität
 
-.pull-left35[
+.pull-left45[
 
-As the number of features grows...
-
-<high>Performance</high> - the amount of data that needs to generalize accurately grows exponentially.
-
-<high>Efficiency</high> - the amount of computations grows (how much depends on the model).
-
-<high>Redundancy</high> - the amount of redundancy grows (how much depends on the model). 
-
-&#8594; <high>Small set of good predictors<high>
+<ul>
+  <li class="m1"><span><b>Dichte</b></span></li>
+  <ul class="level">
+    <li><span>Die Menge der Fälle, die notwendig sind um den <high>Datenraum abzudecken</high> steigt exponentiell mit der Menge der Feature.</span></li>
+  </ul><br>
+  <li class="m2"><span><b>Redundanz</b></span></li>
+  <ul class="level">
+    <li><span>Redundanz zwischen den Featuren steigt i.a.R. mit der Anzahl der Feature, was zu <high>Unsicherheiten</high> in der Schätzung führt.der Feature</span></li>
+  </ul><br>
+  <li class="m3"><span><b>Effizienz</b></span></li>
+  <ul class="level">
+    <li><span>Mit der Menge der Feature steigt i.a.R die Anzahl der <high>Parameter</high> und damit auch i.a.R die benötigten die <high>komputationalen Ressourcen</high>.</span></li>
+  </ul>
+  </span></li>
+</ul>
 
 ]
 
-.pull-right6[
+.pull-right45[
 
-<br>
+<br><br><br><br>
 
 <p align="center">
 <img src="image/cod.png"><br>
@@ -185,21 +194,31 @@ As the number of features grows...
 
 ---
 
-# How to reduce dimensionality?
+# Wie Dimensionalität reduzieren?
 
 .pull-left45[
 
-<b>3 ways</b>
-
-1 - Reduce variables <high>manually</high> based on statistical or intuitive considerations.
-
-2 - Reduce variables <high>automatically</high> using the right ML algorithms, e.g., `random forests` or `lasso regression`, or feature selection algorithms, e.g., `recursive feature selection`.
-
-3 - Compress variables using <high>dimensionality reduction algorithms</high>, such as `principal component analysis` (PCA).
+<ul>
+  <li class="m1"><span><b>Manuelle Selektion</b></span></li>
+  <ul class="level">
+    <li><span>Feature können auf manuell auf Basis <high>statistischer oder theoretischer Gesichtspunkte</high> ausgewählt werden.</span></li>
+  </ul><br>
+  <li class="m2"><span><b>Automatische Selektion</b></span></li>
+  <ul class="level">
+    <li><span>Verwende <high>Modelle</high> die automatisch Feature selegieren, z.B., Lasso Regression, oder Algorithmen für Featureselektion</span></li>
+  </ul><br>
+  <li class="m3"><span><b>Automatische Reduktion</b></span></li>
+  <ul class="level">
+    <li><span><high>Komprimiere die Dimensionalität</high> mir Methoden der Dimensionsreduktion, z.B. mit Principal Component Analysis (PCA)..</span></li>
+  </ul>
+  </span></li>
+</ul>
 
 ]
 
-.pull-right5[
+.pull-right45[
+
+<br>
 
 <p align = "center">
 <img src="image/highd.jpeg" height=350>
@@ -229,12 +248,12 @@ The metric is <high>model specific </high>, but typically <high>normalized</high
 
 .pull-right5[
 ```{r, eval = FALSE}
-# plot variable importance for lm(income ~ .)
-plot(varImp(income_lm))
+# plot variable importance for lm(einkommen ~ .)
+plot(varImp(einkommen_lm))
 ```
 
 ```{r, echo = FALSE, fig.height=5.2, fig.width=8}
-plot(varImp(income_lm),col='#EA4B68',cex=1.3,scales = list(cex=1.3,lineheight=1.3),xlab=list(cex=1.5))
+plot(varImp(einkommen_lm),col='#EA4B68',cex=1.3,scales = list(cex=1.3,lineheight=1.3),xlab=list(cex=1.5))
 ```
 
 ]
@@ -247,23 +266,23 @@ plot(varImp(income_lm),col='#EA4B68',cex=1.3,scales = list(cex=1.3,lineheight=1.
 `varImp()` <high>automatically selects appropriate measure</high> of variable importance for a given algorithm. 
 
 ```{r eval = FALSE}
-varImp(income_lm)
+varImp(einkommen_lm)
 ```
 
 ```{r echo = F}
-print2(varImp(income_lm_short), 11)
+print2(varImp(einkommen_lm_short), 11)
 ```
 
 ]
 
 .pull-right5[
 ```{r, eval = FALSE}
-# plot variable importance for lm(income ~ .)
-plot(varImp(income_lm))
+# plot variable importance for lm(einkommen ~ .)
+plot(varImp(einkommen_lm))
 ```
 
 ```{r, echo = FALSE, fig.height=5.2, fig.width=8}
-plot(varImp(income_lm),col='#EA4B68',cex=1.3,scales = list(cex=1.3,lineheight=1.3),xlab=list(cex=1.5))
+plot(varImp(einkommen_lm),col='#EA4B68',cex=1.3,scales = list(cex=1.3,lineheight=1.3),xlab=list(cex=1.5))
 ```
 
 ]
@@ -296,8 +315,8 @@ rfe(x = ..., y = ...,
 
 ```{r, echo = F}
 # Run feature elimination
-out = rfe(x = bas_train %>% select(-income), 
-    y = bas_train$income,
+out = rfe(x = bas_train %>% select(-einkommen), 
+    y = bas_train$einkommen,
     sizes = c(3,4,5,10),   # Features set sizes should be considered
     rfeControl = rfeControl(
       functions = lmFuncs,
@@ -341,7 +360,7 @@ The new features aka principal components are greedy. <high>Skimming off the bes
 
 ```{r fig.height=5.1, fig.width=8, eval = F}
 # train model WITHOUT PCA preprocessing
-model = train(income ~ ., method = 'lm', 
+model = train(einkommen ~ ., method = 'lm', 
            data = bas_train)
 
 plot(varImp(model))
@@ -349,7 +368,7 @@ plot(varImp(model))
 
 ```{r fig.height=5.1, fig.width=8, echo = F}
 # train model WITHOUT PCA preprocessing
-model = train(income ~ . -id, method = 'lm', 
+model = train(einkommen ~ . -id, method = 'lm', 
               data = bas_train)
 
 plot(varImp(model, scale=F),col='#EA4B68',cex=1.3,scales = list(cex=1.3,lineheight=1.3),xlab=list(cex=1.5))
@@ -362,7 +381,7 @@ plot(varImp(model, scale=F),col='#EA4B68',cex=1.3,scales = list(cex=1.3,lineheig
 
 ```{r fig.height=5.1, fig.width=8, eval = F}
 # train model WITH PCA preprocessing
-model = train(income ~ ., method = 'lm', 
+model = train(einkommen ~ ., method = 'lm', 
               data = bas_train,
               preProc = c('pca'))
 plot(varImp(model))
@@ -370,7 +389,7 @@ plot(varImp(model))
 
 ```{r fig.height=5.1, fig.width=8, echo = F}
 # train model WITH PCA preprocessing
-model = train(income ~ . -id, method = 'lm', 
+model = train(einkommen ~ . -id, method = 'lm', 
               data = bas_train,
               preProc = c('pca'),
               trControl = trainControl(preProcOptions = list(thresh = 0.75)))
