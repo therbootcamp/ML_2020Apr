@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
-    <title>Models</title>
+    <title>Modelle</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Machine Learning with R   Basel R Bootcamp" />
+    <meta name="author" content="Maschinelles Lernen mit R   The R Bootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
   </head>
@@ -11,9 +11,9 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Models
-### Machine Learning with R<br> <a href='https://therbootcamp.github.io'> Basel R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2019Oct/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
-### October 2019
+# Modelle
+### Maschinelles Lernen mit R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### April 2020
 
 ---
 
@@ -34,7 +34,7 @@ layout: true
     &lt;/a&gt;
     &lt;a href="https://therbootcamp.github.io/"&gt;
       &lt;font color="#7E7E7E"&gt;
-       Machine Learning with R | October 2019
+      Maschinelles Lernen mit R | April 2020
       &lt;/font&gt;
     &lt;/a&gt;
     &lt;/span&gt;
@@ -54,11 +54,11 @@ layout: true
 
 .pull-left35[
 
-&lt;u&gt;Theorem&lt;/u&gt;
+&lt;i&gt;"The no-free-lunch theorem of optimization is an impossibility theorem telling us that a general-purpose, universal optimization strategy is impossible. The only way one strategy can outperform another is if it is specialized to the structure of the specific problem
+under consideration."&lt;/i&gt;
 
-Given a finite set `\(V\)` and a finite set `\(S\)` of real numbers, &lt;high&gt;assume that `\(f:V\to S\)` is chosen at random&lt;/high&gt; according to uniform distribution on the set `\(S^{V}\)` of all possible functions from `\(V\)` to `\(S\)`. For the problem of optimizing `\(f\)` over the set `\(V\)`, &lt;high&gt;then no algorithm performs better than blind search.&lt;/high&gt;
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-&lt;a href="https://ti.arc.nasa.gov/m/profile/dhw/papers/78.pdf"&gt;Wolpert &amp; Macready, 1997, No Free Lunch Theorems for Optimization&lt;/a&gt;
+&lt;a href="https://link.springer.com/article/10.1023/A:1021251113462"&gt;Ho &amp; Pepyne, 1997&lt;/a&gt;
+&lt;a href="https://ti.arc.nasa.gov/m/profile/dhw/papers/78.pdf"&gt;Wolpert &amp; Macready, 1997&lt;/a&gt;
 
 ]
 
@@ -69,31 +69,35 @@ Given a finite set `\(V\)` and a finite set `\(S\)` of real numbers, &lt;high&gt
   &lt;font style="font-size:10px"&gt;from &lt;a href="http://christianfunnypictures.com/2016/02/theres-no-such-thing-as-a-free-lunch-or-is-there.html"&gt;christianfunnypictures.com&lt;/a&gt;&lt;/font&gt;
 &lt;/p&gt;
 
-
-
 ]
 
 ---
 
 .pull-left4[
 
-# Know your problem
+# Kenne dein Problem
 
-&lt;u&gt;Bias-variance dilemma&lt;/u&gt;
-
-&lt;br&gt;
-
-`$$\Large Error = Bias + Variance$$`
+&lt;u&gt;Bias-Variance Dilemme&lt;/u&gt;
 
 &lt;br&gt;
-Simply put...
 
-&lt;b&gt;Bias&lt;/b&gt; arises from strong &lt;high&gt;model assumptions&lt;/high&gt; not being met by the environment.
+`$$\large Error = Bias + Variance\;(+ Noise)$$`
 
-&lt;b&gt;Variance&lt;/b&gt; arises from high &lt;high&gt;model flexibility&lt;/high&gt; fitting the noise in the data (i.e., overfitting).
 
-&lt;br&gt;
-&amp;#8594; &lt;high&gt;Make strong assumptions&lt;/high&gt; (use simple models), if possible.
+&lt;ul style="margin-top:40px"&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Bias&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Ensteht, wenn &lt;high&gt;Modellannahmen&lt;/high&gt; nicht mit dem Problem übereinstimmen.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Variance&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Ensteht, wenn &lt;high&gt;Modellflexibilität&lt;/high&gt; zu hoch ist..&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Noise&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;(Absolut) zufälliges Rauschen.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -106,20 +110,27 @@ Simply put...
 
 ]
 
+---
+
+class: center, middle
+
+&lt;h1&gt;&lt;a&gt;Kenne dein Problem&lt;/a&gt;&lt;/h1&gt;
 
 ---
 
 .pull-left4[
-# Linear or non-linear
-&lt;br&gt;
+# Linear oder Nicht-linear
 
-One important model assumptions concerns linearity.
-
-&lt;br&gt;
-&lt;b&gt;Linear models&lt;/b&gt; (`lm`, `glm`) make strong model assumptions. They are more often wrong, but also ceteris paribus &lt;high&gt;less prone to overfitting&lt;/high&gt;.
-
-&lt;br&gt;
-&lt;b&gt;Non-linear Models&lt;/b&gt; (everything else) make weaker model assumptions, leaving the exact relationship (more) open. They are are closer to the truth, but also ceteris paribus &lt;high&gt;more prone to overfitting&lt;/high&gt;. 
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Linear models&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Machen die Annahme, dass die Welt linear ist. Stimmt selten, führt jedoch zu &lt;high&gt;weniger overfitting&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Nicht-lineare Modelle&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Beinhaltet (meist) lineare Modelle als Spezialfall und neigen damit zu &lt;high&gt;mehr overfitting&lt;/high&gt;. Lohnt sich i.A. nur, wenn lineare Modelle das Problem schlecht approximieren. &lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
 
 ]
@@ -141,21 +152,18 @@ One important model assumptions concerns linearity.
 
 .pull-left45[
 
-# Kernel trick
+# Kernel Trick
 
-&lt;high&gt;Transforms "input space" into new "feature space"&lt;/high&gt; to allows for object separation.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Transformiert ursprünglichen Featurespace in einen neuen , der damit z.B. das Trennen von Klassen ermöglicht.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Verwendet z.B. in &lt;high&gt;Support Vector Machines&lt;/high&gt; (z.B. &lt;mono&gt;method = "svmRadial"&lt;/mono&gt;) meist unter Verwendung einer &lt;high&gt;radial basis function&lt;/high&gt; (rdf).&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
 
 &lt;p align="center"&gt;
   &lt;img src="image/kernel_bw.png" height=160px&gt;
 &lt;/p&gt;
-
-Used in &lt;high&gt;Support Vector Machines&lt;/high&gt; (e.g., `method = "svmRadial"`) often using a &lt;high&gt;radial basis function&lt;/high&gt; (rdf).
-
-&lt;p align="center"&gt;
-  &lt;img src="image/rdf_kernel.png" width=300px&gt;
-&lt;/p&gt;
-
-Kernels &lt;high&gt;re-represent objects&lt;/high&gt; in terms of other objects!
 
 ]
 
@@ -173,32 +181,27 @@ Kernels &lt;high&gt;re-represent objects&lt;/high&gt; in terms of other objects!
 
 ---
 
-# Automatic feature engineering
-
-&lt;high&gt;Deep learning&lt;/high&gt; aka neural networks and, especially, &lt;high&gt;convolutional neural networks&lt;/high&gt;, excel because they generate their features. 
-
-Neural networks are not the focus of `caret` and this course. Powerful implementations based on &lt;high&gt;Google's Tensorflow&lt;/high&gt; library are provided by `tensorflow`.
-
+# Automatische Featureentwicklung
 
 .pull-left3[
 
-&lt;p align = "center"&gt;
-  &lt;img src="image/tf.png"&gt;&lt;br&gt;
-  &lt;font style="font-size:10px"&gt;from &lt;a href="https://de.wikipedia.org/wiki/TensorFlow"&gt;towardsdatascience.com&lt;/a&gt;&lt;/font&gt;
-&lt;/p&gt;
+&lt;br&gt;
 
-
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Deep learning&lt;/high&gt; (insbesondere Convolutional Neural Networks) sind besonders gut darin, &lt;high&gt;Feature selber zu entwickeln&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Das &lt;mono&gt;tensorflow&lt;/mono&gt; Paket bietet Zugang zu mächtigen &lt;high&gt;Tensorflow&lt;/high&gt; Library für Deep Learning von Google.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+&lt;/ul&gt;
 
 ]
 
-.pull-right65[
+.pull-right6[
+
+&lt;br&gt;
 
 &lt;p align = "center"&gt;
-  &lt;img src="image/power_of_deeplearning.png" height=265px&gt;&lt;br&gt;
+  &lt;img src="image/power_of_deeplearning.png"&gt;&lt;br&gt;
   &lt;font style="font-size:10px"&gt;from &lt;a href="https://towardsdatascience.com/cnn-application-on-structured-data-automated-feature-extraction-8f2cd28d9a7e"&gt;towardsdatascience.com&lt;/a&gt;&lt;/font&gt;
 &lt;/p&gt;
-
-
 
 
 ]
@@ -206,17 +209,24 @@ Neural networks are not the focus of `caret` and this course. Powerful implement
 
 ---
 
+class: center, middle
+
+&lt;h1&gt;&lt;a&gt;Sorge für Robustheit&lt;/a&gt;&lt;/h1&gt;
+
+---
+
 # Robustness
 
 .pull-left4[
 
-To produce &lt;high&gt;robust predictions&lt;/high&gt; that &lt;high&gt; suffer less from variance&lt;/high&gt; ML models use a variety of &lt;high&gt;tricks&lt;/high&gt;.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Es gibt eine Reihe von &lt;high&gt;Tricks&lt;/high&gt; um Modelle robuster zu machen, d.h. um den &lt;i&gt;Variance&lt;/i&gt; Fehler zu minimieren.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+&lt;/ul&gt;
 
 &lt;p align = "center"&gt;
   &lt;img src="image/robustness_sel.png" width=350px&gt;&lt;br&gt;
   &lt;font style="font-size:10px"&gt;from &lt;a href="https://www.istockphoto.com/ch/grafiken/kraftathlet?sort=mostpopular&amp;mediatype=illustration&amp;assetfiletype=eps&amp;phrase=kraftathlet"&gt;istockphoto.com&lt;/a&gt;&lt;/font&gt;
 &lt;/p&gt;
-
 
 ]
 
@@ -234,12 +244,12 @@ To produce &lt;high&gt;robust predictions&lt;/high&gt; that &lt;high&gt; suffer 
 &lt;/tr&gt;
 &lt;tr style="background-color:#ffffff"&gt;
   &lt;td align="center"&gt;&lt;i&gt;Tolerance&lt;/i&gt;&lt;/td&gt;
-  &lt;td align="center"&gt;Decrease error tolerance&lt;/td&gt;
+  &lt;td align="center"&gt;Vergrösser Fehlertoleranz&lt;/td&gt;
   &lt;td align="center"&gt;&lt;mono&gt;svmRadial&lt;/mono&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr style="background-color:#ffffff"&gt;
   &lt;td align="center"&gt;&lt;i&gt;Regularization&lt;/i&gt;&lt;/td&gt;
-  &lt;td align="center"&gt;Penalize for complexity&lt;/td&gt;
+  &lt;td align="center"&gt;Strafe für Komplexität&lt;/td&gt;
   &lt;td align="center"&gt;&lt;mono&gt;lasso&lt;/mono&gt;, &lt;mono&gt;ridge&lt;/mono&gt;, &lt;mono&gt;elasticnet&lt;/mono&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr style="background-color:#ffffff"&gt;
@@ -274,7 +284,9 @@ To produce &lt;high&gt;robust predictions&lt;/high&gt; that &lt;high&gt; suffer 
 
 .pull-left45[
 
-Regularization is the process of adding model terms, usually &lt;high&gt;penalties for complexity&lt;/high&gt;, in order to prevent overfitting (or solve a problem in the first place).
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Regularisierung bestraft den Fit für die &lt;high&gt; modell-spezifische Komplexität&lt;/&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+&lt;/ul&gt;
 
 &lt;br2&gt;
 &lt;p align = 'center'&gt;&lt;font size=5&gt;&lt;high&gt;Loss&lt;/high&gt; = &lt;high&gt;Misfit&lt;/high&gt; + &lt;high&gt;Penalty&lt;/high&gt;&lt;/font&gt;&lt;/p&gt;
@@ -327,18 +339,16 @@ Regularization is the process of adding model terms, usually &lt;high&gt;penalti
 
 # Bagging
 
-&lt;high&gt;Aggregate&lt;/high&gt; predictions from multiple fits to &lt;high&gt;resampled&lt;/high&gt; data.
-
-Especially beneficial for models that produce relatively unstable solutions, e.g., regression trees. `rpart` &amp;#8594; `treebag`.
-
-&lt;br&gt;
-&lt;u&gt;Algorithm&lt;/u&gt;
-
-1 - &lt;high&gt;Resample&lt;/high&gt; data (with replacement).
-
-2 - &lt;high&gt;Fit&lt;/high&gt; model to resampled data.
-
-3 - &lt;high&gt;Average&lt;/high&gt; predictions.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Aggregieren&lt;/high&gt; der Vorhersagen multipler Modelle, die auf Basis &lt;high&gt;Stichproben&lt;/high&gt; aus den Daten gefitted werden.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Besonders nützlich bei Modellen mit moderat guter, varierender Performanz.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Algorithmus&lt;/b&gt;:&lt;/span&gt;&lt;/li&gt;
+  &lt;ol&gt;
+      &lt;li&gt;&lt;span&gt;&lt;high&gt;Stichprobe&lt;/high&gt; aus den Daten mit zurücklegen&lt;/span&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span&gt;&lt;high&gt;Fitte&lt;/high&gt; Modelle zu Stichproben&lt;/span&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span&gt;&lt;high&gt;Mittele&lt;/high&gt; die Vorhersage&lt;/span&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -360,21 +370,18 @@ Especially beneficial for models that produce relatively unstable solutions, e.g
 
 .pull-left4[
 
-Bootsing &lt;high&gt;adaptively re-weights&lt;/high&gt; samples based on performance.
-
-`adaboost` and, newer, `xgbTree`, are some of the &lt;high&gt;best ML models out there&lt;/high&gt;. 
-
-&lt;u&gt;Algorithm&lt;/u&gt;
-
-1 - Assign &lt;high&gt;equal weight&lt;/high&gt; to all cases.
-
-2 - &lt;high&gt;Fit&lt;/high&gt; simple model.
-
-3 - &lt;high&gt;Increase weight of misfit cases&lt;/high&gt; by model misfit for next iteration.
-
-4 - &lt;high&gt;Repeat&lt;/high&gt;.
-
-5 - &lt;high&gt;Average&lt;/high&gt; predictions weighted by model misfit.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Eine Art iteratives Bagging auf Basis einer &lt;high&gt;adaptiven Gewichtung&lt;/high&gt; der Daten.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Variante Extreme Gradient Boosting &lt;mono&gt;xgbTree&lt;/mono&gt; zählt zu den &lt;high&gt;besten verfügbaren Modellen&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Algorithmus&lt;/b&gt;:&lt;/span&gt;&lt;/li&gt;
+  &lt;ol&gt;
+      &lt;li&gt;&lt;span&gt;&lt;high&gt;Gewichte&lt;/high&gt; alle Datenpunkte gleich.&lt;/span&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span&gt;&lt;high&gt;Fitte&lt;/high&gt; ein moderat flexibles Modell.&lt;/span&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span&gt;&lt;high&gt;Erhöhe&lt;/high&gt; Gewicht schlecht vorhergesagter Punkte.&lt;/span&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span&gt;&lt;high&gt;Wiederhole&lt;/high&gt; iterativ.&lt;/span&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span&gt;&lt;high&gt;Mittele&lt;/high&gt; Vorhersage proportional zum Modellfit.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -390,22 +397,20 @@ Bootsing &lt;high&gt;adaptively re-weights&lt;/high&gt; samples based on perform
 
 ---
 
-# Automatic feature selection
+# Automatische Featureselektion
 
 .pull-left45[
 
-Many models reduce complexity by automatically relying on a subset of good features. 
-
-&lt;u&gt;Two examples&lt;/u&gt;
-
-&lt;b&gt;LASSO&lt;/b&gt;
-
-Regularization, in particular via `lasso`, frequently &lt;high&gt;estimates &lt;mono&gt;beta = 0&lt;/mono&gt;&lt;/high&gt; and, thus, essentially deselects that feature. 
-
-&lt;b&gt;Random forests&lt;/b&gt;
-
-As random forests select at any node the best of `mtry`-many randomly selected features, &lt;high&gt;unpredictive features may never come to action&lt;/high&gt;. This is especially true for large `mtry`. 
-
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;LASSO&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;span&gt;Schätzt oft &lt;high&gt;&lt;mono&gt;beta = 0&lt;/mono&gt;&lt;/high&gt;, was effektiv das Feature aus dem Modell eliminiert.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Decision Tree / Random forests&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;span&gt;Feature müssen nicht für die Vorhersage verwendet werden (bei hohem &lt;mono&gt;mtry&lt;/mono&gt;).&lt;/span&gt;&lt;/li&gt;
+  &lt;ul&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -423,29 +428,28 @@ As random forests select at any node the best of `mtry`-many randomly selected f
 
 ---
 
-# Some help in choosing models
-
 &lt;p align = "center"&gt;
-&lt;img src="image/mlmap.png" height = 450px&gt;&lt;br&gt;
-&lt;font style="font-size:10px"&gt;from &lt;a href="https://scikit-learn.org"&gt;scikit-learn.org&lt;/font&gt;
+&lt;img src="image/Algorithms.png"  height = 590px&gt;&lt;br&gt;
 &lt;/p&gt;
 
 
 ---
 
-# Remember
+# Erinnere
 
 .pull-left45[
 
-&lt;i&gt;"…some machine learning projects succeed and some fail. What makes the difference? Easily the most important factor is the features used."&lt;/i&gt;
+&lt;br&gt;
 
-Pedro Domingos
+&lt;i&gt;"…some machine learning projects succeed and some fail. What makes the difference? &lt;high&gt;Easily the most important factor is the features used&lt;/high&gt;."&lt;/i&gt;
 
-&lt;br&gt;&lt;br&gt;
+[Pedro Domingos](https://en.wikipedia.org/wiki/Pedro_Domingos)
 
-&lt;i&gt;"The algorithms we used are very standard for Kagglers. […] We spent most of our efforts in feature engineering. [...] We were also very careful to discard features likely to expose us to the risk of over-fitting our model."&lt;/i&gt;
+&lt;br&gt;
 
-Xavier Conort
+&lt;i&gt;"The algorithms we used are very standard for Kagglers. […] &lt;high&gt;We spent most of our efforts in feature engineering.&lt;/high&gt; [...] We were also very careful to discard features likely to expose us to the risk of over-fitting our model."&lt;/i&gt;
+
+[Xavier Conort]()
 
 ]
 
@@ -512,7 +516,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {
