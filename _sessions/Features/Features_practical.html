@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -84,7 +84,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -146,6 +145,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -157,18 +157,6 @@ summary {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -195,7 +183,7 @@ $(document).ready(function () {
 <col width='10%'>
 <tr style="border:none">
 <td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
-<font style='font-style:normal'>Machine Learning with R</font><br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>The R Bootcamp</font> </a>
+<font style='font-style:normal'>Maschinelles Lernen mit R</font><br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>The R Bootcamp</font> </a>
 </td>
 <td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
 <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
@@ -211,7 +199,7 @@ $(document).ready(function () {
 </p>
 <div id="section" class="section level1 tabset">
 <h1></h1>
-<div id="uberblick" class="section level2">
+<div id="überblick" class="section level2">
 <h2>Überblick</h2>
 <p>Am Ende des Practicals wirst du wissen…</p>
 <ol style="list-style-type: decimal">
@@ -225,7 +213,7 @@ $(document).ready(function () {
 <h3>A - Setup</h3>
 <ol style="list-style-type: decimal">
 <li><p>Öffne dein <code>TheRBootcamp</code> R project. Es sollte die Ordner <code>1_Data</code> und <code>2_Code</code> enthalten. Stelle sicher, dass du alle Datensätze, welche im <code>Datensätze</code> Tab aufgelisted sind, in deinem <code>1_Data</code> Ordner hast.</p></li>
-<li><p>Öffne ein neues R Skript. Schreibe deinen Namen, das Datum und “Predicting Practical” als Kommentare an den Anfang des Skripts.</p></li>
+<li><p>Öffne ein neues R Skript. Schreibe deinen Namen, das Datum und “Features Practical” als Kommentare an den Anfang des Skripts.</p></li>
 </ol>
 <pre class="r"><code>## NAME
 ## DATUM
@@ -233,17 +221,7 @@ $(document).ready(function () {
 <ol start="3" style="list-style-type: decimal">
 <li><p>Speichere das neue Skript unter dem Namen <code>features_practical.R</code> im <code>2_Code</code> Ordner.</p></li>
 <li><p>Lade die Pakete <code>tidyverse</code>, <code>caret</code>, <code>party</code>, <code>partykit</code>.</p></li>
-<li><p>In the code below, we will load each of the data sets listed in the <code>Datasets</code> as new objects.</p></li>
 </ol>
-<pre class="r"><code># Pima Indians diabetes
-
-
-# (Non-) violent crime statistics
-violent_crime    &lt;- read_csv(file = &quot;1_Data/violent_crime.csv&quot;)
-nonviolent_crime &lt;- read_csv(file = &quot;1_Data/nonviolent_crime.csv&quot;)
-
-# murders crime statistics
-murders_crime &lt;- read_csv(file = &quot;1_Data/murders_crime.csv&quot;)</code></pre>
 <br>
 <p style="font-size:20px;background-color:#6ABA9A;color:white;padding-left:20px" align="left" width="100%">
 Datensatz 1: <b>Diabetes</b>
@@ -279,39 +257,39 @@ train_index &lt;- createDataPartition(XX$XX, p = .05, list = FALSE)
 diabetes_train &lt;- XX %&gt;% slice(train_index)
 diabetes_test  &lt;- XX %&gt;% slice(-train_index)</code></pre>
 </div>
-<div id="d---entferne-ungwollte-feature" class="section level3">
-<h3>D - Entferne ungwollte Feature</h3>
+<div id="d---entferne-ungewollte-features" class="section level3">
+<h3>D - Entferne ungewollte Features</h3>
 <ol style="list-style-type: decimal">
-<li>Bevor du mit der Eliminierung der Feature beginnen kannst musst du Prädiktoren und Kriterium voneinander trennen.</li>
+<li>Bevor du mit der Eliminierung der Features beginnen kannst, musst du Features und Kriterium voneinander trennen.</li>
 </ol>
-<pre class="r"><code># Wähle Prädiktoren aus
+<pre class="r"><code># Wähle Features aus
 diabetes_train_pred &lt;- diabetes_train %&gt;% select(-XX)
 
 # Wähle Kriterium aus
 diabetes_train_crit &lt;- diabetes_train %&gt;% select(XX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Nun teste ob es ggf. übermässig korrelierte Prädiktoren gibt. Berechne hierzu zunächst die Korrelationsmatrix mit <code>cor()</code>. Anschliessend übergebe diese an <code>findCorrelation()</code>. Gibt es Variablen die übermässig Korreliert sind? Keine Werte würde nein bedeuten.</li>
+<li>Nun teste ob es ggf. übermässig korrelierte Prädiktoren gibt. Berechne hierzu zunächst die Korrelationsmatrix mit <code>cor()</code>. Anschliessend übergebe diese an <code>findCorrelation()</code>. Gibt es Variablen die übermässig korreliert sind? Keine Werte würde nein bedeuten.</li>
 </ol>
-<pre class="r"><code># Bestimmte die Korreltionsmatrix
+<pre class="r"><code># Bestimme die Korrelationsmatrix
 corr_matrix &lt;- cor(XX_pred)
 
-# Identifiziere übermässig korrelierte Feature
+# Identifiziere übermässig korrelierte Features
 findCorrelation(corr_matrix)</code></pre>
 <ol start="8" style="list-style-type: decimal">
-<li>Nun teste, ob es vll. Prädiktoren mit limitierter “Varianz” gibt. Gibes es welche?</li>
+<li>Nun teste, ob es vll. Features mit limitierter “Varianz” gibt. Gibes es welche?</li>
 </ol>
-<pre class="r"><code># Identifiziere Prädiktoren ohne &quot;Varianz&quot;
+<pre class="r"><code># Identifiziere Features ohne &quot;Varianz&quot;
 nearZeroVar(XX_pred)</code></pre>
 <ol start="9" style="list-style-type: decimal">
-<li>Es wurden weder übermässig korrelierte Prädiktoren gefunden, noch solche ohne “Varianz”. Füge nun Prädiktoren und Kriterium wieder zu <code>diabetes_train</code> zusammen.</li>
+<li>Es wurden weder übermässig korrelierte Prädiktoren gefunden, noch solche ohne “Varianz”. Füge nun Features und Kriterium wieder zu <code>diabetes_train</code> zusammen.</li>
 </ol>
-<pre class="r"><code># Füge nun Prädiktoren und Kriterium zusammen
+<pre class="r"><code># Füge nun Features und Kriterium zusammen
 diabetes_train &lt;- XX_crit %&gt;% bind_cols(XX_pred)</code></pre>
 </div>
 <div id="e---featurewichtigkeit" class="section level3">
 <h3>E - Featurewichtigkeit</h3>
 <ol style="list-style-type: decimal">
-<li>Featurewichtigkeit existiert nicht für sich allein, sondern kann nur innerhalb eines Modells bestimmt werden. Fitte eine logistische Regression auf die Trainingsdaten, die das Feature <code>Diabetes</code> durch die anderen Feature vorhersagt.</li>
+<li>Featurewichtigkeit existiert nicht für sich allein, sondern kann nur innerhalb eines Modells bestimmt werden. Fitte eine logistische Regression auf die Trainingsdaten, die das Kriterium <code>Diabetes</code> durch die anderen Features vorhersagt.</li>
 </ol>
 <pre class="r"><code># Fitte Regression
 diabetes_glm &lt;- train(Diabetes ~ .,
@@ -356,8 +334,8 @@ confusionMatrix(predict(XX, newdata = XX), reference = XX)</code></pre>
 Datensatz 2: <b>Murders</b>
 </p>
 </div>
-<div id="f---lade-den-murder-datensatz" class="section level3">
-<h3>F - Lade den Murder Datensatz</h3>
+<div id="f---lade-den-murders-datensatz" class="section level3">
+<h3>F - Lade den Murders Datensatz</h3>
 <ol style="list-style-type: decimal">
 <li>Verwende die <code>read_csv()</code> Funktion um <code>murders_crime.csv</code> einzulesen.</li>
 </ol>
@@ -374,7 +352,7 @@ murders &lt;- murders %&gt;% mutate_if(is.character, factor)</code></pre>
 <div id="g---trenne-training-und-test" class="section level3">
 <h3>G - Trenne Training und Test</h3>
 <ol style="list-style-type: decimal">
-<li>Trenne den Datensatz in Traning und Test trennen. Verwende <code>createDataPartition()</code> um zwei Datensätze <code>diabetes_train</code> und <code>diabetes_test</code> zu erstellen. Das Kriterium ist <code>murders</code> Dabei sollen <em>nur</em> <code>25%</code> der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf <code>100</code> damit die Aufteilung reproduzierbar ist.</li>
+<li>Trenne den Datensatz in Traning und Test trennen. Verwende <code>createDataPartition()</code> um zwei Datensätze <code>diabetes_train</code> und <code>diabetes_test</code> zu erstellen. Das Kriterium ist <code>murders</code>. Dabei sollen <em>nur</em> <code>25%</code> der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf <code>100</code> damit die Aufteilung reproduzierbar ist.</li>
 </ol>
 <pre class="r"><code># Setze Random seed
 set.seed(100)
@@ -386,43 +364,43 @@ train_index &lt;- createDataPartition(XX$XX, p = .25, list = FALSE)
 murders_train &lt;- XX %&gt;% slice(train_index)
 murders_test  &lt;- XX %&gt;% slice(-train_index)</code></pre>
 </div>
-<div id="h---entferne-ungwollte-feature" class="section level3">
-<h3>H - Entferne ungwollte Feature</h3>
+<div id="h---entferne-ungwollte-features" class="section level3">
+<h3>H - Entferne ungwollte Features</h3>
 <ol style="list-style-type: decimal">
-<li>Bevor du mit der Eliminierung der Feature beginnst, trenne Prädiktoren und Kriterium voneinander trennen.</li>
+<li>Bevor du mit der Eliminierung der Features beginnst, trenne Features und Kriterium voneinander.</li>
 </ol>
-<pre class="r"><code># Wähle Prädiktoren aus
+<pre class="r"><code># Wähle Features aus
 murders_train_pred &lt;- murders_train %&gt;% select(-XX)
 
 # Wähle Kriterium aus
 murders_train_crit &lt;- murders_train %&gt;% select(XX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Nun teste ob es ggf. übermässig korrelierte Prädiktoren gibt. Berechne hierzu zunächst die Korrelationsmatrix mit <code>cor()</code>. Anschliessend übergebe diese an <code>findCorrelation()</code>. Gibt es Variablen die übermässig Korreliert sind? Keine Werte würde nein bedeuten.</li>
+<li>Nun teste ob es ggf. übermässig korrelierte Prädiktoren gibt. Berechne hierzu zunächst die Korrelationsmatrix mit <code>cor()</code>. Anschliessend übergebe diese an <code>findCorrelation()</code>. Gibt es Variablen die übermässig korreliert sind? Keine Werte würde nein bedeuten.</li>
 </ol>
-<pre class="r"><code># Bestimmte die Korreltionsmatrix
+<pre class="r"><code># Bestimmte die Korrelationsmatrix
 corr_matrix &lt;- cor(XX_pred)
 
-# Identifiziere übermässig korrelierte Feature
+# Identifiziere übermässig korrelierte Features
 findCorrelation(corr_matrix)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Verwende den code unten um die übermässig korrelierten Prädiktoren zu entfernen.</li>
+<li>Verwende den Code unten um die übermässig korrelierten Features zu entfernen.</li>
 </ol>
-<pre class="r"><code># Entferne korrelierte Feature
+<pre class="r"><code># Entferne korrelierte Features
 murders_train_pred &lt;- murders_train_pred %&gt;% select(-findCorrelation(corr_matrix))</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Nun teste, ob es Prädiktoren mit limitierter “Varianz” gibt. Gibes es welche?</li>
 </ol>
-<pre class="r"><code># Identifiziere Prädiktoren ohne &quot;Varianz&quot;
+<pre class="r"><code># Identifiziere Features ohne &quot;Varianz&quot;
 nearZeroVar(XX_pred)</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Verwende den code unten um die Prädiktoren ohne “Varianz” zu entfernen.</li>
 </ol>
-<pre class="r"><code># Entferne korrelierte Feature
+<pre class="r"><code># Entferne Features ohne Varianz
 murders_train_pred &lt;- murders_train_pred %&gt;% select(-nearZeroVar(murders_train_pred))</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>Füge nun Prädiktoren und Kriterium als neuen Trainingsdatensatz <code>murders_train_reduziert</code> zusammen.</li>
+<li>Füge nun Features und Kriterium als neuen Trainingsdatensatz <code>murders_train_reduziert</code> zusammen.</li>
 </ol>
-<pre class="r"><code># Füge nun Prädiktoren und Kriterium zusammen
+<pre class="r"><code># Füge nun Features und Kriterium zusammen
 murders_train_reduziert &lt;- XX_crit %&gt;% bind_cols(XX_pred)</code></pre>
 </div>
 <div id="i---featurewichtigkeit" class="section level3">
@@ -446,13 +424,13 @@ varimp_glm
 # Plotte Featurewichtigkeit
 plot(varimp_glm)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Benutze den folgenden Code um zwei neue Trainingsdatensätze zu generieren, einen der nur Feature mit <code>Importance &gt; 50</code> und einen der nur Feature mit <code>Importance &gt; 30</code> enthält.</li>
+<li>Benutze den folgenden Code um zwei neue Trainingsdatensätze zu generieren, einen der nur Features mit <code>Importance &gt; 50</code> und einen der nur Features mit <code>Importance &gt; 30</code> enthält.</li>
 </ol>
 </div>
 <div id="j---datenkomprimierung-mit-pca" class="section level3">
 <h3>J - Datenkomprimierung mit PCA</h3>
 <ol style="list-style-type: decimal">
-<li>Eine Alternative zu manueller Featurereduktion ist die <code>principal component analysis</code>. Fitte zwei Regressionsmodelle, die <code>murders</code> durch die anderen Feature vorhersagen unter Verwendung des Arguments <code>preProcess = c(&quot;pca&quot;)</code>. Zusätzlich verwende das <code>trControl</code> Argument um festzulegen, wie viel Varianz durch die PCA aufgeklärt werden soll. Siehe Code.</li>
+<li>Eine Alternative zu manueller Featurereduktion ist die <code>principal component analysis</code>. Fitte zwei Regressionsmodelle, die <code>murders</code> durch die anderen Features vorhersagen unter Verwendung des Arguments <code>preProcess = c(&quot;pca&quot;)</code>. Zusätzlich verwende das <code>trControl</code> Argument um festzulegen, wie viel Varianz durch die PCA aufgeklärt werden soll. Siehe Code.</li>
 </ol>
 <pre class="r"><code># Fitte Regression mit 80% Varianz präserviert
 murders_glm_pca80 = train(murders ~ .,
@@ -473,57 +451,28 @@ murders_glm_pca50 = train(murders ~ .,
 <ol style="list-style-type: decimal">
 <li>Fitte jeweils eigene Regressionsmodelle unter Verwendung des ursprünglichen Trainingsdatensatzes <code>murders_train</code> und den Trainingsdatensätzen <code>murders_train_reduziert50</code> und <code>murders_train_reduziert30</code>.</li>
 </ol>
-<pre class="r"><code># Fitte Regression mit reduzierten Datensatz
+<pre class="r"><code># Fitte Regression mit reduziertem Datensatz
 murders_glm &lt;- train(murders ~ .,
                      data = murders_train,
                      method = &quot;glm&quot;)
 
-# Fitte Regression mit reduzierten Datensatz mit Features mit Imp &gt; 50
+# Fitte Regression mit reduziertem Datensatz mit Features mit Imp &gt; 50
 murders_glm_reduziert50 &lt;- train(murders ~ .,
                                data = murders_train_reduziert50,
                                method = &quot;glm&quot;)
 
-# Fitte Regression mit reduzierten Datensatz mit Features mit Imp &gt; 20
+# Fitte Regression mit reduziertem Datensatz mit Features mit Imp &gt; 20
 murders_glm_reduziert30 &lt;- train(murders ~ .,
                                data = murders_train_reduziert30,
                                method = &quot;glm&quot;)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Vergleiche die Modelle <code>murders_glm</code>, <code>murders_glm_reduziert</code>, <code>murders_glm_reduziert50</code>, <code>murders_glm_reduziert30</code>, <code>murders_glm_pca80</code>, <code>murders_glm_pca50</code> in ihrer Fähigkeit die Testdaten vorherzusagen. Waren die Strategien der Featurereduktion erfolgreich? Welche Strategien waren am erfolgreichsten?</li>
 </ol>
-<pre class="r"><code># Evaluation des Tests für murders_glm
-confusionMatrix(predict(murders_glm, 
-                        newdata = murders_test), 
-              reference = murders_test$murders)
-
-# Evaluation des Tests für murders_glm_reduziert
-confusionMatrix(predict(murders_glm_reduziert, 
-                        newdata = murders_test), 
-                reference = murders_test$murders)
-
-# Evaluation des Tests für murders_glm_reduziert50
-confusionMatrix(predict(murders_glm_reduziert50, 
-                        newdata = murders_test), 
-                reference = murders_test$murders)
-
-# Evaluation des Tests für murders_glm_reduziert30
-confusionMatrix(predict(murders_glm_reduziert30, 
-                        newdata = murders_test), 
-                reference = murders_test$murders)
-
-# Evaluation des Tests für murders_glm_pca80
-confusionMatrix(predict(murders_glm_pca80, 
-                        newdata = murders_test), 
-                reference = murders_test$murders)
-
-# Evaluation des Tests für murders_glm_pca50
-confusionMatrix(predict(murders_glm_pca50, 
-                        newdata = murders_test), 
-                reference = murders_test$murders)</code></pre>
 </div>
 <div id="x---challenges-violent-non-violent-crime-data" class="section level3">
 <h3>X - Challenges: Violent &amp; Non-violent Crime Data</h3>
 <ol style="list-style-type: decimal">
-<li><p>Versuche neue Trainingsdatensätze unter Verwendung manueller Reduktion oder PCA zu generieren die zu noch besserer Vorhersage führen.</p></li>
+<li><p>Versuche neue Trainingsdatensätze unter Verwendung manueller Reduktion oder PCA zu generieren die zu noch besseren Vorhersagen führen.</p></li>
 <li><p>Verwende Random Forest anstatt Regression als zugrundeliegendes Modell. Achte darauf, dass <code>mtry</code> nicht zu hoch ist, damit es nicht so lange dauert.</p></li>
 <li><p>Für die Datensätze <code>violent_crime.csv</code> und <code>nonviolent_crime.csv</code> modelliere <code>ViolentCrimesPerPop</code> respektive <code>nonViolPerPop</code> als Funktion einer sinnvollen Auswahl an Featuren. Beide Kriterien sind numerisch, was bedeutet, dass es sich hier um ein Regressionsproblem handelt.</p></li>
 </ol>
@@ -531,7 +480,7 @@ confusionMatrix(predict(murders_glm_pca50,
 </div>
 <div id="beispiele" class="section level2">
 <h2>Beispiele</h2>
-<pre class="r"><code># Schritt0: Pakete laden-----------
+<pre class="r"><code># Schritt 0: Pakete laden-----------
 
 library(tidyverse)   
 library(caret)   
@@ -541,7 +490,7 @@ library(partykit)
 # Schritt 1: Lade Daten ----------------------
 
 # Lese Daten
-data &lt;- read_csv(&quot;1_Data/mpg_num.csv&quot;)
+data &lt;- mpg
 
 # Konvertiere character in factor
 data &lt;- data %&gt;%
@@ -559,7 +508,7 @@ train_index &lt;- createDataPartition(criterion,
 data_train &lt;- data %&gt;% slice(train_index)
 data_test &lt;- data %&gt;% slice(-train_index)
 
-# Trenne Prädiktoren und Kriterium
+# Trenne Features und Kriterium
 criterion_train &lt;- data_train %&gt;% select(hwy) %&gt;% pull()
 predictors_train &lt;- data_train %&gt;% select(-hwy)
 criterion_test &lt;- data_test %&gt;% select(hwy) %&gt;% pull()
@@ -667,7 +616,7 @@ plot(profile, type = c(&quot;g&quot;, &quot;o&quot;))
 
 # Ihr wisst wie...</code></pre>
 </div>
-<div id="datensatze" class="section level2">
+<div id="datensätze" class="section level2">
 <h2>Datensätze</h2>
 <table>
 <thead>
@@ -702,14 +651,58 @@ plot(profile, type = c(&quot;g&quot;, &quot;o&quot;))
 </table>
 <div id="diabetes" class="section level4">
 <h4><code>diabetes</code></h4>
-<p>Der <code>diabetes</code> Datensatz entstammt dem <code>PimaIndiansDiabetes</code> Datensatz aus dem <code>mlbench</code> Paket. Es behinhaltet medizinische und demographische Daten der <a href="https://de.wikipedia.org/wiki/Pima">Pima</a>.</p>
-<p>Die Pima sind eine in Arizona lebende Untergruppe der Indianer. Eine genetische Prädisposition erlaubte es ihnen sich jahrelang von einer sehr kohlenhypdratarmen Diät zu ernähren. Der Wechsel von traditionellem Anbau zu industriell verarbeiteten Nahrungsmitteln zusammen mit einem Rückgang physischer Aktivität hat bei den Pima zu einer sehr hohen Rate and Typ 2 Diabetes ausgelöst. Aus diesem Grund sind sie Gegenstand vieler medizinischer Untersuchungen.</p>
-<div class="line-block">Name | Beschreibung |</div>
-<p>|Diabetes| Diagnose: positiv (pos) oder negativ (pos) | |Schwangerschaften| Anzahl Schwangerschaften | |Glucose| Glukosekonzentration im Plasma | |Blutdruck| Diastolischer Blutdruck | |BMI| Body Mass Index | |fam_Vorerkrankungen| Familiäre Vorerkrankungen (pedigree function) | |Alter| Alter in Jahren |</p>
+<p>Der <code>diabetes</code> Datensatz entstammt dem <code>PimaIndiansDiabetes</code> Datensatz aus dem <code>mlbench</code> Paket. Er beinhaltet medizinische und demographische Daten der <a href="https://de.wikipedia.org/wiki/Pima">Pima</a>.</p>
+<p>Die Pima sind eine in Arizona lebende Untergruppe der Indianer. Eine genetische Prädisposition erlaubte es ihnen sich jahrelang von einer sehr kohlenhydratarmen Diät zu ernähren. Der Wechsel von traditionellem Anbau zu industriell verarbeiteten Nahrungsmitteln zusammen mit einem Rückgang physischer Aktivität hat bei den Pima zu einer sehr hohen Rate and Typ 2 Diabetes geführt. Aus diesem Grund sind sie Gegenstand vieler medizinischer Untersuchungen.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Beschreibung</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Diabetes</td>
+<td align="left">Diagnose: positiv (pos) oder negativ (pos)</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Schwangerschaften</td>
+<td align="left">Anzahl Schwangerschaften</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Glucose</td>
+<td align="left">Glukosekonzentration im Plasma</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Blutdruck</td>
+<td align="left">Diastolischer Blutdruck</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">BMI</td>
+<td align="left">Body Mass Index</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">fam_Vorerkrankungen</td>
+<td align="left">Familiäre Vorerkrankungen (pedigree function)</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Alter</td>
+<td align="left">Alter in Jahren</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="murders_crime-violent_crime-und-non_violent_crime" class="section level4">
 <h4><code>murders_crime</code>, <code>violent_crime</code>, und <code>non_violent_crime</code></h4>
-<p>Die Datensätze <code>murders_crime</code>, <code>violent_crime</code>, und <code>non_violent_crime</code> entstammen dem <em>Communities and Crime Unnormalized Data Set</em> aus dem <a href="https://archive.ics.uci.edu/ml/index.php">UCI Machine Learning Repository</a>. Für die Featurebeschreibungen siehe: <a href="https://archive.ics.uci.edu/ml/datasets/Communities+and+Crime+Unnormalized">Communities and Crime Unnormalized Data Set</a>. Aufgrund der grossen Anzahl der Feature (102) verzichten wir auf den Table hier.</p>
+<p>Die Datensätze <code>murders_crime</code>, <code>violent_crime</code>, und <code>non_violent_crime</code> entstammen dem <em>Communities and Crime Unnormalized Data Set</em> aus dem <a href="https://archive.ics.uci.edu/ml/index.php">UCI Machine Learning Repository</a>. Für die Featurebeschreibungen siehe: <a href="https://archive.ics.uci.edu/ml/datasets/Communities+and+Crime+Unnormalized">Communities and Crime Unnormalized Data Set</a>. Aufgrund der grossen Anzahl der Feature (102) verzichten wir auf hier auf die Tabelle.</p>
 <p>Der Datensatz kombiniert sozio-demographische Daten des US 1990 Zensus, Daten aus dem <em>Law Enforcement Management and Admin Stats Survey</em>, und Kriminaldaten des FBI.</p>
 </div>
 </div>
@@ -788,24 +781,24 @@ plot(profile, type = c(&quot;g&quot;, &quot;o&quot;))
 <tr class="even">
 <td align="left"><code>varImp()</code></td>
 <td align="left"><code>caret</code></td>
-<td align="left">Determine the model-specific importance of features</td>
+<td align="left">Determiniere modellspezifische, wichtige Features</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>findCorrelation()</code>, <code>nearZeroVar()</code></td>
 <td align="left"><code>caret</code></td>
-<td align="left">Identify highly correlated and low variance features.</td>
+<td align="left">Identifiziere hochkorrelierte Features und Features mit fast keiner Varianz.</td>
 </tr>
 <tr class="even">
 <td align="left"><code>rfe()</code>, <code>rfeControl()</code></td>
 <td align="left"><code>caret</code></td>
-<td align="left">Run and control recursive feature selection.</td>
+<td align="left">Verwende und kontrolliere rekursive Featureselektion.</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="ressourcen" class="section level2">
-<h2>Ressourcen</h2>
+<div id="materialien" class="section level2">
+<h2>Materialien</h2>
 <div id="cheatsheet" class="section level3">
 <h3>Cheatsheet</h3>
 <figure>
@@ -833,6 +826,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
