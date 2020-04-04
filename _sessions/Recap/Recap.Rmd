@@ -417,7 +417,7 @@ mod            # Printe Objekt
 mod$finalModel # Finales Modell
 ```
 
-Schritt 5:Generiere Vorhersagen 
+Schritt 5: Generiere Vorhersagen 
 
 ```{r, eval = FALSE}
 # Generiere Vorhersagen
