@@ -69,7 +69,7 @@ options(digits = 4)
 <br><br><br><br><br>
 #  Hallo Machine Learning Experten!
 
-In 2 Tagen, 7 Sessions, und 15 hours habt ihr euch die Grundlagen des maschnellen Lernens angeeignet.
+In 2 Tagen, 7 Sessions, und 15 Stunden habt ihr euch die Grundlagen des maschinellen Lernens angeeignet.
 
 ]
 
@@ -109,7 +109,7 @@ In 2 Tagen, 7 Sessions, und 15 hours habt ihr euch die Grundlagen des maschnelle
 # Änderungen in der Wirtschaft
 
 .pull-left4[
-### Unternehmeen dieee AI/ML verwenden
+### Unternehmeen die AI/ML verwenden
 <p align="left">
   <img src="image/bytemarks.png" height=380>
 </p>
@@ -371,7 +371,7 @@ Das Netz ist vll. der beste Ort für Informationen über R.
     <a href="https://github.com/mdsteiner"><b>github.com/mdsteiner</b></a><br>
     <font size=4><i>packages: </i></font> 
     <a href="https://github.com/mdsteiner/ShinyPsych"><b>ShinyPsych</b></a>, <br>
-    <a href="https://github.com/mdsteiner/EFAdiff"><b>EFAdiff</b></a> <br><br>
+    <a href="https://github.com/mdsteiner/EFAtools"><b>EFAtools</b></a> <br><br>
     </p>
   </th>
   
@@ -454,12 +454,11 @@ Das Netz ist vll. der beste Ort für Informationen über R.
 .pull-right45[
 
 <p align="center"><br><br>
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSefABREozlrgBnY7dfRtoKZRVAlTOk83tW0LR1JgHJsJrdxfw/viewform?embedded=true" width="430" height="550" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></p>
-
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc7mIQxM9Ll32l2e5P6DNLv0yl5ugiSwmZgDRzRhcOnpHQveg/viewform?embedded=true" width="430" height="550" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></p>
 ]
 
 ---
 class: center, middle
 
-# Herzlichen Dank! und noch eine Sache...
+# Herzlichen Dank!
 
