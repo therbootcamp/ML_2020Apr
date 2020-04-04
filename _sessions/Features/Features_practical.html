@@ -352,7 +352,7 @@ murders &lt;- murders %&gt;% mutate_if(is.character, factor)</code></pre>
 <div id="h---trenne-training-und-test" class="section level3">
 <h3>H - Trenne Training und Test</h3>
 <ol style="list-style-type: decimal">
-<li>Trenne den Datensatz in Traning und Test trennen. Verwende <code>createDataPartition()</code> um zwei Datensätze <code>diabetes_train</code> und <code>diabetes_test</code> zu erstellen. Das Kriterium ist <code>murders</code>. Dabei sollen <em>nur</em> <code>25%</code> der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf <code>100</code> damit die Aufteilung reproduzierbar ist.</li>
+<li>Trenne den Datensatz in Traning und Test trennen. Verwende <code>createDataPartition()</code> um zwei Datensätze <code>murders_train</code> und <code>murders_test</code> zu erstellen. Das Kriterium ist <code>murders</code>. Dabei sollen <em>nur</em> <code>25%</code> der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf <code>100</code> damit die Aufteilung reproduzierbar ist.</li>
 </ol>
 <pre class="r"><code># Setze Random seed
 set.seed(100)
@@ -426,6 +426,13 @@ plot(varimp_glm)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Benutze den folgenden Code um zwei neue Trainingsdatensätze zu generieren, einen der nur Features mit <code>Importance &gt; 50</code> und einen der nur Features mit <code>Importance &gt; 30</code> enthält.</li>
 </ol>
+<pre class="r"><code># Features mit Imp &gt; 50
+murders_train_reduziert50 &lt;- murders_train_reduziert %&gt;% 
+  select(1, which(varimp_glm$importance &gt; 50) + 1)
+
+# Features mit Imp &gt; 30
+murders_train_reduziert30 &lt;- murders_train_reduziert %&gt;% 
+  select(1, which(varimp_glm$importance &gt; 30) + 1)</code></pre>
 </div>
 <div id="k---datenkomprimierung-mit-pca" class="section level3">
 <h3>K - Datenkomprimierung mit PCA</h3>

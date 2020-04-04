@@ -322,7 +322,7 @@ murders <- murders %>% mutate_if(is.character, factor)
 
 ### H - Trenne Training und Test
 
-1. Trenne den Datensatz in Traning und Test trennen. Verwende `createDataPartition()` um zwei Datensätze `diabetes_train` und `diabetes_test` zu erstellen. Das Kriterium ist `murders`. Dabei sollen *nur* `25%` der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf `100` damit die Aufteilung reproduzierbar ist.  
+1. Trenne den Datensatz in Traning und Test trennen. Verwende `createDataPartition()` um zwei Datensätze `murders_train` und `murders_test` zu erstellen. Das Kriterium ist `murders`. Dabei sollen *nur* `25%` der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf `100` damit die Aufteilung reproduzierbar ist.  
 
 ```{r, echo = TRUE, eval = FALSE}
 # Setze Random seed
@@ -468,7 +468,7 @@ plot(varimp_glm)
 
 3. Benutze den folgenden Code um zwei neue Trainingsdatensätze zu generieren, einen der nur Features mit `Importance > 50` und einen der nur Features mit `Importance > 30` enthält.
 
-```{r}
+```{r echo=TRUE}
 # Features mit Imp > 50
 murders_train_reduziert50 <- murders_train_reduziert %>% 
   select(1, which(varimp_glm$importance > 50) + 1)
