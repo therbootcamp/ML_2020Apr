@@ -438,12 +438,12 @@ basel <- basel %>%
 ### Ungleiche oder zu niedrige Varianz
 
 <ul>
-  <li class="m2"><span>Ungleiche Varianzen <high>verzerren</high> Methoden, die gleiche Varianz erwarten (z.B. Lassos).</span></li>
+  <li class="m2"><span>Ungleiche Varianzen <high>verzerren</high> Methoden, die gleiche Varianz erwarten (z.B. LASSO).</span></li>
 </ul>
 
 ```{r, eval = F}
 # Standardisiere Features
-train(..., preProc("center", "scale"))
+train(..., preProc = c("center", "scale"))
 ```
 
 <ul>
