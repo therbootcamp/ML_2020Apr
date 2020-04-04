@@ -43,7 +43,7 @@ output:
 |0| Willkommen!<br>[Folien](_sessions/Welcome/Welcome.html) | Wiederholung<br>[Folien](_sessions/Recap/Recap.html)|
 |1| Was ist ML?<br>[Folien](_sessions/WhatIsML/WhatIsML.html)| Unsupervised learning <br>[Folien](_sessions/Unsupervised/Unsupervised.html), [Practical](_sessions/Unsupervised/Unsupervised_practical.html)|
 |2| Fitting <br>[Folien](_sessions/Fitting/Fitting.html), [Practical](_sessions/Fitting/Fitting_practical.html) | Features <br>[Folien](_sessions/Features/Features.html), [Practical](_sessions/Features/Features_practical.html)|
-|3| Predicting<br>[Folien](_sessions/Prediction/Prediction.html), [Practical](_sessions/Prediction/Prediction_practical.html) | Modelle <br>[Folien](_sessions/Models/Models.html), Practical |
+|3| Predicting<br>[Folien](_sessions/Prediction/Prediction.html), [Practical](_sessions/Prediction/Prediction_practical.html) | Modelle <br>[Folien](_sessions/Models/Models.html), [Practical](_sessions/Models/Models_practical.html) |
 |4| Optimizing <br>[Folien](_sessions/Optimization/Optimization.html), [Practical](_sessions/Optimization/Optimization_practical.html) | Ausblick <br>[Folien](_sessions/LookAhead/LookAhead.html)|
 
 <br>
