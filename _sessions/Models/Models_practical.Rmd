@@ -49,7 +49,7 @@ knitr::include_graphics("image/twitter.gif")
 
 # {.tabset}
 
-## Overview
+## Überblick
 
 Demonstriere dein Können im maschinellen Lernen in einem Modelling Wettbewerb. Sage das Geschlecht eines Tweeters auf Basis von Meta Informationen vorher und gewinne &#127851;&#127851;&#127851;.
 

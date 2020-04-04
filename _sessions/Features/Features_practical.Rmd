@@ -253,7 +253,7 @@ varimp_glm
 plot(varimp_glm)
 ```
 
-### E - Modellvergleiche
+### F - Modellvergleiche
 
 1. Fitte nun eine zweite Regression zur Vorhersage von `Diabetes`, diesmal aber unter der Verwendung nur des besten Prädiktors gemäss den Ergebnissen der letzten Sektion.
 
@@ -300,7 +300,7 @@ confusionMatrix(predict(diabetes_glm1, newdata = diabetes_test), reference = dia
 Datensatz 2: <b>Murders</b>
 </p>
 
-### F - Lade den Murders Datensatz
+### G - Lade den Murders Datensatz
 
 1. Verwende die `read_csv()` Funktion um `murders_crime.csv` einzulesen.
 
@@ -320,7 +320,7 @@ murders <- read_csv(file = "1_Data/murders_crime.csv")
 murders <- murders %>% mutate_if(is.character, factor)
 ```
 
-### G - Trenne Training und Test
+### H - Trenne Training und Test
 
 1. Trenne den Datensatz in Traning und Test trennen. Verwende `createDataPartition()` um zwei Datensätze `diabetes_train` und `diabetes_test` zu erstellen. Das Kriterium ist `murders`. Dabei sollen *nur* `25%` der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf `100` damit die Aufteilung reproduzierbar ist.  
 
@@ -348,7 +348,7 @@ murders_train <- murders %>% slice(train_index)
 murders_test  <- murders %>% slice(-train_index)
 ```
 
-### H - Entferne ungwollte Features
+### I - Entferne ungwollte Features
 
 1. Bevor du mit der Eliminierung der Features beginnst, trenne Features und Kriterium voneinander. 
 
@@ -424,7 +424,7 @@ murders_train_reduziert <- XX_crit %>% bind_cols(XX_pred)
 murders_train_reduziert <- murders_train_crit %>% bind_cols(murders_train_pred)
 ```
 
-### I - Featurewichtigkeit
+### J - Featurewichtigkeit
 
 1. Fitte eine logistische Regression auf die reduzierten Traningsdaten `murders_train_reduziert`, die das Feature `murders` durch die anderen Feature vorhersagt.   
 
@@ -479,7 +479,7 @@ murders_train_reduziert30 <- murders_train_reduziert %>%
 
 ```
 
-### J - Datenkomprimierung mit PCA
+### K - Datenkomprimierung mit PCA
 
 1. Eine Alternative zu manueller Featurereduktion ist die `principal component analysis`. Fitte zwei Regressionsmodelle, die `murders` durch die anderen Features vorhersagen unter Verwendung des Arguments `preProcess = c("pca")`. Zusätzlich verwende das `trControl` Argument um festzulegen, wie viel Varianz durch die PCA aufgeklärt werden soll. Siehe Code.
 
@@ -500,7 +500,7 @@ murders_glm_pca50 = train(murders ~ .,
 ```
 
 
-### K - Modellvergleiche
+### L - Modellvergleiche
 
 1. Fitte jeweils eigene Regressionsmodelle unter Verwendung des ursprünglichen Trainingsdatensatzes `murders_train` und den Trainingsdatensätzen `murders_train_reduziert50` und `murders_train_reduziert30`. 
 
