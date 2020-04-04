@@ -307,8 +307,8 @@ varimp_glm
 # Plotte Featurewichtigkeit
 plot(varimp_glm)</code></pre>
 </div>
-<div id="e---modellvergleiche" class="section level3">
-<h3>E - Modellvergleiche</h3>
+<div id="f---modellvergleiche" class="section level3">
+<h3>F - Modellvergleiche</h3>
 <ol style="list-style-type: decimal">
 <li>Fitte nun eine zweite Regression zur Vorhersage von <code>Diabetes</code>, diesmal aber unter der Verwendung nur des besten Prädiktors gemäss den Ergebnissen der letzten Sektion.</li>
 </ol>
@@ -334,8 +334,8 @@ confusionMatrix(predict(XX, newdata = XX), reference = XX)</code></pre>
 Datensatz 2: <b>Murders</b>
 </p>
 </div>
-<div id="f---lade-den-murders-datensatz" class="section level3">
-<h3>F - Lade den Murders Datensatz</h3>
+<div id="g---lade-den-murders-datensatz" class="section level3">
+<h3>G - Lade den Murders Datensatz</h3>
 <ol style="list-style-type: decimal">
 <li>Verwende die <code>read_csv()</code> Funktion um <code>murders_crime.csv</code> einzulesen.</li>
 </ol>
@@ -349,10 +349,10 @@ murders &lt;- read_csv(file = &quot;1_Data/murders_crime.csv&quot;)</code></pre>
 <pre class="r"><code># Konvertiere alle character zu factor
 murders &lt;- murders %&gt;% mutate_if(is.character, factor)</code></pre>
 </div>
-<div id="g---trenne-training-und-test" class="section level3">
-<h3>G - Trenne Training und Test</h3>
+<div id="h---trenne-training-und-test" class="section level3">
+<h3>H - Trenne Training und Test</h3>
 <ol style="list-style-type: decimal">
-<li>Trenne den Datensatz in Traning und Test trennen. Verwende <code>createDataPartition()</code> um zwei Datensätze <code>diabetes_train</code> und <code>diabetes_test</code> zu erstellen. Das Kriterium ist <code>murders</code>. Dabei sollen <em>nur</em> <code>25%</code> der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf <code>100</code> damit die Aufteilung reproduzierbar ist.</li>
+<li>Trenne den Datensatz in Traning und Test trennen. Verwende <code>createDataPartition()</code> um zwei Datensätze <code>murders_train</code> und <code>murders_test</code> zu erstellen. Das Kriterium ist <code>murders</code>. Dabei sollen <em>nur</em> <code>25%</code> der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf <code>100</code> damit die Aufteilung reproduzierbar ist.</li>
 </ol>
 <pre class="r"><code># Setze Random seed
 set.seed(100)
@@ -364,8 +364,8 @@ train_index &lt;- createDataPartition(XX$XX, p = .25, list = FALSE)
 murders_train &lt;- XX %&gt;% slice(train_index)
 murders_test  &lt;- XX %&gt;% slice(-train_index)</code></pre>
 </div>
-<div id="h---entferne-ungwollte-features" class="section level3">
-<h3>H - Entferne ungwollte Features</h3>
+<div id="i---entferne-ungwollte-features" class="section level3">
+<h3>I - Entferne ungwollte Features</h3>
 <ol style="list-style-type: decimal">
 <li>Bevor du mit der Eliminierung der Features beginnst, trenne Features und Kriterium voneinander.</li>
 </ol>
@@ -403,8 +403,8 @@ murders_train_pred &lt;- murders_train_pred %&gt;% select(-nearZeroVar(murders_t
 <pre class="r"><code># Füge nun Features und Kriterium zusammen
 murders_train_reduziert &lt;- XX_crit %&gt;% bind_cols(XX_pred)</code></pre>
 </div>
-<div id="i---featurewichtigkeit" class="section level3">
-<h3>I - Featurewichtigkeit</h3>
+<div id="j---featurewichtigkeit" class="section level3">
+<h3>J - Featurewichtigkeit</h3>
 <ol style="list-style-type: decimal">
 <li>Fitte eine logistische Regression auf die reduzierten Traningsdaten <code>murders_train_reduziert</code>, die das Feature <code>murders</code> durch die anderen Feature vorhersagt.</li>
 </ol>
@@ -426,9 +426,16 @@ plot(varimp_glm)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Benutze den folgenden Code um zwei neue Trainingsdatensätze zu generieren, einen der nur Features mit <code>Importance &gt; 50</code> und einen der nur Features mit <code>Importance &gt; 30</code> enthält.</li>
 </ol>
+<pre class="r"><code># Features mit Imp &gt; 50
+murders_train_reduziert50 &lt;- murders_train_reduziert %&gt;% 
+  select(1, which(varimp_glm$importance &gt; 50) + 1)
+
+# Features mit Imp &gt; 30
+murders_train_reduziert30 &lt;- murders_train_reduziert %&gt;% 
+  select(1, which(varimp_glm$importance &gt; 30) + 1)</code></pre>
 </div>
-<div id="j---datenkomprimierung-mit-pca" class="section level3">
-<h3>J - Datenkomprimierung mit PCA</h3>
+<div id="k---datenkomprimierung-mit-pca" class="section level3">
+<h3>K - Datenkomprimierung mit PCA</h3>
 <ol style="list-style-type: decimal">
 <li>Eine Alternative zu manueller Featurereduktion ist die <code>principal component analysis</code>. Fitte zwei Regressionsmodelle, die <code>murders</code> durch die anderen Features vorhersagen unter Verwendung des Arguments <code>preProcess = c(&quot;pca&quot;)</code>. Zusätzlich verwende das <code>trControl</code> Argument um festzulegen, wie viel Varianz durch die PCA aufgeklärt werden soll. Siehe Code.</li>
 </ol>
@@ -446,8 +453,8 @@ murders_glm_pca50 = train(murders ~ .,
                           preProcess = c(&quot;pca&quot;),
                           trControl = trainControl(preProcOptions = list(thresh = .5)))</code></pre>
 </div>
-<div id="k---modellvergleiche" class="section level3">
-<h3>K - Modellvergleiche</h3>
+<div id="l---modellvergleiche" class="section level3">
+<h3>L - Modellvergleiche</h3>
 <ol style="list-style-type: decimal">
 <li>Fitte jeweils eigene Regressionsmodelle unter Verwendung des ursprünglichen Trainingsdatensatzes <code>murders_train</code> und den Trainingsdatensätzen <code>murders_train_reduziert50</code> und <code>murders_train_reduziert30</code>.</li>
 </ol>

@@ -49,7 +49,7 @@ knitr::include_graphics("image/twitter.gif")
 
 # {.tabset}
 
-## Overview
+## Überblick
 
 Demonstriere dein Können im maschinellen Lernen in einem Modelling Wettbewerb. Sage das Geschlecht eines Tweeters auf Basis von Meta Informationen vorher und gewinne &#127851;&#127851;&#127851;.
 
@@ -124,7 +124,7 @@ tweets <- tweets %>% mutate_if(is.character, as.factor)
 
 2. Um am Wettbewerb teilzunehmen, reicht <b>bis zu drei</b> `train`-Objekte (also der Output der `train()`-Funktion ein).
 
-3. Um ein `train`-Objekte einzureichen, speichert es zuerst als `.RDS`-Datei, die ihr benennt mit `PSEUDONYM_VERSION.RDS`, wobei ihr `PSEUDONYM` mit einem selbstgewählten Pseudonym ersetzt und `VERSION` mit einem selbstgewählten Beschreibung des verwendeten Ansatzes. Siehe den Code unten. 
+3. Um ein `train`-Objekt einzureichen, speichert es zuerst als `.RDS`-Datei, die ihr benennt mit `PSEUDONYM_VERSION.RDS`, wobei ihr `PSEUDONYM` mit einem selbstgewählten Pseudonym ersetzt und `VERSION` mit einer selbstgewählten Beschreibung des verwendeten Ansatzes. Siehe den Code unten. 
 
 ```{r}
 # Fitte Modell
@@ -134,20 +134,18 @@ my_train <- train(...)
 saveRDS(my_train,'1_Data/PSEUDONYM_VERSION.RDS')
 ```
 
-5. Reiche deine `.RDS` Datei über den folgenden Link ein. Wenn der Upload nicht funktioniert, dann schickt uns das Objekt oder die Objekte per [**Mail**](mailto:therbootcamp@gmail.com). 
-
-Submit your `.RDS` file (containing your training object) via the following link:
+5. Reiche deine `.RDS` Datei über den folgenden Link ein. Wenn der Upload nicht funktioniert, dann schicke uns das Objekt oder die Objekte per [**Mail**](mailto:therbootcamp@gmail.com). 
 
 <div align = "center">
 <table>
 <tr>
-<th>Task type</th>
-<th>Criterion</th>
-<th>Performance measure</th>
+<th>Problemtyp</th>
+<th>Kriterium</th>
+<th>Gütekriterium</th>
 <th>Submission link</th>
 </tr>
 <tr>
-  <td>Classification</td> 
+  <td>Klassifikation</td> 
   <td>tweets (`gender`)</td>
   <td>Accuracy</td>
   <td>[**Submit candidate**](https://www.dropbox.com/request/qNeX6wMNDbDtbJuVnxx0)</td>
@@ -155,9 +153,9 @@ Submit your `.RDS` file (containing your training object) via the following link
 </table>
 </div>
 
-6. Du darfst alle Waffen in `caret`s Arsenal verwenden. Versuche neue Modelle oder Tuning Parameter oder neue Präprozessierungs Methoden. Verwende alle oder nur einige Feature. 
+6. Du darfst alle Waffen in `caret`s Arsenal verwenden. Versuche neue Modelle oder Tuning Parameter oder neue Präprozessierungsmethoden. Verwende alle oder nur einige Features. 
 
-7. <font style="font-color:#EA4B68">Was du nicht darfst, ist neue Variablen zu erstellen, ansonsten können wir nämlich später nicht dein Modell mit anderen Vergleichen. D.h. alle Manipulation der Feature (jenseits deren Eliminiation z.B. dadurch dass nur bestimmte Feature in der Formula für die Vorhersage ausgewählt werden) müssen über das `preProcess`-Argument der `train()` Funktion durchgeführt werden. </font>
+7. <font style="font-color:#EA4B68">Was du nicht darfst, ist neue Variablen zu erstellen. Ansonsten können wir nämlich später dein Modell nicht mit anderen Vergleichen. D.h. alle Manipulationen der Features (jenseits deren Eliminiation z.B. dadurch, dass nur bestimmte Features in der Formula für die Vorhersage ausgewählt werden) müssen über das `preProcess`-Argument der `train()` Funktion durchgeführt werden. </font>
 
 
 ## Datensatz
@@ -167,13 +165,13 @@ library(tidyverse)
 library(ggthemes)
 ```
 
-|File  |Rows | Columns |
+|Datei  |Zeilen | Spalten |
 |:----|:-----|:------|
-|[tweets.csv](https://raw.githubusercontent.com/therbootcamp/appliedML_2019Jan/master/1_Data/tweets_train.csv)| 2500 | 23|
+|[tweets.csv](https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/tweets_train.csv)| 2500 | 23|
 
-Der `tweets.csv` Datensatz ist ein (stark) vor-verarbeiteter Ausschnitt deses Datensatzes von [Kaggle](https://www.kaggle.com/crowdflower/twitter-user-gender-classification). 
+Der `tweets.csv` Datensatz ist ein (stark) vor-verarbeiteter Ausschnitt dieses Datensatzes von [Kaggle](https://www.kaggle.com/crowdflower/twitter-user-gender-classification). 
 
-|Name  | Bedeutung |
+|Name  | Beschreibung |
 |:--------------------------|:-----------------------------------------|
 |gender| Das Kriterium. Ob die tweetende Person männlich (`male`) oder weiblich (`female`) ist.|
 |year_created| Das Jahr in dem der Twitter Account erstellt wurde.|
