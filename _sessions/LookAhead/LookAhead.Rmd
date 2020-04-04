@@ -460,5 +460,5 @@ Das Netz ist vll. der beste Ort für Informationen über R.
 ---
 class: center, middle
 
-# Herzlichen Dank!
+# Herzlichen Dank! und noch eine Sache...
 
