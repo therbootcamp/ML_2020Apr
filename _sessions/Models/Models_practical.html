@@ -211,15 +211,15 @@ $(document).ready(function () {
 <h1></h1>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
-<p>Demonstrate your machine-learning-jedi-knight skills in this model competition. Predict <code>gender</code> from a tweeter’s meta information and win lots of 🍫🍫🍫.</p>
-<p>The competition will end in…</p>
+<p>Demonstriere dein Können im maschinellen Lernen in einem Modelling Wettbewerb. Sage das Geschlecht eines Tweeters auf Basis von Meta Informationen vorher und gewinne 🍫🍫🍫.</p>
+<p>Der Wettbewerb läuft noch…</p>
 <font style="font-size:32px">
 <p id="demo" align="center">
 </p>
 <p></font></p>
 <script>
 // Set the date we're counting down to
-var countDownDate = new Date("Oct 6, 2019 17:05:00").getTime();
+var countDownDate = new Date("Apr 4, 2020 17:00:00").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
@@ -247,47 +247,45 @@ var x = setInterval(function() {
   }
 }, 1000);
 </script>
-<p><br><br><br></p>
 </div>
-<div id="mission-statement" class="section level2">
-<h2>Mission statement</h2>
-<p>After his overpaid machine learning task force maneuvered itself into obsolescence having developed the perfect algorithm to predict the locations of future crime, Baschi Dürr, head of justice and homeland security department of Basel-Stadt, needed a new project for his machine learning task before Elisabeth Ackerman, president of the governing council, might withdraw his newly-earned funding. And he knew he had to act quickly. To finance a new set of Wegner Swivel Chairs (<a href="https://twentytwentyone.com/product/pp-502-swivel-chair-pp-mobler">what else!</a>) for city hall’s conference rooms, Elisabeth Ackerman and Dr. Eva Herzog, head of the city’s financial department, had just announced that any expendable resources were to be invested in cryptocurrencies. Out of a lack of ideas, Baschi Dürr called up his American friends, who had previously given him such a great price on the American crime data set. He learned that they had recently begun to use machine learning for political education with impressive results (<a href="https://www.theguardian.com/news/2018/may/06/cambridge-analytica-how-turn-clicks-into-votes-christopher-wylie">truly outstanding!</a>). They explained that, using machine learning, one could uncover a person’s gender or personality to then send that person tailored political information. All too aware of the Swiss democracy’s need for information, Baschi Dürr ordered his machine learning task force to congregate at once not to waste any time: Switzerland was not going to miss out on this amazing opportunity. America first, <a href="https://www.youtube.com/watch?v=reuJ8yVCgSM">Switzerland second</a>.</p>
-<p>(Names, characters, businesses, places, events, locales, and incidents are either the products of the author’s imagination or used in a fictitious manner. Any resemblance to actual persons, living or dead, or actual events is purely coincidental.)</p>
-<div id="a---preliminaries" class="section level3">
-<h3>A - Preliminaries</h3>
+<div id="wettbewerb" class="section level2">
+<h2>Wettbewerb</h2>
+<div id="a---setup" class="section level3">
+<h3>A - Setup</h3>
 <ol style="list-style-type: decimal">
-<li><p>Open your <code>BaselRBootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>.</p></li>
-<li><p>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>Models_competition.R</code> in the <code>2_Code</code> folder.</p></li>
-<li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p></li>
+<li><p>Öffne dein <code>TheRBootcamp</code> R project. Es sollte die Ordner <code>1_Data</code> und <code>2_Code</code> enthalten. Stelle sicher, dass du alle Datensätze, welche im <code>Datensätze</code> Tab aufgelisted sind, in deinem <code>1_Data</code> Ordner hast.</p></li>
+<li><p>Öffne ein neues R Skript. Schreibe deinen Namen, das Datum und “Modelling Wettbewerb” als Kommentare an den Anfang des Skripts.</p></li>
 </ol>
 <pre class="r"><code>## NAME
-## DATE
-## Modeling competition
-
-library(tidyverse)
-library(caret)</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>With the code below, load the <code>tweets</code> data set and change any character variables to factors.</li>
+## DATUM
+## Modelling Wettbewerb</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Speichere das neue Skript unter dem Namen <code>modelling_wettbewerb.R</code> im <code>2_Code</code> Ordner.</p></li>
+<li><p>Lade die Pakete <code>tidyverse</code>, <code>caret</code>, <code>party</code>, und <code>partykit</code>.</p></li>
+<li><p>Mit dem Code unten lade den <code>tweets</code> Datensatz und ändere <code>character</code> in <code>factor</code>.</p></li>
 </ol>
-<pre class="r"><code># Load tweet data
+<pre class="r"><code># Lade tweets daten
 tweets &lt;- read_csv(file = &quot;1_Data/tweets_train.csv&quot;)
 
-# change character to factor
+# Ändere character zu factor
 tweets &lt;- tweets %&gt;% mutate_if(is.character, as.factor)</code></pre>
 </div>
-<div id="b-competition-rules" class="section level3">
-<h3>B Competition rules</h3>
+<div id="b---wettbewerbsregeln" class="section level3">
+<h3>B - Wettbewerbsregeln</h3>
 <ol style="list-style-type: decimal">
-<li><p>The goal of the competition is to predict with maximal <code>Accuracy</code> whether a twitter user is <code>'female'</code> or <code>'male'</code>.</p></li>
-<li><p>Entering the competition grants you a chance to win lots of 🍫🍫🍫.</p></li>
-<li><p>To enter the competition, you can submit <b>up to three</b> caret <code>train</code>-object (result of the <code>train()</code> function) containing your candidate model.</p></li>
-<li><p>To submit the model, first save your model as an <code>.RDS</code>-file named <code>pseudonym_train.RDS</code>, with <code>pseudonym</code> replaced by a pseudonym of your choice. See the code below.</p></li>
+<li><p>Das Ziel des Wettbewerbs ist die maximale <code>Accuracy</code> in der Vorhersage, ob der Twitter User <code>female</code> oder <code>male</code> ist, zu erzielen.</p></li>
+<li><p>Um am Wettbewerb teilzunehmen, reicht <b>bis zu drei</b> <code>train</code>-Objekte (also der Output der <code>train()</code>-Funktion ein).</p></li>
+<li><p>Um ein <code>train</code>-Objekte einzureichen, speichert es zuerst als <code>.RDS</code>-Datei, die ihr benennt mit <code>PSEUDONYM_VERSION.RDS</code>, wobei ihr <code>PSEUDONYM</code> mit einem selbstgewählten Pseudonym ersetzt und <code>VERSION</code> mit einem selbstgewählten Beschreibung des verwendeten Ansatzes. Siehe den Code unten.</p></li>
 </ol>
-<pre class="r"><code># save train obect as .RDS
-saveRDS(my_train,&#39;1_Data/mypseudonym_train.RDS&#39;)</code></pre>
+<pre class="r"><code># Fitte Modell
+my_train &lt;- train(...)
+
+# Speichere train Objekt
+saveRDS(my_train,&#39;1_Data/PSEUDONYM_VERSION.RDS&#39;)</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>Submit your <code>.RDS</code> file (containing your training object) via the following link:</li>
+<li>Reiche deine <code>.RDS</code> Datei über den folgenden Link ein. Wenn der Upload nicht funktioniert, dann schickt uns das Objekt oder die Objekte per <a href="mailto:therbootcamp@gmail.com"><strong>Mail</strong></a>.</li>
 </ol>
+<p>Submit your <code>.RDS</code> file (containing your training object) via the following link:</p>
 <div align="center">
 <table>
 <tr>
@@ -315,19 +313,19 @@ tweets (<code>gender</code>)
 Accuracy
 </td>
 <td>
-<a href="https://www.dropbox.com/request/03OHzgLFyAyRpXI9D1fW"><strong>Submit candidate</strong></a>
+<a href="https://www.dropbox.com/request/qNeX6wMNDbDtbJuVnxx0"><strong>Submit candidate</strong></a>
 </td>
 </tr>
 </table>
 </div>
 <ol start="6" style="list-style-type: decimal">
-<li><p>Use any weapon in your arsenal (or <code>caret</code>’s arsenal). Feel free to try different models, use different tuning parameter settings or preprocessing methods, make use of all or some variables. Whatever may lead to the highest prediction <code>Accuracy</code>. Consult the <a href="https://therbootcamp.github.io/ML_2019Oct/"><strong>course materials</strong></a> for help.</p></li>
-<li><p>In order for us to to be able to evaluate and compare the models, you must refrain from any manipulation (or engineering) of features other than those accessible via the <code>preProcess</code> argument in the <code>train()</code> function.</p></li>
+<li><p>Du darfst alle Waffen in <code>caret</code>s Arsenal verwenden. Versuche neue Modelle oder Tuning Parameter oder neue Präprozessierungs Methoden. Verwende alle oder nur einige Feature.</p></li>
+<li><p><font style="font-color:#EA4B68">Was du nicht darfst, ist neue Variablen zu erstellen, ansonsten können wir nämlich später nicht dein Modell mit anderen Vergleichen. D.h. alle Manipulation der Feature (jenseits deren Eliminiation z.B. dadurch dass nur bestimmte Feature in der Formula für die Vorhersage ausgewählt werden) müssen über das <code>preProcess</code>-Argument der <code>train()</code> Funktion durchgeführt werden. </font></p></li>
 </ol>
 </div>
 </div>
-<div id="datasets" class="section level2">
-<h2>Datasets</h2>
+<div id="datensatz" class="section level2">
+<h2>Datensatz</h2>
 <table>
 <thead>
 <tr class="header">
@@ -338,7 +336,7 @@ Accuracy
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/appliedML_2019Jan/master/1_Data/tweets_train.csv">tweets.csc</a></td>
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/appliedML_2019Jan/master/1_Data/tweets_train.csv">tweets.csv</a></td>
 <td align="left">2500</td>
 <td align="left">23</td>
 </tr>
