@@ -2,7 +2,7 @@
 title: "Wiederholung"
 author: "Maschinelles Lernen mit R<br>
   <a href='https://therbootcamp.github.io'>
-    Basel R Bootcamp
+    The R Bootcamp
   </a>
   <br>
   <a href='https://therbootcamp.github.io/ML_2020Apr/'>
@@ -184,7 +184,7 @@ logreg2 = logreg1 +
     <li><span>...ein <high>Bereich der künstlichen Intelligenz</high>...</span></li><br>
     <li><span>...der mittels <high>statistischer Methoden</high>...</span></li><br>
     <li><span>...es Computern ermöglicht zu <high>lernen</high>...</span></li><br>
-    <li><span>...d.h., fortwährend die eigene <high>Leistung</high> in (spezifischen) Aufgaben verbessert...</span></li><br>
+    <li><span>...d.h., fortwährend die eigene <high>Leistung</high> in (spezifischen) Aufgaben zu verbessert...</span></li><br>
     <li><span>...<high>ohne explizit programmiert</high> worden zu sein.</span></li>
   </ul>
 </ul>
@@ -227,12 +227,12 @@ logreg2 = logreg1 +
 
 ---
 
-# Loss function
+# Loss  Funktion
 
 .pull-left45[
 
 <ul>
-<li class="m1"><span>Eines <high>zentrales Konzepte</high> in der Statistik und im maschinellen Lernen.</span></li>
+<li class="m1"><span>Ein <high>zentrales Konzept</high> in der Statistik und im maschinellen Lernen.</span></li>
 <li class="m2"><span>Die Loss Funktion fasst die <high>Fehler eines Modells zusammen</high>.</span></li>
 </ul>
 <p style="padding-top:7px">
@@ -330,7 +330,7 @@ bad_err + labs(title=element_blank(),subtitle = element_blank())
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Die Performanz eines Models wird i.a.R. über die Vorhersage <high><i>ungesehener</i> Daten</high> evaluiert.</span></li><br>
+  <li class="m1"><span>Die Performanz eines Modells wird i.a.R. über die Vorhersage <high><i>ungesehener</i> Daten</high> evaluiert.</span></li><br>
   <li class="m2"><span>Die <i>ungesehenen</i> Daten können <high>natürlich vorkommen</high>.</span></li>
   <ul class="level">
     <li><span>zB. Aktiendaten aus 2019 für ein Modell auf Basis von Aktiendaten aus 2018</span></li>
@@ -389,7 +389,7 @@ data_train <- read_csv("1_Data/data.csv")
 data_test <- read_csv("1_Data/data.csv")
 ```
 
-Schritt 1: Define control parameters
+Schritt 1: Definiere Kontrollparameter
 
 ```{r, eval = FALSE}
 # Verwende Cross-Validation
@@ -413,11 +413,11 @@ mod <- train(form = Y ~ .,
 Schritt 4: Inspiziere Modell
 
 ```{r, eval = FALSE}
-mod            # Print object
-mod$finalModel # Final model
+mod            # Printe Objekt
+mod$finalModel # Finales Modell
 ```
 
-Schritt 5: Predict 
+Schritt 5:Generiere Vorhersagen 
 
 ```{r, eval = FALSE}
 # Generiere Vorhersagen
@@ -425,7 +425,7 @@ mod_pred <- predict(object = mod,
                     newdata = data_test)
 ```
 
-Schritt 6: Evaluate prediction accuracy
+Schritt 6: Evaluiere Vorhersagen
 
 ```{r, eval = FALSE}
 # Evaluiere Vorhersagen
