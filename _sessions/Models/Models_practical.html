@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -84,7 +84,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -146,6 +145,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -157,18 +157,6 @@ summary {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -209,8 +197,8 @@ $(document).ready(function () {
 <p><img src="image/twitter.gif" width="100%" style="display: block; margin: auto;" /></p>
 <div id="section" class="section level1 tabset">
 <h1></h1>
-<div id="overview" class="section level2">
-<h2>Overview</h2>
+<div id="überblick" class="section level2">
+<h2>Überblick</h2>
 <p>Demonstriere dein Können im maschinellen Lernen in einem Modelling Wettbewerb. Sage das Geschlecht eines Tweeters auf Basis von Meta Informationen vorher und gewinne 🍫🍫🍫.</p>
 <p>Der Wettbewerb läuft noch…</p>
 <font style="font-size:32px">
@@ -275,7 +263,7 @@ tweets &lt;- tweets %&gt;% mutate_if(is.character, as.factor)</code></pre>
 <ol style="list-style-type: decimal">
 <li><p>Das Ziel des Wettbewerbs ist die maximale <code>Accuracy</code> in der Vorhersage, ob der Twitter User <code>female</code> oder <code>male</code> ist, zu erzielen.</p></li>
 <li><p>Um am Wettbewerb teilzunehmen, reicht <b>bis zu drei</b> <code>train</code>-Objekte (also der Output der <code>train()</code>-Funktion ein).</p></li>
-<li><p>Um ein <code>train</code>-Objekte einzureichen, speichert es zuerst als <code>.RDS</code>-Datei, die ihr benennt mit <code>PSEUDONYM_VERSION.RDS</code>, wobei ihr <code>PSEUDONYM</code> mit einem selbstgewählten Pseudonym ersetzt und <code>VERSION</code> mit einem selbstgewählten Beschreibung des verwendeten Ansatzes. Siehe den Code unten.</p></li>
+<li><p>Um ein <code>train</code>-Objekt einzureichen, speichert es zuerst als <code>.RDS</code>-Datei, die ihr benennt mit <code>PSEUDONYM_VERSION.RDS</code>, wobei ihr <code>PSEUDONYM</code> mit einem selbstgewählten Pseudonym ersetzt und <code>VERSION</code> mit einer selbstgewählten Beschreibung des verwendeten Ansatzes. Siehe den Code unten.</p></li>
 </ol>
 <pre class="r"><code># Fitte Modell
 my_train &lt;- train(...)
@@ -283,20 +271,19 @@ my_train &lt;- train(...)
 # Speichere train Objekt
 saveRDS(my_train,&#39;1_Data/PSEUDONYM_VERSION.RDS&#39;)</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>Reiche deine <code>.RDS</code> Datei über den folgenden Link ein. Wenn der Upload nicht funktioniert, dann schickt uns das Objekt oder die Objekte per <a href="mailto:therbootcamp@gmail.com"><strong>Mail</strong></a>.</li>
+<li>Reiche deine <code>.RDS</code> Datei über den folgenden Link ein. Wenn der Upload nicht funktioniert, dann schicke uns das Objekt oder die Objekte per <a href="mailto:therbootcamp@gmail.com"><strong>Mail</strong></a>.</li>
 </ol>
-<p>Submit your <code>.RDS</code> file (containing your training object) via the following link:</p>
 <div align="center">
 <table>
 <tr>
 <th>
-Task type
+Problemtyp
 </th>
 <th>
-Criterion
+Kriterium
 </th>
 <th>
-Performance measure
+Gütekriterium
 </th>
 <th>
 Submission link
@@ -304,7 +291,7 @@ Submission link
 </tr>
 <tr>
 <td>
-Classification
+Klassifikation
 </td>
 <td>
 tweets (<code>gender</code>)
@@ -319,8 +306,8 @@ Accuracy
 </table>
 </div>
 <ol start="6" style="list-style-type: decimal">
-<li><p>Du darfst alle Waffen in <code>caret</code>s Arsenal verwenden. Versuche neue Modelle oder Tuning Parameter oder neue Präprozessierungs Methoden. Verwende alle oder nur einige Feature.</p></li>
-<li><p><font style="font-color:#EA4B68">Was du nicht darfst, ist neue Variablen zu erstellen, ansonsten können wir nämlich später nicht dein Modell mit anderen Vergleichen. D.h. alle Manipulation der Feature (jenseits deren Eliminiation z.B. dadurch dass nur bestimmte Feature in der Formula für die Vorhersage ausgewählt werden) müssen über das <code>preProcess</code>-Argument der <code>train()</code> Funktion durchgeführt werden. </font></p></li>
+<li><p>Du darfst alle Waffen in <code>caret</code>s Arsenal verwenden. Versuche neue Modelle oder Tuning Parameter oder neue Präprozessierungsmethoden. Verwende alle oder nur einige Features.</p></li>
+<li><p><font style="font-color:#EA4B68">Was du nicht darfst, ist neue Variablen zu erstellen. Ansonsten können wir nämlich später dein Modell nicht mit anderen Vergleichen. D.h. alle Manipulationen der Features (jenseits deren Eliminiation z.B. dadurch, dass nur bestimmte Features in der Formula für die Vorhersage ausgewählt werden) müssen über das <code>preProcess</code>-Argument der <code>train()</code> Funktion durchgeführt werden. </font></p></li>
 </ol>
 </div>
 </div>
@@ -329,20 +316,20 @@ Accuracy
 <table>
 <thead>
 <tr class="header">
-<th align="left">File</th>
-<th align="left">Rows</th>
-<th align="left">Columns</th>
+<th align="left">Datei</th>
+<th align="left">Zeilen</th>
+<th align="left">Spalten</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/appliedML_2019Jan/master/1_Data/tweets_train.csv">tweets.csv</a></td>
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/tweets_train.csv">tweets.csv</a></td>
 <td align="left">2500</td>
 <td align="left">23</td>
 </tr>
 </tbody>
 </table>
-<p>Der <code>tweets.csv</code> Datensatz ist ein (stark) vor-verarbeiteter Ausschnitt deses Datensatzes von <a href="https://www.kaggle.com/crowdflower/twitter-user-gender-classification">Kaggle</a>.</p>
+<p>Der <code>tweets.csv</code> Datensatz ist ein (stark) vor-verarbeiteter Ausschnitt dieses Datensatzes von <a href="https://www.kaggle.com/crowdflower/twitter-user-gender-classification">Kaggle</a>.</p>
 <table>
 <colgroup>
 <col width="39%" />
@@ -351,7 +338,7 @@ Accuracy
 <thead>
 <tr class="header">
 <th align="left">Name</th>
-<th align="left">Bedeutung</th>
+<th align="left">Beschreibung</th>
 </tr>
 </thead>
 <tbody>
@@ -476,6 +463,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
