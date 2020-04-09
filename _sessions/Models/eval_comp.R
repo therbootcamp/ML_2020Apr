@@ -4,14 +4,14 @@ require(stringr)
 
 # DATA --------------
 
-data_test = readr::read_csv('_sessions/Models/competition2/1_Data/tweets_test.csv')
+data_test = readr::read_csv('../_sessions/Models/competition2/1_Data/tweets_test.csv')
 
 # MODELS --------------
 
 repeat {
 
 # get files
-files = list.files('_sessions/Models/submissions',full.names = T)
+files = list.files('../_sessions/Models/submissions',full.names = T)
 
 # exclude markus
 files = files[!str_detect(files, "Markus Steiner")]
@@ -28,7 +28,7 @@ sel = classes == 'train'
 mods = mods[sel]
 
 # extract names
-nams = sapply(str_split(files[sel],'/'),'[[',4)
+nams = sapply(str_split(files[sel],'/'),'[[',5)
 nams = str_sub(nams, 1, nchar(nams)-4)
 
 # mods[[1]]$finalModel$model$.outcome
@@ -68,10 +68,11 @@ mtext(seq(0,1,.1),at=seq(0,1,.1),side=2,las=1)
 mtext("ACC",side=2,las=1,line=2)
 text(1:length(ACCs),rep(.2,length(ACCs)),labels=round(ACCs,3),col='white',cex=1)
 
-# i = 1
-# mtext(names(ACCs)[i],side=1,las=2,at=(1:length(ACCs))[i])
+#i = 1
+#mtext(names(ACCs),side=1,las=2,at=(1:length(ACCs)))
 
-mtext(names(ACCs),side=1,las=2,at=(1:length(ACCs)))
+i = 1
+mtext(names(ACCs)[i],side=1,las=2,at=(1:length(ACCs))[i])
 
 
 Sys.sleep(5)
