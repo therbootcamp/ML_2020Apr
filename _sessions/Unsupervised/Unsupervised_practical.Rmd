@@ -35,8 +35,8 @@ knitr::opts_chunk$set(comment = NA,
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-                      echo = FALSE, 
-                      eval = FALSE, 
+                      echo = TRUE, 
+                      eval = TRUE, 
                       warning = FALSE,
                       message = FALSE)
 
@@ -154,6 +154,7 @@ plot(gap2007, col = clusters)
 
 ```{r, echo = T}
 # kmeans plot für gap in 2007
+plot(gap2007, col = clusters)
 points(centers, pch = 16, col = 1:3, cex = 2)
 ```
 
@@ -358,13 +359,13 @@ plot(gap2007_gm, what = 'classification')
 
 4. Verwende nun den Code unten um explizit nur bestimmte Gaussian Mixture Modelle zu verwenden. Verwende hierzu `modelNames = 'XX'` wobei 'XX' das Kürzel des jeweiligen Modells ist. Plotte im Anschluss die gefunden Lösungen. Probiere zunächst `EEI` aus. Danach spiele ein wenig herum.
 
-```{r, echo = T}
+```{r, echo = T, eval = F}
 # Wähle Gaussian Mixture Modell explizit aus
 gap2007_gm <- Mclust(gap2007, modelNames = 'XX')
 plot(gap2007_gm, what = 'classification')
 ```
 
-```{r, echo = T}
+```{r}
 # Wähle Gaussian Mixture Modell explizit aus
 gap2007_gm <- Mclust(gap2007, modelNames = 'EEI')
 plot(gap2007_gm, what = 'classification')
